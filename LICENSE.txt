@@ -20,3 +20,5 @@ persistent hash trie implementation from Clojure (http://clojure.org).
 Originally presented as a mutable structure in a paper by Phil Bagwell. The 
 implementation is also heavily inspired by Eugene Vigdorchik's blog post:
 http://groovy.dzone.com/articles/immutable-data-structures
+
+All the data-structures are also inspired by the data-structures in Clojure.
