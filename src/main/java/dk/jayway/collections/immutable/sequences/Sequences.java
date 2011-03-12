@@ -60,11 +60,11 @@ public final class Sequences {
 		return appendedSequence;
 	}
 	
-	public static IntegerStreamBuilder from(int from) {
-		return new IntegerStreamBuilder(from);
+	public static IntegerSequenceBuilder from(int from) {
+		return new IntegerSequenceBuilder(from);
 	}
 	
-	public static <T> DefaultStreamBuilder<T> from(T from) {
-		return DefaultStreamBuilder.from(from);
+	public static <T> DefaultSequenceBuilder<T> from(T from) {
+		return DefaultSequenceBuilder.from(from);
 	}
 }

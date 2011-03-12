@@ -14,7 +14,7 @@ public class IteratorSequence<T> extends LazySequence<T> {
 	}
 	
 	@Override
-	public Sequence<T> createStream() {
+	public Sequence<T> createSequence() {
 		if (!source.hasNext()) {
 			return Sequences.empty();
 		}

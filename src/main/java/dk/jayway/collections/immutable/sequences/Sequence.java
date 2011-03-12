@@ -29,39 +29,39 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 */
 	public int hashCode();
 	/**
-	 * Returns the first element of the stream.
-	 * @return the first element of the stream.
+	 * Returns the first element of this sequence.
+	 * @return the first element of this sequence.
 	 * @throws IllegalStateException if the sequence is empty.
 	 */
 	T first();
 	
 	/**
-	 * Returns a new stream where the first element is removed.
-	 * @return a new stream where the first element is removed.
+	 * Returns a new sequence where the first element is removed.
+	 * @return a new sequence where the first element is removed.
 	 * @throws IllegalStateException if the sequence is empty.
 	 */
 	Sequence<T> rest();
 	
 	/**
-	 * Returns a new stream with the given element added to the front of this stream.
+	 * Returns a new sequence with the given element added to the front of this sequence.
 	 * @param element the element to be added.
-	 * @return a new stream with the given element added to the front of this stream.
+	 * @return a new sequence with the given element added to the front of this sequence.
 	 * @throws IllegalArgumentException if the given element is null.
 	 */
 	Sequence<T> add(T element);
 	
 	/**
-	 * Returns a new stream with all the given elements added to the front of this stream.
+	 * Returns a new sequence with all the given elements added to the front of this sequence.
 	 * @param elements the elements to be added.
-	 * @return a new stream with all the given elements added to the front of this stream.
+	 * @return a new sequence with all the given elements added to the front of this sequence.
 	 * @throws IllegalArgumentException if any of the elements are null.
 	 */
 	Sequence<T> addAll(T... elements);
 
 	/**
-	 * Returns a new stream with all the given elements added to the front of this stream.
+	 * Returns a new sequence with all the given elements added to the front of this sequence.
 	 * @param elements the elements to be added.
-	 * @return a new stream with all the given elements added to the front of this stream.
+	 * @return a new sequence with all the given elements added to the front of this sequence.
 	 * @throws IllegalArgumentException if any of the elements are null.
 	 */
 	Sequence<T> addAll(Iterable<T> elements);
@@ -157,15 +157,15 @@ public interface Sequence<T> extends Sequenceable<T> {
 	boolean Non(Predicate<T> predicate);
 	
 	/**
-	 * Returns the element with the given index in the this stream.
+	 * Returns the element with the given index in the this sequence.
 	 * @param index The index of the element to return.
 	 * @return the element at the given index.
-	 * @throws IndexOutOfBoundsException if the stream is shorter than the given index.
+	 * @throws IndexOutOfBoundsException if the sequence is shorter than the given index.
 	 */
 	T get(int index);
 
 	/**
-	 * @return a new sequence with n elements from this stream.
+	 * @return a new sequence with n elements from this sequence.
 	 */
 	Sequence<T> take(int n);
 

@@ -13,7 +13,7 @@ class InterposeSequence<T> extends LazySequence<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Sequence<T> createStream() {
+	public Sequence<T> createSequence() {
 		if (source.isEmpty()) {
 			return source;
 		}

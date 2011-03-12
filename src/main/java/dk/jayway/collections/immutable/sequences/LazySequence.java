@@ -5,7 +5,7 @@ public abstract class LazySequence<T> extends SequenceSupport<T> {
 
 	private Sequence<T> cachedValue;
 	
-	public abstract Sequence<T> createStream();
+	public abstract Sequence<T> createSequence();
 	
 	@Override
 	public T first() {
@@ -24,7 +24,7 @@ public abstract class LazySequence<T> extends SequenceSupport<T> {
 
 	public Sequence<T> getCachedValue() {
 		if (cachedValue == null) {
-			cachedValue = createStream();
+			cachedValue = createSequence();
 		}
 		return cachedValue;
 	}

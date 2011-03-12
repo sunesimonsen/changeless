@@ -20,7 +20,7 @@ public class SkipSequence<T> extends LazySequence<T>{
 	}
 	
 	@Override
-	public Sequence<T> createStream() {
+	public Sequence<T> createSequence() {
 		return SkipSequence.create(sequence.rest(), n-1);
 	}
 }

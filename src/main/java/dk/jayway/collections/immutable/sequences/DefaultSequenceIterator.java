@@ -7,19 +7,19 @@ import dk.jayway.collections.utilities.Guard;
 
 /**
  * A default implementation of {@link Iterator} that just walks the 
- * stream.
- * @param <T> The type of the elements in the stream to iterate. 
+ * seqeunces.
+ * @param <T> The type of the elements in the sequence to iterate. 
  */
 final class DefaultSequenceIterator<T> implements Iterator<T> {
-	private Sequence<T> stream;
+	private Sequence<T> sequence;
 
 	/**
 	 * Creates a default implementation of {@link Iterator}.
 	 * @param sequence The sequence to iterate over.
 	 * @throws IllegalArgumentException is the given sequence is null.
 	 */
-	public static <T> Iterator<T> of(Sequence<T> stream) {
-		return new DefaultSequenceIterator<T>(stream);
+	public static <T> Iterator<T> of(Sequence<T> sequence) {
+		return new DefaultSequenceIterator<T>(sequence);
 	}
 	
 	/**
@@ -27,14 +27,14 @@ final class DefaultSequenceIterator<T> implements Iterator<T> {
 	 * @param sequence The sequence to iterate over.
 	 * @throws IllegalArgumentException is the given sequence is null.
 	 */
-	private DefaultSequenceIterator(Sequence<T> stream) {
-		Guard.notNull(stream,"stream");
-		this.stream = stream;
+	private DefaultSequenceIterator(Sequence<T> sequence) {
+		Guard.notNull(sequence,"sequence");
+		this.sequence = sequence;
 	}
 	
 	@Override
 	public boolean hasNext() {
-		return !stream.isEmpty();
+		return !sequence.isEmpty();
 	}
 
 	@Override
@@ -42,8 +42,8 @@ final class DefaultSequenceIterator<T> implements Iterator<T> {
 		if (!hasNext()) {
 			throw new NoSuchElementException();
 		}
-		T nextElement = stream.first();
-		stream = stream.rest();
+		T nextElement = sequence.first();
+		sequence = sequence.rest();
 		return nextElement;
 	}
 

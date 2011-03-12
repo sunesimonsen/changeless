@@ -16,6 +16,10 @@ class TakeSequence<T> extends SequenceSupport<T> {
 	}
 
 	public static <T> Sequence<T> create(Sequence<T> sequence, int n) {
+		if (n <= 0 || sequence.isEmpty()) {
+			return Sequences.empty();
+		}
+		
 		return new TakeSequence<T>(sequence, n);
 	}
 
@@ -26,7 +30,7 @@ class TakeSequence<T> extends SequenceSupport<T> {
 
 	@Override
 	public boolean isEmpty() {
-		return n <= 0 || sequence.isEmpty();
+		return sequence.isEmpty();
 	}
 
 }
