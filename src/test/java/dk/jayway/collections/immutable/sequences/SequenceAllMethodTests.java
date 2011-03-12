@@ -1,10 +1,11 @@
 package dk.jayway.collections.immutable.sequences;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import dk.jayway.collections.predicates.OddPredicate;
+import dk.jayway.collections.predicates.Predicates;
 
 
 public class SequenceAllMethodTests {
@@ -14,16 +15,16 @@ public class SequenceAllMethodTests {
 	@Test
 	public void allReturnsTrueForEmptySequence() throws Exception {
 		Sequence<Integer> empty = Sequences.<Integer>empty();
-		assertTrue("empty", empty.All(new OddPredicate()));
+		assertTrue("empty", empty.All(Predicates.oddPredicate));
 	}
 	
 	@Test
 	public void notAllOdd() throws Exception {
-		assertFalse(mixedSequence.toString(), mixedSequence.All(new OddPredicate()));
+		assertFalse(mixedSequence.toString(), mixedSequence.All(Predicates.oddPredicate));
 	}
 	
 	@Test
 	public void allOdd() throws Exception {
-		assertTrue(oddSequence.toString(), oddSequence.All(new OddPredicate()));
+		assertTrue(oddSequence.toString(), oddSequence.All(Predicates.oddPredicate));
 	}
 }

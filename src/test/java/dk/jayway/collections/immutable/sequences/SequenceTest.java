@@ -12,7 +12,7 @@ import org.junit.Test;
 import dk.jayway.collections.functions.Functions;
 import dk.jayway.collections.immutable.maps.Map;
 import dk.jayway.collections.immutable.maps.Maps;
-import dk.jayway.collections.predicates.OddPredicate;
+import dk.jayway.collections.predicates.Predicates;
 
 public class SequenceTest {
 	
@@ -181,7 +181,7 @@ public class SequenceTest {
 	@Test
 	public void filterSeqence() throws Exception {
 		Sequence<Integer> sequence = Sequences.from(0).upward().take(10);
-		Sequence<Integer> actual = sequence.filter(new OddPredicate());
+		Sequence<Integer> actual = sequence.filter(Predicates.oddPredicate);
 		Sequence<Integer> expected = Sequences.of(1,3,5,7,9);
 		assertEquals("Expected sequences to be equal", expected, actual);
 	}

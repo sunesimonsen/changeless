@@ -1,6 +1,8 @@
 package dk.jayway.collections.predicates;
 
 public final class Predicates {
+	private Predicates() {}
+	
 	public static <T> Predicate<T> not(final Predicate<T> predicate) {
 		return new Predicate<T>() {
 			@Override
@@ -18,4 +20,18 @@ public final class Predicates {
 			}
 		};
 	}
+	
+	public static Predicate<Integer> oddPredicate = new Predicate<Integer>() {
+		@Override
+		public boolean apply(Integer input) {
+			return input % 2 == 1;
+		}
+	};
+	
+	public static Predicate<Integer> evenPredicate = new Predicate<Integer>() {
+		@Override
+		public boolean apply(Integer input) {
+			return input % 2 == 0;
+		}
+	};
 }
