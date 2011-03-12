@@ -15,10 +15,15 @@ import dk.jayway.collections.immutable.maps.Maps;
 import dk.jayway.collections.predicates.Predicates;
 
 public class SequenceTest {
+	@Test
+	public void emptySequenceIsEmpty() throws Exception {
+		Sequence<Integer> sequence = Sequences.empty();
+		assertTrue("The sequence was expected to be empty",  sequence.isEmpty());
+	}
 	
 	@Test
 	public void ofWithNoArgumentsCreatesAnEmptySequence() throws Exception {
-		Sequence<Integer> sequence = Sequences.empty();
+		Sequence<Integer> sequence = Sequences.of();
 		assertTrue("The sequence was expected to be empty",  sequence.isEmpty());
 	}
 	
