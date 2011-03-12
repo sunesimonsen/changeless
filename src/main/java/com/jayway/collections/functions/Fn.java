@@ -1,5 +1,5 @@
 package com.jayway.collections.functions;
 
-public interface Fn<TInput,TReturn> {
-	TReturn apply(TInput input);
+public interface Fn<T,R> {
+	R apply(T input);
 }

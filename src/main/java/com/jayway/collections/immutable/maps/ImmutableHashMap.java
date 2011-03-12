@@ -3,9 +3,12 @@ package com.jayway.collections.immutable.maps;
 import java.util.Iterator;
 
 import com.jayway.collections.Optional;
+import com.jayway.collections.functions.Fn;
 import com.jayway.collections.immutable.sequences.Sequence;
 import com.jayway.collections.internal.hashtrie.EmptyNode;
 import com.jayway.collections.internal.hashtrie.Node;
+import com.jayway.collections.tuples.Tuple;
+import com.jayway.collections.tuples.Tuples;
 
 
 
@@ -63,21 +66,26 @@ class ImmutableHashMap<K, V> implements Map<K, V> {
 	}
 
 	@Override
-	public Sequence<MapEntry<K, V>> sequence() {
-		return root.sequence();
+	public Sequence<Tuple<K, V>> sequence() {
+		return root.sequence().transform(new Fn<MapEntry<K, V>, Tuple<K,V>>() {
+			@Override
+			public Tuple<K, V> apply(MapEntry<K, V> input) {
+				return Tuples.of(input.getKey(), input.getValue());
+			}
+		});
 	}
 
 	@Override
-	public Iterator<MapEntry<K, V>> iterator() {
+	public Iterator<Tuple<K, V>> iterator() {
 		return sequence().iterator();
 	}
 
 	@Override
 	public int hashCode() {
 		int hashCode = 0;
-		for (MapEntry<K, V> mapEntry : this) {
-			hashCode += mapEntry.getKey().hashCode();
-			hashCode += mapEntry.getValue().hashCode();
+		for (Tuple<K, V> mapEntry : this) {
+			hashCode += mapEntry.getFirst().hashCode();
+			hashCode += mapEntry.getSecond().hashCode();
 		}
 		return hashCode;
 	}
@@ -95,11 +103,11 @@ class ImmutableHashMap<K, V> implements Map<K, V> {
 		int otherSize = 0;
 		@SuppressWarnings("unchecked")	
 		Map<K,V> other = (Map<K,V>) obj;
-		for (MapEntry<K, V> mapEntry : other) {
-			Optional<V> result = get(mapEntry.getKey());
+		for (Tuple<K, V> mapEntry : other) {
+			Optional<V> result = get(mapEntry.getFirst());
 			if (result.hasNoValue()) {
 				return false;
-			} else if (!result.getValue().equals(mapEntry.getValue())) {
+			} else if (!result.getValue().equals(mapEntry.getSecond())) {
 				return false;
 			}
 			otherSize++;
