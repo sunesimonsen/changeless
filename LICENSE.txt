@@ -1,0 +1,22 @@
+Copyright 2011 Sune Simonsen 
+
+Licensed under the Apache License, Version 2.0 (the "License"); 
+you may not use this file except in compliance with the License. 
+You may obtain a copy of the License at 
+
+    http://www.apache.org/licenses/LICENSE-2.0 
+
+Unless required by applicable law or agreed to in writing, software 
+distributed under the License is distributed on an "AS IS" BASIS, 
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+See the License for the specific language governing permissions and 
+limitations under the License. 
+
+Acknowledgements:
+The implementation of an immutable hash-trie in the 
+com.jayway.collections.internal.hashtrie is based on Daniel Spiewak's 'HashTrie'
+implementation for Scala that is in turn a clean-room port of Rich Hickey's
+persistent hash trie implementation from Clojure (http://clojure.org).
+Originally presented as a mutable structure in a paper by Phil Bagwell. The 
+implementation is also heavily inspired by Eugene Vigdorchik's blog post:
+http://groovy.dzone.com/articles/immutable-data-structures
