@@ -28,6 +28,11 @@ public class EmptyNode<T> implements Node<T> {
 	public int size() {
 		return 0;
 	}
+	
+	@Override
+	public String toString() {
+		return sequence().toString();
+	}
 
 	@Override
 	public Sequence<T> sequence() {

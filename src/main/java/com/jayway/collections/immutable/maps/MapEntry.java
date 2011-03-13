@@ -20,7 +20,7 @@ class MapEntry<K,V> {
 	
 	@Override
 	public String toString() {
-		return String.format("%s: %s", getKey(), getValue());
+		return String.format("<%s,%s>", getKey(), getValue());
 	}
 
 	@Override
