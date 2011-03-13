@@ -12,14 +12,12 @@ public final class Predicates {
 		};
 	}
 
-	public static <T> Predicate<Object> notNull() {
-		return new Predicate<Object>() {
+	public static Predicate<Object> notNull= new Predicate<Object>() {
 			@Override
 			public boolean apply(Object input) {
 				return input != null;
 			}
 		};
-	}
 	
 	public static Predicate<Integer> oddPredicate = new Predicate<Integer>() {
 		@Override
@@ -34,4 +32,13 @@ public final class Predicates {
 			return input % 2 == 0;
 		}
 	};
+	
+	public static <T> Predicate<T> equalsPredicate(final T element) {
+		return new Predicate<T>() {
+			@Override
+			public boolean apply(T input) {
+				return element.equals(input);
+			}
+		};
+	}
 }

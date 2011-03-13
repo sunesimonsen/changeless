@@ -25,6 +25,22 @@ public interface Sequence<T> extends Sequenceable<T> {
 	boolean equals(Object obj);
 	
 	/**
+	 * Returns a new lazy sequence containing the elements from this sequence 
+	 * except elements that are equals to the given element. 
+	 * @param element The element to be removed.
+	 * @return The resulting sequence.
+	 */
+	Sequence<T> remove(T element);
+	
+	/**
+	 * Returns a new lazy sequence containing the elements from this sequence 
+	 * except the elements matching the given predicate. 
+	 * @param element The element to be removed.
+	 * @return The resulting sequence.
+	 */
+	Sequence<T> remove(Predicate<? super T> predicate);
+	
+	/**
 	 * Calculated that hash code based on all the elements hash codes.
 	 * @return the hash code of the sequence.
 	 */

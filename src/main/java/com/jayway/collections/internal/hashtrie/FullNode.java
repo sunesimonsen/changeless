@@ -23,7 +23,7 @@ class FullNode<T> implements Node<T> {
 		int i = (hash >>> shift) & 0x1f;
 		Node<T> node = table.get(i);
 		Node<T> foundNode = node.add(shift + 5, hash, value);
-		if (foundNode == node) { // TODO I don't think this can happen
+		if (foundNode == node) {
 			return this;
 		} else {
 			List<Node<T>> newTable = new ArrayList<Node<T>>(32);
@@ -47,7 +47,7 @@ class FullNode<T> implements Node<T> {
 
 		Node<T> node = table.get(i).remove(value, hash);
 
-		if (node == table.get(i)) { // TODO I don't think this can happen.
+		if (node == table.get(i)) {
 			return this;
 		} else {
 			List<Node<T>> newTable = new ArrayList<Node<T>>(32);

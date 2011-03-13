@@ -410,6 +410,11 @@ public class SetTests {
 		public int hashCode() {
 			return value < 100 ? 0 : value;
 		}
+		
+		@Override
+		public String toString() {
+			return String.valueOf(value);
+		}
 
 		@Override
 		public boolean equals(Object obj) {

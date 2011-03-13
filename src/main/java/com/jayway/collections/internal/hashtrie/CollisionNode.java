@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 import com.jayway.collections.Optional;
 import com.jayway.collections.immutable.sequences.Sequence;
-import com.jayway.collections.predicates.Predicate;
 
 class CollisionNode<T> extends SingleNode<T> {
 
@@ -18,11 +17,7 @@ class CollisionNode<T> extends SingleNode<T> {
 	@Override
 	public Node<T> add(int shift, int hash, T value) {
 		if (getHash() == hash) {
-
-			// TODO use remove
-			Sequence<T> newBucket = bucket.filter(
-					new NotEqual<T>(value)).add(value);
-
+			Sequence<T> newBucket = bucket.remove(value).add(value);
 			return new CollisionNode<T>(hash, newBucket);
 		} else {
 			return bitmap(shift, hash, value);
@@ -41,8 +36,7 @@ class CollisionNode<T> extends SingleNode<T> {
 
 	@Override
 	public Node<T> remove(T value, int hash) {
-		Sequence<T> newBucket = bucket.filter(
-				new NotEqual<T>(value));
+		Sequence<T> newBucket = bucket.remove(value);
 
 		int newBucketSize = newBucket.size();
 		if (newBucketSize == bucket.size()) {
@@ -76,19 +70,4 @@ class CollisionNode<T> extends SingleNode<T> {
 	public Iterator<T> iterator() {
 		return sequence().iterator();
 	}
-}
-
-class NotEqual<T> implements Predicate<T> {
-
-	private final T value;
-
-	public NotEqual(T value) {
-		this.value = value;
-	}
-
-	@Override
-	public boolean apply(T input) {
-		return !value.equals(input);
-	}
-
 }
