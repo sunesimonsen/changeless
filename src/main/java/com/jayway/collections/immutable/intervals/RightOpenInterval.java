@@ -10,8 +10,8 @@ public class RightOpenInterval<T extends Comparable<T>> extends
 	}
 
 	@Override
-	public boolean Contains(T value) {
-		return Comparables.LessThanOrEquals(getStart(), value)
+	public boolean contains(T value) {
+		return Comparables.lessThanOrEquals(getStart(), value)
 				&& Comparables.LessThan(value, getEnd());
 	}
 

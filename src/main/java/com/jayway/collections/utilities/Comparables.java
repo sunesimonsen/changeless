@@ -41,7 +41,7 @@ public final class Comparables {
 	 * @param rigth The right value.
 	 * @return true if the left value is less than or equals to the right value; false otherwise.
 	 */
-	public static <T extends Comparable<T>> boolean LessThanOrEquals(T left, T rigth) {
+	public static <T extends Comparable<T>> boolean lessThanOrEquals(T left, T rigth) {
 		return left.compareTo(rigth) <= 0;
 	}
 	

@@ -24,7 +24,7 @@ public final class Predicates {
 	public static Predicate<Integer> oddPredicate = new Predicate<Integer>() {
 		@Override
 		public boolean apply(Integer input) {
-			return input % 2 == 1;
+			return input % 2 != 0;
 		}
 	};
 	

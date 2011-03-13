@@ -70,11 +70,11 @@ public class IntervalTests {
 	
 	private void assertOutsideInterval(Interval<Integer> interval, int value) {
 		String message = String.format("Expect value '%s' to be outside interval '%s'", value, interval);
-		assertFalse(message, interval.Contains(value));
+		assertFalse(message, interval.contains(value));
 	}
 
 	private <T extends Comparable<T>> void assertContains(Interval<T> interval, T value) {
 		String message = String.format("Expect value '%s' to be contained in interval '%s'", value, interval);
-		assertTrue(message, interval.Contains(value));
+		assertTrue(message, interval.contains(value));
 	}
 }

@@ -47,7 +47,7 @@ public class ImmutableHashSet<T> implements Set<T> {
 	}
 
 	@Override
-	public boolean Contains(T value) {
+	public boolean contains(T value) {
 		Optional<T> seachResult = root.get(value, value.hashCode());
 		return seachResult.hasValue();
 	}
@@ -90,7 +90,7 @@ public class ImmutableHashSet<T> implements Set<T> {
 	public Set<T> intersection(Set<T> set) {
 		Set<T> intersection = Sets.empty();
 		for (T value : set.sequence()) {
-			if (Contains(value)) {
+			if (contains(value)) {
 				intersection = intersection.add(value);
 			}
 		}
@@ -139,7 +139,7 @@ public class ImmutableHashSet<T> implements Set<T> {
 		
 		int size = 0;
 		for (T value : other.sequence()) {
-			if (!Contains(value)) {
+			if (!contains(value)) {
 				return false;
 			}
 			size++;

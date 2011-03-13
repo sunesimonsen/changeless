@@ -36,7 +36,7 @@ public interface Node<T> extends Sequenceable<T> {
 }
 
 class ListUtilites {
-	public static <T> List<T> CreateListWithNullValues(int tableSize) {
+	public static <T> List<T> createListWithNullValues(int tableSize) {
 		List<T> table = new ArrayList<T>(tableSize);
 		for (int i = 0; i < tableSize; i++) {
 			table.add(null);
@@ -61,7 +61,7 @@ abstract class SingleNode<T> implements Node<T> {
 		int shift1 = (getHash() >>> shift) & 0x1f;
 		int shift2 = (hash >>> shift) & 0x1f;
 		int tableSize = Math.max(shift1, shift2) + 1;
-		List<Node<T>> table = ListUtilites.CreateListWithNullValues(tableSize);
+		List<Node<T>> table = ListUtilites.createListWithNullValues(tableSize);
 		table.set(shift1, this);
 		int bits1 = 1 << shift1;
 		int bits2 = 1 << shift2;
@@ -233,13 +233,13 @@ class BitmappedNode<T> implements Node<T> {
 				return this;
 			} else {
 				List<Node<T>> newTable = ListUtilites
-						.CreateListWithNullValues(table.size());
+						.createListWithNullValues(table.size());
 				Collections.copy(newTable, table);
 				newTable.set(i, node);
 				return new BitmappedNode<T>(shift, bits, newTable);
 			}
 		} else {
-			List<Node<T>> newTable = ListUtilites.CreateListWithNullValues(Math
+			List<Node<T>> newTable = ListUtilites.createListWithNullValues(Math
 					.max(table.size(), i + 1));
 			Collections.copy(newTable, table);
 			newTable.set(i, new LeafNode<T>(hash, value));
@@ -272,7 +272,7 @@ class BitmappedNode<T> implements Node<T> {
 		if ((bits & mask) == mask) {
 			Node<T> node = table.get(i).remove(value, hash);
 
-			if (node == table.get(i)) { // TODO I don't think this can happen.
+			if (node == table.get(i)) {
 				return this;
 			} else if (node instanceof EmptyNode<?>) {
 				if (size() == 1) {

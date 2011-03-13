@@ -177,12 +177,12 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	}
 
 	@Override
-	public boolean All(Predicate<T> predicate) {
-		return Non(Predicates.not(predicate));
+	public boolean all(Predicate<T> predicate) {
+		return non(Predicates.not(predicate));
 	}
 
 	@Override
-	public boolean Any(Predicate<T> predicate) {
+	public boolean any(Predicate<T> predicate) {
 		for (T element : this) {
 			if (predicate.apply(element)) {
 				return true;
@@ -192,8 +192,8 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	}
 
 	@Override
-	public boolean Non(Predicate<T> predicate) {
-		return !Any(predicate);
+	public boolean non(Predicate<T> predicate) {
+		return !any(predicate);
 	}
 
 	@Override

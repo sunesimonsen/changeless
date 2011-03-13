@@ -26,7 +26,7 @@ public class SetTests {
 
 		for (int i = 0; i < numberOfElements; i++) {
 			assertTrue(String.format("Expected set to contain value: %s", i),
-					set.Contains(i));
+					set.contains(i));
 		}
 	}
 
@@ -40,7 +40,7 @@ public class SetTests {
 
 		for (int i = 0; i < numberOfElements; i++) {
 			assertTrue(String.format("Expected set to contain value: %s", i),
-					set.Contains(Integer.toString(i)));
+					set.contains(Integer.toString(i)));
 		}
 	}
 
@@ -78,7 +78,7 @@ public class SetTests {
 	public void containsOnNonExistingElement() throws Exception {
 		Set<Integer> set = Sets.empty();
 		set = set.add(1).add(2).add(4);
-		assertFalse("Expected to not contain 3", set.Contains(3));
+		assertFalse("Expected to not contain 3", set.contains(3));
 	}
 
 	@Test
@@ -90,13 +90,13 @@ public class SetTests {
 
 		assertEquals("Size", 4, set.size());
 		assertTrue("Expected set to contain test element 0", set
-				.Contains(new TestElement(0)));
+				.contains(new TestElement(0)));
 		assertTrue("Expected set to contain test element 1", set
-				.Contains(new TestElement(1)));
+				.contains(new TestElement(1)));
 		assertTrue("Expected set to contain test element 100", set
-				.Contains(new TestElement(100)));
+				.contains(new TestElement(100)));
 		assertTrue("Expected set to contain test element 101", set
-				.Contains(new TestElement(101)));
+				.contains(new TestElement(101)));
 	}
 
 	@Test
@@ -229,7 +229,7 @@ public class SetTests {
 	public void containsNonExistingElementFromLeafNode() throws Exception {
 		Set<Integer> set = Sets.empty();
 		set = set.add(1);
-		assertFalse("Should not contain element 2", set.Contains(2));
+		assertFalse("Should not contain element 2", set.contains(2));
 	}
 	
 	@Test
@@ -237,7 +237,7 @@ public class SetTests {
 		Set<TestElement> set = Sets.empty();
 		set = set.add(new TestElement(1));
 		set = set.add(new TestElement(2));
-		assertFalse("Should not contain element 2", set.Contains(new TestElement(3)));
+		assertFalse("Should not contain element 2", set.contains(new TestElement(3)));
 	}
 	
 	@Test
@@ -399,7 +399,7 @@ public class SetTests {
 		assertEquals("Union", expected, set1.union(set2));
 	}
 
-	private class TestElement {
+	private static class TestElement {
 		private final int value;
 
 		public TestElement(int value) {

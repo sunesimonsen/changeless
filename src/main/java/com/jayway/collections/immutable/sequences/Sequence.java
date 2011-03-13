@@ -141,21 +141,21 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @param predicate The predicate function. 
 	 * @return true is the predicate is true for all elements in the sequence; false otherwise.
 	 */
-	boolean All(Predicate<T> predicate);
+	boolean all(Predicate<T> predicate);
 	
 	/**
 	 * Returns true if the predicate is true for any elements in the sequence.
 	 * @param predicate The predicate function. 
 	 * @return true is the predicate is true for any elements in the sequence; false otherwise.
 	 */
-	boolean Any(Predicate<T> predicate);
+	boolean any(Predicate<T> predicate);
 	
 	/**
 	 * Returns true if the predicate is not true for any elements in the sequence.
 	 * @param predicate The predicate function. 
 	 * @return true if the predicate is not true for any elements in the sequence; false otherwise.
 	 */
-	boolean Non(Predicate<T> predicate);
+	boolean non(Predicate<T> predicate);
 	
 	/**
 	 * Returns the element with the given index in the this sequence.

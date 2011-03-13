@@ -4,7 +4,7 @@ import com.jayway.collections.immutable.sequences.Sequenceable;
 
 public interface Set<T> extends Sequenceable<T> {
 	Set<T> add(T value);
-	boolean Contains(T value);
+	boolean contains(T value);
 	int size();
 	Set<T> remove(T value);
 	Set<T> remove(Set<T> values);

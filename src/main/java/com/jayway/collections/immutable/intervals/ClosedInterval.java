@@ -9,9 +9,9 @@ public class ClosedInterval<T extends Comparable<T>> extends
 	}
 
 	@Override
-	public boolean Contains(T value) {
-		return Comparables.LessThanOrEquals(getStart(), value)
-				&& Comparables.LessThanOrEquals(value, getEnd());
+	public boolean contains(T value) {
+		return Comparables.lessThanOrEquals(getStart(), value)
+				&& Comparables.lessThanOrEquals(value, getEnd());
 	}
 	
 	@Override

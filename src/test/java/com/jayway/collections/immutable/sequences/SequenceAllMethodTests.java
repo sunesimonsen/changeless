@@ -18,16 +18,16 @@ public class SequenceAllMethodTests {
 	@Test
 	public void allReturnsTrueForEmptySequence() throws Exception {
 		Sequence<Integer> empty = Sequences.<Integer>empty();
-		assertTrue("empty", empty.All(Predicates.oddPredicate));
+		assertTrue("empty", empty.all(Predicates.oddPredicate));
 	}
 	
 	@Test
 	public void notAllOdd() throws Exception {
-		assertFalse(mixedSequence.toString(), mixedSequence.All(Predicates.oddPredicate));
+		assertFalse(mixedSequence.toString(), mixedSequence.all(Predicates.oddPredicate));
 	}
 	
 	@Test
 	public void allOdd() throws Exception {
-		assertTrue(oddSequence.toString(), oddSequence.All(Predicates.oddPredicate));
+		assertTrue(oddSequence.toString(), oddSequence.all(Predicates.oddPredicate));
 	}
 }
