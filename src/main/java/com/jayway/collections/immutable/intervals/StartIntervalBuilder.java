@@ -1,17 +1,26 @@
 package com.jayway.collections.immutable.intervals;
 
-public class StartIntervalBuilder<T extends Comparable<T>> {
-	private final T start;
+import com.jayway.collections.immutable.intervals.endpoints.ClosedEnd;
+import com.jayway.collections.immutable.intervals.endpoints.InfiniteEnd;
+import com.jayway.collections.immutable.intervals.endpoints.IntervalStart;
+import com.jayway.collections.immutable.intervals.endpoints.OpenEnd;
 
-	public StartIntervalBuilder(T start) {
+public class StartIntervalBuilder<T extends Comparable<T>> {
+	private final IntervalStart<T> start;
+
+	public StartIntervalBuilder(IntervalStart<T> start) {
 		this.start = start;
 	}
 	
-	public Interval<T> close(T end) {
-		return new ClosedInterval<T>(start, end);
+	public Interval<T> closed(T end) {
+		return new DefaultInterval<T>(start, new ClosedEnd<T>(end));
 	}
 
 	public Interval<T> open(T end) {
-		return new RightOpenInterval<T>(start,end);
+		return new DefaultInterval<T>(start, new OpenEnd<T>(end));
+	}
+	
+	public Interval<T> infinite() {
+		return new DefaultInterval<T>(start, new InfiniteEnd<T>());
 	}
 }

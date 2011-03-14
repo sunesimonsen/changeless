@@ -8,8 +8,6 @@ import org.junit.Test;
 
 import com.jayway.collections.functions.Functions;
 import com.jayway.collections.immutable.sequences.Sequences;
-import com.jayway.collections.immutable.sets.Set;
-import com.jayway.collections.immutable.sets.Sets;
 
 
 public class SetTests {
@@ -47,6 +45,12 @@ public class SetTests {
 	@Test
 	public void emptySetIsEmpty() throws Exception {
 		assertTrue("Expected empty set", Sets.empty().isEmpty());
+	}
+	
+	@Test
+	public void nonEmptyIsNotEmpty() throws Exception {
+		Set<Integer> set = Sets.of(1);
+		assertFalse("Expected non-empty set", set.isEmpty());
 	}
 	
 	@Test

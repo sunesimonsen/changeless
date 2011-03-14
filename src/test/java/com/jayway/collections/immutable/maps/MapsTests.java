@@ -1,5 +1,6 @@
 package com.jayway.collections.immutable.maps;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 
@@ -68,5 +69,18 @@ public class MapsTests {
 		}
 	}
 	
+	@Test
+	public void toStringOnEmptyMap() throws Exception {
+		Map<Integer,String> map = Maps.empty();
+		assertEquals("Expected string representation", "()", map.toString());
+	}
 	
+	@Test
+	public void toStringOnMap() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		String actual = map.toString();
+		assertTrue("Expected toString output to contain", actual.contains("<42,42>"));
+		assertTrue("Expected toString output to contain", actual.contains("<41,41>"));
+		assertTrue("Expected toString output to contain", actual.contains("<40,40>"));
+	}
 }
