@@ -21,4 +21,9 @@ public class DefaultInterval<T extends Comparable<T>> implements Interval<T> {
 	public String toString() {
 		return String.format("%s,%s", start, end);
 	}
+
+	@Override
+	public boolean apply(T input) {
+		return contains(input);
+	}
 }

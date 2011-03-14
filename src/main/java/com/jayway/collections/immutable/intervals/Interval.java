@@ -1,5 +1,7 @@
 package com.jayway.collections.immutable.intervals;
 
-public interface Interval<T extends Comparable<T>> {
+import com.jayway.collections.predicates.Predicate;
+
+public interface Interval<T extends Comparable<T>> extends Predicate<T> {
 	boolean contains(T value);
 }
