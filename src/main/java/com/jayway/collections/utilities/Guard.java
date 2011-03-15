@@ -1,5 +1,7 @@
 package com.jayway.collections.utilities;
 
+import com.jayway.collections.immutable.intervals.Interval;
+
 public final class Guard {
 	private Guard() {}
 	
@@ -21,6 +23,15 @@ public final class Guard {
 	public static void nonNegative(int argument, String argumentName) {
 		if (argument < 0) {
 			String message = String.format("Argument '%s' must not be negative.", argumentName);
+			throw new IllegalArgumentException(message);
+		}
+	}
+
+	public static <T extends Comparable<T>> void in(T value, Interval<T> interval, String argumentName) {
+		if (!interval.contains(value)) {
+			String message = String.format(
+					"Argument '%s' with value '%s' must not be outside interval %s", 
+					argumentName, value, interval);
 			throw new IllegalArgumentException(message);
 		}
 	}

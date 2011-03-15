@@ -5,11 +5,11 @@ public final class Vectors {
 	
 	@SuppressWarnings("unchecked")
 	public static <T> Vector<T> empty() {
-		return ArrayVector.of();
+		return MapVector.of();
 	}
 
 	public static <T> Vector<T> of(T... elements) {
-		return ArrayVector.of(elements);
+		return MapVector.of(elements);
 	}
 
 }
