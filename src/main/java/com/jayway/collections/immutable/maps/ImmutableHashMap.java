@@ -52,7 +52,7 @@ class ImmutableHashMap<K, V> implements Map<K, V> {
 
 	@Override
 	public boolean isEmpty() {
-		return size() == 0;
+		return root.isEmpty();
 	}
 
 	@Override

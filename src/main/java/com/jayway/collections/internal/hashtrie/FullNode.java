@@ -77,6 +77,11 @@ class FullNode<T> implements Node<T> {
 	}
 	
 	@Override
+	public boolean isEmpty() {
+		return false;
+	}
+	
+	@Override
 	public String toString() {
 		return Sequences.copyOf(table).toString();
 	}

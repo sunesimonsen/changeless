@@ -123,6 +123,16 @@ class BitmappedNode<T> implements Node<T> {
 
 		return size;
 	}
+	
+	@Override
+	public boolean isEmpty() {
+		for (Node<T> n : table) {
+			if (n != null) {
+				return false;
+			}
+		}
+		return true; // TODO don't know if this can happen.
+	}
 
 	@Override
 	public Sequence<T> sequence() {

@@ -30,6 +30,11 @@ public class EmptyNode<T> implements Node<T> {
 	}
 	
 	@Override
+	public boolean isEmpty() {
+		return true;
+	}
+	
+	@Override
 	public String toString() {
 		return sequence().toString();
 	}

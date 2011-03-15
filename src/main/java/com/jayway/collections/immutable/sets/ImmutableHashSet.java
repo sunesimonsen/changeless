@@ -83,7 +83,7 @@ public class ImmutableHashSet<T> implements Set<T> {
 
 	@Override
 	public boolean isEmpty() {
-		return size() == 0;
+		return root.isEmpty();
 	}
 
 	@Override

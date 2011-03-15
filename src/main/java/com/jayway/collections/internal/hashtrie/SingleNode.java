@@ -29,4 +29,9 @@ abstract class SingleNode<T> implements Node<T> {
 		}
 		return new BitmappedNode<T>(shift, bits1 | bits2, table);
 	}
+
+	@Override
+	public boolean isEmpty() {
+		return false;
+	}
 }

@@ -20,6 +20,7 @@ import com.jayway.collections.immutable.sequences.Sequenceable;
 
 public interface Node<T> extends Sequenceable<T> {
 	int size();
+	boolean isEmpty();
 	Node<T> add(int shift, int hash, T value);
 	Optional<T> get(T value, int hash);
 	Node<T> remove(T value, int hash);

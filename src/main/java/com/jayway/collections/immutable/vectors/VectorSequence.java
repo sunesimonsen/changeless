@@ -1,0 +1,30 @@
+package com.jayway.collections.immutable.vectors;
+
+import com.jayway.collections.immutable.sequences.Sequence;
+import com.jayway.collections.immutable.sequences.SequenceSupport;
+import com.jayway.collections.immutable.sequences.Sequences;
+
+class VectorSequence<T> extends SequenceSupport<T> {
+	private final Vector<T> vector;
+
+	private VectorSequence(Vector<T> vector) {
+		this.vector = vector;
+	}
+	
+	public static <T> Sequence<T> create(Vector<T> vector) {
+		if (vector.isEmpty()) {
+			return Sequences.empty();
+		}
+		return new VectorSequence<T>(vector);
+	}
+
+	@Override
+	public Sequence<T> rest() {
+		return create(vector.skip(1));
+	}
+
+	@Override
+	public T first() {
+		return vector.get(0);
+	}
+}

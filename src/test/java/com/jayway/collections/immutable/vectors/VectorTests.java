@@ -52,7 +52,7 @@ public class VectorTests {
 	public void vectorSequenceContainsElementsInOrder() throws Exception {
 		Vector<Integer> vector = Vectors.of(9,8,7,6,5).add(0,1,2,3,4,5);
 		Sequence<Integer> expected = Sequences.of(9,8,7,6,5,0,1,2,3,4,5);
-		assertEquals("Unexpected sequence", expected, vector);
+		assertEquals("Unexpected sequence", expected, vector.sequence());
 	}
 	
 	@Test

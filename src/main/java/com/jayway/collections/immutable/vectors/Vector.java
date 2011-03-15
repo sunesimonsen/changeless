@@ -1,8 +1,8 @@
 package com.jayway.collections.immutable.vectors;
 
-import com.jayway.collections.immutable.sequences.Sequence;
+import com.jayway.collections.immutable.sequences.Sequenceable;
 
-public interface Vector<T> extends Sequence<T> {
+public interface Vector<T> extends Sequenceable<T> {
 	T get(int index);
 	boolean isEmpty();
 	int size();

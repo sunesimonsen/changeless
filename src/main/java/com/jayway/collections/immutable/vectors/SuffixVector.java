@@ -1,10 +1,7 @@
 package com.jayway.collections.immutable.vectors;
 
-import com.jayway.collections.immutable.sequences.Sequence;
-import com.jayway.collections.immutable.sequences.SequenceSupport;
-import com.jayway.collections.utilities.Guard;
 
-public class SuffixVector<T> extends SequenceSupport<T> implements Vector<T>{
+public class SuffixVector<T> extends VectorSupport<T>{
 
 	private final Vector<T> vector;
 	private final int offset;
@@ -23,6 +20,11 @@ public class SuffixVector<T> extends SequenceSupport<T> implements Vector<T>{
 		}
 		return new SuffixVector<T>(vector, offset);
 	}
+	
+	@Override
+	public boolean isEmpty() {
+		return vector.isEmpty();
+	}
 
 	@Override
 	public Vector<T> add(T element) {
@@ -35,18 +37,18 @@ public class SuffixVector<T> extends SequenceSupport<T> implements Vector<T>{
 	}
 
 	@Override
-	public Sequence<T> rest() {
-		return skip(1);
-	}
-
-	@Override
 	public Vector<T> skip(int n) {
-		Guard.nonNegative(offset, "offset");
-		return create(vector, this.offset + n);
+		
+		return create(vector, Math.max(this.offset + n, this.offset));
 	}
 
 	@Override
-	public T first() {
-		return vector.get(offset);
+	public T get(int index) {
+		return vector.get(offset + index);
+	}
+
+	@Override
+	public int size() {
+		return vector.size() - offset;
 	}
 }
