@@ -22,6 +22,11 @@ class VectorSequence<T> extends SequenceSupport<T> {
 	public Sequence<T> rest() {
 		return create(vector.skip(1));
 	}
+	
+	@Override
+	public Sequence<T> skip(int n) {
+		return create(vector.skip(n));
+	}
 
 	@Override
 	public T first() {

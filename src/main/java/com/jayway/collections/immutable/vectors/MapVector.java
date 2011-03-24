@@ -33,18 +33,20 @@ class MapVector<T> extends VectorSupport<T> {
 	public int size() {
 		return data.size();
 	}
-
-	public Vector<T> add(T element) {
-		return new MapVector<T>(data.put(size, element),size+1);
-	}
 	
 	@Override
 	public Vector<T> add(T... elements) {
-		Vector<T> result = this;
-		for (T element : elements) {
-			result = result.add(element);
+		if (elements.length == 0) {
+			return this;
 		}
-		return result;
+		
+		Map<Integer, T> result = data;
+		int size = data.size();
+		
+		for (T element : elements) {
+			result = result.put(size++, element);
+		}
+		return new MapVector<T>(result, size);
 	}
 
 	@Override

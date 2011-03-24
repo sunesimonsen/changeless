@@ -6,7 +6,6 @@ public interface Vector<T> extends Sequenceable<T> {
 	T get(int index);
 	boolean isEmpty();
 	int size();
-	Vector<T> add(T element);
 	Vector<T> add(T... elements);
 	/**
 	 * Returns a new vector containing all the elements of this vector except 

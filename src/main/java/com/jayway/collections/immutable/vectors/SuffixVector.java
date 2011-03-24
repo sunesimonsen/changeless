@@ -25,11 +25,6 @@ public class SuffixVector<T> extends VectorSupport<T>{
 	public boolean isEmpty() {
 		return vector.isEmpty();
 	}
-
-	@Override
-	public Vector<T> add(T element) {
-		return create(vector.add(element), offset);
-	}
 	
 	@Override
 	public Vector<T> add(T... elements) {
@@ -38,7 +33,6 @@ public class SuffixVector<T> extends VectorSupport<T>{
 
 	@Override
 	public Vector<T> skip(int n) {
-		
 		return create(vector, Math.max(this.offset + n, this.offset));
 	}
 

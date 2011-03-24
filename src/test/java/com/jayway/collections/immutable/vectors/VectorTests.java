@@ -46,6 +46,20 @@ public class VectorTests {
 	}
 	
 	@Test
+	public void addNothingToEmpty() throws Exception {
+		Vector<Integer> vector = Vectors.empty();
+		Vector<Integer> actual = vector.add();
+		assertTrue("Expected empty vector",actual.isEmpty());
+	}
+	
+	@Test
+	public void addNothingToVector() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5).add(0,1,2,3,4,5);
+		Vector<Integer> actual = vector.add();
+		assertEquals("Expected vectors to be equals",vector, actual);
+	}
+	
+	@Test
 	public void vectorSequenceContainsElementsInOrder() throws Exception {
 		Vector<Integer> vector = Vectors.of(9,8,7,6,5).add(0,1,2,3,4,5);
 		Sequence<Integer> expected = Sequences.of(9,8,7,6,5,0,1,2,3,4,5);
@@ -94,5 +108,13 @@ public class VectorTests {
 		Vector<Integer> actual = Vectors.of(9,8,7,6,5).skip(3).add(0,1,2);
 		Vector<Integer> expected = Vectors.of(6,5,0,1,2);
 		assertEquals("Expected vectors to be equals",expected, actual);
+	}
+	
+	@Test
+	public void skipOnVectorSequence() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5).add(0,1,2,3,4,5);
+		Sequence<Integer> actual = vector.sequence().skip(3);
+		Sequence<Integer> expected = Sequences.of(6,5,0,1,2,3,4,5);
+		assertEquals("Expected sequences to be equals",expected, actual);
 	}
 }

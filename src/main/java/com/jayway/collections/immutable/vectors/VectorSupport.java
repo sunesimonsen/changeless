@@ -27,8 +27,6 @@ public abstract class VectorSupport<T> implements Vector<T> {
 		return sequence().toString();
 	}
 	
-	
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object o) {
@@ -50,9 +48,6 @@ public abstract class VectorSupport<T> implements Vector<T> {
 	public int hashCode() {
 		return sequence().hashCode();
 	}
-
-	@Override
-	public abstract Vector<T> add(T element);
 	
 	@Override
 	public abstract Vector<T> add(T... elements);
