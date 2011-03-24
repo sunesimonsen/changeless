@@ -10,12 +10,12 @@ abstract class SingleNode<T> implements Node<T> {
 		this.hash = hash;
 	}
 
-	public int getHash() {
+	public final int getHash() {
 		return hash;
 	}
 
 	protected BitmappedNode<T> bitmap(int shift, int hash, T value) {
-		int shift1 = (getHash() >>> shift) & 0x1f;
+		int shift1 = (this.hash >>> shift) & 0x1f;
 		int shift2 = (hash >>> shift) & 0x1f;
 		int tableSize = Math.max(shift1, shift2) + 1;
 		List<Node<T>> table = ListUtilites.createListWithNullValues(tableSize);

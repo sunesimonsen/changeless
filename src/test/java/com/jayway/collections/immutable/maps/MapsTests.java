@@ -1,5 +1,6 @@
 package com.jayway.collections.immutable.maps;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
@@ -64,6 +65,14 @@ public class MapsTests {
 			Integer actual = map.get(String.valueOf(i)).getValue();
 			assertEquals("Expected elements to be equal", expected, actual);
 		}
+	}
+	
+	@Test
+	public void insertAtTheEndOfBucket() throws Exception {
+		Map<Integer, Integer> map = Maps.empty();
+		Map<Integer, Integer> actual = map.put(0, 0).put(32, 32);
+		Map<Integer, Integer> expected = Maps.of(0,0,32,32);
+		assertEquals("Expected elements to be equal", expected, actual);
 	}
 	
 	@Test
