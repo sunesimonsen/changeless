@@ -1,10 +1,14 @@
 package com.jayway.collections.immutable.maps;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import com.jayway.collections.immutable.sequences.Sequence;
+import com.jayway.collections.tuples.Tuple;
 
 public class MapsTests {
 	@Test
@@ -79,5 +83,12 @@ public class MapsTests {
 		assertTrue("Expected toString output to contain", actual.contains("<42,42>"));
 		assertTrue("Expected toString output to contain", actual.contains("<41,41>"));
 		assertTrue("Expected toString output to contain", actual.contains("<40,40>"));
+	}
+	
+	@Test
+	public void toSequenceAndBack() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		Map<Integer, String> actual = Maps.of(map.sequence());
+		assertEquals("Expected elements to be equal", map, actual);
 	}
 }

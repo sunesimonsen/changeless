@@ -117,4 +117,11 @@ public class VectorTests {
 		Sequence<Integer> expected = Sequences.of(6,5,0,1,2,3,4,5);
 		assertEquals("Expected sequences to be equals",expected, actual);
 	}
+	
+	@Test
+	public void toSequenceAndBack() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5).add(0,1,2,3,4,5);
+		Vector<Integer> actual = Vectors.of(vector.sequence());
+		assertEquals("Expected sequences to be equals",vector, actual);
+	}
 }

@@ -23,6 +23,16 @@ class MapVector<T> extends VectorSupport<T> {
 		}
 		return new MapVector<T>(data, elements.length);
 	}
+	
+	public static <T> MapVector<T> of(Iterable<T> elements) {
+		Map<Integer, T> data = Maps.empty();
+		int i = 0;
+		for (T element : elements) {
+			data = data.put(i, element);
+			i++;
+		}
+		return new MapVector<T>(data, i);
+	}
 
 	@Override
 	public boolean isEmpty() {

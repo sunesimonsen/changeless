@@ -1,5 +1,6 @@
 package com.jayway.collections.immutable.vectors;
 
+
 public final class Vectors {
 	private Vectors(){}
 	
@@ -12,4 +13,7 @@ public final class Vectors {
 		return MapVector.of(elements);
 	}
 
+	public static <T> Vector<T> of(Iterable<T> elements) {
+		return MapVector.of(elements);
+	}
 }
