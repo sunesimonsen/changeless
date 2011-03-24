@@ -402,6 +402,13 @@ public class SetTests {
 		Set<Integer> expected = Sets.empty();
 		assertEquals("Union", expected, set1.union(set2));
 	}
+	
+	@Test
+	public void toSeqenceAndBack() throws Exception {
+		Set<Integer> set = Sets.of(1,2,3,4,5,6);
+		Set<Integer> actual = Sets.of(set.sequence());
+		assertEquals("Expected sets to be equals", set, actual);
+	}
 
 	private static class TestElement {
 		private final int value;

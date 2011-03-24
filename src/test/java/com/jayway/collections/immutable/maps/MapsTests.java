@@ -1,14 +1,10 @@
 package com.jayway.collections.immutable.maps;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
-import com.jayway.collections.immutable.sequences.Sequence;
-import com.jayway.collections.tuples.Tuple;
 
 public class MapsTests {
 	@Test

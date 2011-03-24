@@ -1,5 +1,6 @@
 package com.jayway.collections.immutable.sequences;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -318,6 +319,14 @@ public class SequenceTest {
 	}
 	
 	@Test
+	public void evenSequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.from(-10).upward().take(20);
+		Sequence<Integer> actual = sequence.filter(Predicates.evenPredicate);
+		Sequence<Integer> expected = Sequences.from(-10).step(2).upward().take(10);
+		assertEquals("Expected sequences to be equals",expected, actual);
+	}
+	
+	@Test
 	public void frequenciesOnEmptySequenceReturnsAnEmptyMap() throws Exception {
 		Sequence<String> sequence = Sequences.of();
 		Map<String, Integer> actual = sequence.frequencies();
@@ -332,5 +341,12 @@ public class SequenceTest {
 		Map<String, Integer> expected = Maps.<String,Integer>empty()
 			.put("1", 2).put("2", 2).put("3", 4);
 		assertEquals("Expected map to contain frequencies", expected, actual);	
+	}
+	
+	@Test
+	public void toSequenceAndBack() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(1,2,3,4,5);
+		Sequence<Integer> actual = sequence.sequence();
+		assertEquals("Expected sequences to be equals",sequence, actual);
 	}
 }

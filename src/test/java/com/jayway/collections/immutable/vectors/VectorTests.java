@@ -124,4 +124,16 @@ public class VectorTests {
 		Vector<Integer> actual = Vectors.of(vector.sequence());
 		assertEquals("Expected sequences to be equals",vector, actual);
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void getOnNegativeIndexThrows() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5).add(0,1,2,3,4,5);
+		vector.get(-1);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void getOnIndexLargerThanSizeThrows() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5).add(0,1,2,3,4,5);
+		vector.get(12);
+	}
 }
