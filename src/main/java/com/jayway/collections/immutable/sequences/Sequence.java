@@ -138,7 +138,7 @@ public interface Sequence<T> extends Sequenceable<T> {
 	/**
 	 * Returns a map from distinct items in this sequence to the number of times
 	 * they appear.
-	 * @return the frequence map.
+	 * @return the frequencies map.
 	 */
 	Map<T, Integer> frequencies();
 	
@@ -195,4 +195,10 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @return a sequence of the partitions.
 	 */
 	Sequence<Sequence<T>> partition(int n);
+
+	/**
+	 * Returns an infinite sequences created by repeating this sequence.
+	 * @return the created sequence.
+	 */
+	Sequence<T> cycle();
 }

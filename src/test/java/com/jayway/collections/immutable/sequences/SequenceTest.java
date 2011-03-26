@@ -501,4 +501,18 @@ public class SequenceTest {
 		Sequence<Sequence<Integer>> expected = Sequences.of(sequence);
 		assertEquals("Expected sequences to be equal", expected, actual);;
 	}
+	
+	@Test
+	public void cycleEmptySequence() throws Exception {
+		Sequence<Object> sequence = Sequences.empty().cycle();
+		assertTrue("Expected an empty sequence", sequence.isEmpty());
+	}
+	
+	@Test
+	public void cycleSequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(1,2,3,4);
+		Sequence<Integer> actual = sequence.cycle().take(10); 
+		Sequence<Integer> expected = Sequences.of(1,2,3,4,1,2,3,4,1,2);
+		assertEquals("Expected sequences to be equal", expected, actual);;
+	}
 }

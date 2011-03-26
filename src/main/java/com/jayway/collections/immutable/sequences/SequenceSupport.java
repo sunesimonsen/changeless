@@ -230,4 +230,9 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	public Sequence<Sequence<T>> partition(int n) {
 		return PartitionSequence.create(this, n);
 	}
+	
+	@Override
+	public Sequence<T> cycle() {
+		return CycleSequence.create(this);
+	}
 }
