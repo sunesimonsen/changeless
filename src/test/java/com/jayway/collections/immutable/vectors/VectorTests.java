@@ -180,4 +180,57 @@ public class VectorTests {
 		Vector<Integer> expected = Vectors.of(9,8,7,13,5);
 		assertEquals("Expected vectors to be equals",expected, actual);
 	}
+	
+	@Test
+	public void setOnPrefixVector() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5).take(3);
+		Vector<Integer> actual = vector.set(1, 13);
+		Vector<Integer> expected = Vectors.of(9,13,7);
+		assertEquals("Expected vectors to be equals",expected, actual);
+	}
+	
+	@Test
+	public void setOnSuffixVector() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5).skip(2);
+		Vector<Integer> actual = vector.set(1, 13);
+		Vector<Integer> expected = Vectors.of(7,13,5);
+		assertEquals("Expected vectors to be equals",expected, actual);
+	}
+	
+	@Test
+	public void takeNegativeReturnEmptyVector() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5);
+		Vector<Integer> actual = vector.take(-1);
+		assertEquals("Expected vectors to be equals",Vectors.empty(), actual);
+	}
+	
+	@Test
+	public void takeZeroReturnEmptyVector() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5);
+		Vector<Integer> actual = vector.take(0);
+		assertEquals("Expected vectors to be equals",Vectors.empty(), actual);
+	}
+	
+	@Test
+	public void takeLargerThanSize() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5);
+		Vector<Integer> actual = vector.take(6);
+		assertEquals("Expected vectors to be equals",vector, actual);
+	}
+	
+	@Test
+	public void takeAndAdd() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5);
+		Vector<Integer> actual = vector.take(3).add(4,3);
+		Vector<Integer> expected = Vectors.of(9,8,7,4,3);
+		assertEquals("Expected vectors to be equals",expected, actual);
+	}
+	
+	@Test
+	public void takeAndAddMoreThanOriginalVector() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5);
+		Vector<Integer> actual = vector.take(3).add(4,3,2,1);
+		Vector<Integer> expected = Vectors.of(9,8,7,4,3,2,1);
+		assertEquals("Expected vectors to be equals",expected, actual);
+	}
 }

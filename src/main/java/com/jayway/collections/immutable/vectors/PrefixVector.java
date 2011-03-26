@@ -24,10 +24,20 @@ final class PrefixVector<T> extends VectorSupport<T> {
 		return new PrefixVector<T>(vector, size);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Vector<T> add(T... elements) {
+		Vector<T> result = vector;
+		int originalSize = result.size();
+		int i = 0;
+		for (i = 0; i < elements.length && i < originalSize - size; i++) {
+			result = result.set(size + i, elements[i]);
+		}
+		for (int j = i; j < elements.length; j++) {
+			result = result.add(elements[j]);
+		}
 		
-		return null;
+		return result;
 	}
 
 	@Override
