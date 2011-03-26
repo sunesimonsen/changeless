@@ -19,21 +19,21 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	public abstract Sequence<T> rest();
 	
 	@Override
-	public Sequence<T> addAll(T... elements) {
+	public Sequence<T> add(T... elements) {
 		Sequence<T> result = this;
 		for (int i = elements.length-1; 0 <= i; i--) {
 			Guard.notNull(elements[i], "element[%d]", i);
-			result = result.add(elements[i]);
+			result = Sequences.append(elements[i], result);
 		}
 		return result;
 	}
 	
 	@Override
-	public Sequence<T> addAll(Iterable<T> elements) {
+	public Sequence<T> add(Iterable<T> elements) {
 		Sequence<T> result = this;
 		for (T element : this) {
 			Guard.notNull(element, "element");
-			result = result.add(element);
+			result = Sequences.append(element, result);
 		}
 		return result;
 	}
@@ -61,12 +61,6 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	@Override
 	public Sequence<T> interpose(T separator) {
 		return new InterposeSequence<T>(this, separator);
-	}
-
-	@Override
-	public Sequence<T> add(T element) {
-		Guard.notNull(element, "element");
-		return DefaultSequence.create(element, this);
 	}
 	
 	@Override
@@ -171,7 +165,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	public Sequence<T> reverse() {
 		Sequence<T> result = Sequences.empty();
 		for (T value : this) {
-			result = result.add(value);
+			result = Sequences.append(value, result);
 		}
 		return result;
 	}

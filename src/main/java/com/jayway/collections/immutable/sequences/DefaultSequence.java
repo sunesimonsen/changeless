@@ -28,10 +28,6 @@ final class DefaultSequence<T> extends SequenceSupport<T> {
 		return new DefaultSequence<T>(first, rest);
 	}
 	
-	public static <T> Sequence<T> empty() {
-		return EmptySequence.create();
-	}
-	
 	@Override
 	public final boolean isEmpty() {
 		return false;

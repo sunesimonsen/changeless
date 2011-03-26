@@ -60,20 +60,12 @@ public interface Sequence<T> extends Sequenceable<T> {
 	Sequence<T> rest();
 	
 	/**
-	 * Returns a new sequence with the given element added to the front of this sequence.
-	 * @param element the element to be added.
-	 * @return a new sequence with the given element added to the front of this sequence.
-	 * @throws IllegalArgumentException if the given element is null.
-	 */
-	Sequence<T> add(T element);
-	
-	/**
 	 * Returns a new sequence with all the given elements added to the front of this sequence.
 	 * @param elements the elements to be added.
 	 * @return a new sequence with all the given elements added to the front of this sequence.
 	 * @throws IllegalArgumentException if any of the elements are null.
 	 */
-	Sequence<T> addAll(T... elements);
+	Sequence<T> add(T... elements);
 
 	/**
 	 * Returns a new sequence with all the given elements added to the front of this sequence.
@@ -81,7 +73,7 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @return a new sequence with all the given elements added to the front of this sequence.
 	 * @throws IllegalArgumentException if any of the elements are null.
 	 */
-	Sequence<T> addAll(Iterable<T> elements);
+	Sequence<T> add(Iterable<T> elements);
 	
 	/**
 	 * Returns a new sequence where each element from this sequence is transformed with the given function. 

@@ -16,6 +16,7 @@ final class SkipNullIterable<T> extends LazySequence<T> {
 		this.source = source;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Sequence<T> createSequence() {
 		if (!source.hasNext()) {

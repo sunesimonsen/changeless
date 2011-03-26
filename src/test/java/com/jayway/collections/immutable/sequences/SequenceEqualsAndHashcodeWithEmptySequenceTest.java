@@ -1,7 +1,5 @@
 package com.jayway.collections.immutable.sequences;
 
-import com.jayway.collections.immutable.sequences.Sequence;
-import com.jayway.collections.immutable.sequences.Sequences;
 import com.jayway.test.EqualsAndHashcodeTestSupport;
 
 

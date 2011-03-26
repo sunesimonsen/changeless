@@ -48,13 +48,13 @@ public class SequenceTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void addWithNullArgumentsThrowsException() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(42, 41);
-		sequence.add(null);
+		sequence.add((Integer)null);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void addAllWithNullArgumentsThrowsException() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(42, 41);
-		sequence.addAll(45, null);
+		sequence.add(45, null);
 	}
 	
 	@Test
@@ -213,7 +213,7 @@ public class SequenceTest {
 	
 	@Test
 	public void addMultipleTimes() throws Exception {
-		Sequence<Integer> sequence = Sequences.of(5,6,7,8,9).add(4).addAll(0,1,2,3);
+		Sequence<Integer> sequence = Sequences.of(5,6,7,8,9).add(4).add(0,1,2,3);
 		Sequence<Integer> expected = Sequences.of(0,1,2,3,4,5,6,7,8,9);
 		assertEquals("Expected sequences to be equal", expected, sequence);
 	}
@@ -345,5 +345,26 @@ public class SequenceTest {
 		Sequence<Integer> sequence = Sequences.of(1,2,3,4,5);
 		Sequence<Integer> actual = sequence.sequence();
 		assertEquals("Expected sequences to be equals",sequence, actual);
+	}
+	
+	@Test
+	public void filterOnInfiniteSequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.from(-10).upward();
+		Sequence<Integer> actual = sequence.filter(Predicates.evenPredicate).take(10);
+		Sequence<Integer> expected = Sequences.from(-10).step(2).upward().take(10);
+		assertEquals("Expected sequences to be equals",expected, actual);
+	}
+	
+	@Test
+	public void transformOnInfiniteSequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.from(-10).upward();
+		Sequence<String> actual = sequence.transform(Functions.toStringFunction).take(3);
+		Sequence<String> expected = Sequences.of("-10", "-9", "-8");
+		assertEquals("Expected sequences to be equals",expected, actual);
+	}
+	
+	@Test
+	public void addIterableToSequence() throws Exception {
+		
 	}
 }

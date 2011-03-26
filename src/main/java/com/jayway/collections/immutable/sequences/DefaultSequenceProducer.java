@@ -27,6 +27,6 @@ public final class DefaultSequenceProducer<T> extends LazySequence<T> {
 		} else {
 			rest = Sequences.empty();
 		}
-		return DefaultSequence.create(first, rest);
+		return Sequences.append(first, rest);
 	}
 }

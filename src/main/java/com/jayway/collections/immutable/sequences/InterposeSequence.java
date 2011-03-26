@@ -24,6 +24,6 @@ final class InterposeSequence<T> extends LazySequence<T> {
 		}
 		
 		T first = source.first();
-		return rest.interpose(separator).addAll(first, separator);
+		return rest.interpose(separator).add(first, separator);
 	}
 }

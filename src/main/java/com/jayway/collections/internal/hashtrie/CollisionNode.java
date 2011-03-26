@@ -14,6 +14,7 @@ final class CollisionNode<T> extends SingleNode<T> {
 		this.bucket = bucket;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Node<T> add(int shift, int hash, T value) {
 		if (getHash() == hash) {

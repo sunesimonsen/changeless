@@ -24,6 +24,6 @@ final class TransformedSequence<T, R> extends LazySequence<R> {
 	public Sequence<R> createSequence() {
 		R first = function.apply(sequence.first());
 		Sequence<R> rest = sequence.rest().transform(function);
-		return DefaultSequence.create(first, rest);
+		return Sequences.append(first, rest);
 	}
 }

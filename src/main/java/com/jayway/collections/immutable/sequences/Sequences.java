@@ -6,12 +6,16 @@ package com.jayway.collections.immutable.sequences;
 public final class Sequences {
 	private Sequences() { }
 	
+	public static <T> Sequence<T> append(T element, Sequence<T> sequence) {
+		return DefaultSequence.create(element, sequence);
+	}
+	
 	public static <T> Sequence<T> of(T... elements) {
 		return ArraySequence.of(elements);
 	}
 	
 	public static <T> Sequence<T> empty() {
-		return DefaultSequence.empty();
+		return EmptySequence.create();
 	}
 	
 	public static <T> Sequence<T> copyOf(Iterable<T> elements) {

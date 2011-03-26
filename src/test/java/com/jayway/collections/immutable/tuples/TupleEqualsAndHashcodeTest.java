@@ -1,6 +1,5 @@
 package com.jayway.collections.immutable.tuples;
 
-import com.jayway.collections.tuples.Tuple;
 import com.jayway.collections.tuples.Tuples;
 import com.jayway.test.EqualsAndHashcodeTestSupport;
 
