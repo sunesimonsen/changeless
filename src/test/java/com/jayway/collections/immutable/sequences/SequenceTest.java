@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.jayway.collections.Optional;
+import com.jayway.collections.functions.Fn;
 import com.jayway.collections.functions.Functions;
 import com.jayway.collections.immutable.maps.Map;
 import com.jayway.collections.immutable.maps.Maps;
@@ -365,6 +367,45 @@ public class SequenceTest {
 	
 	@Test
 	public void addIterableToSequence() throws Exception {
-		
+		Sequence<Integer> sequence = Sequences.from(-10).upward().take(3);
+		Sequence<Integer> actual = sequence.add(sequence.reverse());
+		Sequence<Integer> expected = Sequences.of(-8,-9,-10,-10,-9,-8);
+		assertEquals("Expected sequences to be equals",expected, actual);
+	}
+	
+	@Test
+	public void getElementOnInfiniteSequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.from(-10).upward();
+		assertEquals("Expected sequences to be equals", -7, (int)sequence.get(3));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void getNegativeThrows() throws Exception {
+		Sequences.from(-10).upward().get(-1);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void getLargerThanSequenceThrows() throws Exception {
+		Sequences.from(-10).upward().take(10).get(11);
+	}
+	
+	@Test
+	public void lazyCopyOfSequence() throws Exception {
+		Sequence<Integer> actual = Sequences.lazyCopyOf(Arrays.asList(1, 2, 3, 4, 5));;
+		Sequence<Integer> expected = Sequences.of(1, 2, 3, 4, 5);
+		assertEquals("Expected sequences to be equals",expected, actual);
+	}
+	
+	@Test
+	public void sequenceProducer() throws Exception {
+		Sequence<String> sequence = Sequences.from("a").produce(new Fn<String, Optional<String>>() {
+			@Override
+			public Optional<String> apply(String input) {
+				return Optional.valueOf(input + input);
+			}
+		});
+		Sequence<String> actual = sequence.take(4);
+		Sequence<String> expected = Sequences.of("a", "aa", "aaaa", "aaaaaaaa");
+		assertEquals("Expected sequences to be equals",expected, actual);
 	}
 }

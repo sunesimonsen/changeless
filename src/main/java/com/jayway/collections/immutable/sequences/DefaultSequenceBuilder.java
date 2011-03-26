@@ -15,7 +15,7 @@ public final class DefaultSequenceBuilder<T> {
 		return new DefaultSequenceBuilder<T>(from);
 	}
 	
-	public Sequence<T> producer(Fn<? super T, ? extends Optional<T>> producer) {
+	public Sequence<T> produce(Fn<? super T, ? extends Optional<T>> producer) {
 		return DefaultSequenceProducer.create(current, producer);
 	}
 }

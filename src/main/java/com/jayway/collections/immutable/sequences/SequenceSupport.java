@@ -5,6 +5,7 @@ import java.util.Iterator;
 import com.jayway.collections.functions.Fn;
 import com.jayway.collections.functions.Fn2;
 import com.jayway.collections.functions.Functions;
+import com.jayway.collections.immutable.intervals.Intervals;
 import com.jayway.collections.immutable.maps.Map;
 import com.jayway.collections.immutable.maps.Maps;
 import com.jayway.collections.predicates.Predicate;
@@ -203,11 +204,11 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	@Override
 	public T get(int index) {
 		Guard.nonNegative(index, "index");
-		Sequence<T> result = this;
-		for (int i = 0; i < index; i++) {
-			result = result.rest();
+		Sequence<T> sequence = skip(index);
+		if (sequence.isEmpty()) {
+			Guard.in(index, Intervals.zero.open(size()), "index");
 		}
-		return result.first();
+		return sequence.first();
 	}
 	
 	@Override
