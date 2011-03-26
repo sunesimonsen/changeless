@@ -3,15 +3,15 @@ package com.jayway.collections.immutable.vectors;
 import com.jayway.test.EqualsAndHashcodeTestSupport;
 
 
-public class VectorEqualsAndHashcodeWithEmptyVectorTest extends EqualsAndHashcodeTestSupport<Vector<Integer>> {
+public class VectorEqualsAndHashcodeWithEmptyVectorTest extends EqualsAndHashcodeTestSupport {
 
 	@Override
-	protected Vector<Integer> createFirstInstance() {
+	protected Object createFirstInstance() {
 		return Vectors.of();
 	}
 
 	@Override
-	protected Vector<Integer> createSecondInstance() {
+	protected Object createSecondInstance() {
 		return Vectors.of(40,41,42);
 	}
 

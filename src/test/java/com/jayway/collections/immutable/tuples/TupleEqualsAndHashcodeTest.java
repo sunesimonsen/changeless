@@ -5,15 +5,15 @@ import com.jayway.collections.tuples.Tuples;
 import com.jayway.test.EqualsAndHashcodeTestSupport;
 
 
-public class TupleEqualsAndHashcodeTest extends EqualsAndHashcodeTestSupport<Tuple<Integer, String>> {
+public class TupleEqualsAndHashcodeTest extends EqualsAndHashcodeTestSupport {
 
 	@Override
-	protected Tuple<Integer, String> createFirstInstance() {
+	protected Object createFirstInstance() {
 		return Tuples.of(42, "42");
 	}
 
 	@Override
-	protected Tuple<Integer, String> createSecondInstance() {
+	protected Object createSecondInstance() {
 		return Tuples.of(666, "666");
 	}
 }

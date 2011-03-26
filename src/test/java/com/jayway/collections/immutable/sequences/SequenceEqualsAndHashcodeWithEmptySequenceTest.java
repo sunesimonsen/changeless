@@ -5,15 +5,15 @@ import com.jayway.collections.immutable.sequences.Sequences;
 import com.jayway.test.EqualsAndHashcodeTestSupport;
 
 
-public class SequenceEqualsAndHashcodeWithEmptySequenceTest extends EqualsAndHashcodeTestSupport<Sequence<Integer>> {
+public class SequenceEqualsAndHashcodeWithEmptySequenceTest extends EqualsAndHashcodeTestSupport {
 
 	@Override
-	protected Sequence<Integer> createFirstInstance() {
+	protected Object createFirstInstance() {
 		return Sequences.of();
 	}
 
 	@Override
-	protected Sequence<Integer> createSecondInstance() {
+	protected Object createSecondInstance() {
 		return Sequences.of(40,41,42);
 	}
 

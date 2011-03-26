@@ -3,15 +3,15 @@ package com.jayway.collections.immutable.maps;
 import com.jayway.test.EqualsAndHashcodeTestSupport;
 
 
-public class MapEqualsAndHashcodeWithEmptyMapTest extends EqualsAndHashcodeTestSupport<Map<Integer,String>> {
+public class MapEqualsAndHashcodeWithEmptyMapTest extends EqualsAndHashcodeTestSupport {
 
 	@Override
-	protected Map<Integer,String> createFirstInstance() {
+	protected Object createFirstInstance() {
 		return Maps.of();
 	}
 
 	@Override
-	protected Map<Integer,String> createSecondInstance() {
+	protected Object createSecondInstance() {
 		return Maps.of(40,"40",41,"41",42,"42");
 	}
 

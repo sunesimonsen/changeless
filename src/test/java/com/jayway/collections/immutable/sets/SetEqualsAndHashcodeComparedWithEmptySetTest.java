@@ -3,15 +3,15 @@ package com.jayway.collections.immutable.sets;
 import com.jayway.test.EqualsAndHashcodeTestSupport;
 
 
-public class SetEqualsAndHashcodeComparedWithEmptySetTest extends EqualsAndHashcodeTestSupport<Set<Integer>> {
+public class SetEqualsAndHashcodeComparedWithEmptySetTest extends EqualsAndHashcodeTestSupport {
 
 	@Override
-	protected Set<Integer> createFirstInstance() {
+	protected Object createFirstInstance() {
 		return Sets.of(42,41,41);
 	}
 
 	@Override
-	protected Set<Integer> createSecondInstance() {
+	protected Object createSecondInstance() {
 		return Sets.of();
 	}
 

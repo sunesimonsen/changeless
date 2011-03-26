@@ -11,13 +11,13 @@ import org.junit.Test;
 /**
  * See http://martinaharris.com/2009/10/testing-java-equals-and-hashcode-methods-essential/
  */
-public abstract class EqualsAndHashcodeTestSupport<T> {
+public abstract class EqualsAndHashcodeTestSupport {
 
-	private T x;
-	private T y;
-	private T z;
+	private Object x;
+	private Object y;
+	private Object z;
 	
-	private T notx;
+	private Object notx;
 	
 	@Before
 	public void baseSetup() {
@@ -27,8 +27,8 @@ public abstract class EqualsAndHashcodeTestSupport<T> {
 		notx = createSecondInstance(); 
 	}
 	
-	protected abstract T createFirstInstance();
-	protected abstract T createSecondInstance();
+	protected abstract Object createFirstInstance();
+	protected abstract Object createSecondInstance();
 	
 	@Test
     /**

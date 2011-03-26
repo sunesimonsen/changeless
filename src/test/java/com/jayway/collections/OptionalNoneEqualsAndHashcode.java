@@ -2,15 +2,15 @@ package com.jayway.collections;
 
 import com.jayway.test.EqualsAndHashcodeTestSupport;
 
-public class OptionalNoneEqualsAndHashcode extends EqualsAndHashcodeTestSupport<Optional<String>>{
+public class OptionalNoneEqualsAndHashcode extends EqualsAndHashcodeTestSupport{
 
 	@Override
-	protected Optional<String> createFirstInstance() {
+	protected Object createFirstInstance() {
 		return Optional.none();
 	}
 
 	@Override
-	protected Optional<String> createSecondInstance() {
+	protected Object createSecondInstance() {
 		return Optional.valueOf("second");
 	}
 	
