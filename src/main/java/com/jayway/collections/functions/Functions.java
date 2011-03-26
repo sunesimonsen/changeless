@@ -1,5 +1,7 @@
 package com.jayway.collections.functions;
 
+import com.jayway.collections.utilities.Comparables;
+
 public final class Functions {
 	private Functions() {}
 	
@@ -25,4 +27,22 @@ public final class Functions {
 				return result.append(input);
 			}
 		};
+		
+	public static <T extends Comparable<T>> Fn2<T,T,T> minFunction() {
+		return new Fn2<T,T,T>() {
+			@Override
+			public T apply(T x, T y) {
+				return Comparables.lessThan(x, y) ? x : y;
+			}
+		};
+	}
+		
+	public static <T extends Comparable<T>> Fn2<T,T,T> maxFunction() {
+		return new Fn2<T,T,T>() {
+			@Override
+			public T apply(T x, T y) {
+				return Comparables.greaterThan(x, y) ? x : y;
+			}
+		};
+	}
 }

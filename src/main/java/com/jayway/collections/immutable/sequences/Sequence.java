@@ -186,4 +186,13 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * the given separator.
 	 */
 	Sequence<T> interpose(T separator);
+	
+	/**
+	 * Lazily partition the sequence into parts of size n.
+	 * If the size of the sequence is not divisible by n the 
+     * partition will include less elements.
+	 * @param n The size of the partitions.
+	 * @return a sequence of the partitions.
+	 */
+	Sequence<Sequence<T>> partition(int n);
 }

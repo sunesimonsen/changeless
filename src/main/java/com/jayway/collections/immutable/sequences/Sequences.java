@@ -1,5 +1,8 @@
 package com.jayway.collections.immutable.sequences;
 
+import com.jayway.collections.functions.Fn2;
+import com.jayway.collections.functions.Functions;
+
 
 
 
@@ -40,5 +43,21 @@ public final class Sequences {
 	
 	public static <T> DefaultSequenceBuilder<T> from(T from) {
 		return DefaultSequenceBuilder.from(from);
+	}
+	
+	public static <T extends Comparable<T>> T min(Sequence<T> sequence) {
+		if (sequence.isEmpty()) {
+			throw new IllegalArgumentException("min only work on non-empty sequences");
+		}
+		Fn2<T, T, T> minFunction = Functions.minFunction();
+		return sequence.reduce(sequence.first(), minFunction);
+	}
+
+	public static <T extends Comparable<T>> T max(Sequence<T> sequence) {
+		if (sequence.isEmpty()) {
+			throw new IllegalArgumentException("max only work on non-empty sequences");
+		}
+		Fn2<T, T, T> minFunction = Functions.maxFunction();
+		return sequence.reduce(sequence.first(), minFunction);
 	}
 }

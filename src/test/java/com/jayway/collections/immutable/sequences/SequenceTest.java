@@ -1,5 +1,6 @@
 package com.jayway.collections.immutable.sequences;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -407,5 +408,97 @@ public class SequenceTest {
 		Sequence<String> actual = sequence.take(4);
 		Sequence<String> expected = Sequences.of("a", "aa", "aaaa", "aaaaaaaa");
 		assertEquals("Expected sequences to be equals",expected, actual);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void minOnEmptySequenceThrows() throws Exception {
+		Sequences.min(Sequences.<Integer>empty());
+	}
+	
+	@Test
+	public void minOnSequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(5,6,2,8,1,2);
+		Integer actual = Sequences.min(sequence);
+		Integer expected = 1;
+		assertEquals("min", expected, actual);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void maxOnEmptySequenceThrows() throws Exception {
+		Sequences.max(Sequences.<Integer>empty());
+	}
+	
+	@Test
+	public void maxOnSequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(5,6,2,8,1,2);
+		Integer actual = Sequences.max(sequence);
+		Integer expected = 8;
+		assertEquals("min", expected, actual);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void partitionWithNegativeArgumentThrows() throws Exception {
+		Sequences.of(1,2,3).partition(-1);
+	}
+	
+	@Test
+	public void partitionOnEmptySequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.empty();
+		Sequence<Sequence<Integer>> actual = sequence.partition(2);
+		assertTrue("Expected sequence to be empty", actual.isEmpty());
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void partitionSequenceDivisibleOfN() throws Exception {
+		Sequence<Integer> sequence = Sequences.from(0).upward().take(12);
+		Sequence<Sequence<Integer>> actual = sequence.partition(3);
+		Sequence<Sequence<Integer>> expected = 
+			Sequences.of(
+				Sequences.of(0,1,2),
+				Sequences.of(3,4,5),
+				Sequences.of(6,7,8),
+				Sequences.of(9,10,11));
+		
+		assertEquals("Expected sequences to be equal", expected, actual);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void partitionSequenceNotDivisibleOfN() throws Exception {
+		Sequence<Integer> sequence = Sequences.from(0).upward().take(10);
+		Sequence<Sequence<Integer>> actual = sequence.partition(3);
+		Sequence<Sequence<Integer>> expected = 
+			Sequences.of(
+				Sequences.of(0,1,2),
+				Sequences.of(3,4,5),
+				Sequences.of(6,7,8),
+				Sequences.of(9));
+		
+		assertEquals("Expected sequences to be equal", expected, actual);;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void partitionInfiniteSequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.from(0).upward();
+		Sequence<Sequence<Integer>> actual = sequence.partition(3).take(4);
+		Sequence<Sequence<Integer>> expected = 
+			Sequences.of(
+				Sequences.of(0,1,2),
+				Sequences.of(3,4,5),
+				Sequences.of(6,7,8),
+				Sequences.of(9,10,11));
+		
+		assertEquals("Expected sequences to be equal", expected, actual);;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void partitionLargerThanSequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.from(0).upward().take(10);
+		Sequence<Sequence<Integer>> actual = sequence.partition(20);
+		Sequence<Sequence<Integer>> expected = Sequences.of(sequence);
+		assertEquals("Expected sequences to be equal", expected, actual);;
 	}
 }

@@ -225,6 +225,9 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	public Sequence<T> remove(Predicate<? super T> predicate) {
 		return filter(Predicates.not(predicate));
 	}
-	
-	
+
+	@Override
+	public Sequence<Sequence<T>> partition(int n) {
+		return PartitionSequence.create(this, n);
+	}
 }
