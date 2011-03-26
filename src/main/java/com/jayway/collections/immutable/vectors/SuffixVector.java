@@ -1,6 +1,7 @@
 package com.jayway.collections.immutable.vectors;
 
 
+
 final class SuffixVector<T> extends VectorSupport<T>{
 
 	private final Vector<T> vector;
@@ -38,11 +39,18 @@ final class SuffixVector<T> extends VectorSupport<T>{
 
 	@Override
 	public T get(int index) {
+		EnsureValidIndex(index);
 		return vector.get(offset + index);
 	}
 
 	@Override
 	public int size() {
 		return vector.size() - offset;
+	}
+
+	@Override
+	public Vector<T> set(int index, T element) {
+		EnsureValidIndex(index);
+		return new SuffixVector<T>(vector.set(offset + index, element), offset);
 	}
 }

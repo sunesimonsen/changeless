@@ -11,7 +11,7 @@ import com.jayway.collections.immutable.sequences.Sequences;
 
 
 public class SetTests {
-	private Set<String> strings = Sets.of(Sequences.from(0)
+	private Set<String> strings = Sets.copyOf(Sequences.from(0)
 			.upward().take(10000).transform(Functions.toStringFunction)); 
 	
 	@Test
@@ -117,7 +117,7 @@ public class SetTests {
 	
 	@Test
 	public void removeFromFullNode() throws Exception {
-		Set<Integer> set = Sets.of(Sequences.from(0).upward().take(32));
+		Set<Integer> set = Sets.copyOf(Sequences.from(0).upward().take(32));
 		set = set.remove(13);
 		assertEquals("Size", 31, set.size());
 	}
@@ -406,7 +406,7 @@ public class SetTests {
 	@Test
 	public void toSeqenceAndBack() throws Exception {
 		Set<Integer> set = Sets.of(1,2,3,4,5,6);
-		Set<Integer> actual = Sets.of(set.sequence());
+		Set<Integer> actual = Sets.copyOf(set.sequence());
 		assertEquals("Expected sets to be equals", set, actual);
 	}
 

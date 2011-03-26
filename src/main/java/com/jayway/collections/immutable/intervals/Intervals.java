@@ -7,6 +7,8 @@ import com.jayway.collections.immutable.intervals.endpoints.OpenStart;
 public final class Intervals {
 	private Intervals() {}
 	
+	public static StartIntervalBuilder<Integer> zero = closed(0);
+	
 	public static <T extends Comparable<T>> StartIntervalBuilder<T> closed(T start) {
 		return new StartIntervalBuilder<T>(new ClosedStart<T>(start));
 	}

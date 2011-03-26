@@ -14,6 +14,7 @@ final class LeafNode<T> extends SingleNode<T> {
 		this.value = value;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Node<T> add(int shift, int hash, T value) {
 		if (this.value.equals(value)) {
@@ -56,6 +57,7 @@ final class LeafNode<T> extends SingleNode<T> {
 		return sequence().toString();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Sequence<T> sequence() {
 		return Sequences.of(value);

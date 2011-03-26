@@ -13,7 +13,7 @@ public final class Vectors {
 		return MapVector.of(elements);
 	}
 
-	public static <T> Vector<T> of(Iterable<T> elements) {
-		return MapVector.of(elements);
+	public static <T> Vector<T> copyOf(Iterable<T> elements) {
+		return MapVector.copyOf(elements);
 	}
 }

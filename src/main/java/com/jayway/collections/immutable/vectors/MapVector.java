@@ -1,13 +1,9 @@
 package com.jayway.collections.immutable.vectors;
 
-import com.jayway.collections.immutable.intervals.Intervals;
-import com.jayway.collections.immutable.intervals.StartIntervalBuilder;
 import com.jayway.collections.immutable.maps.Map;
 import com.jayway.collections.immutable.maps.Maps;
-import com.jayway.collections.utilities.Guard;
 
 final class MapVector<T> extends VectorSupport<T> {
-	private static final StartIntervalBuilder<Integer> zero = Intervals.closed(0);
 	private final Map<Integer, T> data;
 	private final int size;
 
@@ -24,7 +20,7 @@ final class MapVector<T> extends VectorSupport<T> {
 		return new MapVector<T>(data, elements.length);
 	}
 	
-	public static <T> MapVector<T> of(Iterable<T> elements) {
+	public static <T> MapVector<T> copyOf(Iterable<T> elements) {
 		Map<Integer, T> data = Maps.empty();
 		int i = 0;
 		for (T element : elements) {
@@ -36,12 +32,12 @@ final class MapVector<T> extends VectorSupport<T> {
 
 	@Override
 	public boolean isEmpty() {
-		return data.isEmpty();
+		return size() == 0;
 	}
 
 	@Override
 	public int size() {
-		return data.size();
+		return size;
 	}
 	
 	@Override
@@ -61,7 +57,13 @@ final class MapVector<T> extends VectorSupport<T> {
 
 	@Override
 	public T get(int index) {
-		Guard.in(index, zero.open(size), "index");
+		EnsureValidIndex(index);
 		return data.get(index).getValue();
+	}
+
+	@Override
+	public Vector<T> set(int index, T element) {
+		EnsureValidIndex(index);
+		return new MapVector<T>(data.put(index, element), size());
 	}
 }

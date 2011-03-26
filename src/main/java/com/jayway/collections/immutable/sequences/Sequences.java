@@ -10,36 +10,6 @@ public final class Sequences {
 		return ArraySequence.of(elements);
 	}
 	
-	@SuppressWarnings("unchecked")
-	public static <T> Sequence<T> of(T e1) {
-		return ArraySequence.<T>of(e1);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static <T> Sequence<T> of(T e1, T e2) {
-		return ArraySequence.<T>of(e1,e2);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static <T> Sequence<T> of(T e1, T e2, T e3) {
-		return ArraySequence.<T>of(e1,e2,e3);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static <T> Sequence<T> of(T e1, T e2, T e3, T e4) {
-		return ArraySequence.<T>of(e1,e2,e3, e4);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static <T> Sequence<T> of(T e1, T e2, T e3, T e4, T e5) {
-		return ArraySequence.<T>of(e1, e2, e3, e4, e5);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static <T> Sequence<T> of(T e1, T e2, T e3, T e4, T e5, T e6) {
-		return ArraySequence.<T>of(e1, e2, e3, e4, e5, e6);
-	}
-	
 	public static <T> Sequence<T> empty() {
 		return DefaultSequence.empty();
 	}

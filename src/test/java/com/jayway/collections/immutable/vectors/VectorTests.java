@@ -121,19 +121,63 @@ public class VectorTests {
 	@Test
 	public void toSequenceAndBack() throws Exception {
 		Vector<Integer> vector = Vectors.of(9,8,7,6,5).add(0,1,2,3,4,5);
-		Vector<Integer> actual = Vectors.of(vector.sequence());
+		Vector<Integer> actual = Vectors.copyOf(vector.sequence());
 		assertEquals("Expected sequences to be equals",vector, actual);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void getOnNegativeIndexThrows() throws Exception {
+	public void getWithNegativeIndexThrows() throws Exception {
 		Vector<Integer> vector = Vectors.of(9,8,7,6,5).add(0,1,2,3,4,5);
 		vector.get(-1);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void getOnIndexLargerThanSizeThrows() throws Exception {
+	public void getWithIndexLargerThanSizeThrows() throws Exception {
 		Vector<Integer> vector = Vectors.of(9,8,7,6,5).add(0,1,2,3,4,5);
 		vector.get(12);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setWithNegativeIndexThrows() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5).add(0,1,2,3,4,5);
+		vector.set(-1, 13);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setWithIndexLargerThanSizeThrows() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5).add(0,1,2,3,4,5);
+		vector.set(12, 13);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setWithNegativeIndexOnPrefixVectorThrows() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5).take(3);
+		vector.set(-1, 13);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setWithIndexLargerThanSizeOnPrefixVectorThrows() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5).take(3);
+		vector.set(3, 13);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setWithNegativeIndexOnSuffixVectorThrows() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5).skip(3);
+		vector.set(-1, 13);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setWithIndexLargerThanSizeOnSuffixVectorThrows() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5).skip(3);
+		vector.set(2, 13);
+	}
+	
+	@Test
+	public void setOnVector() throws Exception {
+		Vector<Integer> vector = Vectors.of(9,8,7,6,5);
+		Vector<Integer> actual = vector.set(3, 13);
+		Vector<Integer> expected = Vectors.of(9,8,7,13,5);
+		assertEquals("Expected vectors to be equals",expected, actual);
 	}
 }

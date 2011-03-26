@@ -9,8 +9,8 @@ public final class Sets {
 		return ImmutableHashSet.empty();
 	}
 	
-	public static <T> Set<T> of(Iterable<T> iterable) {
-		return ImmutableHashSet.of(iterable);
+	public static <T> Set<T> copyOf(Iterable<T> iterable) {
+		return ImmutableHashSet.copyOf(iterable);
 	}
 
 	public static <T> Set<T> of(T... elements) {

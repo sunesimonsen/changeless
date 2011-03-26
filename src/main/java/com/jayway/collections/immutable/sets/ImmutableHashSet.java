@@ -25,7 +25,7 @@ final class ImmutableHashSet<T> implements Set<T> {
 		return new ImmutableHashSet<T>(new EmptyNode<T>());
 	}
 	
-	public static <T> Set<T> of(Iterable<T> iterable) {
+	public static <T> Set<T> copyOf(Iterable<T> iterable) {
 		Node<T> root = new EmptyNode<T>();
 		for (T value : iterable) {
 			root = root.add(0, value.hashCode(), value);

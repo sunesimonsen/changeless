@@ -4,6 +4,7 @@ import com.jayway.collections.immutable.sequences.Sequenceable;
 
 public interface Vector<T> extends Sequenceable<T> {
 	T get(int index);
+	Vector<T> set(int index, T element);
 	boolean isEmpty();
 	int size();
 	Vector<T> add(T... elements);
@@ -14,4 +15,5 @@ public interface Vector<T> extends Sequenceable<T> {
 	 * Notice that the returned sequence is evaluated lazily.
 	 */
 	Vector<T> skip(int n);
+	Vector<T> take(int n);
 }

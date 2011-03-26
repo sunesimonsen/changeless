@@ -2,16 +2,23 @@ package com.jayway.collections.immutable.vectors;
 
 import java.util.Iterator;
 
+import com.jayway.collections.immutable.intervals.Intervals;
 import com.jayway.collections.immutable.sequences.Sequence;
 import com.jayway.collections.immutable.sequences.Sequenceable;
+import com.jayway.collections.utilities.Guard;
 
 
-abstract class VectorSupport<T> implements Vector<T> {
+public abstract class VectorSupport<T> implements Vector<T> {
 	@Override
 	public Vector<T> skip(int n) {
 		return SuffixVector.create(this, n);
 	}
 	
+	@Override
+	public Vector<T> take(int n) {
+		return PrefixVector.create(this, n);
+	}
+
 	@Override
 	public Sequence<T> sequence() {
 		return VectorSequence.create(this);
@@ -51,4 +58,8 @@ abstract class VectorSupport<T> implements Vector<T> {
 	
 	@Override
 	public abstract Vector<T> add(T... elements);
+	
+	protected void EnsureValidIndex(int index) {
+		Guard.in(index, Intervals.zero.open(size()), "index");
+	}
 }
