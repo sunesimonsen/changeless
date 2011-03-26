@@ -4,7 +4,7 @@ import com.jayway.collections.immutable.sequences.Sequence;
 import com.jayway.collections.immutable.sequences.SequenceSupport;
 import com.jayway.collections.immutable.sequences.Sequences;
 
-class VectorSequence<T> extends SequenceSupport<T> {
+final class VectorSequence<T> extends SequenceSupport<T> {
 	private final Vector<T> vector;
 
 	private VectorSequence(Vector<T> vector) {

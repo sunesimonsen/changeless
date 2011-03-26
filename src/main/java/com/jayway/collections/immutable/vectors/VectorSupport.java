@@ -6,7 +6,7 @@ import com.jayway.collections.immutable.sequences.Sequence;
 import com.jayway.collections.immutable.sequences.Sequenceable;
 
 
-public abstract class VectorSupport<T> implements Vector<T> {
+abstract class VectorSupport<T> implements Vector<T> {
 	@Override
 	public Vector<T> skip(int n) {
 		return SuffixVector.create(this, n);

@@ -1,6 +1,8 @@
 package com.jayway.collections.utilities;
 
 public final class Comparables {
+	private Comparables() {}
+	
 	/**
 	 * Returns true if the left value is less than the right value.
 	 * @param <T> The type of the values to compare.

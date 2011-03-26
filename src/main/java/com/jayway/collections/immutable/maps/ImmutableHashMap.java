@@ -12,7 +12,7 @@ import com.jayway.collections.tuples.Tuples;
 
 
 
-class ImmutableHashMap<K, V> implements Map<K, V> {
+final class ImmutableHashMap<K, V> implements Map<K, V> {
 	private final Node<MapEntry<K, V>> root;
 	
 	private ImmutableHashMap(Node<MapEntry<K, V>> root) {

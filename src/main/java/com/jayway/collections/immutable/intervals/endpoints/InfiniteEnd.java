@@ -1,6 +1,6 @@
 package com.jayway.collections.immutable.intervals.endpoints;
 
-public class InfiniteEnd<T extends Comparable<T>> implements IntervalEnd<T> {
+public final class InfiniteEnd<T extends Comparable<T>> implements IntervalEnd<T> {
 
 	@Override
 	public boolean before(T value) {

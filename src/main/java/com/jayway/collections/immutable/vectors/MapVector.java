@@ -6,7 +6,7 @@ import com.jayway.collections.immutable.maps.Map;
 import com.jayway.collections.immutable.maps.Maps;
 import com.jayway.collections.utilities.Guard;
 
-class MapVector<T> extends VectorSupport<T> {
+final class MapVector<T> extends VectorSupport<T> {
 	private static final StartIntervalBuilder<Integer> zero = Intervals.closed(0);
 	private final Map<Integer, T> data;
 	private final int size;

@@ -4,7 +4,7 @@ import com.jayway.collections.Optional;
 import com.jayway.collections.functions.Fn;
 
 
-public class DefaultSequenceBuilder<T> {
+public final class DefaultSequenceBuilder<T> {
 	private T current;
 	
 	public DefaultSequenceBuilder(T from) {

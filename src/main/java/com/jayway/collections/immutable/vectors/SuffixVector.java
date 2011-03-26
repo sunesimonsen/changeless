@@ -1,7 +1,7 @@
 package com.jayway.collections.immutable.vectors;
 
 
-public class SuffixVector<T> extends VectorSupport<T>{
+final class SuffixVector<T> extends VectorSupport<T>{
 
 	private final Vector<T> vector;
 	private final int offset;

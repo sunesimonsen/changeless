@@ -2,7 +2,7 @@ package com.jayway.collections.immutable.sequences;
 
 import com.jayway.collections.functions.Fn;
 
-class TransformedSequence<T, R> extends LazySequence<R> {
+final class TransformedSequence<T, R> extends LazySequence<R> {
 
 	private final Sequence<T> sequence;
 	private final Fn<? super T, ? extends R> function;

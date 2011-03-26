@@ -2,7 +2,7 @@ package com.jayway.collections.immutable.sequences;
 
 
 
-class IntegerSequence extends SequenceSupport<Integer> {
+final class IntegerSequence extends SequenceSupport<Integer> {
 
 	private final int from;
 	private final int step;

@@ -5,7 +5,7 @@ import com.jayway.collections.immutable.intervals.endpoints.InfiniteEnd;
 import com.jayway.collections.immutable.intervals.endpoints.IntervalStart;
 import com.jayway.collections.immutable.intervals.endpoints.OpenEnd;
 
-public class StartIntervalBuilder<T extends Comparable<T>> {
+public final class StartIntervalBuilder<T extends Comparable<T>> {
 	private final IntervalStart<T> start;
 
 	public StartIntervalBuilder(IntervalStart<T> start) {

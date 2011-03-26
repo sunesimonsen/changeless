@@ -1,7 +1,7 @@
 package com.jayway.collections.immutable.sequences;
 
 
-class InterposeSequence<T> extends LazySequence<T> {
+final class InterposeSequence<T> extends LazySequence<T> {
 
 	private final SequenceSupport<T> source;
 	private final T separator;

@@ -4,7 +4,7 @@ import com.jayway.collections.Optional;
 import com.jayway.collections.functions.Fn;
 
 
-public class DefaultSequenceProducer<T> extends LazySequence<T> {
+public final class DefaultSequenceProducer<T> extends LazySequence<T> {
 
 	private final T first;
 	private final Fn<? super T, ? extends Optional<T>> producer;

@@ -8,7 +8,7 @@ import com.jayway.collections.Optional;
 import com.jayway.collections.immutable.sequences.Sequence;
 import com.jayway.collections.immutable.sequences.Sequences;
 
-class FullNode<T> implements Node<T> {
+final class FullNode<T> implements Node<T> {
 
 	private final List<Node<T>> table;
 	private final int shift;

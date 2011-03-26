@@ -5,7 +5,7 @@ import java.util.Iterator;
 import com.jayway.collections.utilities.Guard;
 
 
-public class IteratorSequence<T> extends LazySequence<T> {
+public final class IteratorSequence<T> extends LazySequence<T> {
 
 	private final Iterator<T> source;
 

@@ -1,6 +1,6 @@
 package com.jayway.collections.immutable.intervals.endpoints;
 
-public abstract class FiniteEndpoint<T> {
+abstract class FiniteEndpoint<T> {
 	private final T value;
 
 	public FiniteEndpoint(T value) {

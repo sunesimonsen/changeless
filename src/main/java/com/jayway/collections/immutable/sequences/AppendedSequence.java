@@ -1,6 +1,6 @@
 package com.jayway.collections.immutable.sequences;
 
-class AppendedSequence<T> extends SequenceSupport<T> {
+final class AppendedSequence<T> extends SequenceSupport<T> {
 
 	private final Sequence<T> startSequence;
 	private final Sequence<T> endSequence;

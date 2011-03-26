@@ -1,7 +1,7 @@
 package com.jayway.collections.immutable.sequences;
 
 
-public class SkipSequence<T> extends LazySequence<T>{
+final class SkipSequence<T> extends LazySequence<T>{
 
 	private final Sequence<T> sequence;
 	private final int n;

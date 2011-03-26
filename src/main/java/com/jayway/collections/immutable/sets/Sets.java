@@ -2,7 +2,9 @@ package com.jayway.collections.immutable.sets;
 
 
 
-public class Sets {
+public final class Sets {
+	private Sets() {}
+	
 	public static <T> Set<T> empty() {
 		return ImmutableHashSet.empty();
 	}

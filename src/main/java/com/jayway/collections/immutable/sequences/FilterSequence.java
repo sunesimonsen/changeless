@@ -2,7 +2,7 @@ package com.jayway.collections.immutable.sequences;
 
 import com.jayway.collections.predicates.Predicate;
 
-public class FilterSequence<T> extends LazySequence<T> {
+public final class FilterSequence<T> extends LazySequence<T> {
 
 	private final Sequence<T> sequence;
 	private final Predicate<? super T> predicate;

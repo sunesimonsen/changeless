@@ -8,7 +8,7 @@ import com.jayway.collections.internal.hashtrie.EmptyNode;
 import com.jayway.collections.internal.hashtrie.Node;
 
 
-public class ImmutableHashSet<T> implements Set<T> {
+final class ImmutableHashSet<T> implements Set<T> {
 
 	private final Node<T> root;
 	private int cachedHashcode = -1;

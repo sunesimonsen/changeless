@@ -9,7 +9,7 @@ import com.jayway.collections.Optional;
 import com.jayway.collections.immutable.sequences.Sequence;
 import com.jayway.collections.immutable.sequences.Sequences;
 
-class BitmappedNode<T> implements Node<T> {
+final class BitmappedNode<T> implements Node<T> {
 
 	private final int bits;
 	private final int shift;

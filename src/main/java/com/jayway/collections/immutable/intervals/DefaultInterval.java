@@ -3,7 +3,7 @@ package com.jayway.collections.immutable.intervals;
 import com.jayway.collections.immutable.intervals.endpoints.IntervalEnd;
 import com.jayway.collections.immutable.intervals.endpoints.IntervalStart;
 
-public class DefaultInterval<T extends Comparable<T>> implements Interval<T> {
+public final class DefaultInterval<T extends Comparable<T>> implements Interval<T> {
 	private final IntervalStart<T> start;
 	private final IntervalEnd<T> end;
 

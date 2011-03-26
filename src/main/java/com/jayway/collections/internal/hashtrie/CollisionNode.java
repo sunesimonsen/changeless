@@ -5,7 +5,7 @@ import java.util.Iterator;
 import com.jayway.collections.Optional;
 import com.jayway.collections.immutable.sequences.Sequence;
 
-class CollisionNode<T> extends SingleNode<T> {
+final class CollisionNode<T> extends SingleNode<T> {
 
 	private final Sequence<T> bucket;
 

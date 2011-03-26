@@ -8,7 +8,7 @@ import com.jayway.collections.utilities.Guard;
 
 /**
  * A default implementation of {@link Iterator} that just walks the 
- * seqeunces.
+ * sequences.
  * @param <T> The type of the elements in the sequence to iterate. 
  */
 final class DefaultSequenceIterator<T> implements Iterator<T> {

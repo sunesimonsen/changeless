@@ -1,6 +1,5 @@
 package com.jayway.collections.immutable.sequences;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -13,8 +12,6 @@ import org.junit.Test;
 import com.jayway.collections.functions.Functions;
 import com.jayway.collections.immutable.maps.Map;
 import com.jayway.collections.immutable.maps.Maps;
-import com.jayway.collections.immutable.sequences.Sequence;
-import com.jayway.collections.immutable.sequences.Sequences;
 import com.jayway.collections.predicates.Predicates;
 
 

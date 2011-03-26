@@ -7,7 +7,7 @@ import com.jayway.collections.immutable.sequences.Sequence;
 import com.jayway.collections.immutable.sequences.Sequences;
 import com.jayway.collections.utilities.Guard;
 
-class SkipNullIterable<T> extends LazySequence<T> {
+final class SkipNullIterable<T> extends LazySequence<T> {
 
 	private final Iterator<T> source;
 

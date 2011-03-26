@@ -1,6 +1,6 @@
 package com.jayway.collections.immutable.sequences;
 
-class EmptySequence<T> extends SequenceSupport<T> {
+final class EmptySequence<T> extends SequenceSupport<T> {
 
 	private EmptySequence() {
 	}

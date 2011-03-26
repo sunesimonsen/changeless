@@ -7,7 +7,7 @@ import com.jayway.collections.immutable.sequences.Sequence;
 import com.jayway.collections.immutable.sequences.Sequences;
 
 
-public class EmptyNode<T> implements Node<T> {
+public final class EmptyNode<T> implements Node<T> {
 
 	@Override
 	public Node<T> add(int shift, int hash, T value) {

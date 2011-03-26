@@ -1,6 +1,6 @@
 package com.jayway.collections.immutable.maps;
 
-class MapEntry<K,V> {
+final class MapEntry<K,V> {
 	private final K key;
 	private final V value;
 	

@@ -1,7 +1,7 @@
 package com.jayway.collections.immutable.sequences;
 
 
-class TakeSequence<T> extends SequenceSupport<T> {
+final class TakeSequence<T> extends SequenceSupport<T> {
 	private final int n;
 	private final Sequence<T> sequence;
 

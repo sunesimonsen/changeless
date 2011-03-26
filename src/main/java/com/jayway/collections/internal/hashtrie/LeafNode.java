@@ -6,7 +6,7 @@ import com.jayway.collections.Optional;
 import com.jayway.collections.immutable.sequences.Sequence;
 import com.jayway.collections.immutable.sequences.Sequences;
 
-class LeafNode<T> extends SingleNode<T> {
+final class LeafNode<T> extends SingleNode<T> {
 	private final T value;
 
 	public LeafNode(int hash, T value) {

@@ -1,6 +1,6 @@
 package com.jayway.collections;
 
-public class Optional<V> {
+public final class Optional<V> {
 	private V value;
 	
 	private Optional(V value) {

@@ -3,7 +3,9 @@ package com.jayway.collections.immutable.maps;
 import com.jayway.collections.tuples.Tuple;
 
 
-public class Maps {
+public final class Maps {
+	private Maps() {}
+	
 	public static <K,V> Map<K, V> empty() {
 		return ImmutableHashMap.empty();
 	}
