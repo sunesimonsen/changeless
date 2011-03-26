@@ -94,11 +94,11 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 			return false;
 		}
 		
-		if (!(obj instanceof Sequence)) {
+		if (!(obj instanceof Sequenceable)) {
 			return false;
 		}
 		
-		Sequence other = (Sequence) obj;
+		Sequence other = ((Sequenceable) obj).sequence();
 		
 		if (isEmpty() && other.isEmpty()) {
 			return true;
