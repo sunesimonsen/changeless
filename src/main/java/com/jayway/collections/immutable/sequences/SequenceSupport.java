@@ -10,6 +10,7 @@ import com.jayway.collections.immutable.maps.Map;
 import com.jayway.collections.immutable.maps.Maps;
 import com.jayway.collections.predicates.Predicate;
 import com.jayway.collections.predicates.Predicates;
+import com.jayway.collections.tuples.Tuple;
 import com.jayway.collections.utilities.Guard;
 
 
@@ -235,4 +236,11 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	public Sequence<T> cycle() {
 		return CycleSequence.create(this);
 	}
+
+	@Override
+	public <TOther> Sequence<Tuple<T, TOther>> zip(Sequence<TOther> sequence) {
+		return ZipSequence.create(this, sequence);
+	}
+	
+	
 }

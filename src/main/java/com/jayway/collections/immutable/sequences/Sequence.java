@@ -4,6 +4,7 @@ import com.jayway.collections.functions.Fn;
 import com.jayway.collections.functions.Fn2;
 import com.jayway.collections.immutable.maps.Map;
 import com.jayway.collections.predicates.Predicate;
+import com.jayway.collections.tuples.Tuple;
 
 
 public interface Sequence<T> extends Sequenceable<T> {
@@ -201,4 +202,22 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @return the created sequence.
 	 */
 	Sequence<T> cycle();
+
+	/**
+	 * Zips the elements of this sequence and the given sequence into a lazy sequence of tuples.
+	 * Example:
+	 * <code>
+	 * s1 = Sequences.of(1,2,3,4);
+	 * s2 = Sequences.of(5,6,7,8,9,10);
+	 * actual = s1.zip(s2);
+	 * expected = Sequences.of(Tuples.of(1,5),
+	 *                         Tuples.of(2,6),
+	 *                         Tuples.of(3,7),
+	 *                         Tuples.of(4,8));
+	 * assertEquals(expected, actual);
+	 * </code>
+	 * @param sequence the sequence to be zipped together with this sequence.
+	 * @return the zipped sequence.
+	 */
+	<TOther> Sequence<Tuple<T, TOther>> zip(Sequence<TOther> sequence);
 }

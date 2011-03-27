@@ -16,6 +16,8 @@ import com.jayway.collections.functions.Functions;
 import com.jayway.collections.immutable.maps.Map;
 import com.jayway.collections.immutable.maps.Maps;
 import com.jayway.collections.predicates.Predicates;
+import com.jayway.collections.tuples.Tuple;
+import com.jayway.collections.tuples.Tuples;
 
 
 public class SequenceTest {
@@ -513,6 +515,18 @@ public class SequenceTest {
 		Sequence<Integer> sequence = Sequences.of(1,2,3,4);
 		Sequence<Integer> actual = sequence.cycle().take(10); 
 		Sequence<Integer> expected = Sequences.of(1,2,3,4,1,2,3,4,1,2);
+		assertEquals("Expected sequences to be equal", expected, actual);;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void zipSequence() throws Exception {
+		Sequence<Integer> sequence1 = Sequences.of(1,2,3,4);
+		Sequence<String> sequence2 = Sequences.of("5","6","7","8","9","10");
+		
+		Sequence<Tuple<Integer,String>> actual = sequence1.zip(sequence2); 
+		Sequence<Tuple<Integer,String>> expected = 
+			Sequences.of(Tuples.of(1,"5"), Tuples.of(2,"6"), Tuples.of(3,"7"), Tuples.of(4,"8"));
 		assertEquals("Expected sequences to be equal", expected, actual);;
 	}
 }
