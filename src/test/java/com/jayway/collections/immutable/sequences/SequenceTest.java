@@ -529,4 +529,15 @@ public class SequenceTest {
 			Sequences.of(Tuples.of(1,"5"), Tuples.of(2,"6"), Tuples.of(3,"7"), Tuples.of(4,"8"));
 		assertEquals("Expected sequences to be equal", expected, actual);;
 	}
+	
+	@Test
+	public void upzipSequence() throws Exception {
+		Sequence<Integer> sequence1 = Sequences.of(1,2,3,4);
+		Sequence<String> sequence2 = Sequences.of("5","6","7","8","9","10");
+		Sequence<Tuple<Integer, String>> zipped = sequence1.zip(sequence2);
+		
+		Tuple<Sequence<Integer>,Sequence<String>> actual = Sequences.unzip(zipped); 
+		Tuple<Sequence<Integer>,Sequence<String>> expected = Tuples.of(sequence1, sequence2.take(4));
+ 		assertEquals("Expected sequences to be equal", expected, actual);;
+	}
 }
