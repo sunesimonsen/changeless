@@ -241,6 +241,9 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	public <TOther> Sequence<Tuple<T, TOther>> zip(Sequence<TOther> sequence) {
 		return ZipSequence.create(this, sequence);
 	}
-	
-	
+
+	@Override
+	public Sequence<T> insertAt(int index, T... elements) {
+		return take(index).append(Sequences.of(elements)).append(skip(index));
+	}
 }

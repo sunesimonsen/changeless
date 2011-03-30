@@ -18,6 +18,13 @@ public final class Optional<V> {
 		return value;
 	}
 	
+	public <T extends V> V getValueOrDefault(T defaultValue) {
+		if (value == null) {
+			return defaultValue;
+		}
+		return value;
+	}
+	
 	public static <T> Optional<T> none() {
 		return new Optional<T>(null);
 	}

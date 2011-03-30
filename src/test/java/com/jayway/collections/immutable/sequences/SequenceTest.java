@@ -538,6 +538,67 @@ public class SequenceTest {
 		
 		Tuple<Sequence<Integer>,Sequence<String>> actual = Sequences.unzip(zipped); 
 		Tuple<Sequence<Integer>,Sequence<String>> expected = Tuples.of(sequence1, sequence2.take(4));
- 		assertEquals("Expected sequences to be equal", expected, actual);;
+ 		assertEquals("Expected sequences to be equal", expected, actual);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void insertNull() throws Exception {
+		Sequences.of(1,2,3).insertAt(0, (Integer)null);
+	}
+	
+	@Test
+	public void insertAtNegativeIndex() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(1, 2, 3);
+		Sequence<Integer> actual = sequence.insertAt(-1, 0);
+		Sequence<Integer> expected = Sequences.of(0, 1, 2, 3);
+		assertEquals("Expected sequences to be equal", expected, actual);
+	}
+	
+	@Test
+	public void insertAtFront() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(2, 3, 4);
+		Sequence<Integer> actual = sequence.insertAt(0, 0, 1);
+		Sequence<Integer> expected = Sequences.of(0, 1, 2, 3, 4);
+		assertEquals("Expected sequences to be equal", expected, actual);
+	}
+	
+	@Test
+	public void insertAtEnd() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(2, 3, 4);
+		Sequence<Integer> actual = sequence.insertAt(3, 0, 1);
+		Sequence<Integer> expected = Sequences.of(2, 3, 4, 0, 1);
+		assertEquals("Expected sequences to be equal", expected, actual);
+	}
+	
+	@Test
+	public void insertAtAfterEnd() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(2, 3, 4);
+		Sequence<Integer> actual = sequence.insertAt(100, 0, 1);
+		Sequence<Integer> expected = Sequences.of(2, 3, 4, 0, 1);
+		assertEquals("Expected sequences to be equal", expected, actual);
+	}
+	
+	@Test
+	public void insertAtIntoEmptySequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.empty();
+		Sequence<Integer> actual = sequence.insertAt(0, 0, 1);
+		Sequence<Integer> expected = Sequences.of(0, 1);
+		assertEquals("Expected sequences to be equal", expected, actual);
+	}
+	
+	@Test
+	public void insertNothing() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(2, 3, 4);
+		Sequence<Integer> actual = sequence.insertAt(0);
+		Sequence<Integer> expected = sequence;
+		assertEquals("Expected sequences to be equal", expected, actual);
+	}
+	
+	@Test
+	public void insertAtIntoInfiniteSequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.from(0).upward();
+		Sequence<Integer> actual = sequence.insertAt(5, 0, 0).take(10);
+		Sequence<Integer> expected = Sequences.of(0,1,2,3,4,0,0,5,6,7);
+		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 }

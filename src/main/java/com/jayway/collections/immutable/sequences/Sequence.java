@@ -220,4 +220,15 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @return the zipped sequence.
 	 */
 	<TOther> Sequence<Tuple<T, TOther>> zip(Sequence<TOther> sequence);
+
+	/**
+	 * Returns a new sequence where the given elements are inserted at index in this sequence.
+	 * If index is negative the given elements are inserted at the front of this sequence. If the 
+	 * index is larger than the the size of this sequence the given elements are inserted at the 
+	 * end of this sequence. 
+	 * @param index the index the elements should be inserted at in this sequence.
+	 * @param elements the elements to be inserted.
+	 * @return the sequence with the elements inserted.
+	 */
+	Sequence<T> insertAt(int index, T... elements);
 }
