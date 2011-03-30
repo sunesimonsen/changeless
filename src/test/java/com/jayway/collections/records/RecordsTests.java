@@ -9,7 +9,9 @@ import org.junit.Test;
 public class RecordsTests {
 	@Test
 	public void createRecord() throws Exception {
-		Person p1 = Records.of(Person.class);
+		RecordBuilder<Person> personBuilder = Records.builder(Person.class);
+		
+		Person p1 = personBuilder.create();
 		
 		Address a1 = Records.of(Address.class);
 		a1 = a1.street("foo").houseNumber(15);
@@ -18,7 +20,7 @@ public class RecordsTests {
 		assertEquals("foo", p1.address().street());
 		assertEquals(15, p1.address().houseNumber());
 		
-		Person p2 = Records.of(Person.class);
+		Person p2 = personBuilder.create();
 		
 		Address a2 = Records.of(Address.class);
 		a2 = a2.street("foo").houseNumber(15);
@@ -29,7 +31,7 @@ public class RecordsTests {
 		assertEquals(p1.toString(), p2.toString());
 		assertEquals(p1, p2);
 		
-		Person p3 = Records.of(Person.class);
+		Person p3 = personBuilder.create();
 		p3 = p3.address(a2.street("bar"));
 		assertFalse("not equals", p1.equals(p3));
 	}
