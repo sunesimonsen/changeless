@@ -5,6 +5,19 @@ import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
+interface Person extends Record {
+	Person name(String name);
+	String name();
+	Address address();
+	Person address(Address address);
+}
+
+interface Address extends Record {
+	Address street(String street);
+	String street();
+	Address houseNumber(int houseNumber);
+	int houseNumber();
+}
 
 public class RecordsTests {
 	@Test
@@ -35,18 +48,4 @@ public class RecordsTests {
 		p3 = p3.address(a2.street("bar"));
 		assertFalse("not equals", p1.equals(p3));
 	}
-}
-
-interface Person extends Record {
-	Person name(String name);
-	String name();
-	Address address();
-	Person address(Address address);
-}
-
-interface Address extends Record {
-	Address street(String street);
-	String street();
-	Address houseNumber(int houseNumber);
-	int houseNumber();
 }
