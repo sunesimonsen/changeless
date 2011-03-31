@@ -1,6 +1,6 @@
 package com.jayway.test;
 
-import com.jayway.collections.immutable.sequences.Sequences;
+import com.jayway.changeless.immutable.sequences.Sequences;
 
 public class ArrayIterableTest extends IterableTestSupport<Integer> {
 
