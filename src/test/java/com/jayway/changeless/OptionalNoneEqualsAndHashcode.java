@@ -1,7 +1,7 @@
 package com.jayway.changeless;
 
 import com.jayway.changeless.Optional;
-import com.jayway.test.EqualsAndHashcodeTestSupport;
+import com.jayway.changesless.test.EqualsAndHashcodeTestSupport;
 
 public class OptionalNoneEqualsAndHashcode extends EqualsAndHashcodeTestSupport{
 

@@ -15,7 +15,7 @@
 package com.jayway.changeless.internal.hashtrie;
 
 import com.jayway.changeless.Optional;
-import com.jayway.changeless.immutable.sequences.Sequenceable;
+import com.jayway.changeless.sequences.Sequenceable;
 
 
 public interface Node<T> extends Sequenceable<T> {

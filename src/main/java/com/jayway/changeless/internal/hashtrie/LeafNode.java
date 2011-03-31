@@ -3,8 +3,8 @@ package com.jayway.changeless.internal.hashtrie;
 import java.util.Iterator;
 
 import com.jayway.changeless.Optional;
-import com.jayway.changeless.immutable.sequences.Sequence;
-import com.jayway.changeless.immutable.sequences.Sequences;
+import com.jayway.changeless.sequences.Sequence;
+import com.jayway.changeless.sequences.Sequences;
 
 final class LeafNode<T> extends SingleNode<T> {
 	private final T value;

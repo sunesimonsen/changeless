@@ -2,9 +2,9 @@ package com.jayway.changeless.internal.hashtrie;
 
 import java.util.Iterator;
 
-import com.jayway.changeless.immutable.sequences.LazySequence;
-import com.jayway.changeless.immutable.sequences.Sequence;
-import com.jayway.changeless.immutable.sequences.Sequences;
+import com.jayway.changeless.sequences.LazySequence;
+import com.jayway.changeless.sequences.Sequence;
+import com.jayway.changeless.sequences.Sequences;
 import com.jayway.changeless.utilities.Guard;
 
 final class SkipNullIterable<T> extends LazySequence<T> {
