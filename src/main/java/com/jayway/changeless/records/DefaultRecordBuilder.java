@@ -1,4 +1,4 @@
-package com.jayway.collections.records;
+package com.jayway.changeless.records;
 
 import java.lang.reflect.Proxy;
 

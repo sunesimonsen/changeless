@@ -1,12 +1,12 @@
-package com.jayway.collections.records;
+package com.jayway.changeless.records;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import com.jayway.collections.Optional;
-import com.jayway.collections.immutable.maps.Map;
-import com.jayway.collections.immutable.maps.Maps;
-import com.jayway.collections.utilities.Guard;
+import com.jayway.changeless.Optional;
+import com.jayway.changeless.maps.Map;
+import com.jayway.changeless.maps.Maps;
+import com.jayway.changeless.utilities.Guard;
 
 
 class RecordInceptor<T extends Record> implements InvocationHandler {

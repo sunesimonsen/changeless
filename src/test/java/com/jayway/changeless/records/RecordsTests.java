@@ -1,9 +1,13 @@
-package com.jayway.collections.records;
+package com.jayway.changeless.records;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
+
+import com.jayway.changeless.records.Record;
+import com.jayway.changeless.records.RecordBuilder;
+import com.jayway.changeless.records.Records;
 
 interface Person extends Record {
 	Person name(String name);

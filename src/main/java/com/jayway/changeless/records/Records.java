@@ -1,4 +1,4 @@
-package com.jayway.collections.records;
+package com.jayway.changeless.records;
 
 public final class Records {
 	public static <T extends Record> T of(Class<T> clazz) throws InstantiationException, IllegalAccessException {
