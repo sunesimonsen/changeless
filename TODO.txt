@@ -1,0 +1,8 @@
+Make methods covariant and contravariant where appropriate.
+Document all public methods with Javadoc.
+Add Records types, see records branch (only local ;-).
+
+Make maps implement Fn<T,V>.
+Make maps implement Predicate<T>.
+Make set implement Predicate<T>.
+Make vectors implement Fn<Integer,T>.
