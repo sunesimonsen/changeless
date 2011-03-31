@@ -11,8 +11,8 @@ import java.util.NoSuchElementException;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.jayway.collections.immutable.sequences.Sequence;
-import com.jayway.collections.immutable.sequences.Sequences;
+import com.jayway.changeless.immutable.sequences.Sequence;
+import com.jayway.changeless.immutable.sequences.Sequences;
 
 
 /**
