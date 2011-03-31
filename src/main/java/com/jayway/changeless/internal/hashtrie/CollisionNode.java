@@ -3,7 +3,7 @@ package com.jayway.changeless.internal.hashtrie;
 import java.util.Iterator;
 
 import com.jayway.changeless.Optional;
-import com.jayway.changeless.immutable.sequences.Sequence;
+import com.jayway.changeless.sequences.Sequence;
 
 final class CollisionNode<T> extends SingleNode<T> {
 

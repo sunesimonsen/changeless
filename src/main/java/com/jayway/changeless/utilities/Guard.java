@@ -1,6 +1,6 @@
 package com.jayway.changeless.utilities;
 
-import com.jayway.changeless.immutable.intervals.Interval;
+import com.jayway.changeless.intervals.Interval;
 
 public final class Guard {
 	private Guard() {}

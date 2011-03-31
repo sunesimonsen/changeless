@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.jayway.changeless.Optional;
-import com.jayway.changeless.immutable.sequences.Sequence;
-import com.jayway.changeless.immutable.sequences.Sequences;
+import com.jayway.changeless.sequences.Sequence;
+import com.jayway.changeless.sequences.Sequences;
 
 final class FullNode<T> implements Node<T> {
 
