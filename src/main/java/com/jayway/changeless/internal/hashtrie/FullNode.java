@@ -25,14 +25,14 @@ final class FullNode<T> implements Node<T> {
 		Node<T> foundNode = node.add(shift + 5, hash, value);
 		if (foundNode == node) {
 			return this;
-		} else {
-			List<Node<T>> newTable = new ArrayList<Node<T>>(32);
-			for (Node<T> n : table) {
-				newTable.add(n);
-			}
-			newTable.set(i, foundNode);
-			return new FullNode<T>(shift, newTable);
+		} 
+
+		List<Node<T>> newTable = new ArrayList<Node<T>>(32);
+		for (Node<T> n : table) {
+			newTable.add(n);
 		}
+		newTable.set(i, foundNode);
+		return new FullNode<T>(shift, newTable);
 	}
 
 	@Override
@@ -49,30 +49,28 @@ final class FullNode<T> implements Node<T> {
 
 		if (node == table.get(i)) {
 			return this;
-		} else {
-			List<Node<T>> newTable = new ArrayList<Node<T>>(32);
-			for (Node<T> n : table) {
-				newTable.add(n);
-			}
+		} 
 
-			if (node instanceof EmptyNode<?>) {
-				newTable.set(i, null);
-				return new BitmappedNode<T>(shift, ~0 ^ mask, newTable);
-			} else {
-				newTable.set(i, node);
-				return new FullNode<T>(shift, newTable);
-			}
+		List<Node<T>> newTable = new ArrayList<Node<T>>(32);
+		for (Node<T> n : table) {
+			newTable.add(n);
+		}
+
+		if (node instanceof EmptyNode<?>) {
+			newTable.set(i, null);
+			return new BitmappedNode<T>(shift, ~0 ^ mask, newTable);
+		} else {
+			newTable.set(i, node);
+			return new FullNode<T>(shift, newTable);
 		}
 	}
 
 	@Override
 	public int size() {
 		int size = 0;
-		
 		for (Node<T> n : table) {
 			size += n.size();
 		}
-		
 		return size;
 	}
 	
