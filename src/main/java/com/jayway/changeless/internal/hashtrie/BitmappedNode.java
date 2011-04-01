@@ -122,8 +122,7 @@ final class BitmappedNode<T> implements Node<T> {
 
 	@Override
 	public Sequence<T> sequence() {
-		Iterable<Node<T>> tableWithoutNulls = new SkipNullIterable<Node<T>>(table.iterator());
-		return Sequences.appended(tableWithoutNulls);
+		return Sequences.appended(Sequences.copyOf(table));
 	}
 
 	@Override
@@ -133,7 +132,6 @@ final class BitmappedNode<T> implements Node<T> {
 	
 	@Override
 	public String toString() {
-		Iterable<Node<T>> iterable = new SkipNullIterable<Node<T>>(table.iterator());
-		return Sequences.copyOf(iterable).toString();
+		return sequence().toString();
 	}
 }

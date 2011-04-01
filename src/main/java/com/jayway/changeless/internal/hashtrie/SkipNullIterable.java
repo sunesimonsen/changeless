@@ -2,34 +2,31 @@ package com.jayway.changeless.internal.hashtrie;
 
 import java.util.Iterator;
 
-import com.jayway.changeless.sequences.LazySequence;
-import com.jayway.changeless.sequences.Sequence;
-import com.jayway.changeless.sequences.Sequences;
-import com.jayway.changeless.utilities.Guard;
+final class SkipNullIterable<T> implements Iterator<T> {
 
-final class SkipNullIterable<T> extends LazySequence<T> {
-
-	private final Iterator<T> source;
-
-	public SkipNullIterable(Iterator<T> source) {
-		Guard.notNull(source, "source");
+	private final Array<T> source;
+	private int i = 0;
+	public SkipNullIterable(Array<T> source) {
 		this.source = source;
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	@Override
-	public Sequence<T> createSequence() {
-		if (!source.hasNext()) {
-			return Sequences.empty();
+	public boolean hasNext() {
+		while(i < source.size()) {
+			
 		}
-		T first = source.next();
-		while (first == null && source.hasNext()) {
-			first = source.next();
-		}
-		if (first == null) {
-			return Sequences.empty();
-		}
-		Sequence<T> rest = new SkipNullIterable<T>(source);
-		return rest.add(first);
+		return false;
+	}
+
+	@Override
+	public T next() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void remove() {
+		// TODO Auto-generated method stub
+		
 	}
 }
