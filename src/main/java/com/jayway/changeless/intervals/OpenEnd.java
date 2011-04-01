@@ -1,9 +1,9 @@
-package com.jayway.changeless.intervals.endpoints;
+package com.jayway.changeless.intervals;
 
 import com.jayway.changeless.utilities.Comparables;
 
 
-public final class OpenEnd<T extends Comparable<T>> extends FiniteEndpoint<T> implements IntervalEnd<T> {
+final class OpenEnd<T extends Comparable<T>> extends FiniteEndpoint<T> implements IntervalEnd<T> {
 	public OpenEnd(T value) {
 		super(value);
 	}

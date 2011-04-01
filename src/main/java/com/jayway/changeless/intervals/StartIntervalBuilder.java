@@ -1,9 +1,5 @@
 package com.jayway.changeless.intervals;
 
-import com.jayway.changeless.intervals.endpoints.ClosedEnd;
-import com.jayway.changeless.intervals.endpoints.InfiniteEnd;
-import com.jayway.changeless.intervals.endpoints.IntervalStart;
-import com.jayway.changeless.intervals.endpoints.OpenEnd;
 
 public final class StartIntervalBuilder<T extends Comparable<T>> {
 	private final IntervalStart<T> start;

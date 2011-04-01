@@ -1,8 +1,8 @@
-package com.jayway.changeless.intervals.endpoints;
+package com.jayway.changeless.intervals;
 
 import com.jayway.changeless.utilities.Comparables;
 
-public final class OpenStart<T extends Comparable<T>> extends FiniteEndpoint<T> implements IntervalStart<T> {
+final class OpenStart<T extends Comparable<T>> extends FiniteEndpoint<T> implements IntervalStart<T> {
 	public OpenStart(T value) {
 		super(value);
 	}
