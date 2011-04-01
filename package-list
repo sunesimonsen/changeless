@@ -1,0 +1,12 @@
+com.jayway.changeless.functions
+com.jayway.changeless.internal.hashtrie
+com.jayway.changeless.intervals
+com.jayway.changeless.intervals.endpoints
+com.jayway.changeless.maps
+com.jayway.changeless.optionals
+com.jayway.changeless.predicates
+com.jayway.changeless.sequences
+com.jayway.changeless.sets
+com.jayway.changeless.tuples
+com.jayway.changeless.utilities
+com.jayway.changeless.vectors
