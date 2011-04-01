@@ -84,12 +84,12 @@ final class BitmappedNode<T> implements Node<T> {
 				return table.get((int) log);
 			} 
 
-			int length = (i + 1 == table.size()) ? table.size() - 1
-					: table.size();
+			int size = table.size();
+			int newSize = (i == size - 1) ? size - 1 : size;
 			
-			Array<Node<T>> newTable = table.copy(length);
+			Array<Node<T>> newTable = table.copy(newSize);
 			
-			if (i != length) {
+			if (i != newSize) {
 				newTable.set(i, null);	
 			}
 
