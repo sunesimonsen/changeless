@@ -1,5 +1,6 @@
 package com.jayway.changeless.sequences;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -599,5 +600,9 @@ public class SequenceTest {
 		Sequence<Integer> actual = sequence.insertAt(5, 0, 0).take(10);
 		Sequence<Integer> expected = Sequences.of(0,1,2,3,4,0,0,5,6,7);
 		assertEquals("Expected sequences to be equal", expected, actual);
+	}
+	
+	@Test
+	public void testname() throws Exception {
 	}
 }

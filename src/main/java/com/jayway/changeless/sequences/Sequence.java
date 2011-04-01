@@ -74,7 +74,7 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @return a new sequence with all the given elements added to the front of this sequence.
 	 * @throws IllegalArgumentException if any of the elements are null.
 	 */
-	Sequence<T> add(Iterable<T> elements);
+	Sequence<T> add(Iterable<? extends T> elements);
 	
 	/**
 	 * Returns a new sequence where each element from this sequence is transformed with the given function. 
@@ -150,21 +150,21 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @param predicate The predicate function. 
 	 * @return true is the predicate is true for all elements in the sequence; false otherwise.
 	 */
-	boolean all(Predicate<T> predicate);
+	boolean all(Predicate<? super T> predicate);
 	
 	/**
 	 * Returns true if the predicate is true for any elements in the sequence.
 	 * @param predicate The predicate function. 
 	 * @return true is the predicate is true for any elements in the sequence; false otherwise.
 	 */
-	boolean any(Predicate<T> predicate);
+	boolean any(Predicate<? super T> predicate);
 	
 	/**
 	 * Returns true if the predicate is not true for any elements in the sequence.
 	 * @param predicate The predicate function. 
 	 * @return true if the predicate is not true for any elements in the sequence; false otherwise.
 	 */
-	boolean non(Predicate<T> predicate);
+	boolean non(Predicate<? super T> predicate);
 	
 	/**
 	 * Returns the element with the given index in the this sequence.

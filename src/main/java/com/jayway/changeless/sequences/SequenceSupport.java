@@ -31,7 +31,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	}
 	
 	@Override
-	public Sequence<T> add(Iterable<T> elements) {
+	public Sequence<T> add(Iterable<? extends T> elements) {
 		Sequence<T> result = this;
 		for (T element : this) {
 			Guard.notNull(element, "element");
@@ -173,12 +173,12 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	}
 
 	@Override
-	public boolean all(Predicate<T> predicate) {
+	public boolean all(Predicate<? super T> predicate) {
 		return non(Predicates.not(predicate));
 	}
 
 	@Override
-	public boolean any(Predicate<T> predicate) {
+	public boolean any(Predicate<? super T> predicate) {
 		for (T element : this) {
 			if (predicate.apply(element)) {
 				return true;
@@ -188,7 +188,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	}
 
 	@Override
-	public boolean non(Predicate<T> predicate) {
+	public boolean non(Predicate<? super T> predicate) {
 		return !any(predicate);
 	}
 
