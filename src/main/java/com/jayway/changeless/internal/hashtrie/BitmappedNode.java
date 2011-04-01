@@ -30,16 +30,15 @@ final class BitmappedNode<T> implements Node<T> {
 			Node<T> node = table.get(i).add(shift + 5, hash, value);
 			if (node == table.get(i)) {
 				return this;
-			} else {
-				List<Node<T>> newTable = ListUtilites
-						.createListWithNullValues(table.size());
-				Collections.copy(newTable, table);
-				newTable.set(i, node);
-				return new BitmappedNode<T>(shift, bits, newTable);
-			}
+			} 
+			
+			List<Node<T>> newTable = createEmptyTable(table.size());
+			Collections.copy(newTable, table);
+			newTable.set(i, node);
+			return new BitmappedNode<T>(shift, bits, newTable);
 		} else {
 			int tableSize = Math.max(table.size(), i + 1);
-			List<Node<T>> newTable = ListUtilites.createListWithNullValues(tableSize);
+			List<Node<T>> newTable = createEmptyTable(tableSize);
 			Collections.copy(newTable, table);
 			newTable.set(i, new LeafNode<T>(hash, value));
 			int newBits = bits | mask;
@@ -49,6 +48,10 @@ final class BitmappedNode<T> implements Node<T> {
 				return new BitmappedNode<T>(shift, newBits, newTable);
 			}
 		}
+	}
+	
+	private List<Node<T>> createEmptyTable(int size) {
+		return ListUtilites.createListWithNullValues(size);
 	}
 
 	@Override
