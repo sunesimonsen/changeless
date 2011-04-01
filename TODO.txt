@@ -6,3 +6,7 @@ Make maps implement Fn<T,V>.
 Make maps implement Predicate<T>.
 Make set implement Predicate<T>.
 Make vectors implement Fn<Integer,T>.
+
+Implement a sorted maps and sets based on red-black-trees.
+Implement a stack.
+Implement a Queue.
