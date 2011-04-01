@@ -17,12 +17,12 @@ final class CollisionNode<T> extends SingleNode<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Node<T> add(int shift, int hash, T value) {
-		if (getHash() == hash) {
-			Sequence<T> newBucket = bucket.remove(value).add(value);
-			return new CollisionNode<T>(hash, newBucket);
-		} else {
+		if (getHash() != hash) {
 			return bitmap(shift, hash, value);
-		}
+		} 
+		
+		Sequence<T> newBucket = bucket.remove(value).add(value);
+		return new CollisionNode<T>(hash, newBucket);
 	}
 
 	@Override
@@ -42,14 +42,14 @@ final class CollisionNode<T> extends SingleNode<T> {
 		int newBucketSize = newBucket.size();
 		if (newBucketSize == bucket.size()) {
 			return this;
-		} else {
-			if (newBucketSize == 1) {
-				T first = newBucket.first();
-				return new LeafNode<T>(hash, first);
-			} else {
-				return new CollisionNode<T>(hash, newBucket);
-			}
-		}
+		} 
+
+		if (newBucketSize != 1) {
+			return new CollisionNode<T>(hash, newBucket);
+		} 
+		
+		T first = newBucket.first();
+		return new LeafNode<T>(hash, first);
 	}
 
 	@Override

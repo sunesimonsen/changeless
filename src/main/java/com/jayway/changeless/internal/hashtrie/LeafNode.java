@@ -19,12 +19,14 @@ final class LeafNode<T> extends SingleNode<T> {
 	public Node<T> add(int shift, int hash, T value) {
 		if (this.value.equals(value)) {
 			return this;
-		} else if (getHash() == hash) {
-			Sequence<T> bucket = Sequences.of(this.value, value);
-			return new CollisionNode<T>(hash, bucket);
-		} else {
+		} 
+			
+		if (getHash() != hash) {
 			return bitmap(shift, hash, value);
-		}
+		} 
+		
+		Sequence<T> bucket = Sequences.of(this.value, value);
+		return new CollisionNode<T>(hash, bucket);
 	}
 
 	@Override
