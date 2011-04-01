@@ -2,7 +2,7 @@ package com.jayway.changeless.sequences;
 
 import com.jayway.changeless.predicates.Predicate;
 
-public final class FilterSequence<T> extends LazySequence<T> {
+final class FilterSequence<T> extends LazySequence<T> {
 
 	private final Sequence<T> sequence;
 	private final Predicate<? super T> predicate;
