@@ -3,7 +3,7 @@ package com.jayway.changeless.maps;
 import java.util.Iterator;
 
 import com.jayway.changeless.functions.Fn;
-import com.jayway.changeless.internal.hashtrie.EmptyNode;
+import com.jayway.changeless.internal.hashtrie.HashTries;
 import com.jayway.changeless.internal.hashtrie.Node;
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
@@ -20,7 +20,8 @@ final class ImmutableHashMap<K, V> implements Map<K, V> {
 	}
 	
 	public static <K,V> Map<K,V> empty() {
-		return new ImmutableHashMap<K, V>(new EmptyNode<MapEntry<K, V>>());
+		Node<MapEntry<K, V>> root = HashTries.empty();
+		return new ImmutableHashMap<K, V>(root);
 	}
 	
 	@Override

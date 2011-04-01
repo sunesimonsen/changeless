@@ -2,7 +2,7 @@ package com.jayway.changeless.sets;
 
 import java.util.Iterator;
 
-import com.jayway.changeless.internal.hashtrie.EmptyNode;
+import com.jayway.changeless.internal.hashtrie.HashTries;
 import com.jayway.changeless.internal.hashtrie.Node;
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
@@ -22,11 +22,12 @@ final class ImmutableHashSet<T> implements Set<T> {
 	}
 	
 	public static <T> Set<T> empty() {
-		return new ImmutableHashSet<T>(new EmptyNode<T>());
+		Node<T> root = HashTries.empty();
+		return new ImmutableHashSet<T>(root);
 	}
 	
 	public static <T> Set<T> copyOf(Iterable<T> iterable) {
-		Node<T> root = new EmptyNode<T>();
+		Node<T> root = HashTries.empty();
 		for (T value : iterable) {
 			root = root.add(0, value.hashCode(), value);
 		}
@@ -34,7 +35,7 @@ final class ImmutableHashSet<T> implements Set<T> {
 	}
 	
 	public static <T> Set<T> of(T... elements) {
-		Node<T> root = new EmptyNode<T>();
+		Node<T> root = HashTries.empty();
 		for (T value : elements) {
 			root = root.add(0, value.hashCode(), value);
 		}

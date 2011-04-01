@@ -7,7 +7,7 @@ import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
 
 
-public final class EmptyNode<T> implements Node<T> {
+final class EmptyNode<T> implements Node<T> {
 
 	@Override
 	public Node<T> add(int shift, int hash, T value) {
