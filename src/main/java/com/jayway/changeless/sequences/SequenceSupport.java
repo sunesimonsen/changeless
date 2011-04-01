@@ -218,7 +218,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	}
 
 	@Override
-	public Sequence<T> remove(T element) {
+	public Sequence<T> remove(Object element) {
 		return remove(Predicates.equalsPredicate(element));
 	}
 

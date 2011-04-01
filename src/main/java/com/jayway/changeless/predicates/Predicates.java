@@ -33,10 +33,10 @@ public final class Predicates {
 		}
 	};
 	
-	public static <T> Predicate<T> equalsPredicate(final T element) {
-		return new Predicate<T>() {
+	public static Predicate<Object> equalsPredicate(final Object element) {
+		return new Predicate<Object>() {
 			@Override
-			public boolean apply(T input) {
+			public boolean apply(Object input) {
 				return element.equals(input);
 			}
 		};

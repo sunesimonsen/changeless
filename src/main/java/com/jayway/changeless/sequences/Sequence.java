@@ -31,7 +31,7 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @param element The element to be removed.
 	 * @return The resulting sequence.
 	 */
-	Sequence<T> remove(T element);
+	Sequence<T> remove(Object element);
 	
 	/**
 	 * Returns a new lazy sequence containing the elements from this sequence 
