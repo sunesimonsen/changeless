@@ -1,9 +1,6 @@
 package com.jayway.changeless.internal.hashtrie;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
 
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
@@ -13,9 +10,9 @@ final class BitmappedNode<T> implements Node<T> {
 
 	private final int bits;
 	private final int shift;
-	private final List<Node<T>> table;
+	private final Array<Node<T>> table;
 
-	public BitmappedNode(int shift, int bits, List<Node<T>> table) {
+	public BitmappedNode(int shift, int bits, Array<Node<T>> table) {
 		this.shift = shift;
 		this.bits = bits;
 		this.table = table;
@@ -32,14 +29,13 @@ final class BitmappedNode<T> implements Node<T> {
 				return this;
 			} 
 			
-			List<Node<T>> newTable = createEmptyTable(table.size());
-			Collections.copy(newTable, table);
+			
+			Array<Node<T>> newTable = table.copy();
 			newTable.set(i, node);
 			return new BitmappedNode<T>(shift, bits, newTable);
 		} else {
 			int tableSize = Math.max(table.size(), i + 1);
-			List<Node<T>> newTable = createEmptyTable(tableSize);
-			Collections.copy(newTable, table);
+			Array<Node<T>> newTable = table.copy(tableSize);;
 			newTable.set(i, new LeafNode<T>(hash, value));
 			int newBits = bits | mask;
 			if (newBits == ~0) {
@@ -48,10 +44,6 @@ final class BitmappedNode<T> implements Node<T> {
 				return new BitmappedNode<T>(shift, newBits, newTable);
 			}
 		}
-	}
-	
-	private List<Node<T>> createEmptyTable(int size) {
-		return ListUtilites.createListWithNullValues(size);
 	}
 
 	@Override
@@ -95,10 +87,8 @@ final class BitmappedNode<T> implements Node<T> {
 
 			int length = (i + 1 == table.size()) ? table.size() - 1
 					: table.size();
-			List<Node<T>> newTable = new ArrayList<Node<T>>(length);
-			for (int j = 0; j < length; j++) {
-				newTable.add(table.get(j));
-			}
+			
+			Array<Node<T>> newTable = table.copy(length);
 			
 			if (i != length) {
 				newTable.set(i, null);	
@@ -106,10 +96,7 @@ final class BitmappedNode<T> implements Node<T> {
 
 			return new BitmappedNode<T>(shift, adjustedBits, newTable);
 		} else {
-			List<Node<T>> newTable = new ArrayList<Node<T>>(table.size());
-			for (Node<T> n : table) {
-				newTable.add(n);
-			}
+			Array<Node<T>> newTable = table.copy();
 			newTable.set(i, node);
 
 			return new BitmappedNode<T>(shift, bits, newTable);

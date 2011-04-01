@@ -1,8 +1,6 @@
 package com.jayway.changeless.internal.hashtrie;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
@@ -10,10 +8,10 @@ import com.jayway.changeless.sequences.Sequences;
 
 final class FullNode<T> implements Node<T> {
 
-	private final List<Node<T>> table;
+	private final Array<Node<T>> table;
 	private final int shift;
 
-	public FullNode(int shift, List<Node<T>> table) {
+	public FullNode(int shift, Array<Node<T>> table) {
 		this.shift = shift;
 		this.table = table;
 	}
@@ -27,10 +25,7 @@ final class FullNode<T> implements Node<T> {
 			return this;
 		} 
 
-		List<Node<T>> newTable = new ArrayList<Node<T>>(32);
-		for (Node<T> n : table) {
-			newTable.add(n);
-		}
+		Array<Node<T>> newTable = table.copy(32);
 		newTable.set(i, foundNode);
 		return new FullNode<T>(shift, newTable);
 	}
@@ -50,11 +45,8 @@ final class FullNode<T> implements Node<T> {
 		if (node == table.get(i)) {
 			return this;
 		} 
-
-		List<Node<T>> newTable = new ArrayList<Node<T>>(32);
-		for (Node<T> n : table) {
-			newTable.add(n);
-		}
+		
+		Array<Node<T>> newTable = table.copy(32);
 
 		if (node instanceof EmptyNode<?>) {
 			newTable.set(i, null);
