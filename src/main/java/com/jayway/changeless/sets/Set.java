@@ -7,9 +7,9 @@ public interface Set<T> extends Sequenceable<T> {
 	boolean contains(T value);
 	int size();
 	Set<T> remove(T value);
-	Set<T> remove(Set<T> values);
+	Set<T> remove(Set<? extends T> values);
 	boolean isEmpty();
-	Set<T> intersection(Set<T> set);
-	Set<T> union(Set<T> set);
+	Set<T> intersection(Set<? extends T> set);
+	Set<T> union(Set<? extends T> set);
 }
 

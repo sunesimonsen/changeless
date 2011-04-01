@@ -63,7 +63,7 @@ final class ImmutableHashSet<T> implements Set<T> {
 	}
 	
 	@Override
-	public Set<T> remove(Set<T> values) {
+	public Set<T> remove(Set<? extends T> values) {
 		Node<T> newRoot = root;
 		for (T value : values) {
 			newRoot = newRoot.remove(value, value.hashCode());
@@ -87,7 +87,7 @@ final class ImmutableHashSet<T> implements Set<T> {
 	}
 
 	@Override
-	public Set<T> intersection(Set<T> set) {
+	public Set<T> intersection(Set<? extends T> set) {
 		Set<T> intersection = Sets.empty();
 		for (T value : set.sequence()) {
 			if (contains(value)) {
@@ -98,7 +98,7 @@ final class ImmutableHashSet<T> implements Set<T> {
 	}
 	
 	@Override
-	public Set<T> union(Set<T> set) {
+	public Set<T> union(Set<? extends T> set) {
 		Set<T> union = this;
 		for (T value : set.sequence()) {
 			union = union.add(value);
