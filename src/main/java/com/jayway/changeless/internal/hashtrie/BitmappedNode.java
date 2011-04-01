@@ -38,8 +38,8 @@ final class BitmappedNode<T> implements Node<T> {
 				return new BitmappedNode<T>(shift, bits, newTable);
 			}
 		} else {
-			List<Node<T>> newTable = ListUtilites.createListWithNullValues(Math
-					.max(table.size(), i + 1));
+			int tableSize = Math.max(table.size(), i + 1);
+			List<Node<T>> newTable = ListUtilites.createListWithNullValues(tableSize);
 			Collections.copy(newTable, table);
 			newTable.set(i, new LeafNode<T>(hash, value));
 			int newBits = bits | mask;
@@ -68,47 +68,48 @@ final class BitmappedNode<T> implements Node<T> {
 		int i = (hash >>> shift) & 0x01f;
 		int mask = 1 << i;
 
-		if ((bits & mask) == mask) {
-			Node<T> node = table.get(i).remove(value, hash);
-
-			if (node == table.get(i)) {
-				return this;
-			} else if (node instanceof EmptyNode<?>) {
-				if (size() == 1) {
-					return new EmptyNode<T>();
-				} else {
-					int adjustedBits = bits ^ mask;
-					double log = Math.log(adjustedBits) / Math.log(2);
-
-					if (Math.floor(log) == log) { // last one
-						return table.get((int) log);
-					} else {
-						int length = (i + 1 == table.size()) ? table.size() - 1
-								: table.size();
-						List<Node<T>> newTable = new ArrayList<Node<T>>(length);
-						for (int j = 0; j < length; j++) {
-							newTable.add(table.get(j));
-						}
-						
-						if (i != length) {
-							newTable.set(i, null);	
-						}
-
-						return new BitmappedNode<T>(shift, adjustedBits,
-								newTable);
-					}
-				}
-			} else {
-				List<Node<T>> newTable = new ArrayList<Node<T>>(table.size());
-				for (Node<T> n : table) {
-					newTable.add(n);
-				}
-				newTable.set(i, node);
-
-				return new BitmappedNode<T>(shift, bits, newTable);
-			}
-		} else {
+		if ((bits & mask) != mask) {
 			return this;
+		} 
+			
+		Node<T> node = table.get(i).remove(value, hash);
+
+		if (node == table.get(i)) {
+			return this;
+		} 
+		
+		if (node instanceof EmptyNode<?>) {
+			if (size() == 1) {
+				return new EmptyNode<T>();
+			} 
+
+			int adjustedBits = bits ^ mask;
+			double log = Math.log(adjustedBits) / Math.log(2);
+
+			if (Math.floor(log) == log) { // last one
+				return table.get((int) log);
+			} 
+
+			int length = (i + 1 == table.size()) ? table.size() - 1
+					: table.size();
+			List<Node<T>> newTable = new ArrayList<Node<T>>(length);
+			for (int j = 0; j < length; j++) {
+				newTable.add(table.get(j));
+			}
+			
+			if (i != length) {
+				newTable.set(i, null);	
+			}
+
+			return new BitmappedNode<T>(shift, adjustedBits, newTable);
+		} else {
+			List<Node<T>> newTable = new ArrayList<Node<T>>(table.size());
+			for (Node<T> n : table) {
+				newTable.add(n);
+			}
+			newTable.set(i, node);
+
+			return new BitmappedNode<T>(shift, bits, newTable);
 		}
 	}
 
@@ -126,12 +127,7 @@ final class BitmappedNode<T> implements Node<T> {
 	
 	@Override
 	public boolean isEmpty() {
-		for (Node<T> n : table) {
-			if (n != null) {
-				return false;
-			}
-		}
-		return true; // TODO don't know if this can happen.
+		return false;
 	}
 
 	@Override
