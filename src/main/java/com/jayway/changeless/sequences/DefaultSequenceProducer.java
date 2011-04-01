@@ -4,12 +4,12 @@ import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.optionals.Optional;
 
 
-public final class DefaultSequenceProducer<T> extends LazySequence<T> {
+final class DefaultSequenceProducer<T> extends LazySequence<T> {
 
 	private final T first;
 	private final Fn<? super T, ? extends Optional<T>> producer;
 
-	public DefaultSequenceProducer(T current, Fn<? super T, ? extends Optional<T>> producer) {
+	private DefaultSequenceProducer(T current, Fn<? super T, ? extends Optional<T>> producer) {
 		this.first = current;
 		this.producer = producer;
 	}
