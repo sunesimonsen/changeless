@@ -29,7 +29,6 @@ final class BitmappedNode<T> implements Node<T> {
 				return this;
 			} 
 			
-			
 			Array<Node<T>> newTable = table.copy();
 			newTable.set(i, node);
 			return new BitmappedNode<T>(shift, bits, newTable);
@@ -75,7 +74,7 @@ final class BitmappedNode<T> implements Node<T> {
 		
 		if (node instanceof EmptyNode<?>) {
 			if (size() == 1) {
-				return new EmptyNode<T>();
+				return node; // reuse empty node
 			} 
 
 			int adjustedBits = bits ^ mask;
