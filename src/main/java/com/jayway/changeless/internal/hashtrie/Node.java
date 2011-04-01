@@ -14,7 +14,7 @@
 
 package com.jayway.changeless.internal.hashtrie;
 
-import com.jayway.changeless.Optional;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequenceable;
 
 

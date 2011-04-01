@@ -1,10 +1,10 @@
-package com.jayway.changeless;
+package com.jayway.changeless.optionals;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.jayway.changeless.Optional;
+import com.jayway.changeless.optionals.Optional;
 
 public class OptionalTests {
 	@Test(expected=NullPointerException.class)

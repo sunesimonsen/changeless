@@ -1,6 +1,6 @@
 package com.jayway.changeless.maps;
 
-import com.jayway.changeless.Optional;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequenceable;
 import com.jayway.changeless.tuples.Tuple;
 

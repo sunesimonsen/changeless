@@ -2,9 +2,9 @@ package com.jayway.changeless.sets;
 
 import java.util.Iterator;
 
-import com.jayway.changeless.Optional;
 import com.jayway.changeless.internal.hashtrie.EmptyNode;
 import com.jayway.changeless.internal.hashtrie.Node;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 
 

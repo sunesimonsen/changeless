@@ -1,4 +1,4 @@
-package com.jayway.changeless;
+package com.jayway.changeless.optionals;
 
 public final class Optional<V> {
 	private V value;

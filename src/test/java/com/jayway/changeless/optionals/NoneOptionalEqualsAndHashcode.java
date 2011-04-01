@@ -1,6 +1,6 @@
-package com.jayway.changeless;
+package com.jayway.changeless.optionals;
 
-import com.jayway.changeless.Optional;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changesless.test.EqualsAndHashcodeTestSupport;
 
 public class NoneOptionalEqualsAndHashcode extends EqualsAndHashcodeTestSupport{

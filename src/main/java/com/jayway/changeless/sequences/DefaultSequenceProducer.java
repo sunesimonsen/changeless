@@ -1,7 +1,7 @@
 package com.jayway.changeless.sequences;
 
-import com.jayway.changeless.Optional;
 import com.jayway.changeless.functions.Fn;
+import com.jayway.changeless.optionals.Optional;
 
 
 public final class DefaultSequenceProducer<T> extends LazySequence<T> {

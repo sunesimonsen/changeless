@@ -9,11 +9,11 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.jayway.changeless.Optional;
 import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.functions.Functions;
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.maps.Maps;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.predicates.Predicates;
 import com.jayway.changeless.tuples.Tuple;
 import com.jayway.changeless.tuples.Tuples;
