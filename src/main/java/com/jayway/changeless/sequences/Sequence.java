@@ -89,10 +89,8 @@ public interface Sequence<T> extends Sequenceable<T> {
 	<R> Sequence<R> transform(Fn<? super T,? extends R> function);
 
 	/**
-	 * Returns a new sequence containing all the elements that matches the given predicate 
-	 * function. 
-	 * 
-	 * Notice that the returned sequence is evaluated lazily.
+	 * Returns a new lazy sequence containing all the elements that matches the given predicate 
+	 * function.
 	 * 
 	 * @param predicate the predicate.
 	 * @return the filtered sequence.
