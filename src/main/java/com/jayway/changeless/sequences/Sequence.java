@@ -15,6 +15,7 @@ public interface Sequence<T> extends Sequenceable<T> {
 	boolean isEmpty();
 	
 	/**
+	 * Returns the size of the sequence.
 	 * @return the size of the sequence.
 	 */
 	int size();

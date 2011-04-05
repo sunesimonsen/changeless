@@ -124,19 +124,23 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	
 	@Override
 	public int hashCode() {
-		if (isEmpty()) {
-			return 0;
-		}
 		final int prime = 31;
-		return prime * rest().hashCode() + first().hashCode();
+		int hashCode = 0; 
+		for (T element : this) {
+			hashCode = prime * hashCode + element.hashCode();
+		}
+		return hashCode;
 	}
 	
 	@Override
 	public int size() {
-		if (isEmpty()) {
-			return 0;
-		} 
-		return 1 + rest().size();	
+		int size = 0;
+		Sequence<T> head = this;
+		while(!head.isEmpty()) {
+			head = head.rest();
+			size++;
+		}
+		return size;
 	}
 
 	@Override
