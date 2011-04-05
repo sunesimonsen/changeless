@@ -24,6 +24,7 @@ public interface Node<T> extends Sequenceable<T> {
 	Node<T> add(int shift, int hash, T value);
 	Optional<T> get(T value, int hash);
 	Node<T> remove(T value, int hash);
+	int waist();
 }
 
 

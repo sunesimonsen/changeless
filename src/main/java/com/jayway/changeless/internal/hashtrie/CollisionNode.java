@@ -71,4 +71,9 @@ final class CollisionNode<T> extends SingleNode<T> {
 	public Iterator<T> iterator() {
 		return sequence().iterator();
 	}
+
+	@Override
+	public int waist() {
+		return 0;
+	}
 }

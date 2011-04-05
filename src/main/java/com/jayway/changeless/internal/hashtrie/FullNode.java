@@ -85,4 +85,13 @@ final class FullNode<T> implements Node<T> {
 	public Iterator<T> iterator() {
 		return sequence().iterator();
 	}
+
+	@Override
+	public int waist() {
+		int waist = 0;
+		for (Node<T> n : table) {
+			waist += n.waist();
+		}
+		return waist;
+	}
 }

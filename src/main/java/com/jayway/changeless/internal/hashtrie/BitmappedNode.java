@@ -106,12 +106,24 @@ final class BitmappedNode<T> implements Node<T> {
 	public int size() {
 		int size = 0;
 		for (Node<T> n : table) {
-			if (n != null) {
-				size += n.size();
-			}
+			size += n.size();
 		}
 
 		return size;
+	}
+	
+	@Override
+	public int waist() {
+		int waist = 0;
+		for (int i = 0; i < table.size(); i++) {
+			Node<T> n = table.get(i);
+			if (n != null) {
+				waist += n.waist();	
+			} else {
+				waist++;
+			}
+		}
+		return waist;
 	}
 	
 	@Override

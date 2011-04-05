@@ -48,4 +48,9 @@ final class EmptyNode<T> implements Node<T> {
 	public Iterator<T> iterator() {
 		return sequence().iterator();
 	}
+
+	@Override
+	public int waist() {
+		return 0;
+	}
 }

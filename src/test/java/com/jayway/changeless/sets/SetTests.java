@@ -8,8 +8,6 @@ import org.junit.Test;
 
 import com.jayway.changeless.functions.Functions;
 import com.jayway.changeless.sequences.Sequences;
-import com.jayway.changeless.sets.Set;
-import com.jayway.changeless.sets.Sets;
 
 
 public class SetTests {
