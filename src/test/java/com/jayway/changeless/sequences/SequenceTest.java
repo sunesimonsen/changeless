@@ -600,4 +600,39 @@ public class SequenceTest {
 		Sequence<Integer> expected = Sequences.of(0,1,2,3,4,0,0,5,6,7);
 		assertEquals("Expected sequences to be equal", expected, actual);
 	}
+	
+	@Test
+	public void isSizeOnEmpty() throws Exception {
+		Sequence<Integer> sequence = Sequences.empty();
+		assertTrue("Expected size 0", sequence.isSize(0));
+	}
+	
+	@Test
+	public void isNotSizeOnEmpty() throws Exception {
+		Sequence<Integer> sequence = Sequences.empty();
+		assertFalse("Expected size 0", sequence.isSize(10));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void isNegativeSize() throws Exception {
+		Sequences.empty().isSize(-10);
+	}
+	
+	@Test
+	public void isSizeLessThanSequenceSize() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(1,2,3,4);
+		assertFalse("Expected size 4", sequence.isSize(2));
+	}
+	
+	@Test
+	public void isSizeGreaterThanSequenceSize() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(1,2,3,4);
+		assertFalse("Expected size 4", sequence.isSize(6));
+	}
+	
+	@Test
+	public void isSizeEqualsToSequenceSize() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(1,2,3,4);
+		assertTrue("Expected size 4", sequence.isSize(4));
+	}
 }

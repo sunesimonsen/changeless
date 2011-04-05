@@ -73,7 +73,7 @@ final class BitmappedNode<T> implements Node<T> {
 		} 
 		
 		if (node instanceof EmptyNode<?>) {
-			if (size() == 1) {
+			if (sequence().isSize(1)) {
 				return node; // reuse empty node
 			} 
 

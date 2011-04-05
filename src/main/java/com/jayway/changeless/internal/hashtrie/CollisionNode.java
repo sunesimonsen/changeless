@@ -40,7 +40,7 @@ final class CollisionNode<T> extends SingleNode<T> {
 		Sequence<T> newBucket = bucket.remove(value);
 
 		int newBucketSize = newBucket.size();
-		if (newBucketSize == bucket.size()) {
+		if (bucket.isSize(newBucketSize)) {
 			return this;
 		} 
 

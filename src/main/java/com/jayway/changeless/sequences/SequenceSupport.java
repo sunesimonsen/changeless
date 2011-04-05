@@ -159,6 +159,19 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		}
 		return size;
 	}
+	
+	@Override
+	public boolean isSize(int size) {
+		Guard.nonNegative(size, "size");
+		Sequence<T> head = this;
+		for (int i = 0; i < size; i++) {
+			if (head.isEmpty()) {
+				return false;
+			}
+			head = head.rest();
+		}
+		return head.isEmpty();
+	}
 
 	@Override
 	public Sequence<T> sequence() {

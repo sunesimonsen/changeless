@@ -21,6 +21,14 @@ public interface Sequence<T> extends Sequenceable<T> {
 	int size();
 	
 	/**
+	 * Returns true if the size of this sequence is equals to the given size.
+	 * This is faster than using the size method.
+	 * @param size the expected size.
+	 * @return true if the size of this sequence is equals to the given size; false otherwise.
+	 */
+	boolean isSize(int size);
+	
+	/**
 	 * @return true if all the elements in the given sequence are equals to the elements in 
 	 * this sequence.
 	 */
