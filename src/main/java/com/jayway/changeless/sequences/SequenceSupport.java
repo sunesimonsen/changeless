@@ -96,16 +96,24 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		
 		Sequence other = ((Sequenceable) obj).sequence();
 		
-		if (isEmpty() && other.isEmpty()) {
-			return true;
-		} 
+		Sequence h1 = this;
+		Sequence h2 = other;
 		
-		if (isEmpty() != other.isEmpty()) {
-			return false;
+		while (!h1.isEmpty()) {
+			if (h2.isEmpty()) {
+				return false;
+			}
+			
+			if (!h1.first().equals(h2.first())) {
+				return false;
+			}
+			
+			h1 = h1.rest();
+			h2 = h2.rest();
 		}
 		
-		return first().equals(other.first()) && 
-			rest().equals(other.rest());
+		// now h1.isEmpty() 
+		return h2.isEmpty();
 	}
 	
 	@Override
