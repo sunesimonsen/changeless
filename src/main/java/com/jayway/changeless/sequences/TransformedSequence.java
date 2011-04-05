@@ -19,6 +19,12 @@ final class TransformedSequence<T, R> extends LazySequence<R> {
 		
 		return new TransformedSequence<T,R>(sequence, function);
 	}
+	
+
+	@Override
+	public boolean isEmpty() {
+		return false;
+	}
 
 	@Override
 	public Sequence<R> createSequence() {

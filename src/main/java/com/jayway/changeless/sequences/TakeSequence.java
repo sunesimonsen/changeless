@@ -22,7 +22,7 @@ final class TakeSequence<T> extends SequenceSupport<T> {
 		
 		return new TakeSequence<T>(sequence, n);
 	}
-
+	
 	@Override
 	public Sequence<T> rest() {
 		return TakeSequence.create(sequence.rest(), n-1);
@@ -30,7 +30,6 @@ final class TakeSequence<T> extends SequenceSupport<T> {
 
 	@Override
 	public boolean isEmpty() {
-		return sequence.isEmpty();
+		return false;
 	}
-
 }

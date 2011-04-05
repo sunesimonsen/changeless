@@ -67,7 +67,16 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	
 	@Override
 	public Sequence<T> skip(int n) {
-		return SkipSequence.create(this, n);
+		if (n <= 0) {
+			return this;
+		} 
+		
+		Sequence<T> result = this;
+		for (int i = 0; i < n && !result.isEmpty(); i++) {
+			result = result.rest();
+		}
+		
+		return result;
 	}
 	
 	@Override

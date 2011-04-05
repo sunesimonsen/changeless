@@ -117,8 +117,8 @@ public interface Sequence<T> extends Sequenceable<T> {
 	/**
 	 * Returns a new sequence containing all the elements of this sequence except 
 	 * the n first elements. If n is less than one this sequence is returned.
-	 * 
-	 * Notice that the returned sequence is evaluated lazily.
+	 * @return a new sequence containing all the elements of this sequence except 
+	 * the n first elements
 	 */
 	Sequence<T> skip(int n);
 	
