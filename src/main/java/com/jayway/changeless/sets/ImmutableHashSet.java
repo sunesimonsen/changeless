@@ -43,14 +43,24 @@ final class ImmutableHashSet<T> implements Set<T> {
 	}
 
 	@Override
-	public Set<T> add(T value) {
-		return new ImmutableHashSet<T>(root.add(0, value.hashCode(), value));
+	public Set<T> add(T... elements) {
+		Node<T> newRoot = root;
+		for (T element : elements) {
+			newRoot = newRoot.add(0, element.hashCode(), element);
+		}
+		return new ImmutableHashSet<T>(newRoot);
 	}
 
 	@Override
-	public boolean contains(T value) {
-		Optional<T> seachResult = root.get(value, value.hashCode());
-		return seachResult.hasValue();
+	public boolean contains(T... elements) {
+		for (T element : elements) {
+			Optional<T> seachResult = root.get(element, element.hashCode());
+			if (seachResult.hasNoValue()) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 
 	@Override
@@ -59,14 +69,18 @@ final class ImmutableHashSet<T> implements Set<T> {
 	}
 
 	@Override
-	public Set<T> remove(T value) {
-		return new ImmutableHashSet<T>(root.remove(value, value.hashCode()));
+	public Set<T> remove(T... elements) {
+		Node<T> newRoot = root;
+		for (T element : elements) {
+			newRoot = newRoot.remove(element, element.hashCode());
+		}
+		return new ImmutableHashSet<T>(newRoot);
 	}
 	
 	@Override
-	public Set<T> remove(Set<? extends T> values) {
+	public Set<T> remove(Iterable<T> elements) {
 		Node<T> newRoot = root;
-		for (T value : values) {
+		for (T value : elements) {
 			newRoot = newRoot.remove(value, value.hashCode());
 		}
 		return new ImmutableHashSet<T>(newRoot);
@@ -88,23 +102,38 @@ final class ImmutableHashSet<T> implements Set<T> {
 	}
 
 	@Override
-	public Set<T> intersection(Set<? extends T> set) {
-		Set<T> intersection = Sets.empty();
-		for (T value : set.sequence()) {
-			if (contains(value)) {
-				intersection = intersection.add(value);
+	public Set<T> intersection(Iterable<T> elements) {
+		Node<T> newRoot = HashTries.empty();
+		for (T element : elements) {
+			int hash = element.hashCode();
+			if (root.get(element, hash).hasValue()) {
+				newRoot = newRoot.add(0, hash, element);
 			}
 		}
-		return intersection;
+		return new ImmutableHashSet<T>(newRoot);
 	}
 	
 	@Override
-	public Set<T> union(Set<? extends T> set) {
-		Set<T> union = this;
-		for (T value : set.sequence()) {
-			union = union.add(value);
+	public Set<T> union(Iterable<T> elements) {
+		Node<T> newRoot = root;
+		for (T element : elements) {
+			newRoot = newRoot.add(0, element.hashCode(), element);
 		}
-		return union;
+		return new ImmutableHashSet<T>(newRoot);
+	}
+	
+	@Override
+	public Set<T> symmetricDifference(Iterable<T> elements) {
+		Node<T> newRoot = root;
+		for (T element : elements) {
+			int hash = element.hashCode();
+			if (newRoot.get(element, hash).hasValue()) {
+				newRoot = newRoot.remove(element, hash);
+			} else {
+				newRoot = newRoot.add(0, hash, element);
+			}
+		}
+		return new ImmutableHashSet<T>(newRoot);
 	}
 
 	@Override
