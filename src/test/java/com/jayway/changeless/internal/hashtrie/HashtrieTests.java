@@ -24,13 +24,13 @@ public class HashtrieTests {
 
 	@Test
 	public void emptyHashTrieIsEmpty() throws Exception {
-		assertTrue("Expected empty set", HashTries.empty().isEmpty());
+		assertTrue("Expected empty hash trie", HashTries.empty().isEmpty());
 	}
 	
 	@Test
 	public void nonEmptyIsNotEmpty() throws Exception {
 		Node<Object> trie = HashTries.empty().add(0, 1, 1);
-		assertFalse("Expected non-empty set", trie.isEmpty());
+		assertFalse("Expected non-empty hash trie", trie.isEmpty());
 	}
 	
 	@Test
