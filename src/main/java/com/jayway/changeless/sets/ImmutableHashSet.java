@@ -11,9 +11,9 @@ import com.jayway.changeless.sequences.Sequence;
 final class ImmutableHashSet<T> implements Set<T> {
 
 	private final Node<T> root;
-	private int cachedHashcode = -1;
+	private volatile int cachedHashcode = -1;
 	
-	boolean isHashCodeCached() {
+	private boolean isHashCodeCached() {
 		return cachedHashcode != -1;
 	}
 	
@@ -117,24 +117,24 @@ final class ImmutableHashSet<T> implements Set<T> {
 		int result = 1;
 		
 		for (T element : sequence()) {
-			result = prime * result + ((element == null) ? 0 : element.hashCode());	
+			result = prime * result + element.hashCode();	
 		}
 		cachedHashcode = result;
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Set))
 			return false;
-		@SuppressWarnings("unchecked")
-		ImmutableHashSet<T> other = (ImmutableHashSet<T>) obj;
-		if (isHashCodeCached() && other.isHashCodeCached() &&
-				hashCode() != other.hashCode()) {
+
+		Set<T> other = (Set<T>) obj;
+		if (hashCode() != other.hashCode()) {
 			return false;
 		}
 		
