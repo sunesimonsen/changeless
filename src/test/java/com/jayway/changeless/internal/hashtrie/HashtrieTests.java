@@ -21,16 +21,6 @@ public class HashtrieTests {
 					trie.get(i,i).hasValue());
 		}
 	}
-	
-	@Test
-	public void nonWaistIsGenerated() throws Exception {
-		Node<Integer> trie = HashTries.empty();
-		int numberOfElements = 10000;
-		for (int i = 0; i < numberOfElements; i++) {
-			trie = trie.add(0,i,i);
-		}
-		assertEquals("Non waist was expected", 0, trie.waist());
-	}
 
 	@Test
 	public void emptyHashTrieIsEmpty() throws Exception {
