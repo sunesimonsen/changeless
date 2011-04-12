@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.functions.Functions;
+import com.jayway.changeless.functions.integers.PlusFunction;
+import com.jayway.changeless.functions.strings.AppendStringFunction;
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.maps.Maps;
 import com.jayway.changeless.optionals.Optional;
@@ -280,7 +282,7 @@ public class SequenceTest {
 	public void summingEmptySequenceWithReduce() throws Exception {
 		Sequence<Integer> sequence = Sequences.empty();
 		Integer expected = 0;
-		Integer actual = sequence.reduce(0, Functions.plusFunction);
+		Integer actual = sequence.reduce(0, new PlusFunction());
 		assertEquals("Expected reduce on empty sequence to return start value", 
 				expected , actual);
 	}
@@ -289,7 +291,7 @@ public class SequenceTest {
 	public void summingSequenceWithReduce() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(1,2,3,4,5,6);
 		Integer expected = 21;
-		Integer actual = sequence.reduce(0, Functions.plusFunction);
+		Integer actual = sequence.reduce(0, new PlusFunction());
 		assertEquals("Expected the sum of the values in the sequence.", 
 				expected , actual);
 	}
@@ -299,7 +301,7 @@ public class SequenceTest {
 		Sequence<String> sequence = Sequences.of("Hello", " ", "World", "!!!");
 		String expected = "--> Hello World!!!";
 		StringBuilder actual = sequence.reduce(new StringBuilder("--> "), 
-				Functions.appendStringFunction);
+				new AppendStringFunction());
 		assertEquals("Expected joined string.", expected, actual.toString());
 	}
 	

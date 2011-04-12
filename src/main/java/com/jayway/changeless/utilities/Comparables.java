@@ -1,5 +1,7 @@
 package com.jayway.changeless.utilities;
 
+import com.jayway.changeless.functions.Fn2;
+
 public final class Comparables {
 	private Comparables() {}
 	
@@ -56,5 +58,33 @@ public final class Comparables {
 	 */
 	public static <T extends Comparable<T>> boolean equals(T left, T rigth) {
 		return left.compareTo(rigth) == 0;
+	}
+	
+	/**
+	 * Returns a minimum function for elements of type T.
+	 * @param <T> the type of the elements this minimum function can compare.
+	 * @return a minimum function for elements of type T.
+	 */
+	public static <T extends Comparable<T>> Fn2<T,T,T> minFunction() {
+		return new Fn2<T,T,T>() {
+			@Override
+			public T apply(T x, T y) {
+				return Comparables.lessThan(x, y) ? x : y;
+			}
+		};
+	}
+	
+	/**
+	 * Returns a maximum function for elements of type T.
+	 * @param <T> the type of the elements this maximum function can compare.
+	 * @return a maximum function for elements of type T.
+	 */
+	public static <T extends Comparable<T>> Fn2<T,T,T> maxFunction() {
+		return new Fn2<T,T,T>() {
+			@Override
+			public T apply(T x, T y) {
+				return Comparables.greaterThan(x, y) ? x : y;
+			}
+		};
 	}
 }

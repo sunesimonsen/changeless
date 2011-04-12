@@ -5,6 +5,7 @@ import java.util.Iterator;
 import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.functions.Fn2;
 import com.jayway.changeless.functions.Functions;
+import com.jayway.changeless.functions.strings.AppendStringFunction;
 import com.jayway.changeless.intervals.Intervals;
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.maps.Maps;
@@ -49,7 +50,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		stringBuilder.append("(");
 		
 		stringBuilder = sequence.transform(Functions.toStringFunction)
-			.interpose(",").reduce(stringBuilder, Functions.appendStringFunction);
+			.interpose(",").reduce(stringBuilder, new AppendStringFunction());
 	
 		if (tailSequence.isEmpty()) {
 			stringBuilder.append(")");	
