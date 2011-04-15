@@ -12,6 +12,13 @@ non-backward compatible manner if it is absolutely necessary.
 
 Any help would be highly appreciated. 
 
+License
+-------
+This project is licensed under 
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0 "Apache License, Version 2.0"). 
+You can find the license file for the project 
+[here](https://github.com/sunesimonsen/changeless/raw/master/LICENSE.txt "License").
+
 Javadoc
 -------
 You can find Javadoc for the project [here](http://sunesimonsen.github.com/changeless/ "Javadoc"). 
