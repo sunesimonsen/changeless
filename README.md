@@ -41,11 +41,12 @@ TODO
 Acknowledgements
 ----------------
 The implementation of an immutable hash-trie in the
-com.jayway.collections.internal.hashtrie package is based on Daniel Spiewak's
-'HashTrie' implementation for Scala that is in turn a clean-room port of Rich
-Hickey's persistent hash trie implementation from Clojure (http://clojure.org).
-Originally presented as a mutable structure in a paper by Phil Bagwell. The
-implementation is also heavily inspired by Eugene Vigdorchik's blog post:
+[com.jayway.collections.internal.hashtrie](https://github.com/sunesimonsen/changeless/tree/master/src/main/java/com/jayway/changeless/internal/hashtrie "com.jayway.collections.internal.hashtrie") 
+package is based on Daniel Spiewak's 'HashTrie' implementation for Scala that is
+in turn a clean-room port of Rich Hickey's persistent hash trie implementation
+from Clojure (http://clojure.org). Originally presented as a mutable structure
+in a paper by Phil Bagwell. The implementation is also heavily inspired by
+Eugene Vigdorchik's blog post:
 http://groovy.dzone.com/articles/immutable-data-structures
 
 All the data-structures are also inspire by the data-structures in Clojure.
