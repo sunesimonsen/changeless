@@ -22,14 +22,11 @@ TODO
 * Make methods covariant and contravariant where appropriate.
 * Document all public methods with Javadoc.
 * Add Record types, see records branch (only local ;-).
-
 * Make maps implement Fn<T,V>.
 * Make maps implement Predicate<T>.
 * Make set implement Predicate<T>.
 * Make vectors implement Fn<Integer,T> and Predicate<Integer>.
-
 * Add function composition to the Functions class.
-
 * Implement a sorted maps and sets based on red-black-trees.
 * Implement a stack.
 * Implement a Queue.
