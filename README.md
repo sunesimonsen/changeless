@@ -21,6 +21,8 @@ TODO
 
 * Make methods covariant and contravariant where appropriate.
 * Document all public methods with Javadoc.
+* Go through generated Javadoc and find things that looks weird and fix them.
+* Add examples in Markdown format. 
 * Add Record types, see records branch (only local ;-).
 * Make maps implement Fn&lt;T,V&gt;.
 * Make maps implement Predicate&lt;T&gt;.
