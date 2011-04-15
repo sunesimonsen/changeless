@@ -3,7 +3,6 @@ Changeless - An Immutable Collection Library for Java
 
 Introduction
 ------------
-
 Changeless is an immutable collection library for Java inspired by 
 [Clojure](http://www.clojure.org/ "Clojure"). The library is not ready for 
 release yet, it still needs some more documentation and enhancements in a few 
@@ -25,7 +24,6 @@ You can find Javadoc for the project [here](http://sunesimonsen.github.com/chang
 
 TODO
 ----
-
 * Make methods covariant and contravariant where appropriate.
 * Document all public methods with Javadoc.
 * Go through generated Javadoc and find things that looks weird and fix them.
@@ -38,4 +36,16 @@ TODO
 * Add function composition to the Functions class.
 * Implement a sorted maps and sets based on red-black-trees.
 * Implement a stack.
-* Implement a Queue.
+* Implement a Queue.            
+
+Acknowledgements
+----------------
+The implementation of an immutable hash-trie in the
+com.jayway.collections.internal.hashtrie package is based on Daniel Spiewak's
+'HashTrie' implementation for Scala that is in turn a clean-room port of Rich
+Hickey's persistent hash trie implementation from Clojure (http://clojure.org).
+Originally presented as a mutable structure in a paper by Phil Bagwell. The
+implementation is also heavily inspired by Eugene Vigdorchik's blog post:
+http://groovy.dzone.com/articles/immutable-data-structures
+
+All the data-structures are also inspire by the data-structures in Clojure.
