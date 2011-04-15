@@ -16,7 +16,8 @@ import com.jayway.changeless.functions.strings.AppendStringFunction;
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.maps.Maps;
 import com.jayway.changeless.optionals.Optional;
-import com.jayway.changeless.predicates.Predicates;
+import com.jayway.changeless.predicates.integers.EvenPredicate;
+import com.jayway.changeless.predicates.integers.OddPredicate;
 import com.jayway.changeless.tuples.Tuple;
 import com.jayway.changeless.tuples.Tuples;
 
@@ -193,7 +194,7 @@ public class SequenceTest {
 	@Test
 	public void filterSeqence() throws Exception {
 		Sequence<Integer> sequence = Sequences.from(0).upward().take(10);
-		Sequence<Integer> actual = sequence.filter(Predicates.oddPredicate);
+		Sequence<Integer> actual = sequence.filter(new OddPredicate());
 		Sequence<Integer> expected = Sequences.of(1,3,5,7,9);
 		assertEquals("Expected sequences to be equal", expected, actual);
 	}
@@ -324,7 +325,7 @@ public class SequenceTest {
 	@Test
 	public void evenSequence() throws Exception {
 		Sequence<Integer> sequence = Sequences.from(-10).upward().take(20);
-		Sequence<Integer> actual = sequence.filter(Predicates.evenPredicate);
+		Sequence<Integer> actual = sequence.filter(new EvenPredicate());
 		Sequence<Integer> expected = Sequences.from(-10).step(2).upward().take(10);
 		assertEquals("Expected sequences to be equals",expected, actual);
 	}
@@ -356,7 +357,7 @@ public class SequenceTest {
 	@Test
 	public void filterOnInfiniteSequence() throws Exception {
 		Sequence<Integer> sequence = Sequences.from(-10).upward();
-		Sequence<Integer> actual = sequence.filter(Predicates.evenPredicate).take(10);
+		Sequence<Integer> actual = sequence.filter(new EvenPredicate()).take(10);
 		Sequence<Integer> expected = Sequences.from(-10).step(2).upward().take(10);
 		assertEquals("Expected sequences to be equals",expected, actual);
 	}

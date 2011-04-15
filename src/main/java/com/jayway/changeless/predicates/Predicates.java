@@ -19,20 +19,6 @@ public final class Predicates {
 			}
 		};
 	
-	public static Predicate<Integer> oddPredicate = new Predicate<Integer>() {
-		@Override
-		public boolean apply(Integer input) {
-			return input % 2 != 0;
-		}
-	};
-	
-	public static Predicate<Integer> evenPredicate = new Predicate<Integer>() {
-		@Override
-		public boolean apply(Integer input) {
-			return input % 2 == 0;
-		}
-	};
-	
 	public static Predicate<Object> equalsPredicate(final Object element) {
 		return new Predicate<Object>() {
 			@Override
