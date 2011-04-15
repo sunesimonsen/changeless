@@ -1,7 +1,8 @@
 com.jayway.changeless.functions
+com.jayway.changeless.functions.integers
+com.jayway.changeless.functions.strings
 com.jayway.changeless.internal.hashtrie
 com.jayway.changeless.intervals
-com.jayway.changeless.intervals.endpoints
 com.jayway.changeless.maps
 com.jayway.changeless.optionals
 com.jayway.changeless.predicates
