@@ -1,4 +1,4 @@
-package com.jayway.changesless.test;
+package com.jayway.changeless.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;

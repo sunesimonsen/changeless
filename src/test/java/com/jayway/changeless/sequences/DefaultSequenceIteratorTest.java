@@ -2,7 +2,7 @@ package com.jayway.changeless.sequences;
 
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
-import com.jayway.changesless.test.IterableTestSupport;
+import com.jayway.changeless.test.IterableTestSupport;
 
 
 public class DefaultSequenceIteratorTest extends IterableTestSupport<Integer> {

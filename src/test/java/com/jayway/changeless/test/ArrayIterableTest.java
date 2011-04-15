@@ -1,4 +1,4 @@
-package com.jayway.changesless.test;
+package com.jayway.changeless.test;
 
 import com.jayway.changeless.sequences.Sequences;
 

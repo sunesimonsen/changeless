@@ -1,7 +1,7 @@
 package com.jayway.changeless.sets;
 
 import com.jayway.changeless.sets.Sets;
-import com.jayway.changesless.test.EqualsAndHashcodeTestSupport;
+import com.jayway.changeless.test.EqualsAndHashcodeTestSupport;
 
 
 public class SetEqualsAndHashcodeWithEmptySetTest extends EqualsAndHashcodeTestSupport {

@@ -6,9 +6,9 @@ import org.junit.Test;
 
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
+import com.jayway.changeless.test.EqualsAndHashcodeTestSupport;
 import com.jayway.changeless.vectors.Vector;
 import com.jayway.changeless.vectors.Vectors;
-import com.jayway.changesless.test.EqualsAndHashcodeTestSupport;
 
 
 public class VectorEqualsAndHashcodeComparedWithSequenceTest extends EqualsAndHashcodeTestSupport {

@@ -1,7 +1,7 @@
 package com.jayway.changeless.vectors;
 
+import com.jayway.changeless.test.EqualsAndHashcodeTestSupport;
 import com.jayway.changeless.vectors.Vectors;
-import com.jayway.changesless.test.EqualsAndHashcodeTestSupport;
 
 
 public class VectorEqualsAndHashcodeComparedWithEmptyVectorTest extends EqualsAndHashcodeTestSupport {
