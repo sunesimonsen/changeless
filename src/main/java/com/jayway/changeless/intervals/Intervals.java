@@ -2,7 +2,7 @@ package com.jayway.changeless.intervals;
 
 
 public final class Intervals {
-	private Intervals() {}
+	private Intervals() { /* Static class */ }
 	
 	public static StartIntervalBuilder<Integer> zero = closed(0);
 	

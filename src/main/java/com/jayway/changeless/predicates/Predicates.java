@@ -1,7 +1,7 @@
 package com.jayway.changeless.predicates;
 
 public final class Predicates {
-	private Predicates() {}
+	private Predicates() { /* Static class */ }
 	
 	public static <T> Predicate<T> not(final Predicate<T> predicate) {
 		return new Predicate<T>() {

@@ -78,7 +78,7 @@ public class VectorTests {
 	public void skipLargerThanSizeReturnsAnEmptyVector() throws Exception {
 		Vector<Integer> vector = Vectors.of(9,8,7,6,5).add(0,1,2,3,4,5);
 		Vector<Integer> actual = vector.skip(20);
-		assertTrue("Expected empty vector",actual.isEmpty());;
+		assertTrue("Expected empty vector",actual.isEmpty());
 	}
 	
 	@Test

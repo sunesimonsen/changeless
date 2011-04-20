@@ -334,7 +334,7 @@ public class SequenceTest {
 	public void frequenciesOnEmptySequenceReturnsAnEmptyMap() throws Exception {
 		Sequence<String> sequence = Sequences.of();
 		Map<String, Integer> actual = sequence.frequencies();
-		Map<String, Integer> expected = Maps.empty();;
+		Map<String, Integer> expected = Maps.empty();
 		assertEquals("Expected map to contain frequencies", expected, actual);
 	}
 	
@@ -396,7 +396,7 @@ public class SequenceTest {
 	
 	@Test
 	public void lazyCopyOfSequence() throws Exception {
-		Sequence<Integer> actual = Sequences.lazyCopyOf(Arrays.asList(1, 2, 3, 4, 5));;
+		Sequence<Integer> actual = Sequences.lazyCopyOf(Arrays.asList(1, 2, 3, 4, 5));
 		Sequence<Integer> expected = Sequences.of(1, 2, 3, 4, 5);
 		assertEquals("Expected sequences to be equals",expected, actual);
 	}
@@ -479,7 +479,7 @@ public class SequenceTest {
 				Sequences.of(6,7,8),
 				Sequences.of(9));
 		
-		assertEquals("Expected sequences to be equal", expected, actual);;
+		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -494,7 +494,7 @@ public class SequenceTest {
 				Sequences.of(6,7,8),
 				Sequences.of(9,10,11));
 		
-		assertEquals("Expected sequences to be equal", expected, actual);;
+		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -503,7 +503,7 @@ public class SequenceTest {
 		Sequence<Integer> sequence = Sequences.from(0).upward().take(10);
 		Sequence<Sequence<Integer>> actual = sequence.partition(20);
 		Sequence<Sequence<Integer>> expected = Sequences.of(sequence);
-		assertEquals("Expected sequences to be equal", expected, actual);;
+		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
 	@Test
@@ -517,7 +517,7 @@ public class SequenceTest {
 		Sequence<Integer> sequence = Sequences.of(1,2,3,4);
 		Sequence<Integer> actual = sequence.cycle().take(10); 
 		Sequence<Integer> expected = Sequences.of(1,2,3,4,1,2,3,4,1,2);
-		assertEquals("Expected sequences to be equal", expected, actual);;
+		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -529,7 +529,7 @@ public class SequenceTest {
 		Sequence<Tuple<Integer,String>> actual = sequence1.zip(sequence2); 
 		Sequence<Tuple<Integer,String>> expected = 
 			Sequences.of(Tuples.of(1,"5"), Tuples.of(2,"6"), Tuples.of(3,"7"), Tuples.of(4,"8"));
-		assertEquals("Expected sequences to be equal", expected, actual);;
+		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
 	@Test

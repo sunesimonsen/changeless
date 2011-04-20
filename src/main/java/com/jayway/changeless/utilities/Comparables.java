@@ -3,7 +3,7 @@ package com.jayway.changeless.utilities;
 import com.jayway.changeless.functions.Fn2;
 
 public final class Comparables {
-	private Comparables() {}
+	private Comparables() { /* Static class */ }
 	
 	/**
 	 * Returns true if the left value is less than the right value.

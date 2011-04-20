@@ -2,7 +2,7 @@ package com.jayway.changeless.vectors;
 
 
 public final class Vectors {
-	private Vectors(){}
+	private Vectors() { /* Static class */ }
 	
 	@SuppressWarnings("unchecked")
 	public static <T> Vector<T> empty() {

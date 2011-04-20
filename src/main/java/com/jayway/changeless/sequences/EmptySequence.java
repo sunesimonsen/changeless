@@ -2,8 +2,7 @@ package com.jayway.changeless.sequences;
 
 final class EmptySequence<T> extends SequenceSupport<T> {
 
-	private EmptySequence() {
-	}
+	private EmptySequence() {  /* Static class */ }
 
 	@Override
 	public T first() {

@@ -34,7 +34,7 @@ final class BitmappedNode<T> implements Node<T> {
 			return new BitmappedNode<T>(shift, bits, newTable);
 		} else {
 			int tableSize = Math.max(table.size(), i + 1);
-			Array<Node<T>> newTable = table.copy(tableSize);;
+			Array<Node<T>> newTable = table.copy(tableSize);
 			newTable.set(i, new LeafNode<T>(hash, value));
 			int newBits = bits | mask;
 			if (newBits == ~0) {

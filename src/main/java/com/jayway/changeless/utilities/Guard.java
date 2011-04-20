@@ -3,7 +3,7 @@ package com.jayway.changeless.utilities;
 import com.jayway.changeless.intervals.Interval;
 
 public final class Guard {
-	private Guard() {}
+	private Guard() { /* Static class */ }
 	
 	public static void notNull(Object argument, String argumentName) {
 		if (argument == null) {

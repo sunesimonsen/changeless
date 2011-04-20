@@ -9,7 +9,7 @@ import com.jayway.changeless.utilities.Comparables;
 
 
 public final class Sequences {
-	private Sequences() { }
+	private Sequences() { /* Static class */ }
 	
 	public static <T> Sequence<T> append(T element, Sequence<T> sequence) {
 		return DefaultSequence.create(element, sequence);
