@@ -17,7 +17,6 @@ package com.jayway.changeless.internal.hashtrie;
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequenceable;
 
-
 public interface Node<T> extends Sequenceable<T> {
 	int size();
 	boolean isEmpty();
