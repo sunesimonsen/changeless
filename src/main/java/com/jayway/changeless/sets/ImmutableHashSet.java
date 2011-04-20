@@ -3,31 +3,31 @@ package com.jayway.changeless.sets;
 import java.util.Iterator;
 
 import com.jayway.changeless.internal.hashtrie.HashTries;
-import com.jayway.changeless.internal.hashtrie.Node;
+import com.jayway.changeless.internal.hashtrie.HashTrie;
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 
 
 final class ImmutableHashSet<T> implements Set<T> {
 
-	private final Node<T> root;
+	private final HashTrie<T> root;
 	private volatile int cachedHashcode = -1;
 	
 	private boolean isHashCodeCached() {
 		return cachedHashcode != -1;
 	}
 	
-	private ImmutableHashSet(Node<T> root) {
+	private ImmutableHashSet(HashTrie<T> root) {
 		this.root = root;
 	}
 	
 	public static <T> Set<T> empty() {
-		Node<T> root = HashTries.empty();
+		HashTrie<T> root = HashTries.empty();
 		return new ImmutableHashSet<T>(root);
 	}
 	
 	public static <T> Set<T> copyOf(Iterable<T> iterable) {
-		Node<T> root = HashTries.empty();
+		HashTrie<T> root = HashTries.empty();
 		for (T value : iterable) {
 			root = root.add(0, value.hashCode(), value);
 		}
@@ -35,7 +35,7 @@ final class ImmutableHashSet<T> implements Set<T> {
 	}
 	
 	public static <T> Set<T> of(T... elements) {
-		Node<T> root = HashTries.empty();
+		HashTrie<T> root = HashTries.empty();
 		for (T value : elements) {
 			root = root.add(0, value.hashCode(), value);
 		}
@@ -44,7 +44,7 @@ final class ImmutableHashSet<T> implements Set<T> {
 
 	@Override
 	public Set<T> add(T... elements) {
-		Node<T> newRoot = root;
+		HashTrie<T> newRoot = root;
 		for (T element : elements) {
 			newRoot = newRoot.add(0, element.hashCode(), element);
 		}
@@ -70,7 +70,7 @@ final class ImmutableHashSet<T> implements Set<T> {
 
 	@Override
 	public Set<T> remove(T... elements) {
-		Node<T> newRoot = root;
+		HashTrie<T> newRoot = root;
 		for (T element : elements) {
 			newRoot = newRoot.remove(element, element.hashCode());
 		}
@@ -79,7 +79,7 @@ final class ImmutableHashSet<T> implements Set<T> {
 	
 	@Override
 	public Set<T> remove(Iterable<T> elements) {
-		Node<T> newRoot = root;
+		HashTrie<T> newRoot = root;
 		for (T value : elements) {
 			newRoot = newRoot.remove(value, value.hashCode());
 		}
@@ -103,7 +103,7 @@ final class ImmutableHashSet<T> implements Set<T> {
 
 	@Override
 	public Set<T> intersection(Iterable<T> elements) {
-		Node<T> newRoot = HashTries.empty();
+		HashTrie<T> newRoot = HashTries.empty();
 		for (T element : elements) {
 			int hash = element.hashCode();
 			if (root.get(element, hash).hasValue()) {
@@ -115,7 +115,7 @@ final class ImmutableHashSet<T> implements Set<T> {
 	
 	@Override
 	public Set<T> union(Iterable<T> elements) {
-		Node<T> newRoot = root;
+		HashTrie<T> newRoot = root;
 		for (T element : elements) {
 			newRoot = newRoot.add(0, element.hashCode(), element);
 		}
@@ -124,7 +124,7 @@ final class ImmutableHashSet<T> implements Set<T> {
 	
 	@Override
 	public Set<T> symmetricDifference(Iterable<T> elements) {
-		Node<T> newRoot = root;
+		HashTrie<T> newRoot = root;
 		for (T element : elements) {
 			int hash = element.hashCode();
 			if (newRoot.get(element, hash).hasValue()) {

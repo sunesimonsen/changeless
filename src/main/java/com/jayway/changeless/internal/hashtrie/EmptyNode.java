@@ -7,10 +7,10 @@ import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
 
 
-final class EmptyNode<T> implements Node<T> {
+final class EmptyNode<T> implements HashTrie<T> {
 
 	@Override
-	public Node<T> add(int shift, int hash, T value) {
+	public HashTrie<T> add(int shift, int hash, T value) {
 		return new LeafNode<T>(hash, value);
 	}
 
@@ -20,7 +20,7 @@ final class EmptyNode<T> implements Node<T> {
 	}
 
 	@Override
-	public Node<T> remove(T value, int hash) {
+	public HashTrie<T> remove(T value, int hash) {
 		return this;
 	}
 

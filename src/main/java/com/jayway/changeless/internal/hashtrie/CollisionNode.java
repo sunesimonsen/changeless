@@ -16,7 +16,7 @@ final class CollisionNode<T> extends SingleNode<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Node<T> add(int shift, int hash, T value) {
+	public HashTrie<T> add(int shift, int hash, T value) {
 		if (getHash() != hash) {
 			return bitmap(shift, hash, value);
 		} 
@@ -36,7 +36,7 @@ final class CollisionNode<T> extends SingleNode<T> {
 	}
 
 	@Override
-	public Node<T> remove(T value, int hash) {
+	public HashTrie<T> remove(T value, int hash) {
 		Sequence<T> newBucket = bucket.remove(value);
 
 		int newBucketSize = newBucket.size();

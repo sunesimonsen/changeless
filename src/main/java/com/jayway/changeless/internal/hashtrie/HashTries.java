@@ -10,7 +10,7 @@ public final class HashTries {
 	 * @param <T> the type of the elements in the created hash trie.s
 	 * @return an empty hash trie.
 	 */
-	public static <T> Node<T> empty() {
+	public static <T> HashTrie<T> empty() {
 		return new EmptyNode<T>();
 	}
 }

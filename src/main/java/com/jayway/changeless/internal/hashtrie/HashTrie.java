@@ -17,12 +17,12 @@ package com.jayway.changeless.internal.hashtrie;
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequenceable;
 
-public interface Node<T> extends Sequenceable<T> {
+public interface HashTrie<T> extends Sequenceable<T> {
 	int size();
 	boolean isEmpty();
-	Node<T> add(int shift, int hash, T value);
+	HashTrie<T> add(int shift, int hash, T value);
 	Optional<T> get(T value, int hash);
-	Node<T> remove(T value, int hash);
+	HashTrie<T> remove(T value, int hash);
 	int waist();
 }
 

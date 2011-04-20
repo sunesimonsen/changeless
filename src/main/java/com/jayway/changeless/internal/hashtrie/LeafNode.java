@@ -16,7 +16,7 @@ final class LeafNode<T> extends SingleNode<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Node<T> add(int shift, int hash, T value) {
+	public HashTrie<T> add(int shift, int hash, T value) {
 		if (this.value.equals(value)) {
 			return this;
 		} 
@@ -39,7 +39,7 @@ final class LeafNode<T> extends SingleNode<T> {
 	}
 
 	@Override
-	public Node<T> remove(T value, int hash) {
+	public HashTrie<T> remove(T value, int hash) {
 		if (this.value.equals(value)) {
 			return new EmptyNode<T>();
 		}

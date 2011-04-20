@@ -6,26 +6,26 @@ import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
 
-final class FullNode<T> implements Node<T> {
+final class FullNode<T> implements HashTrie<T> {
 
-	private final Array<Node<T>> table;
+	private final Array<HashTrie<T>> table;
 	private final int shift;
 
-	public FullNode(int shift, Array<Node<T>> table) {
+	public FullNode(int shift, Array<HashTrie<T>> table) {
 		this.shift = shift;
 		this.table = table;
 	}
 
 	@Override
-	public Node<T> add(int levelShift, int hash, T value) {
+	public HashTrie<T> add(int levelShift, int hash, T value) {
 		int i = (hash >>> shift) & 0x1f;
-		Node<T> node = table.get(i);
-		Node<T> foundNode = node.add(shift + 5, hash, value);
+		HashTrie<T> node = table.get(i);
+		HashTrie<T> foundNode = node.add(shift + 5, hash, value);
 		if (foundNode == node) {
 			return this;
 		} 
 
-		Array<Node<T>> newTable = table.copy(32);
+		Array<HashTrie<T>> newTable = table.copy(32);
 		newTable.set(i, foundNode);
 		return new FullNode<T>(shift, newTable);
 	}
@@ -36,17 +36,17 @@ final class FullNode<T> implements Node<T> {
 	}
 
 	@Override
-	public Node<T> remove(T value, int hash) {
+	public HashTrie<T> remove(T value, int hash) {
 		int i = (hash >>> shift) & 0x01f;
 		int mask = 1 << i;
 
-		Node<T> node = table.get(i).remove(value, hash);
+		HashTrie<T> node = table.get(i).remove(value, hash);
 
 		if (node == table.get(i)) {
 			return this;
 		} 
 		
-		Array<Node<T>> newTable = table.copy(32);
+		Array<HashTrie<T>> newTable = table.copy(32);
 
 		if (node instanceof EmptyNode<?>) {
 			newTable.set(i, null);
@@ -60,7 +60,7 @@ final class FullNode<T> implements Node<T> {
 	@Override
 	public int size() {
 		int size = 0;
-		for (Node<T> n : table) {
+		for (HashTrie<T> n : table) {
 			size += n.size();
 		}
 		return size;
@@ -89,7 +89,7 @@ final class FullNode<T> implements Node<T> {
 	@Override
 	public int waist() {
 		int waist = 0;
-		for (Node<T> n : table) {
+		for (HashTrie<T> n : table) {
 			waist += n.waist();
 		}
 		return waist;
