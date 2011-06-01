@@ -3,9 +3,9 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import com.jayway.changeless.Optional;
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.maps.Maps;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.utilities.Guard;
 
 
