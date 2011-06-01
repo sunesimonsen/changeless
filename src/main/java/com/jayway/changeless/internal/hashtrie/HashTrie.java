@@ -17,9 +17,22 @@ package com.jayway.changeless.internal.hashtrie;
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequenceable;
 
+/**
+ * An interface for hash tries.
+ * @param <T> the type of the elements in this hash trie.
+ */
 public interface HashTrie<T> extends Sequenceable<T> {
+	/**
+	 * Returns the number of elements in this hash trie.
+	 * @return the number of elements in this hash trie.
+	 */
 	int size();
+	/**
+	 * Returns true if this hash trie is empty; false otherwise.
+	 * @return true if this hash trie is empty; false otherwise.
+	 */
 	boolean isEmpty();
+	
 	HashTrie<T> add(int shift, int hash, T value);
 	Optional<T> get(T value, int hash);
 	HashTrie<T> remove(T value, int hash);

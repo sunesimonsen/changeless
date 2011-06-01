@@ -34,7 +34,7 @@ TODO
 * Make set implement Predicate&lt;T&gt;.
 * Make vectors implement Fn&lt;Integer,T&gt; and Predicate&lt;Integer&gt;.
 * Add function composition to the Functions class.
-* Implement a sorted maps and sets based on red-black-trees.
+* Implement sorted maps and sets based on red-black-trees.
 * Implement a stack.
 * Implement a Queue.            
 
