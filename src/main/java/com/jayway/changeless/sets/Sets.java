@@ -3,7 +3,7 @@ package com.jayway.changeless.sets;
 
 
 public final class Sets {
-	private Sets() {}
+	private Sets() { /* Static class */ }
 	
 	public static <T> Set<T> empty() {
 		return ImmutableHashSet.empty();

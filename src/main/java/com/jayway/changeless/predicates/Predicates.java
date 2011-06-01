@@ -1,7 +1,7 @@
 package com.jayway.changeless.predicates;
 
 public final class Predicates {
-	private Predicates() {}
+	private Predicates() { /* Static class */ }
 	
 	public static <T> Predicate<T> not(final Predicate<T> predicate) {
 		return new Predicate<T>() {
@@ -19,24 +19,10 @@ public final class Predicates {
 			}
 		};
 	
-	public static Predicate<Integer> oddPredicate = new Predicate<Integer>() {
-		@Override
-		public boolean apply(Integer input) {
-			return input % 2 != 0;
-		}
-	};
-	
-	public static Predicate<Integer> evenPredicate = new Predicate<Integer>() {
-		@Override
-		public boolean apply(Integer input) {
-			return input % 2 == 0;
-		}
-	};
-	
-	public static <T> Predicate<T> equalsPredicate(final T element) {
-		return new Predicate<T>() {
+	public static Predicate<Object> equalsPredicate(final Object element) {
+		return new Predicate<Object>() {
 			@Override
-			public boolean apply(T input) {
+			public boolean apply(Object input) {
 				return element.equals(input);
 			}
 		};

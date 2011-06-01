@@ -15,9 +15,18 @@ public interface Sequence<T> extends Sequenceable<T> {
 	boolean isEmpty();
 	
 	/**
+	 * Returns the size of the sequence.
 	 * @return the size of the sequence.
 	 */
 	int size();
+	
+	/**
+	 * Returns true if the size of this sequence is equals to the given size.
+	 * This is faster than using the size method.
+	 * @param size the expected size.
+	 * @return true if the size of this sequence is equals to the given size; false otherwise.
+	 */
+	boolean isSize(int size);
 	
 	/**
 	 * @return true if all the elements in the given sequence are equals to the elements in 
@@ -31,7 +40,7 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @param element The element to be removed.
 	 * @return The resulting sequence.
 	 */
-	Sequence<T> remove(T element);
+	Sequence<T> remove(Object element);
 	
 	/**
 	 * Returns a new lazy sequence containing the elements from this sequence 
@@ -74,7 +83,7 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @return a new sequence with all the given elements added to the front of this sequence.
 	 * @throws IllegalArgumentException if any of the elements are null.
 	 */
-	Sequence<T> add(Iterable<T> elements);
+	Sequence<T> add(Iterable<? extends T> elements);
 	
 	/**
 	 * Returns a new sequence where each element from this sequence is transformed with the given function. 
@@ -88,10 +97,8 @@ public interface Sequence<T> extends Sequenceable<T> {
 	<R> Sequence<R> transform(Fn<? super T,? extends R> function);
 
 	/**
-	 * Returns a new sequence containing all the elements that matches the given predicate 
-	 * function. 
-	 * 
-	 * Notice that the returned sequence is evaluated lazily.
+	 * Returns a new lazy sequence containing all the elements that matches the given predicate 
+	 * function.
 	 * 
 	 * @param predicate the predicate.
 	 * @return the filtered sequence.
@@ -116,8 +123,8 @@ public interface Sequence<T> extends Sequenceable<T> {
 	/**
 	 * Returns a new sequence containing all the elements of this sequence except 
 	 * the n first elements. If n is less than one this sequence is returned.
-	 * 
-	 * Notice that the returned sequence is evaluated lazily.
+	 * @return a new sequence containing all the elements of this sequence except 
+	 * the n first elements
 	 */
 	Sequence<T> skip(int n);
 	
@@ -150,21 +157,21 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @param predicate The predicate function. 
 	 * @return true is the predicate is true for all elements in the sequence; false otherwise.
 	 */
-	boolean all(Predicate<T> predicate);
+	boolean all(Predicate<? super T> predicate);
 	
 	/**
 	 * Returns true if the predicate is true for any elements in the sequence.
 	 * @param predicate The predicate function. 
 	 * @return true is the predicate is true for any elements in the sequence; false otherwise.
 	 */
-	boolean any(Predicate<T> predicate);
+	boolean any(Predicate<? super T> predicate);
 	
 	/**
 	 * Returns true if the predicate is not true for any elements in the sequence.
 	 * @param predicate The predicate function. 
 	 * @return true if the predicate is not true for any elements in the sequence; false otherwise.
 	 */
-	boolean non(Predicate<T> predicate);
+	boolean non(Predicate<? super T> predicate);
 	
 	/**
 	 * Returns the element with the given index in the this sequence.

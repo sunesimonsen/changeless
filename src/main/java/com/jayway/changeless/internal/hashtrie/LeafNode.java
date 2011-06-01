@@ -2,7 +2,7 @@ package com.jayway.changeless.internal.hashtrie;
 
 import java.util.Iterator;
 
-import com.jayway.changeless.Optional;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
 
@@ -16,15 +16,17 @@ final class LeafNode<T> extends SingleNode<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Node<T> add(int shift, int hash, T value) {
+	public HashTrie<T> add(int shift, int hash, T value) {
 		if (this.value.equals(value)) {
 			return this;
-		} else if (getHash() == hash) {
-			Sequence<T> bucket = Sequences.of(this.value, value);
-			return new CollisionNode<T>(hash, bucket);
-		} else {
+		} 
+			
+		if (getHash() != hash) {
 			return bitmap(shift, hash, value);
-		}
+		} 
+		
+		Sequence<T> bucket = Sequences.of(this.value, value);
+		return new CollisionNode<T>(hash, bucket);
 	}
 
 	@Override
@@ -37,7 +39,7 @@ final class LeafNode<T> extends SingleNode<T> {
 	}
 
 	@Override
-	public Node<T> remove(T value, int hash) {
+	public HashTrie<T> remove(T value, int hash) {
 		if (this.value.equals(value)) {
 			return new EmptyNode<T>();
 		}
@@ -49,8 +51,6 @@ final class LeafNode<T> extends SingleNode<T> {
 	public int size() {
 		return 1;
 	}
-	
-	
 
 	@Override
 	public String toString() {
@@ -66,5 +66,10 @@ final class LeafNode<T> extends SingleNode<T> {
 	@Override
 	public Iterator<T> iterator() {
 		return sequence().iterator();
+	}
+
+	@Override
+	public int waist() {
+		return 0;
 	}
 }

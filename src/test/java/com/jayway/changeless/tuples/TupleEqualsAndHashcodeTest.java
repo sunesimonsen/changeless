@@ -1,7 +1,7 @@
 package com.jayway.changeless.tuples;
 
+import com.jayway.changeless.test.EqualsAndHashcodeTestSupport;
 import com.jayway.changeless.tuples.Tuples;
-import com.jayway.changesless.test.EqualsAndHashcodeTestSupport;
 
 
 public class TupleEqualsAndHashcodeTest extends EqualsAndHashcodeTestSupport {

@@ -5,7 +5,7 @@ import java.util.Iterator;
 import com.jayway.changeless.utilities.Guard;
 
 
-public final class IteratorSequence<T> extends LazySequence<T> {
+final class IteratorSequence<T> extends LazySequence<T> {
 
 	private final Iterator<T> source;
 
@@ -22,5 +22,10 @@ public final class IteratorSequence<T> extends LazySequence<T> {
 		T first = source.next();
 		Sequence<T> rest = new IteratorSequence<T>(source);
 		return Sequences.append(first, rest);
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return !source.hasNext();
 	}
 }

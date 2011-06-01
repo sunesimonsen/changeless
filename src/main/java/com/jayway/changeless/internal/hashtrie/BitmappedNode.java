@@ -1,46 +1,40 @@
 package com.jayway.changeless.internal.hashtrie;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
 
-import com.jayway.changeless.Optional;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
 
-final class BitmappedNode<T> implements Node<T> {
+final class BitmappedNode<T> implements HashTrie<T> {
 
 	private final int bits;
 	private final int shift;
-	private final List<Node<T>> table;
+	private final Array<HashTrie<T>> table;
 
-	public BitmappedNode(int shift, int bits, List<Node<T>> table) {
+	public BitmappedNode(int shift, int bits, Array<HashTrie<T>> table) {
 		this.shift = shift;
 		this.bits = bits;
 		this.table = table;
 	}
 
 	@Override
-	public Node<T> add(int levelShift, int hash, T value) {
+	public HashTrie<T> add(int levelShift, int hash, T value) {
 		int i = (hash >>> shift) & 0x1f;
 		int mask = 1 << i;
 
 		if ((bits & mask) != 0) {
-			Node<T> node = table.get(i).add(shift + 5, hash, value);
+			HashTrie<T> node = table.get(i).add(shift + 5, hash, value);
 			if (node == table.get(i)) {
 				return this;
-			} else {
-				List<Node<T>> newTable = ListUtilites
-						.createListWithNullValues(table.size());
-				Collections.copy(newTable, table);
-				newTable.set(i, node);
-				return new BitmappedNode<T>(shift, bits, newTable);
-			}
+			} 
+			
+			Array<HashTrie<T>> newTable = table.copy();
+			newTable.set(i, node);
+			return new BitmappedNode<T>(shift, bits, newTable);
 		} else {
-			List<Node<T>> newTable = ListUtilites.createListWithNullValues(Math
-					.max(table.size(), i + 1));
-			Collections.copy(newTable, table);
+			int tableSize = Math.max(table.size(), i + 1);
+			Array<HashTrie<T>> newTable = table.copy(tableSize);
 			newTable.set(i, new LeafNode<T>(hash, value));
 			int newBits = bits | mask;
 			if (newBits == ~0) {
@@ -64,80 +58,82 @@ final class BitmappedNode<T> implements Node<T> {
 	}
 
 	@Override
-	public Node<T> remove(T value, int hash) {
+	public HashTrie<T> remove(T value, int hash) {
 		int i = (hash >>> shift) & 0x01f;
 		int mask = 1 << i;
 
-		if ((bits & mask) == mask) {
-			Node<T> node = table.get(i).remove(value, hash);
-
-			if (node == table.get(i)) {
-				return this;
-			} else if (node instanceof EmptyNode<?>) {
-				if (size() == 1) {
-					return new EmptyNode<T>();
-				} else {
-					int adjustedBits = bits ^ mask;
-					double log = Math.log(adjustedBits) / Math.log(2);
-
-					if (Math.floor(log) == log) { // last one
-						return table.get((int) log);
-					} else {
-						int length = (i + 1 == table.size()) ? table.size() - 1
-								: table.size();
-						List<Node<T>> newTable = new ArrayList<Node<T>>(length);
-						for (int j = 0; j < length; j++) {
-							newTable.add(table.get(j));
-						}
-						
-						if (i != length) {
-							newTable.set(i, null);	
-						}
-
-						return new BitmappedNode<T>(shift, adjustedBits,
-								newTable);
-					}
-				}
-			} else {
-				List<Node<T>> newTable = new ArrayList<Node<T>>(table.size());
-				for (Node<T> n : table) {
-					newTable.add(n);
-				}
-				newTable.set(i, node);
-
-				return new BitmappedNode<T>(shift, bits, newTable);
-			}
-		} else {
+		if ((bits & mask) != mask) {
 			return this;
+		} 
+			
+		HashTrie<T> node = table.get(i).remove(value, hash);
+
+		if (node == table.get(i)) {
+			return this;
+		} 
+		
+		if (node instanceof EmptyNode<?>) {
+			if (sequence().isSize(1)) {
+				return node; // reuse empty node
+			} 
+
+			int adjustedBits = bits ^ mask;
+			double log = Math.log(adjustedBits) / Math.log(2);
+
+			if (Math.floor(log) == log) { // last one
+				return table.get((int) log);
+			} 
+
+			int size = table.size();
+			int newSize = (i == size - 1) ? size - 1 : size;
+			
+			Array<HashTrie<T>> newTable = table.copy(newSize);
+			
+			if (i != newSize) {
+				newTable.set(i, null);	
+			}
+
+			return new BitmappedNode<T>(shift, adjustedBits, newTable);
+		} else {
+			Array<HashTrie<T>> newTable = table.copy();
+			newTable.set(i, node);
+
+			return new BitmappedNode<T>(shift, bits, newTable);
 		}
 	}
 
 	@Override
 	public int size() {
 		int size = 0;
-		for (Node<T> n : table) {
-			if (n != null) {
-				size += n.size();
-			}
+		for (HashTrie<T> n : table) {
+			size += n.size();
 		}
 
 		return size;
 	}
 	
 	@Override
-	public boolean isEmpty() {
-		for (Node<T> n : table) {
+	public int waist() {
+		int waist = 0;
+		for (int i = 0; i < table.size(); i++) {
+			HashTrie<T> n = table.get(i);
 			if (n != null) {
-				return false;
+				waist += n.waist();	
+			} else {
+				waist++;
 			}
 		}
-		return true; // TODO don't know if this can happen.
+		return waist;
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return false;
 	}
 
 	@Override
 	public Sequence<T> sequence() {
-		Iterable<Node<T>> tableWithoutNulls = new SkipNullIterable<Node<T>>(table.iterator());
-		return Sequences.appended(tableWithoutNulls);
+		return Sequences.appended(Sequences.copyOf(table));
 	}
 
 	@Override
@@ -147,7 +143,6 @@ final class BitmappedNode<T> implements Node<T> {
 	
 	@Override
 	public String toString() {
-		Iterable<Node<T>> iterable = new SkipNullIterable<Node<T>>(table.iterator());
-		return Sequences.copyOf(iterable).toString();
+		return sequence().toString();
 	}
 }

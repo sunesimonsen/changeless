@@ -1,6 +1,6 @@
-package com.jayway.changeless.intervals.endpoints;
+package com.jayway.changeless.intervals;
 
-public interface IntervalStart<T extends Comparable<T>> {
+interface IntervalStart<T extends Comparable<T>> {
 	/**
 	 * Returns true if the given value is greater than start-point.
 	 * @param value The value to be checked.

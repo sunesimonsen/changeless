@@ -5,9 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.jayway.changeless.predicates.Predicates;
-import com.jayway.changeless.sequences.Sequence;
-import com.jayway.changeless.sequences.Sequences;
+import com.jayway.changeless.predicates.integers.EvenPredicate;
+import com.jayway.changeless.predicates.integers.OddPredicate;
 
 
 
@@ -19,21 +18,21 @@ public class SequenceAllMethodTests {
 	@Test
 	public void allReturnsTrueForEmptySequence() throws Exception {
 		Sequence<Integer> empty = Sequences.<Integer>empty();
-		assertTrue("empty", empty.all(Predicates.oddPredicate));
+		assertTrue("empty", empty.all(new OddPredicate()));
 	}
 	
 	@Test
 	public void notAllOdd() throws Exception {
-		assertFalse(mixedSequence.toString(), mixedSequence.all(Predicates.oddPredicate));
+		assertFalse(mixedSequence.toString(), mixedSequence.all(new OddPredicate()));
 	}
 	
 	@Test
 	public void allOdd() throws Exception {
-		assertTrue(oddSequence.toString(), oddSequence.all(Predicates.oddPredicate));
+		assertTrue(oddSequence.toString(), oddSequence.all(new OddPredicate()));
 	}
 	
 	@Test
 	public void allEven() throws Exception {
-		assertTrue(evenSequence.toString(), evenSequence.all(Predicates.evenPredicate));
+		assertTrue(evenSequence.toString(), evenSequence.all(new EvenPredicate()));
 	}
 }

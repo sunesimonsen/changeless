@@ -1,7 +1,7 @@
 package com.jayway.changeless.maps;
 
 import com.jayway.changeless.maps.Maps;
-import com.jayway.changesless.test.EqualsAndHashcodeTestSupport;
+import com.jayway.changeless.test.EqualsAndHashcodeTestSupport;
 
 
 public class MapsEqualsAndHashcodeTest extends EqualsAndHashcodeTestSupport {

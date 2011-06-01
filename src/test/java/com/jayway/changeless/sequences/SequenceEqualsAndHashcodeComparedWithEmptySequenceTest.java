@@ -1,7 +1,7 @@
 package com.jayway.changeless.sequences;
 
 import com.jayway.changeless.sequences.Sequences;
-import com.jayway.changesless.test.EqualsAndHashcodeTestSupport;
+import com.jayway.changeless.test.EqualsAndHashcodeTestSupport;
 
 
 public class SequenceEqualsAndHashcodeComparedWithEmptySequenceTest extends EqualsAndHashcodeTestSupport {

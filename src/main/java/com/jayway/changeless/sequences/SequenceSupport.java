@@ -5,6 +5,7 @@ import java.util.Iterator;
 import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.functions.Fn2;
 import com.jayway.changeless.functions.Functions;
+import com.jayway.changeless.functions.strings.AppendStringFunction;
 import com.jayway.changeless.intervals.Intervals;
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.maps.Maps;
@@ -31,7 +32,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	}
 	
 	@Override
-	public Sequence<T> add(Iterable<T> elements) {
+	public Sequence<T> add(Iterable<? extends T> elements) {
 		Sequence<T> result = this;
 		for (T element : this) {
 			Guard.notNull(element, "element");
@@ -49,7 +50,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		stringBuilder.append("(");
 		
 		stringBuilder = sequence.transform(Functions.toStringFunction)
-			.interpose(",").reduce(stringBuilder, Functions.appendStringFunction);
+			.interpose(",").reduce(stringBuilder, new AppendStringFunction());
 	
 		if (tailSequence.isEmpty()) {
 			stringBuilder.append(")");	
@@ -67,7 +68,16 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	
 	@Override
 	public Sequence<T> skip(int n) {
-		return SkipSequence.create(this, n);
+		if (n <= 0) {
+			return this;
+		} 
+		
+		Sequence<T> result = this;
+		for (int i = 0; i < n && !result.isEmpty(); i++) {
+			result = result.rest();
+		}
+		
+		return result;
 	}
 	
 	@Override
@@ -96,16 +106,24 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		
 		Sequence other = ((Sequenceable) obj).sequence();
 		
-		if (isEmpty() && other.isEmpty()) {
-			return true;
-		} 
+		Sequence h1 = this;
+		Sequence h2 = other;
 		
-		if (isEmpty() != other.isEmpty()) {
-			return false;
+		while (!h1.isEmpty()) {
+			if (h2.isEmpty()) {
+				return false;
+			}
+			
+			if (!h1.first().equals(h2.first())) {
+				return false;
+			}
+			
+			h1 = h1.rest();
+			h2 = h2.rest();
 		}
 		
-		return first().equals(other.first()) && 
-			rest().equals(other.rest());
+		// now h1.isEmpty() 
+		return h2.isEmpty();
 	}
 	
 	@Override
@@ -124,19 +142,36 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	
 	@Override
 	public int hashCode() {
-		if (isEmpty()) {
-			return 0;
-		}
 		final int prime = 31;
-		return prime * rest().hashCode() + first().hashCode();
+		int hashCode = 0; 
+		for (T element : this) {
+			hashCode = prime * hashCode + element.hashCode();
+		}
+		return hashCode;
 	}
 	
 	@Override
 	public int size() {
-		if (isEmpty()) {
-			return 0;
-		} 
-		return 1 + rest().size();	
+		int size = 0;
+		Sequence<T> head = this;
+		while(!head.isEmpty()) {
+			head = head.rest();
+			size++;
+		}
+		return size;
+	}
+	
+	@Override
+	public boolean isSize(int size) {
+		Guard.nonNegative(size, "size");
+		Sequence<T> head = this;
+		for (int i = 0; i < size; i++) {
+			if (head.isEmpty()) {
+				return false;
+			}
+			head = head.rest();
+		}
+		return head.isEmpty();
 	}
 
 	@Override
@@ -173,12 +208,12 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	}
 
 	@Override
-	public boolean all(Predicate<T> predicate) {
+	public boolean all(Predicate<? super T> predicate) {
 		return non(Predicates.not(predicate));
 	}
 
 	@Override
-	public boolean any(Predicate<T> predicate) {
+	public boolean any(Predicate<? super T> predicate) {
 		for (T element : this) {
 			if (predicate.apply(element)) {
 				return true;
@@ -188,7 +223,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	}
 
 	@Override
-	public boolean non(Predicate<T> predicate) {
+	public boolean non(Predicate<? super T> predicate) {
 		return !any(predicate);
 	}
 
@@ -218,7 +253,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	}
 
 	@Override
-	public Sequence<T> remove(T element) {
+	public Sequence<T> remove(Object element) {
 		return remove(Predicates.equalsPredicate(element));
 	}
 

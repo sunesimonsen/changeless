@@ -1,6 +1,6 @@
-package com.jayway.changeless.intervals.endpoints;
+package com.jayway.changeless.intervals;
 
-public interface IntervalEnd<T extends Comparable<T>>  {
+interface IntervalEnd<T extends Comparable<T>>  {
 	/**
 	 * Returns true if the given value is less than end-point.
 	 * @param value The value to be checked.

@@ -1,4 +1,4 @@
-package com.jayway.changesless.test;
+package com.jayway.changeless.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
@@ -62,7 +62,9 @@ public abstract class IterableTestSupport<T> {
 			iterator.remove();
 			fail();
 		} catch (UnsupportedOperationException e) {
+			// Expect UnsupportedOperationException
 		} catch (IllegalStateException e) {
+			// Expect IllegalStateException
 		}
 	}
 	
@@ -78,7 +80,9 @@ public abstract class IterableTestSupport<T> {
 			iterator.remove();
 			fail();
 		} catch (UnsupportedOperationException e) {
+			// Expect UnsupportedOperationException
 		} catch (IllegalStateException e) {
+			// Expect IllegalStateException
 		}
 	}
 	
@@ -105,7 +109,7 @@ public abstract class IterableTestSupport<T> {
 			assertSame("Element returned by next() should be the element removed from the iterable", 
 					beforeRemove.get(0), removedElement);
 		} catch (UnsupportedOperationException e) {
-			
+			// Expect UnsupportedOperationException
 		}
 	}
 }

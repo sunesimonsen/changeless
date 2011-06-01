@@ -1,11 +1,8 @@
 package com.jayway.changeless.intervals;
 
-import com.jayway.changeless.intervals.endpoints.ClosedStart;
-import com.jayway.changeless.intervals.endpoints.InfiniteStart;
-import com.jayway.changeless.intervals.endpoints.OpenStart;
 
 public final class Intervals {
-	private Intervals() {}
+	private Intervals() { /* Static class */ }
 	
 	public static StartIntervalBuilder<Integer> zero = closed(0);
 	

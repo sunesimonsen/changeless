@@ -2,7 +2,6 @@ package com.jayway.changeless.sequences;
 
 
 public abstract class LazySequence<T> extends SequenceSupport<T> {
-
 	private Sequence<T> cachedValue;
 	
 	public abstract Sequence<T> createSequence();
@@ -22,10 +21,10 @@ public abstract class LazySequence<T> extends SequenceSupport<T> {
 		return getCachedValue().isEmpty();
 	}
 
-	public Sequence<T> getCachedValue() {
+	public synchronized Sequence<T> getCachedValue() {
 		if (cachedValue == null) {
 			cachedValue = createSequence();
-		}
+		}	
 		return cachedValue;
 	}
 }

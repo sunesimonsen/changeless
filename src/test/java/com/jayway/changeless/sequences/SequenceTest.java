@@ -9,12 +9,15 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.jayway.changeless.Optional;
 import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.functions.Functions;
+import com.jayway.changeless.functions.integers.PlusFunction;
+import com.jayway.changeless.functions.strings.AppendStringFunction;
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.maps.Maps;
-import com.jayway.changeless.predicates.Predicates;
+import com.jayway.changeless.optionals.Optional;
+import com.jayway.changeless.predicates.integers.EvenPredicate;
+import com.jayway.changeless.predicates.integers.OddPredicate;
 import com.jayway.changeless.tuples.Tuple;
 import com.jayway.changeless.tuples.Tuples;
 
@@ -191,7 +194,7 @@ public class SequenceTest {
 	@Test
 	public void filterSeqence() throws Exception {
 		Sequence<Integer> sequence = Sequences.from(0).upward().take(10);
-		Sequence<Integer> actual = sequence.filter(Predicates.oddPredicate);
+		Sequence<Integer> actual = sequence.filter(new OddPredicate());
 		Sequence<Integer> expected = Sequences.of(1,3,5,7,9);
 		assertEquals("Expected sequences to be equal", expected, actual);
 	}
@@ -280,7 +283,7 @@ public class SequenceTest {
 	public void summingEmptySequenceWithReduce() throws Exception {
 		Sequence<Integer> sequence = Sequences.empty();
 		Integer expected = 0;
-		Integer actual = sequence.reduce(0, Functions.plusFunction);
+		Integer actual = sequence.reduce(0, new PlusFunction());
 		assertEquals("Expected reduce on empty sequence to return start value", 
 				expected , actual);
 	}
@@ -289,7 +292,7 @@ public class SequenceTest {
 	public void summingSequenceWithReduce() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(1,2,3,4,5,6);
 		Integer expected = 21;
-		Integer actual = sequence.reduce(0, Functions.plusFunction);
+		Integer actual = sequence.reduce(0, new PlusFunction());
 		assertEquals("Expected the sum of the values in the sequence.", 
 				expected , actual);
 	}
@@ -299,7 +302,7 @@ public class SequenceTest {
 		Sequence<String> sequence = Sequences.of("Hello", " ", "World", "!!!");
 		String expected = "--> Hello World!!!";
 		StringBuilder actual = sequence.reduce(new StringBuilder("--> "), 
-				Functions.appendStringFunction);
+				new AppendStringFunction());
 		assertEquals("Expected joined string.", expected, actual.toString());
 	}
 	
@@ -322,7 +325,7 @@ public class SequenceTest {
 	@Test
 	public void evenSequence() throws Exception {
 		Sequence<Integer> sequence = Sequences.from(-10).upward().take(20);
-		Sequence<Integer> actual = sequence.filter(Predicates.evenPredicate);
+		Sequence<Integer> actual = sequence.filter(new EvenPredicate());
 		Sequence<Integer> expected = Sequences.from(-10).step(2).upward().take(10);
 		assertEquals("Expected sequences to be equals",expected, actual);
 	}
@@ -331,7 +334,7 @@ public class SequenceTest {
 	public void frequenciesOnEmptySequenceReturnsAnEmptyMap() throws Exception {
 		Sequence<String> sequence = Sequences.of();
 		Map<String, Integer> actual = sequence.frequencies();
-		Map<String, Integer> expected = Maps.empty();;
+		Map<String, Integer> expected = Maps.empty();
 		assertEquals("Expected map to contain frequencies", expected, actual);
 	}
 	
@@ -354,7 +357,7 @@ public class SequenceTest {
 	@Test
 	public void filterOnInfiniteSequence() throws Exception {
 		Sequence<Integer> sequence = Sequences.from(-10).upward();
-		Sequence<Integer> actual = sequence.filter(Predicates.evenPredicate).take(10);
+		Sequence<Integer> actual = sequence.filter(new EvenPredicate()).take(10);
 		Sequence<Integer> expected = Sequences.from(-10).step(2).upward().take(10);
 		assertEquals("Expected sequences to be equals",expected, actual);
 	}
@@ -393,7 +396,7 @@ public class SequenceTest {
 	
 	@Test
 	public void lazyCopyOfSequence() throws Exception {
-		Sequence<Integer> actual = Sequences.lazyCopyOf(Arrays.asList(1, 2, 3, 4, 5));;
+		Sequence<Integer> actual = Sequences.lazyCopyOf(Arrays.asList(1, 2, 3, 4, 5));
 		Sequence<Integer> expected = Sequences.of(1, 2, 3, 4, 5);
 		assertEquals("Expected sequences to be equals",expected, actual);
 	}
@@ -476,7 +479,7 @@ public class SequenceTest {
 				Sequences.of(6,7,8),
 				Sequences.of(9));
 		
-		assertEquals("Expected sequences to be equal", expected, actual);;
+		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -491,7 +494,7 @@ public class SequenceTest {
 				Sequences.of(6,7,8),
 				Sequences.of(9,10,11));
 		
-		assertEquals("Expected sequences to be equal", expected, actual);;
+		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -500,7 +503,7 @@ public class SequenceTest {
 		Sequence<Integer> sequence = Sequences.from(0).upward().take(10);
 		Sequence<Sequence<Integer>> actual = sequence.partition(20);
 		Sequence<Sequence<Integer>> expected = Sequences.of(sequence);
-		assertEquals("Expected sequences to be equal", expected, actual);;
+		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
 	@Test
@@ -514,7 +517,7 @@ public class SequenceTest {
 		Sequence<Integer> sequence = Sequences.of(1,2,3,4);
 		Sequence<Integer> actual = sequence.cycle().take(10); 
 		Sequence<Integer> expected = Sequences.of(1,2,3,4,1,2,3,4,1,2);
-		assertEquals("Expected sequences to be equal", expected, actual);;
+		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -526,7 +529,7 @@ public class SequenceTest {
 		Sequence<Tuple<Integer,String>> actual = sequence1.zip(sequence2); 
 		Sequence<Tuple<Integer,String>> expected = 
 			Sequences.of(Tuples.of(1,"5"), Tuples.of(2,"6"), Tuples.of(3,"7"), Tuples.of(4,"8"));
-		assertEquals("Expected sequences to be equal", expected, actual);;
+		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
 	@Test
@@ -599,5 +602,40 @@ public class SequenceTest {
 		Sequence<Integer> actual = sequence.insertAt(5, 0, 0).take(10);
 		Sequence<Integer> expected = Sequences.of(0,1,2,3,4,0,0,5,6,7);
 		assertEquals("Expected sequences to be equal", expected, actual);
+	}
+	
+	@Test
+	public void isSizeOnEmpty() throws Exception {
+		Sequence<Integer> sequence = Sequences.empty();
+		assertTrue("Expected size 0", sequence.isSize(0));
+	}
+	
+	@Test
+	public void isNotSizeOnEmpty() throws Exception {
+		Sequence<Integer> sequence = Sequences.empty();
+		assertFalse("Expected size 0", sequence.isSize(10));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void isNegativeSize() throws Exception {
+		Sequences.empty().isSize(-10);
+	}
+	
+	@Test
+	public void isSizeLessThanSequenceSize() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(1,2,3,4);
+		assertFalse("Expected size 4", sequence.isSize(2));
+	}
+	
+	@Test
+	public void isSizeGreaterThanSequenceSize() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(1,2,3,4);
+		assertFalse("Expected size 4", sequence.isSize(6));
+	}
+	
+	@Test
+	public void isSizeEqualsToSequenceSize() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(1,2,3,4);
+		assertTrue("Expected size 4", sequence.isSize(4));
 	}
 }

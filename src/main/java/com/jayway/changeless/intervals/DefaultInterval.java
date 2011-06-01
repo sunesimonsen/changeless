@@ -1,9 +1,7 @@
 package com.jayway.changeless.intervals;
 
-import com.jayway.changeless.intervals.endpoints.IntervalEnd;
-import com.jayway.changeless.intervals.endpoints.IntervalStart;
 
-public final class DefaultInterval<T extends Comparable<T>> implements Interval<T> {
+final class DefaultInterval<T extends Comparable<T>> implements Interval<T> {
 	private final IntervalStart<T> start;
 	private final IntervalEnd<T> end;
 

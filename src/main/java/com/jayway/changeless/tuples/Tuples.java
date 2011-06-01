@@ -3,7 +3,7 @@ package com.jayway.changeless.tuples;
 import com.jayway.changeless.functions.Fn;
 
 public final class Tuples {
-	private Tuples() {}
+	private Tuples() { /* Static class */ }
 	
 	public static <T1, T2> Tuple<T1, T2> of(T1 first, T2 second) {
 		return new DefaultTuple<T1, T2>(first, second); 

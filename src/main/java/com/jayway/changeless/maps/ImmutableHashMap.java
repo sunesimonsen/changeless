@@ -2,10 +2,10 @@ package com.jayway.changeless.maps;
 
 import java.util.Iterator;
 
-import com.jayway.changeless.Optional;
 import com.jayway.changeless.functions.Fn;
-import com.jayway.changeless.internal.hashtrie.EmptyNode;
-import com.jayway.changeless.internal.hashtrie.Node;
+import com.jayway.changeless.internal.hashtrie.HashTries;
+import com.jayway.changeless.internal.hashtrie.HashTrie;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.tuples.Tuple;
 import com.jayway.changeless.tuples.Tuples;
@@ -13,14 +13,15 @@ import com.jayway.changeless.tuples.Tuples;
 
 
 final class ImmutableHashMap<K, V> implements Map<K, V> {
-	private final Node<MapEntry<K, V>> root;
+	private final HashTrie<MapEntry<K, V>> root;
 	
-	private ImmutableHashMap(Node<MapEntry<K, V>> root) {
+	private ImmutableHashMap(HashTrie<MapEntry<K, V>> root) {
 		this.root = root;
 	}
 	
 	public static <K,V> Map<K,V> empty() {
-		return new ImmutableHashMap<K, V>(new EmptyNode<MapEntry<K, V>>());
+		HashTrie<MapEntry<K, V>> root = HashTries.empty();
+		return new ImmutableHashMap<K, V>(root);
 	}
 	
 	@Override

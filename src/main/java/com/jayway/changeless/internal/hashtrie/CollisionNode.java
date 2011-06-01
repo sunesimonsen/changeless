@@ -2,7 +2,7 @@ package com.jayway.changeless.internal.hashtrie;
 
 import java.util.Iterator;
 
-import com.jayway.changeless.Optional;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 
 final class CollisionNode<T> extends SingleNode<T> {
@@ -16,13 +16,13 @@ final class CollisionNode<T> extends SingleNode<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Node<T> add(int shift, int hash, T value) {
-		if (getHash() == hash) {
-			Sequence<T> newBucket = bucket.remove(value).add(value);
-			return new CollisionNode<T>(hash, newBucket);
-		} else {
+	public HashTrie<T> add(int shift, int hash, T value) {
+		if (getHash() != hash) {
 			return bitmap(shift, hash, value);
-		}
+		} 
+		
+		Sequence<T> newBucket = bucket.remove(value).add(value);
+		return new CollisionNode<T>(hash, newBucket);
 	}
 
 	@Override
@@ -36,20 +36,20 @@ final class CollisionNode<T> extends SingleNode<T> {
 	}
 
 	@Override
-	public Node<T> remove(T value, int hash) {
+	public HashTrie<T> remove(T value, int hash) {
 		Sequence<T> newBucket = bucket.remove(value);
 
 		int newBucketSize = newBucket.size();
-		if (newBucketSize == bucket.size()) {
+		if (bucket.isSize(newBucketSize)) {
 			return this;
-		} else {
-			if (newBucketSize == 1) {
-				T first = newBucket.first();
-				return new LeafNode<T>(hash, first);
-			} else {
-				return new CollisionNode<T>(hash, newBucket);
-			}
-		}
+		} 
+
+		if (newBucketSize != 1) {
+			return new CollisionNode<T>(hash, newBucket);
+		} 
+		
+		T first = newBucket.first();
+		return new LeafNode<T>(hash, first);
 	}
 
 	@Override
@@ -70,5 +70,10 @@ final class CollisionNode<T> extends SingleNode<T> {
 	@Override
 	public Iterator<T> iterator() {
 		return sequence().iterator();
+	}
+
+	@Override
+	public int waist() {
+		return 0;
 	}
 }

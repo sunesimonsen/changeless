@@ -4,7 +4,7 @@ import com.jayway.changeless.tuples.Tuple;
 
 
 public final class Maps {
-	private Maps() {}
+	private Maps() { /* Static class */ }
 	
 	public static <K,V> Map<K, V> empty() {
 		return ImmutableHashMap.empty();

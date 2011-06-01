@@ -2,7 +2,7 @@ package com.jayway.changeless.sequences;
 
 import com.jayway.changeless.predicates.Predicate;
 
-public final class FilterSequence<T> extends LazySequence<T> {
+final class FilterSequence<T> extends LazySequence<T> {
 
 	private final Sequence<T> sequence;
 	private final Predicate<? super T> predicate;
@@ -18,14 +18,16 @@ public final class FilterSequence<T> extends LazySequence<T> {
 	
 	@Override
 	public Sequence<T> createSequence() {
-		if (sequence.isEmpty()) {
-			return Sequences.empty();
+		Sequence<T> next = sequence; 
+		while(!next.isEmpty()){
+			T first = next.first();
+			if (predicate.apply(first)) {
+				Sequence<T> rest = next.rest().filter(predicate);
+				return Sequences.append(first, rest);
+			}
+			next = next.rest();
 		}
-		T first = sequence.first();
-		Sequence<T> rest = sequence.rest().filter(predicate);
-		if (predicate.apply(first)) {
-			return Sequences.append(first, rest);
-		}
-		return rest;
+		
+		return next;
 	}
 }

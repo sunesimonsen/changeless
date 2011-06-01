@@ -1,15 +1,15 @@
 package com.jayway.changeless.sequences;
 
 import com.jayway.changeless.functions.Fn2;
-import com.jayway.changeless.functions.Functions;
 import com.jayway.changeless.tuples.Tuple;
 import com.jayway.changeless.tuples.Tuples;
+import com.jayway.changeless.utilities.Comparables;
 
 
 
 
 public final class Sequences {
-	private Sequences() { }
+	private Sequences() { /* Static class */ }
 	
 	public static <T> Sequence<T> append(T element, Sequence<T> sequence) {
 		return DefaultSequence.create(element, sequence);
@@ -51,7 +51,7 @@ public final class Sequences {
 		if (sequence.isEmpty()) {
 			throw new IllegalArgumentException("min only work on non-empty sequences");
 		}
-		Fn2<T, T, T> minFunction = Functions.minFunction();
+		Fn2<T, T, T> minFunction = Comparables.minFunction();
 		return sequence.reduce(sequence.first(), minFunction);
 	}
 
@@ -59,7 +59,7 @@ public final class Sequences {
 		if (sequence.isEmpty()) {
 			throw new IllegalArgumentException("max only work on non-empty sequences");
 		}
-		Fn2<T, T, T> minFunction = Functions.maxFunction();
+		Fn2<T, T, T> minFunction = Comparables.maxFunction();
 		return sequence.reduce(sequence.first(), minFunction);
 	}
 	

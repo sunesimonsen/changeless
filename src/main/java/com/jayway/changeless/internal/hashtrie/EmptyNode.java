@@ -2,15 +2,15 @@ package com.jayway.changeless.internal.hashtrie;
 
 import java.util.Iterator;
 
-import com.jayway.changeless.Optional;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
 
 
-public final class EmptyNode<T> implements Node<T> {
+final class EmptyNode<T> implements HashTrie<T> {
 
 	@Override
-	public Node<T> add(int shift, int hash, T value) {
+	public HashTrie<T> add(int shift, int hash, T value) {
 		return new LeafNode<T>(hash, value);
 	}
 
@@ -20,7 +20,7 @@ public final class EmptyNode<T> implements Node<T> {
 	}
 
 	@Override
-	public Node<T> remove(T value, int hash) {
+	public HashTrie<T> remove(T value, int hash) {
 		return this;
 	}
 
@@ -47,5 +47,10 @@ public final class EmptyNode<T> implements Node<T> {
 	@Override
 	public Iterator<T> iterator() {
 		return sequence().iterator();
+	}
+
+	@Override
+	public int waist() {
+		return 0;
 	}
 }

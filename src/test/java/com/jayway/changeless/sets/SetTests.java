@@ -8,8 +8,6 @@ import org.junit.Test;
 
 import com.jayway.changeless.functions.Functions;
 import com.jayway.changeless.sequences.Sequences;
-import com.jayway.changeless.sets.Set;
-import com.jayway.changeless.sets.Sets;
 
 
 public class SetTests {
@@ -410,6 +408,42 @@ public class SetTests {
 		Set<Integer> set = Sets.of(1,2,3,4,5,6);
 		Set<Integer> actual = Sets.copyOf(set.sequence());
 		assertEquals("Expected sets to be equals", set, actual);
+	}
+	
+	@Test
+	public void symmetricDifferentWithNoElements() throws Exception {
+		Set<Integer> a = Sets.of(1,2,3,4);
+		Set<Integer> b = Sets.empty();
+		Set<Integer> actual = a.symmetricDifference(b);
+		Set<Integer> expected = a;
+		assertEquals("Expected sets to be equals", expected, actual);
+	}
+	
+	@Test
+	public void symmetricDifferentOnEmptySet() throws Exception {
+		Set<Integer> a = Sets.empty();
+		Set<Integer> b = Sets.of(1,2,3,4);
+		Set<Integer> actual = a.symmetricDifference(b);
+		Set<Integer> expected = b;
+		assertEquals("Expected sets to be equals", expected, actual);
+	}
+	
+	@Test
+	public void symmetricDifferentWithNoSharedElements() throws Exception {
+		Set<Integer> a = Sets.of(0,5);
+		Set<Integer> b = Sets.of(1,2,3,4);
+		Set<Integer> actual = a.symmetricDifference(b);
+		Set<Integer> expected = Sets.of(0,1,2,3,4,5);
+		assertEquals("Expected sets to be equals", expected, actual);
+	}
+	
+	@Test
+	public void symmetricDifferentWithSharedElements() throws Exception {
+		Set<Integer> a = Sets.of(0,2,3,5);
+		Set<Integer> b = Sets.of(1,2,3,4);
+		Set<Integer> actual = a.symmetricDifference(b);
+		Set<Integer> expected = Sets.of(0,1,4,5);
+		assertEquals("Expected sets to be equals", expected, actual);
 	}
 
 	private static class TestElement {

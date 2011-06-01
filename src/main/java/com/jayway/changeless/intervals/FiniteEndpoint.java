@@ -1,4 +1,4 @@
-package com.jayway.changeless.intervals.endpoints;
+package com.jayway.changeless.intervals;
 
 abstract class FiniteEndpoint<T> {
 	private final T value;

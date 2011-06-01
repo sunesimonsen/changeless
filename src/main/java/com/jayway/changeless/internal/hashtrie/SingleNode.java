@@ -1,8 +1,7 @@
 package com.jayway.changeless.internal.hashtrie;
 
-import java.util.List;
 
-abstract class SingleNode<T> implements Node<T> {
+abstract class SingleNode<T> implements HashTrie<T> {
 	private final int hash;
 
 	public SingleNode(int hash) {
@@ -18,7 +17,7 @@ abstract class SingleNode<T> implements Node<T> {
 		int shift1 = (this.hash >>> shift) & 0x1f;
 		int shift2 = (hash >>> shift) & 0x1f;
 		int tableSize = Math.max(shift1, shift2) + 1;
-		List<Node<T>> table = ListUtilites.createListWithNullValues(tableSize);
+		Array<HashTrie<T>> table = new Array<HashTrie<T>>(tableSize);
 		table.set(shift1, this);
 		int bits1 = 1 << shift1;
 		int bits2 = 1 << shift2;
