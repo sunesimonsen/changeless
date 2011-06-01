@@ -28,7 +28,7 @@ TODO
 * Document all public methods with Javadoc.
 * Go through generated Javadoc and find things that looks weird and fix them.
 * Add examples in Markdown format. 
-* Add Record types, see records branch (only local ;-).
+* Add Record types (see records branch)
 * Make maps implement Fn&lt;T,V&gt;.
 * Make maps implement Predicate&lt;T&gt;.
 * Make set implement Predicate&lt;T&gt;.
