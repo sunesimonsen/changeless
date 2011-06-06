@@ -1,11 +1,14 @@
 com.jayway.changeless.functions
 com.jayway.changeless.functions.integers
+com.jayway.changeless.functions.objects
 com.jayway.changeless.functions.strings
 com.jayway.changeless.internal.hashtrie
 com.jayway.changeless.intervals
 com.jayway.changeless.maps
 com.jayway.changeless.optionals
 com.jayway.changeless.predicates
+com.jayway.changeless.predicates.integers
+com.jayway.changeless.records
 com.jayway.changeless.sequences
 com.jayway.changeless.sets
 com.jayway.changeless.tuples
