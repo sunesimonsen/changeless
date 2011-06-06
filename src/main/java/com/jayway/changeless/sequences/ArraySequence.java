@@ -20,7 +20,11 @@ final class ArraySequence<T> extends SequenceSupport<T> implements RandomAccess 
 	}
 
 	public static <T> Sequence<T> of(T... elements) {
-		List<T> elementList = new ArrayList<T>(elements.length);
+		return copyOf(elements);
+	}
+	
+	public static <T> Sequence<T> copyOf(Iterable<T> elements) {
+		List<T> elementList = new ArrayList<T>();
 		int i = 0;
 		for (T element : elements) {
 			Guard.notNull(element, "element[%s]", i);
@@ -30,8 +34,8 @@ final class ArraySequence<T> extends SequenceSupport<T> implements RandomAccess 
 		return new ArraySequence<T>(elementList, 0);
 	}
 	
-	public static <T> Sequence<T> copyOf(Iterable<T> elements) {
-		List<T> elementList = new ArrayList<T>();
+	public static <T> Sequence<T> copyOf(T[] elements) {
+		List<T> elementList = new ArrayList<T>(elements.length);
 		int i = 0;
 		for (T element : elements) {
 			Guard.notNull(element, "element[%s]", i);

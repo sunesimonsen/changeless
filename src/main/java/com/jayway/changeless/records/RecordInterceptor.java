@@ -50,8 +50,15 @@ class RecordInceptor<T extends Record> implements InvocationHandler {
 		Class<?> returnType = method.getReturnType();
 		String methodName = method.getName();
 		
+		
 		if (returnType.equals(clazz)) {
-			Map<String, Object> newData = data.put(methodName, args[0]);
+			Object value = args[0];
+			if (value == null) {
+				String message = String.format("Field '%s' can't be set to null", methodName);
+				throw new IllegalArgumentException(message);
+			}
+			
+			Map<String, Object> newData = data.put(methodName, value);
 			return Proxy.newProxyInstance(returnType.getClassLoader(),
 					new Class[] { clazz }, 
 					new RecordInceptor<T>(clazz, newData));
@@ -59,7 +66,8 @@ class RecordInceptor<T extends Record> implements InvocationHandler {
 		
 		Optional<Object> result = data.get(methodName);
 		if (result.hasNoValue()) {
-			throw new IllegalStateException(String.format("%s is not defined", methodName));
+			String message = String.format("Field '%s' has not been set to a value", methodName);
+			throw new IllegalStateException(message);
 		}
 		return result.getValue();
 	}

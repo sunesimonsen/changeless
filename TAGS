@@ -1,0 +1,2162 @@
+
+src/test/java/com/jayway/changeless/internal/hashtrie/HashtrieTests.java,699
+public class HashtrieTests 10,208
+	public void addedIntegersCanBeFound(HashtrieTests.addedIntegersCanBeFound12,244
+	public void emptyHashTrieIsEmpty(HashtrieTests.emptyHashTrieIsEmpty26,628
+	public void nonEmptyIsNotEmpty(HashtrieTests.nonEmptyIsNotEmpty31,766
+	public void emptyHashTrieHasSizeZero(HashtrieTests.emptyHashTrieHasSizeZero37,952
+	public void sizeIsPreservedWhileAddedElementsToAHashTrie(HashtrieTests.sizeIsPreservedWhileAddedElementsToAHashTrie43,1150
+	public void addAnElementMultipleTimesDoesNotIncreaseSize(HashtrieTests.addAnElementMultipleTimesDoesNotIncreaseSize55,1531
+	public void containsOnNonExistingElement(HashtrieTests.containsOnNonExistingElement62,1765
+
+src/test/java/com/jayway/changeless/test/IterableTestSupportSanityCheck.java,189
+public class IterableTestSupportSanityCheck 6,91
+	protected Iterable<Integer> createIterableWithOneOrMoreElements(IterableTestSupportSanityCheck.createIterableWithOneOrMoreElements9,185
+
+src/test/java/com/jayway/changeless/test/IterableTestSupport.java,689
+public abstract class IterableTestSupport<IterableTestSupport21,485
+	private Iterator<T> iterator;IterableTestSupport.iterator29,735
+	private Iterable<T> iterable;IterableTestSupport.iterable30,766
+	public void baseSetup(IterableTestSupport.baseSetup33,808
+	public void nonEmptyIterableHasNextElement(IterableTestSupport.nonEmptyIterableHasNextElement42,1003
+	@Test(IterableTestSupport.@Test47,1174
+	public void removeBeforeCallingNext(IterableTestSupport.removeBeforeCallingNext60,1537
+	public void doubleRemoveAfterCallingNext(IterableTestSupport.doubleRemoveAfterCallingNext76,1977
+	public void removeAfterCallingNext(IterableTestSupport.removeAfterCallingNext95,2457
+
+src/test/java/com/jayway/changeless/test/EqualsAndHashcodeTestSupport.java,1332
+public abstract class EqualsAndHashcodeTestSupport 14,320
+	private Object x;EqualsAndHashcodeTestSupport.x16,374
+	private Object y;EqualsAndHashcodeTestSupport.y17,393
+	private Object z;EqualsAndHashcodeTestSupport.z18,412
+	private Object notx;EqualsAndHashcodeTestSupport.notx20,433
+	public void baseSetup(EqualsAndHashcodeTestSupport.baseSetup23,466
+    public void equalToSelf(EqualsAndHashcodeTestSupport.equalToSelf37,780
+    public void passIncompatibleTypeIsFalse(EqualsAndHashcodeTestSupport.passIncompatibleTypeIsFalse46,958
+    public void nullReferenceIsFalse(EqualsAndHashcodeTestSupport.nullReferenceIsFalse55,1190
+    public void equalsIsReflexiveIsSymmetric(EqualsAndHashcodeTestSupport.equalsIsReflexiveIsSymmetric64,1480
+    public void equalsIsTransitive(EqualsAndHashcodeTestSupport.equalsIsTransitive77,1794
+    public void equalsIsConsistent(EqualsAndHashcodeTestSupport.equalsIsConsistent88,2122
+    public void hashcodeIsConsistent(EqualsAndHashcodeTestSupport.hashcodeIsConsistent103,2572
+    public void hashcodeTwoEqualsObjects_produceSameNumber(EqualsAndHashcodeTestSupport.hashcodeTwoEqualsObjects_produceSameNumber115,2958
+    public void hashcodeTwoUnEqualObjects_produceDifferentNumber(EqualsAndHashcodeTestSupport.hashcodeTwoUnEqualObjects_produceDifferentNumber129,3365
+
+src/test/java/com/jayway/changeless/test/ArrayIterableTest.java,163
+public class ArrayIterableTest 5,88
+	protected Iterable<Integer> createIterableWithOneOrMoreElements(ArrayIterableTest.createIterableWithOneOrMoreElements8,170
+
+src/test/java/com/jayway/changeless/intervals/ClosedOpenIntervalTests.java,504
+public class ClosedOpenIntervalTests 7,143
+	protected Interval<Integer> interval(ClosedOpenIntervalTests.interval10,230
+	protected Integer valueAfter(ClosedOpenIntervalTests.valueAfter15,323
+	protected Integer valueAtEnd(ClosedOpenIntervalTests.valueAtEnd20,384
+	protected Integer valueAtStart(ClosedOpenIntervalTests.valueAtStart25,445
+	protected Integer valueBefore(ClosedOpenIntervalTests.valueBefore30,508
+	protected Integer valueInInterval(ClosedOpenIntervalTests.valueInInterval35,570
+
+src/test/java/com/jayway/changeless/intervals/IntervalTestSupport.java,580
+public abstract class IntervalTestSupport<IntervalTestSupport10,278
+	public void valuesBeforeIsNotIncluded(IntervalTestSupport.valuesBeforeIsNotIncluded19,588
+	public void valuesAfterIsNotIncluded(IntervalTestSupport.valuesAfterIsNotIncluded24,712
+	public void valuesAtStartOfIntervalIsIncluded(IntervalTestSupport.valuesAtStartOfIntervalIsIncluded29,834
+	public void valuesAtEndOfIntervalIsIncluded(IntervalTestSupport.valuesAtEndOfIntervalIsIncluded34,960
+	public void valuesAtMiddleOfIntervalIsIncluded(IntervalTestSupport.valuesAtMiddleOfIntervalIsIncluded39,1082
+
+src/test/java/com/jayway/changeless/intervals/OpenClosedIntervalTests.java,504
+public class OpenClosedIntervalTests 7,143
+	protected Interval<Integer> interval(OpenClosedIntervalTests.interval10,230
+	protected Integer valueAfter(OpenClosedIntervalTests.valueAfter15,327
+	protected Integer valueAtEnd(OpenClosedIntervalTests.valueAtEnd20,388
+	protected Integer valueAtStart(OpenClosedIntervalTests.valueAtStart25,449
+	protected Integer valueBefore(OpenClosedIntervalTests.valueBefore30,512
+	protected Integer valueInInterval(OpenClosedIntervalTests.valueInInterval35,574
+
+src/test/java/com/jayway/changeless/intervals/IntervalAssert.java,246
+public class IntervalAssert 8,180
+	public static <T extends Comparable<T>> void assertOutsideInterval(IntervalAssert.assertOutsideInterval9,210
+	public static <T extends Comparable<T>> void assertContains(IntervalAssert.assertContains14,463
+
+src/test/java/com/jayway/changeless/intervals/InfiniteEndInterval.java,201
+public class InfiniteEndInterval 10,244
+	private Interval<Integer> interval InfiniteEndInterval.interval11,279
+	public void maximumValueIsIncluded(InfiniteEndInterval.maximumValueIsIncluded14,358
+
+src/test/java/com/jayway/changeless/intervals/InfiniteStartInterval.java,207
+public class InfiniteStartInterval 10,244
+	private Interval<Integer> interval InfiniteStartInterval.interval11,281
+	public void minimumValueIsIncluded(InfiniteStartInterval.minimumValueIsIncluded14,369
+
+src/test/java/com/jayway/changeless/intervals/ClosedClosedIntervalTests.java,518
+public class ClosedClosedIntervalTests 7,143
+	protected Interval<Integer> interval(ClosedClosedIntervalTests.interval10,232
+	protected Integer valueAfter(ClosedClosedIntervalTests.valueAfter15,327
+	protected Integer valueAtEnd(ClosedClosedIntervalTests.valueAtEnd20,388
+	protected Integer valueAtStart(ClosedClosedIntervalTests.valueAtStart25,449
+	protected Integer valueBefore(ClosedClosedIntervalTests.valueBefore30,512
+	protected Integer valueInInterval(ClosedClosedIntervalTests.valueInInterval35,574
+
+src/test/java/com/jayway/changeless/intervals/OpenOpenIntervalTests.java,490
+public class OpenOpenIntervalTests 7,143
+	protected Interval<Integer> interval(OpenOpenIntervalTests.interval10,228
+	protected Integer valueAfter(OpenOpenIntervalTests.valueAfter15,323
+	protected Integer valueAtEnd(OpenOpenIntervalTests.valueAtEnd20,384
+	protected Integer valueAtStart(OpenOpenIntervalTests.valueAtStart25,445
+	protected Integer valueBefore(OpenOpenIntervalTests.valueBefore30,508
+	protected Integer valueInInterval(OpenOpenIntervalTests.valueInInterval35,570
+
+src/test/java/com/jayway/changeless/vectors/VectorEqualsAndHashcodeTest.java,238
+public class VectorEqualsAndHashcodeTest 7,152
+	protected Object createFirstInstance(VectorEqualsAndHashcodeTest.createFirstInstance10,244
+	protected Object createSecondInstance(VectorEqualsAndHashcodeTest.createSecondInstance15,332
+
+src/test/java/com/jayway/changeless/vectors/VectorEqualsAndHashcodeWithEmptyVectorTest.java,283
+public class VectorEqualsAndHashcodeWithEmptyVectorTest 7,152
+	protected Object createFirstInstance(VectorEqualsAndHashcodeWithEmptyVectorTest.createFirstInstance10,259
+	protected Object createSecondInstance(VectorEqualsAndHashcodeWithEmptyVectorTest.createSecondInstance15,339
+
+src/test/java/com/jayway/changeless/vectors/VectorEqualsAndHashcodeComparedWithEmptyVectorTest.java,307
+public class VectorEqualsAndHashcodeComparedWithEmptyVectorTest 7,152
+	protected Object createFirstInstance(VectorEqualsAndHashcodeComparedWithEmptyVectorTest.createFirstInstance10,267
+	protected Object createSecondInstance(VectorEqualsAndHashcodeComparedWithEmptyVectorTest.createSecondInstance15,355
+
+src/test/java/com/jayway/changeless/vectors/VectorEqualsAndHashcodeComparedWithSequenceTest.java,529
+public class VectorEqualsAndHashcodeComparedWithSequenceTest 14,355
+	protected Object createFirstInstance(VectorEqualsAndHashcodeComparedWithSequenceTest.createFirstInstance17,467
+	protected Object createSecondInstance(VectorEqualsAndHashcodeComparedWithSequenceTest.createSecondInstance22,555
+	public void vectorEqualsToSequence(VectorEqualsAndHashcodeComparedWithSequenceTest.vectorEqualsToSequence27,643
+	public void sequenceEqualsToVector(VectorEqualsAndHashcodeComparedWithSequenceTest.sequenceEqualsToVector34,895
+
+src/test/java/com/jayway/changeless/vectors/VectorTests.java,2333
+public class VectorTests 12,290
+	public void emptyVectorIsEmpty(VectorTests.emptyVectorIsEmpty14,324
+	public void ofWithOneArguments(VectorTests.ofWithOneArguments20,504
+	public void ofWithTwoArguments(VectorTests.ofWithTwoArguments26,674
+	public void vectorAddTwoElementsHasAnIncreasedSize(VectorTests.vectorAddTwoElementsHasAnIncreasedSize32,846
+	public void vectorAddTreeElementsHasAnIncreasedSize(VectorTests.vectorAddTreeElementsHasAnIncreasedSize38,1054
+	public void emptyVectorReturnsEmptySequence(VectorTests.emptyVectorReturnsEmptySequence44,1263
+	public void addNothingToEmpty(VectorTests.addNothingToEmpty51,1491
+	public void addNothingToVector(VectorTests.addNothingToVector58,1696
+	public void vectorSequenceContainsElementsInOrder(VectorTests.vectorSequenceContainsElementsInOrder65,1933
+	public void negativSkipReturnsEntireVector(VectorTests.negativSkipReturnsEntireVector72,2220
+	public void skipLargerThanSizeReturnsAnEmptyVector(VectorTests.skipLargerThanSizeReturnsAnEmptyVector78,2405
+	public void skipNegativeOnVector(VectorTests.skipNegativeOnVector85,2657
+	public void skipZeroOnVector(VectorTests.skipZeroOnVector93,2964
+	public void skipOnVector(VectorTests.skipOnVector101,3267
+	public void skipAndAdd(VectorTests.skipAndAdd109,3560
+	public void skipOnVectorSequence(VectorTests.skipOnVectorSequence116,3804
+	public void toSequenceAndBack(VectorTests.toSequenceAndBack124,4124
+	@Test(VectorTests.@Test130,4376
+	@Test(VectorTests.@Test136,4575
+	@Test(VectorTests.@Test142,4780
+	@Test(VectorTests.@Test148,4983
+	@Test(VectorTests.@Test154,5192
+	@Test(VectorTests.@Test160,5400
+	@Test(VectorTests.@Test166,5613
+	@Test(VectorTests.@Test172,5821
+	public void setOnVector(VectorTests.setOnVector179,6041
+	public void setOnPrefixVector(VectorTests.setOnPrefixVector187,6314
+	public void setOnSuffixVector(VectorTests.setOnSuffixVector195,6597
+	public void takeNegativeReturnEmptyVector(VectorTests.takeNegativeReturnEmptyVector203,6880
+	public void takeZeroReturnEmptyVector(VectorTests.takeZeroReturnEmptyVector210,7123
+	public void takeLargerThanSize(VectorTests.takeLargerThanSize217,7361
+	public void takeAndAdd(VectorTests.takeAndAdd224,7583
+	public void takeAndAddMoreThanOriginalVector(VectorTests.takeAndAddMoreThanOriginalVector232,7860
+
+src/test/java/com/jayway/changeless/records/RecordsTests.java,145
+interface Person 12,298
+interface Address 19,432
+public class RecordsTests 26,579
+	public void createRecord(RecordsTests.createRecord28,614
+
+src/test/java/com/jayway/changeless/optionals/OptionalNoneEqualsAndHashcode.java,243
+public class OptionalNoneEqualsAndHashcode 6,156
+	protected Object createFirstInstance(OptionalNoneEqualsAndHashcode.createFirstInstance9,249
+	protected Object createSecondInstance(OptionalNoneEqualsAndHashcode.createSecondInstance14,332
+
+src/test/java/com/jayway/changeless/optionals/OptionalTests.java,242
+public class OptionalTests 9,151
+	@Test(OptionalTests.@Test10,180
+	@Test(OptionalTests.@Test15,308
+	public void toStringOnNone(OptionalTests.toStringOnNone21,448
+	public void toStringOnGetValue(OptionalTests.toStringOnGetValue28,646
+
+src/test/java/com/jayway/changeless/optionals/NoneOptionalEqualsAndHashcode.java,243
+public class NoneOptionalEqualsAndHashcode 6,156
+	protected Object createFirstInstance(NoneOptionalEqualsAndHashcode.createFirstInstance9,249
+	protected Object createSecondInstance(NoneOptionalEqualsAndHashcode.createSecondInstance14,343
+
+src/test/java/com/jayway/changeless/optionals/OptionalEqualsAndHashcode.java,231
+public class OptionalEqualsAndHashcode 6,156
+	protected Object createFirstInstance(OptionalEqualsAndHashcode.createFirstInstance9,245
+	protected Object createSecondInstance(OptionalEqualsAndHashcode.createSecondInstance14,338
+
+src/test/java/com/jayway/changeless/maps/MapsTests.java,625
+public class MapsTests 12,276
+	public void putCreatesANewMap(MapsTests.putCreatesANewMap14,308
+	public void insertedIntegersCanBeFound(MapsTests.insertedIntegersCanBeFound25,637
+	public void insertedStringsCanBeFound(MapsTests.insertedStringsCanBeFound40,1051
+	public void replacedStringCanBeFound(MapsTests.replacedStringCanBeFound54,1493
+	public void insertAtTheEndOfBucket(MapsTests.insertAtTheEndOfBucket73,2032
+	public void toStringOnEmptyMap(MapsTests.toStringOnEmptyMap81,2327
+	public void toStringOnMap(MapsTests.toStringOnMap87,2506
+	public void toSequenceAndBack(MapsTests.toSequenceAndBack96,2905
+
+src/test/java/com/jayway/changeless/maps/MapEqualsAndHashcodeComparedWithEmptyMapTest.java,289
+public class MapEqualsAndHashcodeComparedWithEmptyMapTest 7,143
+	protected Object createFirstInstance(MapEqualsAndHashcodeComparedWithEmptyMapTest.createFirstInstance10,252
+	protected Object createSecondInstance(MapEqualsAndHashcodeComparedWithEmptyMapTest.createSecondInstance15,357
+
+src/test/java/com/jayway/changeless/maps/MapsEqualsAndHashcodeTest.java,232
+public class MapsEqualsAndHashcodeTest 7,143
+	protected Object createFirstInstance(MapsEqualsAndHashcodeTest.createFirstInstance10,233
+	protected Object createSecondInstance(MapsEqualsAndHashcodeTest.createSecondInstance15,333
+
+src/test/java/com/jayway/changeless/maps/MapEqualsAndHashcodeWithEmptyMapTest.java,265
+public class MapEqualsAndHashcodeWithEmptyMapTest 7,143
+	protected Object createFirstInstance(MapEqualsAndHashcodeWithEmptyMapTest.createFirstInstance10,244
+	protected Object createSecondInstance(MapEqualsAndHashcodeWithEmptyMapTest.createSecondInstance15,321
+
+src/test/java/com/jayway/changeless/tuples/TupleEqualsAndHashcodeTest.java,235
+public class TupleEqualsAndHashcodeTest 7,149
+	protected Object createFirstInstance(TupleEqualsAndHashcodeTest.createFirstInstance10,240
+	protected Object createSecondInstance(TupleEqualsAndHashcodeTest.createSecondInstance15,327
+
+src/test/java/com/jayway/changeless/tuples/TupleTests.java,94
+public class TupleTests 7,108
+	@Test(TupleTests.@Test8,134
+	@Test(TupleTests.@Test13,267
+
+src/test/java/com/jayway/changeless/sets/SetEqualsAndHashcodeTest.java,229
+public class SetEqualsAndHashcodeTest 7,143
+	protected Object createFirstInstance(SetEqualsAndHashcodeTest.createFirstInstance10,232
+	protected Object createSecondInstance(SetEqualsAndHashcodeTest.createSecondInstance15,317
+
+src/test/java/com/jayway/changeless/sets/SetEqualsAndHashcodeComparedWithEmptySetTest.java,289
+public class SetEqualsAndHashcodeComparedWithEmptySetTest 7,143
+	protected Object createFirstInstance(SetEqualsAndHashcodeComparedWithEmptySetTest.createFirstInstance10,252
+	protected Object createSecondInstance(SetEqualsAndHashcodeComparedWithEmptySetTest.createSecondInstance15,337
+
+src/test/java/com/jayway/changeless/sets/SetEqualsAndHashcodeWithEmptySetTest.java,265
+public class SetEqualsAndHashcodeWithEmptySetTest 7,143
+	protected Object createFirstInstance(SetEqualsAndHashcodeWithEmptySetTest.createFirstInstance10,244
+	protected Object createSecondInstance(SetEqualsAndHashcodeWithEmptySetTest.createSecondInstance15,321
+
+src/test/java/com/jayway/changeless/sets/SetTests.java,4473
+public class SetTests 13,296
+	private Set<String> strings SetTests.strings14,320
+	public void addedIntegersCanBeFound(SetTests.addedIntegersCanBeFound18,456
+	public void addedStringsCanBeFound(SetTests.addedStringsCanBeFound32,808
+	public void emptySetIsEmpty(SetTests.emptySetIsEmpty46,1194
+	public void nonEmptyIsNotEmpty(SetTests.nonEmptyIsNotEmpty51,1316
+	public void emptySetsHasSizeZero(SetTests.emptySetsHasSizeZero57,1470
+	public void sizeIsPreservedWhileAddedElementsToASet(SetTests.sizeIsPreservedWhileAddedElementsToASet63,1626
+	public void addAnElementMultipleTimesDoesNotIncreaseSize(SetTests.addAnElementMultipleTimesDoesNotIncreaseSize75,1992
+	public void containsOnNonExistingElement(SetTests.containsOnNonExistingElement82,2197
+	public void addingTwoElementsUnequalButWithSameHash(SetTests.addingTwoElementsUnequalButWithSameHash89,2401
+	public void putDuplicateElementIntoFullNote(SetTests.putDuplicateElementIntoFullNote107,3100
+	public void removeFromFullNode(SetTests.removeFromFullNode119,3378
+	public void removeNonExistingElementFromFullNode(SetTests.removeNonExistingElementFromFullNode126,3578
+	public void remove10000Integers(SetTests.remove10000Integers139,3945
+	public void remove10000Strings(SetTests.remove10000Strings154,4282
+	public void remove10000TestElements(SetTests.remove10000TestElements169,4653
+	public void removeNonExistingElementFromLeafNode(SetTests.removeNonExistingElementFromLeafNode184,5032
+	public void removeAll(SetTests.removeAll192,5232
+	public void removeNone(SetTests.removeNone200,5469
+	public void removeNonExisting(SetTests.removeNonExisting208,5687
+	public void removeIntersection(SetTests.removeIntersection216,5912
+	public void removeNonIntersection(SetTests.removeNonIntersection225,6184
+	public void containsNonExistingElementFromLeafNode(SetTests.containsNonExistingElementFromLeafNode233,6411
+	public void containsNonExistingElementFromCollisionNode(SetTests.containsNonExistingElementFromCollisionNode240,6615
+	public void setToSequenceOf10000Strings(SetTests.setToSequenceOf10000Strings248,6899
+	public void setToSequenceOf10000Integers(SetTests.setToSequenceOf10000Integers258,7132
+	public void theSeqeunceOfAnEmptySetIsEmpty(SetTests.theSeqeunceOfAnEmptySetIsEmpty274,7483
+	public void simpleIntersection(SetTests.simpleIntersection279,7639
+	public void fullIntersection(SetTests.fullIntersection287,7889
+	public void noIntersectionFirstSetBefore(SetTests.noIntersectionFirstSetBefore295,8138
+	public void noIntersectionFirstSetAfter(SetTests.noIntersectionFirstSetAfter303,8396
+	public void noIntersectionInterleavedSets(SetTests.noIntersectionInterleavedSets311,8653
+	public void intersectionWithEmptySet(SetTests.intersectionWithEmptySet319,8912
+	public void emptySetIntersectionWithNonEmptySet(SetTests.emptySetIntersectionWithNonEmptySet327,9164
+	public void intersectionOfEmptySets(SetTests.intersectionOfEmptySets335,9427
+	public void simpleUnion(SetTests.simpleUnion343,9676
+	public void fullUnion(SetTests.fullUnion351,9913
+	public void unionOnNonIntersectingSetsFirstSetBefore(SetTests.unionOnNonIntersectingSetsFirstSetBefore359,10141
+	public void unionOnNonIntersectingSetsFirstSetAfter(SetTests.unionOnNonIntersectingSetsFirstSetAfter367,10405
+	public void unionInterleavedSets(SetTests.unionInterleavedSets375,10668
+	public void unionWithEmptySet(SetTests.unionWithEmptySet383,10912
+	public void emptySetUnionedWithNonEmptySet(SetTests.emptySetUnionedWithNonEmptySet391,11145
+	public void unionOfEmptySets(SetTests.unionOfEmptySets399,11391
+	public void toSeqenceAndBack(SetTests.toSeqenceAndBack407,11619
+	public void symmetricDifferentWithNoElements(SetTests.symmetricDifferentWithNoElements414,11837
+	public void symmetricDifferentOnEmptySet(SetTests.symmetricDifferentOnEmptySet423,12129
+	public void symmetricDifferentWithNoSharedElements(SetTests.symmetricDifferentWithNoSharedElements432,12417
+	public void symmetricDifferentWithSharedElements(SetTests.symmetricDifferentWithSharedElements441,12734
+	private static class TestElement SetTests.TestElement449,13041
+		private final int value;SetTests.TestElement.value450,13077
+		public TestElement(SetTests.TestElement.TestElement452,13105
+		public int hashCode(SetTests.TestElement.hashCode457,13179
+		public String toString(SetTests.TestElement.toString462,13259
+		public boolean equals(SetTests.TestElement.equals467,13338
+
+src/test/java/com/jayway/changeless/sequences/SequenceTest.java,6075
+public class SequenceTest 25,816
+	public void emptySequenceIsEmpty(SequenceTest.emptySequenceIsEmpty27,851
+	public void ofWithNoArgumentsCreatesAnEmptySequence(SequenceTest.ofWithNoArgumentsCreatesAnEmptySequence33,1044
+	public void ofWithOneArgumentShouldCreateANonEmptySequence(SequenceTest.ofWithOneArgumentShouldCreateANonEmptySequence39,1253
+	public void ofWithTwoArguments(SequenceTest.ofWithTwoArguments45,1476
+	@Test(SequenceTest.@Test50,1651
+	@Test(SequenceTest.@Test55,1803
+	@Test(SequenceTest.@Test61,2010
+	public void sizeOfEmptySequenceIsZero(SequenceTest.sizeOfEmptySequenceIsZero68,2222
+	public void ofWithThreeArguments(SequenceTest.ofWithThreeArguments74,2408
+	public void addIncreasesSizeByOne(SequenceTest.addIncreasesSizeByOne80,2596
+	public void toStringOnEmptySequence(SequenceTest.toStringOnEmptySequence88,2875
+	public void toStringOnNonEmptySequence(SequenceTest.toStringOnNonEmptySequence95,3101
+	@Test(SequenceTest.@Test101,3338
+	@Test(SequenceTest.@Test106,3487
+	public void takeFromLargeSequence(SequenceTest.takeFromLargeSequence112,3641
+	public void takeFromSmallSequence(SequenceTest.takeFromSmallSequence120,3946
+	public void takeFromEntireSequence(SequenceTest.takeFromEntireSequence128,4243
+	public void takeFromEmptySequence(SequenceTest.takeFromEmptySequence136,4541
+	public void takeNegativeNumberOfElementsReturnsEmptySequence(SequenceTest.takeNegativeNumberOfElementsReturnsEmptySequence144,4824
+	public void takeZeroElementsReturnsEmptySequence(SequenceTest.takeZeroElementsReturnsEmptySequence151,5089
+	public void skipNegativeNumberOfElements(SequenceTest.skipNegativeNumberOfElements158,5341
+	public void skipZeroElements(SequenceTest.skipZeroElements165,5589
+	public void skipEntireSequence(SequenceTest.skipEntireSequence172,5824
+	public void transformSequence(SequenceTest.transformSequence179,6058
+	public void transformSequenceDoesNotChangeSize(SequenceTest.transformSequenceDoesNotChangeSize187,6385
+	public void filterSeqence(SequenceTest.filterSeqence195,6698
+	@Test(SequenceTest.@Test202,7009
+	public void integerSeqenceWithSteps(SequenceTest.integerSeqenceWithSteps208,7181
+	public void integerSeqenceDownwardWithSteps(SequenceTest.integerSeqenceDownwardWithSteps215,7448
+	public void addMultipleTimes(SequenceTest.addMultipleTimes222,7729
+	public void copyOfIterable(SequenceTest.copyOfIterable229,8004
+	public void changedToSourceIterableDoesNoEffectSequence(SequenceTest.changedToSourceIterableDoesNoEffectSequence236,8256
+	public void changedToSourceElementsDoesNoEffectSequence(SequenceTest.changedToSourceElementsDoesNoEffectSequence245,8623
+	@Test(SequenceTest.@Test253,8973
+	public void getElementZero(SequenceTest.getElementZero259,9122
+	public void getElementOne(SequenceTest.getElementOne267,9365
+	public void getLastElement(SequenceTest.getLastElement275,9607
+	public void summingEmptySequenceWithReduce(SequenceTest.summingEmptySequenceWithReduce283,9850
+	public void summingSequenceWithReduce(SequenceTest.summingSequenceWithReduce292,10159
+	public void joiningStringsWithReduce(SequenceTest.joiningStringsWithReduce301,10464
+	public void reverseEmptySequence(SequenceTest.reverseEmptySequence310,10825
+	public void reverseSequence(SequenceTest.reverseSequence318,11104
+	public void evenSequence(SequenceTest.evenSequence326,11390
+	public void frequenciesOnEmptySequenceReturnsAnEmptyMap(SequenceTest.frequenciesOnEmptySequenceReturnsAnEmptyMap334,11732
+	public void frequencies(SequenceTest.frequencies342,12045
+	public void toSequenceAndBack(SequenceTest.toSequenceAndBack351,12421
+	public void filterOnInfiniteSequence(SequenceTest.filterOnInfiniteSequence358,12659
+	public void transformOnInfiniteSequence(SequenceTest.transformOnInfiniteSequence366,13013
+	public void addIterableToSequence(SequenceTest.addIterableToSequence374,13363
+	public void getElementOnInfiniteSequence(SequenceTest.getElementOnInfiniteSequence382,13697
+	@Test(SequenceTest.@Test387,13903
+	@Test(SequenceTest.@Test392,14048
+	public void lazyCopyOfSequence(SequenceTest.lazyCopyOfSequence398,14219
+	public void sequenceProducer(SequenceTest.sequenceProducer405,14493
+	@Test(SequenceTest.@Test417,14950
+	public void minOnSequence(SequenceTest.minOnSequence423,15114
+	@Test(SequenceTest.@Test430,15334
+	public void maxOnSequence(SequenceTest.maxOnSequence436,15498
+	@Test(SequenceTest.@Test443,15718
+	public void partitionOnEmptySequence(SequenceTest.partitionOnEmptySequence449,15887
+	@SuppressWarnings(SequenceTest.@SuppressWarnings455,16128
+	@SuppressWarnings(SequenceTest.@SuppressWarnings470,16599
+	@SuppressWarnings(SequenceTest.@SuppressWarnings485,17067
+	@SuppressWarnings(SequenceTest.@SuppressWarnings500,17533
+	public void cycleEmptySequence(SequenceTest.cycleEmptySequence510,17910
+	public void cycleSequence(SequenceTest.cycleSequence516,18096
+	@SuppressWarnings(SequenceTest.@SuppressWarnings523,18394
+	public void upzipSequence(SequenceTest.upzipSequence536,18893
+	@Test(SequenceTest.@Test546,19389
+	public void insertAtNegativeIndex(SequenceTest.insertAtNegativeIndex552,19544
+	public void insertAtFront(SequenceTest.insertAtFront560,19846
+	public void insertAtEnd(SequenceTest.insertAtEnd568,20145
+	public void insertAtAfterEnd(SequenceTest.insertAtAfterEnd576,20442
+	public void insertAtIntoEmptySequence(SequenceTest.insertAtIntoEmptySequence584,20746
+	public void insertNothing(SequenceTest.insertNothing592,21044
+	public void insertAtIntoInfiniteSequence(SequenceTest.insertAtIntoInfiniteSequence600,21318
+	public void isSizeOnEmpty(SequenceTest.isSizeOnEmpty608,21652
+	public void isNotSizeOnEmpty(SequenceTest.isNotSizeOnEmpty614,21815
+	@Test(SequenceTest.@Test619,21976
+	public void isSizeLessThanSequenceSize(SequenceTest.isSizeLessThanSequenceSize625,22118
+	public void isSizeGreaterThanSequenceSize(SequenceTest.isSizeGreaterThanSequenceSize631,22299
+	public void isSizeEqualsToSequenceSize(SequenceTest.isSizeEqualsToSequenceSize637,22483
+
+src/test/java/com/jayway/changeless/sequences/SequenceEqualsAndHashcodeWithEmptySequenceTest.java,355
+public class SequenceEqualsAndHashcodeWithEmptySequenceTest SequenceTest.SequenceEqualsAndHashcodeWithEmptySequenceTest7,158
+	protected Object createFirstInstance(SequenceEqualsAndHashcodeWithEmptySequenceTest.createFirstInstance10,269
+	protected Object createSecondInstance(SequenceEqualsAndHashcodeWithEmptySequenceTest.createSecondInstance15,351
+
+src/test/java/com/jayway/changeless/sequences/SequenceFilterMethodTests.java,132
+public class SequenceFilterMethodTests 11,262
+	public void filterWithInterval(SequenceFilterMethodTests.filterWithInterval13,310
+
+src/test/java/com/jayway/changeless/sequences/SequenceEqualsAndHashcodeTest.java,244
+public class SequenceEqualsAndHashcodeTest 7,158
+	protected Object createFirstInstance(SequenceEqualsAndHashcodeTest.createFirstInstance10,252
+	protected Object createSecondInstance(SequenceEqualsAndHashcodeTest.createSecondInstance15,342
+
+src/test/java/com/jayway/changeless/sequences/SequenceAllMethodTests.java,603
+public class SequenceAllMethodTests 13,284
+	private final Sequence<Integer> oddSequence SequenceAllMethodTests.oddSequence14,322
+	private final Sequence<Integer> evenSequence SequenceAllMethodTests.evenSequence15,395
+	private final Sequence<Integer> mixedSequence SequenceAllMethodTests.mixedSequence16,469
+	public void allReturnsTrueForEmptySequence(SequenceAllMethodTests.allReturnsTrueForEmptySequence19,562
+	public void notAllOdd(SequenceAllMethodTests.notAllOdd25,749
+	public void allOdd(SequenceAllMethodTests.allOdd30,885
+	public void allEven(SequenceAllMethodTests.allEven35,1013
+
+src/test/java/com/jayway/changeless/sequences/DefaultSequenceIteratorTest.java,185
+public class DefaultSequenceIteratorTest 8,198
+	protected Iterable<Integer> createIterableWithOneOrMoreElements(DefaultSequenceIteratorTest.createIterableWithOneOrMoreElements11,290
+
+src/test/java/com/jayway/changeless/sequences/SequenceEqualsAndHashcodeComparedWithEmptySequenceTest.java,319
+public class SequenceEqualsAndHashcodeComparedWithEmptySequenceTest 7,158
+	protected Object createFirstInstance(SequenceEqualsAndHashcodeComparedWithEmptySequenceTest.createFirstInstance10,277
+	protected Object createSecondInstance(SequenceEqualsAndHashcodeComparedWithEmptySequenceTest.createSecondInstance15,367
+
+src/main/java/com/jayway/changeless/functions/objects/ToStringFunction.java,89
+public class ToStringFunction 8,203
+	public String apply(ToStringFunction.apply15,515
+
+src/main/java/com/jayway/changeless/functions/strings/AppendStringFunction.java,142
+public class AppendStringFunction ToStringFunction.AppendStringFunction9,232
+	public StringBuilder apply(AppendStringFunction.apply19,676
+
+src/main/java/com/jayway/changeless/functions/Functions.java,207
+public final class Functions 8,194
+	private Functions(Functions.Functions9,225
+	public static Fn<Functions.Fn14,366
+	public static Fn<Object, String> toStringFunction Functions.toStringFunction14,366
+
+src/main/java/com/jayway/changeless/functions/integers/PlusFunction.java,80
+public class PlusFunction 5,96
+	public Integer apply(PlusFunction.apply7,177
+
+src/main/java/com/jayway/changeless/internal/hashtrie/HashTrie.java,43
+public interface HashTrie<HashTrie24,809
+
+src/main/java/com/jayway/changeless/internal/hashtrie/SingleNode.java,303
+abstract class SingleNode<SingleNode4,51
+	private final int hash;SingleNode.hash5,105
+	public SingleNode(SingleNode.SingleNode7,131
+	public final int getHash(SingleNode.getHash12,197
+	protected BitmappedNode<T> bitmap(SingleNode.bitmap16,246
+	public boolean isEmpty(SingleNode.isEmpty33,828
+
+src/main/java/com/jayway/changeless/internal/hashtrie/EmptyNode.java,490
+final class EmptyNode<SingleNode.EmptyNode10,228
+	public HashTrie<T> add(EmptyNode.add13,290
+	public Optional<T> get(EmptyNode.get18,400
+	public HashTrie<T> remove(EmptyNode.remove23,484
+	public int size(EmptyNode.size28,562
+	public boolean isEmpty(EmptyNode.isEmpty33,611
+	public String toString(EmptyNode.toString38,670
+	public Sequence<T> sequence(EmptyNode.sequence43,745
+	public Iterator<T> iterator(EmptyNode.iterator48,821
+	public int waist(EmptyNode.waist53,901
+
+src/main/java/com/jayway/changeless/internal/hashtrie/CollisionNode.java,594
+final class CollisionNode<CollisionNode8,177
+	private final Sequence<T> bucket;CollisionNode.bucket10,231
+	public CollisionNode(CollisionNode.CollisionNode12,267
+	public HashTrie<T> add(CollisionNode.add19,407
+	public Optional<T> get(CollisionNode.get29,658
+	public HashTrie<T> remove(CollisionNode.remove39,852
+	public int size(CollisionNode.size56,1219
+	public String toString(CollisionNode.toString61,1279
+	public Sequence<T> sequence(CollisionNode.sequence66,1355
+	public Iterator<T> iterator(CollisionNode.iterator71,1420
+	public int waist(CollisionNode.waist76,1500
+
+src/main/java/com/jayway/changeless/internal/hashtrie/BitmappedNode.java,766
+final class BitmappedNode<BitmappedNode9,227
+	private final int bits;BitmappedNode.bits11,282
+	private final int shift;BitmappedNode.shift12,307
+	private final Array<HashTrie<T>> table;BitmappedNode.table13,333
+	public BitmappedNode(BitmappedNode.BitmappedNode15,375
+	public HashTrie<T> add(BitmappedNode.add22,525
+	public Optional<T> get(BitmappedNode.get49,1282
+	public HashTrie<T> remove(BitmappedNode.remove61,1514
+	public int size(BitmappedNode.size106,2495
+	public int waist(BitmappedNode.waist116,2621
+	public boolean isEmpty(BitmappedNode.isEmpty130,2847
+	public Sequence<T> sequence(BitmappedNode.sequence135,2906
+	public Iterator<T> iterator(BitmappedNode.iterator140,3008
+	public String toString(BitmappedNode.toString145,3089
+
+src/main/java/com/jayway/changeless/internal/hashtrie/HashTries.java,143
+public final class HashTries 6,133
+	private HashTries(HashTries.HashTries7,164
+	public static <T> HashTrie<T> empty(HashTries.empty13,368
+
+src/main/java/com/jayway/changeless/internal/hashtrie/FullNode.java,627
+final class FullNode<FullNode9,227
+	private final Array<HashTrie<T>> table;FullNode.table11,277
+	private final int shift;FullNode.shift12,318
+	public FullNode(FullNode.FullNode14,345
+	public HashTrie<T> add(FullNode.add20,460
+	public Optional<T> get(FullNode.get34,836
+	public HashTrie<T> remove(FullNode.remove39,959
+	public int size(FullNode.size61,1448
+	public boolean isEmpty(FullNode.isEmpty70,1573
+	public String toString(FullNode.toString75,1633
+	public Sequence<T> sequence(FullNode.sequence80,1722
+	public Iterator<T> iterator(FullNode.iterator85,1807
+	public int waist(FullNode.waist90,1887
+
+src/main/java/com/jayway/changeless/internal/hashtrie/LeafNode.java,512
+final class LeafNode<LeafNode9,227
+	private final T value;LeafNode.value10,275
+	public LeafNode(LeafNode.LeafNode12,300
+	public HashTrie<T> add(LeafNode.add19,422
+	public Optional<T> get(LeafNode.get33,726
+	public HashTrie<T> remove(LeafNode.remove42,891
+	public int size(LeafNode.size51,1038
+	public String toString(LeafNode.toString56,1086
+	public Sequence<T> sequence(LeafNode.sequence62,1194
+	public Iterator<T> iterator(LeafNode.iterator67,1273
+	public int waist(LeafNode.waist72,1353
+
+src/main/java/com/jayway/changeless/internal/hashtrie/Array.java,658
+final class Array<Array6,103
+	private final Object[] data;Array.data7,149
+	private Array(Array.Array9,181
+	public Array(Array.Array13,238
+	@SuppressWarnings(Array.@SuppressWarnings17,296
+	public void set(Array.set22,378
+	public Array<T> copy(Array.copy26,437
+	public Array<T> copy(Array.copy30,496
+	public int size(Array.size34,591
+	public Iterator<T> iterator(Array.iterator39,649
+	private class SkipNullIterator Array.SkipNullIterator43,720
+		public boolean hasNext(Array.SkipNullIterator.hasNext47,811
+		@SuppressWarnings(Array.SkipNullIterator.@SuppressWarnings57,955
+		public void remove(Array.SkipNullIterator.remove64,1062
+
+src/main/java/com/jayway/changeless/intervals/FiniteEndpoint.java,212
+abstract class FiniteEndpoint<FiniteEndpoint3,42
+	private final T value;FiniteEndpoint.value4,77
+	public FiniteEndpoint(FiniteEndpoint.FiniteEndpoint6,102
+	public T getValue(FiniteEndpoint.getValue10,162
+
+src/main/java/com/jayway/changeless/intervals/ClosedStart.java,194
+final class ClosedStart<ClosedStart5,95
+	public ClosedStart(ClosedStart.ClosedStart6,200
+	public boolean after(ClosedStart.after11,262
+	public String toString(ClosedStart.toString16,372
+
+src/main/java/com/jayway/changeless/intervals/StartIntervalBuilder.java,406
+public final class StartIntervalBuilder<StartIntervalBuilder4,43
+	private final IntervalStart<T> start;StartIntervalBuilder.start5,110
+	public StartIntervalBuilder(StartIntervalBuilder.StartIntervalBuilder7,150
+	public Interval<T> closed(StartIntervalBuilder.closed11,232
+	public Interval<T> open(StartIntervalBuilder.open15,335
+	public Interval<T> infinite(StartIntervalBuilder.infinite19,435
+
+src/main/java/com/jayway/changeless/intervals/InfiniteEnd.java,144
+final class InfiniteEnd<InfiniteEnd3,42
+	public boolean before(InfiniteEnd.before6,131
+	public String toString(InfiniteEnd.toString11,196
+
+src/main/java/com/jayway/changeless/intervals/OpenEnd.java,168
+final class OpenEnd<OpenEnd6,96
+	public OpenEnd(OpenEnd.OpenEnd7,195
+	public boolean before(OpenEnd.before12,253
+	public String toString(OpenEnd.toString17,353
+
+src/main/java/com/jayway/changeless/intervals/ClosedEnd.java,182
+final class ClosedEnd<ClosedEnd5,95
+	public ClosedEnd(ClosedEnd.ClosedEnd6,196
+	public boolean before(ClosedEnd.before11,256
+	public String toString(ClosedEnd.toString16,364
+
+src/main/java/com/jayway/changeless/intervals/OpenStart.java,180
+final class OpenStart<OpenStart5,95
+	public OpenStart(OpenStart.OpenStart6,198
+	public boolean after(OpenStart.after11,258
+	public String toString(OpenStart.toString16,359
+
+src/main/java/com/jayway/changeless/intervals/InfiniteStart.java,150
+final class InfiniteStart<InfiniteStart3,42
+	public boolean after(InfiniteStart.after6,135
+	public String toString(InfiniteStart.toString11,199
+
+src/main/java/com/jayway/changeless/intervals/Intervals.java,442
+public final class Intervals 4,43
+	private Intervals(Intervals.Intervals5,74
+	public static StartIntervalBuilder<Integer> zero Intervals.zero7,120
+	public static <T extends Comparable<T>> StartIntervalBuilder<T> closed(Intervals.closed9,185
+	public static <T extends Comparable<T>> StartIntervalBuilder<T> open(Intervals.open13,337
+	public static <T extends Comparable<T>> StartIntervalBuilder<T> infinite(Intervals.infinite17,485
+
+src/main/java/com/jayway/changeless/intervals/Interval.java,42
+public interface Interval<Interval9,214
+
+src/main/java/com/jayway/changeless/intervals/IntervalStart.java,44
+interface IntervalStart<IntervalStart3,42
+
+src/main/java/com/jayway/changeless/intervals/DefaultInterval.java,408
+final class DefaultInterval<DefaultInterval4,43
+	private final IntervalStart<T> start;DefaultInterval.start5,121
+	private final IntervalEnd<T> end;DefaultInterval.end6,160
+	public DefaultInterval(DefaultInterval.DefaultInterval8,196
+	public boolean contains(DefaultInterval.contains14,321
+	public String toString(DefaultInterval.toString19,423
+	public boolean apply(DefaultInterval.apply24,511
+
+src/main/java/com/jayway/changeless/intervals/IntervalEnd.java,40
+interface IntervalEnd<IntervalEnd3,42
+
+src/main/java/com/jayway/changeless/utilities/Guard.java,288
+public final class Guard 5,92
+	private Guard(Guard.Guard6,119
+	public static void notNull(Guard.notNull8,161
+	public static void notNull(Guard.notNull15,396
+	public static void nonNegative(Guard.nonNegative23,734
+	public static <T extends Comparable<T>> void in(Guard.in30,969
+
+src/main/java/com/jayway/changeless/utilities/Comparables.java,901
+public final class Comparables 5,87
+	private Comparables(Comparables.Comparables6,120
+	public static <T extends Comparable<T>> boolean lessThan(Comparables.lessThan15,441
+	public static <T extends Comparable<T>> boolean greaterThan(Comparables.greaterThan26,838
+	public static <T extends Comparable<T>> boolean greaterThanOrEquals(Comparables.greaterThanOrEquals37,1264
+	public static <T extends Comparable<T>> boolean lessThanOrEquals(Comparables.lessThanOrEquals48,1693
+	public static <T extends Comparable<T>> boolean equals(Comparables.equals59,2093
+	public static <T extends Comparable<T>> Fn2<Comparables.Fn268,2405
+	public static <T extends Comparable<T>> Fn2<T,T,T> minFunction(Comparables.minFunction68,2405
+	public static <T extends Comparable<T>> Fn2<Comparables.Fn282,2801
+	public static <T extends Comparable<T>> Fn2<T,T,T> maxFunction(Comparables.maxFunction82,2801
+
+src/main/java/com/jayway/changeless/vectors/PrefixVector.java,504
+final class PrefixVector<PrefixVector6,137
+	private final int size;PrefixVector.size7,192
+	private final Vector<T> vector;PrefixVector.vector8,217
+	public PrefixVector(PrefixVector.PrefixVector10,251
+	public static <T> Vector<T> create(PrefixVector.create15,350
+	public Vector<T> add(PrefixVector.add29,616
+	public T get(PrefixVector.get44,975
+	public boolean isEmpty(PrefixVector.isEmpty50,1102
+	public int size(PrefixVector.size55,1161
+	public Vector<T> set(PrefixVector.set60,1212
+
+src/main/java/com/jayway/changeless/vectors/Vector.java,39
+public interface Vector<Vector10,243
+
+src/main/java/com/jayway/changeless/vectors/VectorSequence.java,391
+final class VectorSequence<VectorSequence7,196
+	private final Vector<T> vector;VectorSequence.vector8,255
+	private VectorSequence(VectorSequence.VectorSequence10,289
+	public static <T> Sequence<T> create(VectorSequence.create14,362
+	public Sequence<T> rest(VectorSequence.rest22,534
+	public Sequence<T> skip(VectorSequence.skip27,612
+	public T first(VectorSequence.first32,694
+
+src/main/java/com/jayway/changeless/vectors/VectorSupport.java,518
+public abstract class VectorSupport<VectorSupport11,268
+	public Vector<T> skip(VectorSupport.skip13,341
+	public Vector<T> take(VectorSupport.take18,428
+	public Sequence<T> sequence(VectorSupport.sequence23,514
+	public Iterator<T> iterator(VectorSupport.iterator28,600
+	public String toString(VectorSupport.toString33,680
+	@SuppressWarnings(VectorSupport.@SuppressWarnings37,745
+	public int hashCode(VectorSupport.hashCode55,1151
+	protected void EnsureValidIndex(VectorSupport.EnsureValidIndex62,1273
+
+src/main/java/com/jayway/changeless/vectors/SuffixVector.java,553
+final class SuffixVector<SuffixVector5,42
+	private final Vector<T> vector;SuffixVector.vector7,97
+	private final int offset;SuffixVector.offset8,130
+	private SuffixVector(SuffixVector.SuffixVector10,158
+	public static <T> Vector<T> create(SuffixVector.create15,265
+	public boolean isEmpty(SuffixVector.isEmpty26,502
+	public Vector<T> add(SuffixVector.add31,573
+	public Vector<T> skip(SuffixVector.skip36,674
+	public T get(SuffixVector.get41,786
+	public int size(SuffixVector.size47,892
+	public Vector<T> set(SuffixVector.set52,961
+
+src/main/java/com/jayway/changeless/vectors/MapVector.java,566
+final class MapVector<MapVector6,120
+	private final Map<MapVector.Map7,172
+	private final Map<Integer, T> data;MapVector.data7,172
+	private final int size;MapVector.size8,209
+	private MapVector(MapVector.MapVector10,235
+	public static <T> MapVector<T> of(MapVector.of15,333
+	public static <T> MapVector<T> copyOf(MapVector.copyOf23,565
+	public boolean isEmpty(MapVector.isEmpty34,806
+	public int size(MapVector.size39,871
+	public Vector<T> add(MapVector.add44,923
+	public T get(MapVector.get59,1209
+	public Vector<T> set(MapVector.set65,1315
+
+src/main/java/com/jayway/changeless/vectors/Vectors.java,238
+public final class Vectors 4,41
+	private Vectors(Vectors.Vectors5,70
+	public static <T> Vector<T> empty(Vectors.empty8,146
+	public static <T> Vector<T> of(Vectors.of12,214
+	public static <T> Vector<T> copyOf(Vectors.copyOf16,300
+
+src/main/java/com/jayway/changeless/records/Record.java,53
+public interface Record 4,79
+	Map<Record.Map5,105
+
+src/main/java/com/jayway/changeless/records/RecordBuilder.java,211
+public interface RecordBuilder<RecordBuilder3,40
+	public T create(RecordBuilder.create4,91
+	public T create() throws InstantiationException, IllegalAccessException;RecordBuilder.IllegalAccessException4,91
+
+src/main/java/com/jayway/changeless/records/RecordInterceptor.java,938
+class RecordInceptor<RecordInceptor12,325
+	private Map<RecordInceptor.Map13,395
+	private Map<String, Object> data;RecordInceptor.data13,395
+	private final Class<T> clazz;RecordInceptor.clazz14,430
+	public RecordInceptor(RecordInceptor.RecordInceptor16,463
+	private RecordInceptor(RecordInceptor.RecordInceptor20,553
+	public Object invoke(RecordInceptor.invoke27,712
+	public int hashCode(RecordInceptor.hashCode68,1720
+	public boolean equals(RecordInceptor.equals77,1957
+	public Map<RecordInceptor.Map88,2189
+	public Map<String, Object> getData(RecordInceptor.getData88,2189
+	public String toString(RecordInceptor.toString93,2259
+	private boolean isGetDataMethod(RecordInceptor.isGetDataMethod97,2318
+	private boolean isEqualsMethod(RecordInceptor.isEqualsMethod101,2418
+	private boolean isHashCodeMethod(RecordInceptor.isHashCodeMethod105,2515
+	private boolean isToString(RecordInceptor.isToString109,2617
+
+src/main/java/com/jayway/changeless/records/DefaultRecordBuilder.java,501
+class DefaultRecordBuilder<DefaultRecordBuilder5,73
+	private final Class<T> clazz;DefaultRecordBuilder.clazz6,148
+	private ClassLoader classLoader;DefaultRecordBuilder.classLoader7,179
+	private Class<?>[] interfaces;DefaultRecordBuilder.interfaces8,213
+	private DefaultRecordBuilder(DefaultRecordBuilder.DefaultRecordBuilder10,246
+	@SuppressWarnings(DefaultRecordBuilder.@SuppressWarnings16,398
+	public static <T extends Record> RecordBuilder<T> create(DefaultRecordBuilder.create22,618
+
+src/main/java/com/jayway/changeless/records/Records.java,171
+public final class Records 3,40
+	public static <T extends Record> T of(Records.of4,69
+	public static <T extends Record> RecordBuilder<T> builder(Records.builder8,219
+
+src/main/java/com/jayway/changeless/optionals/Optional.java,683
+public final class Optional<Optional7,170
+	private V value;Optional.value8,203
+	private Optional(Optional.Optional10,223
+	public boolean hasValue(Optional.hasValue18,417
+	public boolean hasNoValue(Optional.hasNoValue26,615
+	public V getValue(Optional.getValue35,827
+	public <T extends V> V getValueOrDefault(Optional.getValueOrDefault50,1318
+	public static <T> Optional<T> none(Optional.none62,1599
+	public static <T> Optional<T> valueOf(Optional.valueOf73,1951
+	public String toString(Optional.toString81,2155
+	public int hashCode(Optional.hashCode86,2252
+	@SuppressWarnings(Optional.@SuppressWarnings93,2410
+	public boolean equals(Optional.equals106,2684
+
+src/main/java/com/jayway/changeless/maps/Maps.java,947
+public final class Maps 6,82
+	private Maps(Maps.Maps7,108
+	public static Maps.static9,149
+	public static <K,V> Map<Maps.Map9,149
+	public static <K,V> Map<K, V> empty(Maps.empty9,149
+	public static Maps.static13,230
+	public static <K,V> Map<Maps.Map13,230
+	public static <K,V> Map<K,V> of(Maps.of13,230
+	public static Maps.static17,290
+	public static <K,V> Map<Maps.Map17,290
+	public static <K,V> Map<K,V> of(Maps.of17,290
+	public static Maps.static22,401
+	public static <K,V> Map<Maps.Map22,401
+	public static <K,V> Map<K,V> of(Maps.of22,401
+	public static Maps.static27,527
+	public static <K,V> Map<Maps.Map27,527
+	public static <K,V> Map<K,V> of(Maps.of27,527
+	public static Maps.static32,673
+	public static <K,V> Map<Maps.Map32,673
+	public static <K,V> Map<K,V> of(Maps.of32,673
+	public static Maps.static37,839
+	public static <K,V> Map<Maps.Map37,839
+	public static <K,V> Map<K,V> of(Maps.of37,839
+
+src/main/java/com/jayway/changeless/maps/MapEntry.java,224
+	private final K key;4,65
+	private final V value;5,87
+	public MapEntry(7,113
+	public K getKey(13,203
+	public V getValue(17,242
+	public String toString(22,297
+	public int hashCode(27,397
+	public boolean equals(35,562
+
+src/main/java/com/jayway/changeless/tuples/Tuples.java,551
+public final class Tuples 5,83
+	private Tuples(Tuples.Tuples6,111
+	public static Tuples.static8,154
+	public static <T1, T2> Tuple<Tuples.Tuple8,154
+	public static <T1, T2> Tuple<T1, T2> of(Tuples.of8,154
+	public static Tuples.static12,274
+	public static <T1,T2> Fn<Tuples.Fn12,274
+	public static <T1,T2> Fn<Tuple<T1,T2>, T1> firstFunction(Tuples.firstFunction12,274
+	public static Tuples.static21,473
+	public static <T1,T2> Fn<Tuples.Fn21,473
+	public static <T1,T2> Fn<Tuple<T1,T2>, T2> secondFunction(Tuples.secondFunction21,473
+
+src/main/java/com/jayway/changeless/sets/Sets.java,208
+public final class Sets 5,39
+	private Sets(Sets.Sets6,65
+	public static <T> Set<T> empty(Sets.empty8,106
+	public static <T> Set<T> copyOf(Sets.copyOf12,182
+	public static <T> Set<T> of(Sets.of16,287
+
+src/main/java/com/jayway/changeless/sets/ImmutableHashSet.java,1373
+final class ImmutableHashSet<ImmutableHashSet11,280
+	private final HashTrie<T> root;ImmutableHashSet.root13,333
+	private volatile int cachedHashcode ImmutableHashSet.cachedHashcode14,366
+	private boolean isHashCodeCached(ImmutableHashSet.isHashCodeCached16,411
+	private ImmutableHashSet(ImmutableHashSet.ImmutableHashSet20,485
+	public static <T> Set<T> empty(ImmutableHashSet.empty24,556
+	public static <T> Set<T> copyOf(ImmutableHashSet.copyOf29,677
+	public static <T> Set<T> of(ImmutableHashSet.of37,900
+	public Set<T> add(ImmutableHashSet.add46,1122
+	public boolean contains(ImmutableHashSet.contains55,1339
+	public int size(ImmutableHashSet.size67,1575
+	public Set<T> remove(ImmutableHashSet.remove72,1633
+	public Set<T> remove(ImmutableHashSet.remove81,1854
+	public Sequence<T> sequence(ImmutableHashSet.sequence90,2075
+	public String toString(ImmutableHashSet.toString95,2150
+	public boolean isEmpty(ImmutableHashSet.isEmpty100,2225
+	public Set<T> intersection(ImmutableHashSet.intersection105,2293
+	public Set<T> union(Iterable<ImmutableHashSet.Iterable117,2611
+	public Set<T> symmetricDifference(ImmutableHashSet.symmetricDifference126,2838
+	public int hashCode(ImmutableHashSet.hashCode140,3209
+	@SuppressWarnings(ImmutableHashSet.@SuppressWarnings155,3475
+	public Iterator<T> iterator(ImmutableHashSet.iterator182,3929
+
+src/main/java/com/jayway/changeless/sets/Set.java,50
+public interface Set<ImmutableHashSet.Set11,355
+
+src/main/java/com/jayway/changeless/sequences/FilterSequence.java,395
+final class FilterSequence<FilterSequence5,94
+	private final Sequence<T> sequence;FilterSequence.sequence7,151
+	private final Predicate<? super T> predicate;FilterSequence.predicate8,188
+	public FilterSequence(FilterSequence.FilterSequence10,236
+	public static <R> Sequence<R> create(FilterSequence.create15,377
+	public Sequence<T> createSequence(FilterSequence.createSequence20,540
+
+src/main/java/com/jayway/changeless/sequences/CycleSequence.java,372
+final class CycleSequence<CycleSequence3,42
+	private final Sequence<T> current;CycleSequence.current4,97
+	private final Sequence<T> original;CycleSequence.original5,133
+	private CycleSequence(CycleSequence.CycleSequence7,171
+	public static <T> Sequence<T> create(CycleSequence.create12,297
+	public Sequence<T> createSequence(CycleSequence.createSequence20,477
+
+src/main/java/com/jayway/changeless/sequences/IteratorSequence.java,318
+final class IteratorSequence<IteratorSequence8,118
+	private final Iterator<T> source;IteratorSequence.source10,177
+	public IteratorSequence(IteratorSequence.IteratorSequence12,213
+	public Sequence<T> createSequence(IteratorSequence.createSequence18,335
+	public boolean isEmpty(IteratorSequence.isEmpty28,571
+
+src/main/java/com/jayway/changeless/sequences/TakeSequence.java,420
+final class TakeSequence<TakeSequence4,43
+	private final int n;TakeSequence.n5,100
+	private final Sequence<T> sequence;TakeSequence.sequence6,122
+	private TakeSequence(TakeSequence.TakeSequence8,160
+	public T first(TakeSequence.first14,271
+	public static <T> Sequence<T> create(TakeSequence.create18,322
+	public Sequence<T> rest(TakeSequence.rest27,524
+	public boolean isEmpty(TakeSequence.isEmpty32,620
+
+src/main/java/com/jayway/changeless/sequences/Sequence.java,118
+public interface Sequence<Sequence10,264
+	Map<Sequence.Map151,4982
+	<TOther> Sequence<Sequence.Sequence229,7497
+
+src/main/java/com/jayway/changeless/sequences/DefaultSequenceIterator.java,475
+final class DefaultSequenceIterator<DefaultSequenceIterator14,318
+	private Sequence<T> sequence;DefaultSequenceIterator.sequence15,382
+	public static <T> Iterator<T> of(DefaultSequenceIterator.of22,600
+	private DefaultSequenceIterator(DefaultSequenceIterator.DefaultSequenceIterator31,900
+	public boolean hasNext(DefaultSequenceIterator.hasNext37,1039
+	public T next(DefaultSequenceIterator.next42,1112
+	public void remove(DefaultSequenceIterator.remove52,1297
+
+src/main/java/com/jayway/changeless/sequences/EmptySequence.java,320
+final class EmptySequence<EmptySequence3,42
+	private EmptySequence(EmptySequence.EmptySequence5,101
+	public T first(EmptySequence.first8,162
+	public Sequence<T> rest(EmptySequence.rest13,280
+	public boolean isEmpty(EmptySequence.isEmpty18,405
+	public static <T> Sequence<T> create(EmptySequence.create22,452
+
+src/main/java/com/jayway/changeless/sequences/IntegerSequence.java,363
+final class IntegerSequence 5,44
+	private final int from;IntegerSequence.from7,108
+	private final int step;IntegerSequence.step8,133
+	IntegerSequence(IntegerSequence.IntegerSequence10,159
+	public Integer first(IntegerSequence.first16,253
+	public Sequence<Integer> rest(IntegerSequence.rest21,309
+	public boolean isEmpty(IntegerSequence.isEmpty26,408
+
+src/main/java/com/jayway/changeless/sequences/SequenceSupport.java,2145
+public abstract class SequenceSupport<SequenceSupport18,599
+	private static final int MAXIMUM_ELEMENTS_IN_TO_STRING SequenceSupport.MAXIMUM_ELEMENTS_IN_TO_STRING19,665
+	public Sequence<T> add(SequenceSupport.add25,790
+	public Sequence<T> add(SequenceSupport.add35,1046
+	public String toString(SequenceSupport.toString45,1282
+	public Sequence<T> interpose(SequenceSupport.interpose65,1838
+	public Sequence<T> skip(SequenceSupport.skip70,1951
+	public <R> Sequence<R> transform(SequenceSupport.transform84,2174
+	public Sequence<T> filter(SequenceSupport.filter89,2316
+	@SuppressWarnings(SequenceSupport.@SuppressWarnings93,2431
+	public Map<SequenceSupport.Map130,3015
+	public Map<T, Integer> frequencies(SequenceSupport.frequencies130,3015
+	private Fn2<SequenceSupport.Fn2134,3122
+	private Fn2<Map<T, Integer>, T, Map<T, Integer>> frequencyFunction SequenceSupport.frequencyFunction134,3122
+	public int hashCode(SequenceSupport.hashCode144,3432
+	public int size(SequenceSupport.size154,3621
+	public boolean isSize(SequenceSupport.isSize165,3781
+	public Sequence<T> sequence(SequenceSupport.sequence178,4028
+	public Sequence<T> append(SequenceSupport.append183,4091
+	public <R> R reduce(SequenceSupport.reduce188,4230
+	public Sequence<T> reverse(SequenceSupport.reverse202,4470
+	public boolean all(SequenceSupport.all211,4650
+	public boolean any(SequenceSupport.any216,4760
+	public boolean non(SequenceSupport.non226,4933
+	public boolean isEmpty(SequenceSupport.isEmpty231,5028
+	public Iterator<T> iterator(SequenceSupport.iterator236,5088
+	public T get(SequenceSupport.get241,5179
+	public Sequence<T> take(SequenceSupport.take251,5414
+	public Sequence<T> remove(SequenceSupport.remove256,5502
+	public Sequence<T> remove(SequenceSupport.remove261,5616
+	public Sequence<Sequence<T>> partition(SequenceSupport.partition266,5736
+	public Sequence<T> cycle(SequenceSupport.cycle271,5845
+	public <TOther> Sequence<SequenceSupport.Sequence276,5927
+	public <TOther> Sequence<Tuple<T, TOther>> zip(SequenceSupport.zip276,5927
+	public Sequence<T> insertAt(SequenceSupport.insertAt281,6064
+
+src/main/java/com/jayway/changeless/sequences/IntegerSequenceBuilder.java,463
+public final class IntegerSequenceBuilder 6,90
+	private final int from;IntegerSequenceBuilder.from8,135
+	private int step IntegerSequenceBuilder.step9,160
+	public IntegerSequenceBuilder(IntegerSequenceBuilder.IntegerSequenceBuilder11,184
+	public IntegerSequenceBuilder step(IntegerSequenceBuilder.step15,252
+	public Sequence<Integer> upward(IntegerSequenceBuilder.upward21,375
+	public Sequence<Integer> downward(IntegerSequenceBuilder.downward25,459
+
+src/main/java/com/jayway/changeless/sequences/LazySequence.java,350
+public abstract class LazySequence<LazySequence4,43
+	private Sequence<T> cachedValue;LazySequence.cachedValue5,110
+	public T first(LazySequence.first10,206
+	public Sequence<T> rest(LazySequence.rest15,276
+	public boolean isEmpty(LazySequence.isEmpty20,354
+	public synchronized Sequence<T> getCachedValue(LazySequence.getCachedValue24,423
+
+src/main/java/com/jayway/changeless/sequences/AppendedSequence.java,502
+final class AppendedSequence<AppendedSequence3,42
+	private final Sequence<T> startSequence;AppendedSequence.startSequence5,104
+	private final Sequence<T> endSequence;AppendedSequence.endSequence6,146
+	private AppendedSequence(AppendedSequence.AppendedSequence8,187
+	public static <T> Sequence<T> create(AppendedSequence.create14,351
+	public Sequence<T> rest(AppendedSequence.rest24,586
+	public T first(AppendedSequence.first29,682
+	public boolean isEmpty(AppendedSequence.isEmpty34,749
+
+src/main/java/com/jayway/changeless/sequences/DefaultSequenceProducer.java,477
+final class DefaultSequenceProducer<DefaultSequenceProducer7,136
+	private final T first;DefaultSequenceProducer.first9,202
+	private final Fn<? super T, ? extends Optional<T>> producer;DefaultSequenceProducer.producer10,226
+	private DefaultSequenceProducer(DefaultSequenceProducer.DefaultSequenceProducer12,289
+	public static <T> Sequence<T> create(DefaultSequenceProducer.create17,438
+	public Sequence<T> createSequence(DefaultSequenceProducer.createSequence22,611
+
+src/main/java/com/jayway/changeless/sequences/InterposeSequence.java,334
+final class InterposeSequence<InterposeSequence4,43
+	private final SequenceSupport<T> source;InterposeSequence.source6,103
+	private final T separator;InterposeSequence.separator7,145
+	public InterposeSequence(InterposeSequence.InterposeSequence9,174
+	public Sequence<T> createSequence(InterposeSequence.createSequence16,343
+
+src/main/java/com/jayway/changeless/sequences/ArraySequence.java,606
+final class ArraySequence<ArraySequence12,230
+	private final int offset;ArraySequence.offset14,313
+	private final List<T> elements;ArraySequence.elements15,340
+	private ArraySequence(ArraySequence.ArraySequence17,375
+	public static <T> Sequence<T> of(ArraySequence.of22,516
+	public static <T> Sequence<T> copyOf(ArraySequence.copyOf33,808
+	public T first(ArraySequence.first45,1107
+	public Sequence<T> rest(ArraySequence.rest50,1174
+	public boolean isEmpty(ArraySequence.isEmpty55,1271
+	public Iterator<T> iterator(ArraySequence.iterator60,1351
+	public T get(ArraySequence.get65,1429
+
+src/main/java/com/jayway/changeless/sequences/DefaultSequenceBuilder.java,367
+public final class DefaultSequenceBuilder<DefaultSequenceBuilder7,136
+	private T current;DefaultSequenceBuilder.current8,183
+	public DefaultSequenceBuilder(DefaultSequenceBuilder.DefaultSequenceBuilder10,205
+	public static <T> DefaultSequenceBuilder<T> from(DefaultSequenceBuilder.from14,268
+	public Sequence<T> produce(DefaultSequenceBuilder.produce18,379
+
+src/main/java/com/jayway/changeless/sequences/ZipSequence.java,559
+	private final Sequence<T1> s1;DefaultSequenceBuilder.s17,197
+	private final Sequence<T2> s2;DefaultSequenceBuilder.s28,229
+	private ZipSequence(DefaultSequenceBuilder.ZipSequence10,262
+	public static DefaultSequenceBuilder.static15,356
+	public static <T1,T2> Sequence<DefaultSequenceBuilder.Sequence15,356
+	public static <T1,T2> Sequence<Tuple<T1, T2>> create(DefaultSequenceBuilder.create15,356
+	public Sequence<DefaultSequenceBuilder.Sequence23,574
+	public Sequence<Tuple<T1, T2>> createSequence(DefaultSequenceBuilder.createSequence23,574
+
+src/main/java/com/jayway/changeless/sequences/Sequenceable.java,49
+public interface Sequenceable<Sequenceable3,42
+
+src/main/java/com/jayway/changeless/sequences/DefaultSequence.java,470
+final class DefaultSequence<DefaultSequence6,90
+	private final T first;DefaultSequence.first7,150
+	private final Sequence<T> rest;DefaultSequence.rest8,174
+	private DefaultSequence(DefaultSequence.DefaultSequence10,209
+	public final T first(DefaultSequence.first18,384
+	public final Sequence<T> rest(DefaultSequence.rest23,441
+	public static <T> Sequence<T> create(DefaultSequence.create27,497
+	public final boolean isEmpty(DefaultSequence.isEmpty32,626
+
+src/main/java/com/jayway/changeless/sequences/PartitionSequence.java,409
+final class PartitionSequence<PartitionSequence5,89
+	private final int n;PartitionSequence.n6,158
+	private final Sequence<T> sequence;PartitionSequence.sequence7,180
+	private PartitionSequence(PartitionSequence.PartitionSequence9,218
+	public static <T> Sequence<Sequence<T>> create(PartitionSequence.create14,322
+	public Sequence<Sequence<T>> createSequence(PartitionSequence.createSequence24,557
+
+src/main/java/com/jayway/changeless/sequences/Sequences.java,927
+public final class Sequences 11,229
+	private Sequences(Sequences.Sequences12,260
+	public static <T> Sequence<T> append(Sequences.append14,306
+	public static <T> Sequence<T> of(Sequences.of18,436
+	public static <T> Sequence<T> empty(Sequences.empty22,529
+	public static <T> Sequence<T> copyOf(Sequences.copyOf26,608
+	public static <T> Sequence<T> lazyCopyOf(Sequences.lazyCopyOf30,716
+	public static <T> Sequence<T> appended(Sequences.appended34,842
+	public static IntegerSequenceBuilder from(Sequences.from42,1121
+	public static <T> DefaultSequenceBuilder<T> from(Sequences.from46,1224
+	public static <T extends Comparable<T>> T min(Sequences.min50,1333
+	public static <T extends Comparable<T>> T max(Sequences.max58,1632
+	public static Sequences.static66,1932
+	public static <T1,T2> Tuple<Sequences.Tuple66,1932
+	public static <T1,T2> Tuple<Sequence<T1>,Sequence<T2>> unzip(Sequences.unzip66,1932
+
+src/main/java/com/jayway/changeless/predicates/Predicate.java,44
+public interface Predicate<Predicate8,224
+
+src/main/java/com/jayway/changeless/predicates/Predicates.java,294
+public final class Predicates 3,43
+	private Predicates(Predicates.Predicates4,75
+	public static <T> Predicate<T> not(Predicates.not6,122
+	public static Predicate<Object> notNull=Predicates.notNull15,318
+	public static Predicate<Object> equalsPredicate(Predicates.equalsPredicate22,477
+
+src/main/java/com/jayway/changeless/predicates/integers/OddPredicate.java,81
+public class OddPredicate 5,104
+	public boolean apply(OddPredicate.apply7,173
+
+src/main/java/com/jayway/changeless/predicates/integers/EvenPredicate.java,110
+public class EvenPredicate OddPredicate.EvenPredicate5,104
+	public boolean apply(EvenPredicate.apply7,174
+
+src/main/java/com/jayway/changeless/sequences/TransformedSequence.java,0
+
+src/main/java/com/jayway/changeless/tuples/Tuple.java,0
+
+src/main/java/com/jayway/changeless/tuples/DefaultTuple.java,0
+
+src/main/java/com/jayway/changeless/maps/Map.java,0
+
+src/main/java/com/jayway/changeless/maps/ImmutableHashMap.java,0
+
+src/main/java/com/jayway/changeless/functions/Fn.java,0
+
+src/main/java/com/jayway/changeless/functions/Fn2.java,0
+
+src/test/java/com/jayway/changeless/internal/hashtrie/HashtrieTests.java,699
+public class HashtrieTests 10,208
+	public void addedIntegersCanBeFound(HashtrieTests.addedIntegersCanBeFound12,244
+	public void emptyHashTrieIsEmpty(HashtrieTests.emptyHashTrieIsEmpty26,628
+	public void nonEmptyIsNotEmpty(HashtrieTests.nonEmptyIsNotEmpty31,766
+	public void emptyHashTrieHasSizeZero(HashtrieTests.emptyHashTrieHasSizeZero37,952
+	public void sizeIsPreservedWhileAddedElementsToAHashTrie(HashtrieTests.sizeIsPreservedWhileAddedElementsToAHashTrie43,1150
+	public void addAnElementMultipleTimesDoesNotIncreaseSize(HashtrieTests.addAnElementMultipleTimesDoesNotIncreaseSize55,1531
+	public void containsOnNonExistingElement(HashtrieTests.containsOnNonExistingElement62,1765
+
+src/test/java/com/jayway/changeless/test/IterableTestSupportSanityCheck.java,189
+public class IterableTestSupportSanityCheck 6,91
+	protected Iterable<Integer> createIterableWithOneOrMoreElements(IterableTestSupportSanityCheck.createIterableWithOneOrMoreElements9,185
+
+src/test/java/com/jayway/changeless/test/IterableTestSupport.java,689
+public abstract class IterableTestSupport<IterableTestSupport21,485
+	private Iterator<T> iterator;IterableTestSupport.iterator29,735
+	private Iterable<T> iterable;IterableTestSupport.iterable30,766
+	public void baseSetup(IterableTestSupport.baseSetup33,808
+	public void nonEmptyIterableHasNextElement(IterableTestSupport.nonEmptyIterableHasNextElement42,1003
+	@Test(IterableTestSupport.@Test47,1174
+	public void removeBeforeCallingNext(IterableTestSupport.removeBeforeCallingNext60,1537
+	public void doubleRemoveAfterCallingNext(IterableTestSupport.doubleRemoveAfterCallingNext76,1977
+	public void removeAfterCallingNext(IterableTestSupport.removeAfterCallingNext95,2457
+
+src/test/java/com/jayway/changeless/test/EqualsAndHashcodeTestSupport.java,1332
+public abstract class EqualsAndHashcodeTestSupport 14,320
+	private Object x;EqualsAndHashcodeTestSupport.x16,374
+	private Object y;EqualsAndHashcodeTestSupport.y17,393
+	private Object z;EqualsAndHashcodeTestSupport.z18,412
+	private Object notx;EqualsAndHashcodeTestSupport.notx20,433
+	public void baseSetup(EqualsAndHashcodeTestSupport.baseSetup23,466
+    public void equalToSelf(EqualsAndHashcodeTestSupport.equalToSelf37,780
+    public void passIncompatibleTypeIsFalse(EqualsAndHashcodeTestSupport.passIncompatibleTypeIsFalse46,958
+    public void nullReferenceIsFalse(EqualsAndHashcodeTestSupport.nullReferenceIsFalse55,1190
+    public void equalsIsReflexiveIsSymmetric(EqualsAndHashcodeTestSupport.equalsIsReflexiveIsSymmetric64,1480
+    public void equalsIsTransitive(EqualsAndHashcodeTestSupport.equalsIsTransitive77,1794
+    public void equalsIsConsistent(EqualsAndHashcodeTestSupport.equalsIsConsistent88,2122
+    public void hashcodeIsConsistent(EqualsAndHashcodeTestSupport.hashcodeIsConsistent103,2572
+    public void hashcodeTwoEqualsObjects_produceSameNumber(EqualsAndHashcodeTestSupport.hashcodeTwoEqualsObjects_produceSameNumber115,2958
+    public void hashcodeTwoUnEqualObjects_produceDifferentNumber(EqualsAndHashcodeTestSupport.hashcodeTwoUnEqualObjects_produceDifferentNumber129,3365
+
+src/test/java/com/jayway/changeless/test/ArrayIterableTest.java,163
+public class ArrayIterableTest 5,88
+	protected Iterable<Integer> createIterableWithOneOrMoreElements(ArrayIterableTest.createIterableWithOneOrMoreElements8,170
+
+src/test/java/com/jayway/changeless/intervals/ClosedOpenIntervalTests.java,504
+public class ClosedOpenIntervalTests 7,143
+	protected Interval<Integer> interval(ClosedOpenIntervalTests.interval10,230
+	protected Integer valueAfter(ClosedOpenIntervalTests.valueAfter15,323
+	protected Integer valueAtEnd(ClosedOpenIntervalTests.valueAtEnd20,384
+	protected Integer valueAtStart(ClosedOpenIntervalTests.valueAtStart25,445
+	protected Integer valueBefore(ClosedOpenIntervalTests.valueBefore30,508
+	protected Integer valueInInterval(ClosedOpenIntervalTests.valueInInterval35,570
+
+src/test/java/com/jayway/changeless/intervals/IntervalTestSupport.java,580
+public abstract class IntervalTestSupport<IntervalTestSupport10,278
+	public void valuesBeforeIsNotIncluded(IntervalTestSupport.valuesBeforeIsNotIncluded19,588
+	public void valuesAfterIsNotIncluded(IntervalTestSupport.valuesAfterIsNotIncluded24,712
+	public void valuesAtStartOfIntervalIsIncluded(IntervalTestSupport.valuesAtStartOfIntervalIsIncluded29,834
+	public void valuesAtEndOfIntervalIsIncluded(IntervalTestSupport.valuesAtEndOfIntervalIsIncluded34,960
+	public void valuesAtMiddleOfIntervalIsIncluded(IntervalTestSupport.valuesAtMiddleOfIntervalIsIncluded39,1082
+
+src/test/java/com/jayway/changeless/intervals/OpenClosedIntervalTests.java,504
+public class OpenClosedIntervalTests 7,143
+	protected Interval<Integer> interval(OpenClosedIntervalTests.interval10,230
+	protected Integer valueAfter(OpenClosedIntervalTests.valueAfter15,327
+	protected Integer valueAtEnd(OpenClosedIntervalTests.valueAtEnd20,388
+	protected Integer valueAtStart(OpenClosedIntervalTests.valueAtStart25,449
+	protected Integer valueBefore(OpenClosedIntervalTests.valueBefore30,512
+	protected Integer valueInInterval(OpenClosedIntervalTests.valueInInterval35,574
+
+src/test/java/com/jayway/changeless/intervals/IntervalAssert.java,246
+public class IntervalAssert 8,180
+	public static <T extends Comparable<T>> void assertOutsideInterval(IntervalAssert.assertOutsideInterval9,210
+	public static <T extends Comparable<T>> void assertContains(IntervalAssert.assertContains14,463
+
+src/test/java/com/jayway/changeless/intervals/InfiniteEndInterval.java,201
+public class InfiniteEndInterval 10,244
+	private Interval<Integer> interval InfiniteEndInterval.interval11,279
+	public void maximumValueIsIncluded(InfiniteEndInterval.maximumValueIsIncluded14,358
+
+src/test/java/com/jayway/changeless/intervals/InfiniteStartInterval.java,207
+public class InfiniteStartInterval 10,244
+	private Interval<Integer> interval InfiniteStartInterval.interval11,281
+	public void minimumValueIsIncluded(InfiniteStartInterval.minimumValueIsIncluded14,369
+
+src/test/java/com/jayway/changeless/intervals/ClosedClosedIntervalTests.java,518
+public class ClosedClosedIntervalTests 7,143
+	protected Interval<Integer> interval(ClosedClosedIntervalTests.interval10,232
+	protected Integer valueAfter(ClosedClosedIntervalTests.valueAfter15,327
+	protected Integer valueAtEnd(ClosedClosedIntervalTests.valueAtEnd20,388
+	protected Integer valueAtStart(ClosedClosedIntervalTests.valueAtStart25,449
+	protected Integer valueBefore(ClosedClosedIntervalTests.valueBefore30,512
+	protected Integer valueInInterval(ClosedClosedIntervalTests.valueInInterval35,574
+
+src/test/java/com/jayway/changeless/intervals/OpenOpenIntervalTests.java,490
+public class OpenOpenIntervalTests 7,143
+	protected Interval<Integer> interval(OpenOpenIntervalTests.interval10,228
+	protected Integer valueAfter(OpenOpenIntervalTests.valueAfter15,323
+	protected Integer valueAtEnd(OpenOpenIntervalTests.valueAtEnd20,384
+	protected Integer valueAtStart(OpenOpenIntervalTests.valueAtStart25,445
+	protected Integer valueBefore(OpenOpenIntervalTests.valueBefore30,508
+	protected Integer valueInInterval(OpenOpenIntervalTests.valueInInterval35,570
+
+src/test/java/com/jayway/changeless/vectors/VectorEqualsAndHashcodeTest.java,238
+public class VectorEqualsAndHashcodeTest 7,152
+	protected Object createFirstInstance(VectorEqualsAndHashcodeTest.createFirstInstance10,244
+	protected Object createSecondInstance(VectorEqualsAndHashcodeTest.createSecondInstance15,332
+
+src/test/java/com/jayway/changeless/vectors/VectorEqualsAndHashcodeWithEmptyVectorTest.java,283
+public class VectorEqualsAndHashcodeWithEmptyVectorTest 7,152
+	protected Object createFirstInstance(VectorEqualsAndHashcodeWithEmptyVectorTest.createFirstInstance10,259
+	protected Object createSecondInstance(VectorEqualsAndHashcodeWithEmptyVectorTest.createSecondInstance15,339
+
+src/test/java/com/jayway/changeless/vectors/VectorEqualsAndHashcodeComparedWithEmptyVectorTest.java,307
+public class VectorEqualsAndHashcodeComparedWithEmptyVectorTest 7,152
+	protected Object createFirstInstance(VectorEqualsAndHashcodeComparedWithEmptyVectorTest.createFirstInstance10,267
+	protected Object createSecondInstance(VectorEqualsAndHashcodeComparedWithEmptyVectorTest.createSecondInstance15,355
+
+src/test/java/com/jayway/changeless/vectors/VectorEqualsAndHashcodeComparedWithSequenceTest.java,529
+public class VectorEqualsAndHashcodeComparedWithSequenceTest 14,355
+	protected Object createFirstInstance(VectorEqualsAndHashcodeComparedWithSequenceTest.createFirstInstance17,467
+	protected Object createSecondInstance(VectorEqualsAndHashcodeComparedWithSequenceTest.createSecondInstance22,555
+	public void vectorEqualsToSequence(VectorEqualsAndHashcodeComparedWithSequenceTest.vectorEqualsToSequence27,643
+	public void sequenceEqualsToVector(VectorEqualsAndHashcodeComparedWithSequenceTest.sequenceEqualsToVector34,895
+
+src/test/java/com/jayway/changeless/vectors/VectorTests.java,2333
+public class VectorTests 12,290
+	public void emptyVectorIsEmpty(VectorTests.emptyVectorIsEmpty14,324
+	public void ofWithOneArguments(VectorTests.ofWithOneArguments20,504
+	public void ofWithTwoArguments(VectorTests.ofWithTwoArguments26,674
+	public void vectorAddTwoElementsHasAnIncreasedSize(VectorTests.vectorAddTwoElementsHasAnIncreasedSize32,846
+	public void vectorAddTreeElementsHasAnIncreasedSize(VectorTests.vectorAddTreeElementsHasAnIncreasedSize38,1054
+	public void emptyVectorReturnsEmptySequence(VectorTests.emptyVectorReturnsEmptySequence44,1263
+	public void addNothingToEmpty(VectorTests.addNothingToEmpty51,1491
+	public void addNothingToVector(VectorTests.addNothingToVector58,1696
+	public void vectorSequenceContainsElementsInOrder(VectorTests.vectorSequenceContainsElementsInOrder65,1933
+	public void negativSkipReturnsEntireVector(VectorTests.negativSkipReturnsEntireVector72,2220
+	public void skipLargerThanSizeReturnsAnEmptyVector(VectorTests.skipLargerThanSizeReturnsAnEmptyVector78,2405
+	public void skipNegativeOnVector(VectorTests.skipNegativeOnVector85,2657
+	public void skipZeroOnVector(VectorTests.skipZeroOnVector93,2964
+	public void skipOnVector(VectorTests.skipOnVector101,3267
+	public void skipAndAdd(VectorTests.skipAndAdd109,3560
+	public void skipOnVectorSequence(VectorTests.skipOnVectorSequence116,3804
+	public void toSequenceAndBack(VectorTests.toSequenceAndBack124,4124
+	@Test(VectorTests.@Test130,4376
+	@Test(VectorTests.@Test136,4575
+	@Test(VectorTests.@Test142,4780
+	@Test(VectorTests.@Test148,4983
+	@Test(VectorTests.@Test154,5192
+	@Test(VectorTests.@Test160,5400
+	@Test(VectorTests.@Test166,5613
+	@Test(VectorTests.@Test172,5821
+	public void setOnVector(VectorTests.setOnVector179,6041
+	public void setOnPrefixVector(VectorTests.setOnPrefixVector187,6314
+	public void setOnSuffixVector(VectorTests.setOnSuffixVector195,6597
+	public void takeNegativeReturnEmptyVector(VectorTests.takeNegativeReturnEmptyVector203,6880
+	public void takeZeroReturnEmptyVector(VectorTests.takeZeroReturnEmptyVector210,7123
+	public void takeLargerThanSize(VectorTests.takeLargerThanSize217,7361
+	public void takeAndAdd(VectorTests.takeAndAdd224,7583
+	public void takeAndAddMoreThanOriginalVector(VectorTests.takeAndAddMoreThanOriginalVector232,7860
+
+src/test/java/com/jayway/changeless/records/RecordsTests.java,145
+interface Person 12,298
+interface Address 19,432
+public class RecordsTests 26,579
+	public void createRecord(RecordsTests.createRecord28,614
+
+src/test/java/com/jayway/changeless/optionals/OptionalNoneEqualsAndHashcode.java,243
+public class OptionalNoneEqualsAndHashcode 6,156
+	protected Object createFirstInstance(OptionalNoneEqualsAndHashcode.createFirstInstance9,249
+	protected Object createSecondInstance(OptionalNoneEqualsAndHashcode.createSecondInstance14,332
+
+src/test/java/com/jayway/changeless/optionals/OptionalTests.java,242
+public class OptionalTests 9,151
+	@Test(OptionalTests.@Test10,180
+	@Test(OptionalTests.@Test15,308
+	public void toStringOnNone(OptionalTests.toStringOnNone21,448
+	public void toStringOnGetValue(OptionalTests.toStringOnGetValue28,646
+
+src/test/java/com/jayway/changeless/optionals/NoneOptionalEqualsAndHashcode.java,243
+public class NoneOptionalEqualsAndHashcode 6,156
+	protected Object createFirstInstance(NoneOptionalEqualsAndHashcode.createFirstInstance9,249
+	protected Object createSecondInstance(NoneOptionalEqualsAndHashcode.createSecondInstance14,343
+
+src/test/java/com/jayway/changeless/optionals/OptionalEqualsAndHashcode.java,231
+public class OptionalEqualsAndHashcode 6,156
+	protected Object createFirstInstance(OptionalEqualsAndHashcode.createFirstInstance9,245
+	protected Object createSecondInstance(OptionalEqualsAndHashcode.createSecondInstance14,338
+
+src/test/java/com/jayway/changeless/maps/MapsTests.java,625
+public class MapsTests 12,276
+	public void putCreatesANewMap(MapsTests.putCreatesANewMap14,308
+	public void insertedIntegersCanBeFound(MapsTests.insertedIntegersCanBeFound25,637
+	public void insertedStringsCanBeFound(MapsTests.insertedStringsCanBeFound40,1051
+	public void replacedStringCanBeFound(MapsTests.replacedStringCanBeFound54,1493
+	public void insertAtTheEndOfBucket(MapsTests.insertAtTheEndOfBucket73,2032
+	public void toStringOnEmptyMap(MapsTests.toStringOnEmptyMap81,2327
+	public void toStringOnMap(MapsTests.toStringOnMap87,2506
+	public void toSequenceAndBack(MapsTests.toSequenceAndBack96,2905
+
+src/test/java/com/jayway/changeless/maps/MapEqualsAndHashcodeComparedWithEmptyMapTest.java,289
+public class MapEqualsAndHashcodeComparedWithEmptyMapTest 7,143
+	protected Object createFirstInstance(MapEqualsAndHashcodeComparedWithEmptyMapTest.createFirstInstance10,252
+	protected Object createSecondInstance(MapEqualsAndHashcodeComparedWithEmptyMapTest.createSecondInstance15,357
+
+src/test/java/com/jayway/changeless/maps/MapsEqualsAndHashcodeTest.java,232
+public class MapsEqualsAndHashcodeTest 7,143
+	protected Object createFirstInstance(MapsEqualsAndHashcodeTest.createFirstInstance10,233
+	protected Object createSecondInstance(MapsEqualsAndHashcodeTest.createSecondInstance15,333
+
+src/test/java/com/jayway/changeless/maps/MapEqualsAndHashcodeWithEmptyMapTest.java,265
+public class MapEqualsAndHashcodeWithEmptyMapTest 7,143
+	protected Object createFirstInstance(MapEqualsAndHashcodeWithEmptyMapTest.createFirstInstance10,244
+	protected Object createSecondInstance(MapEqualsAndHashcodeWithEmptyMapTest.createSecondInstance15,321
+
+src/test/java/com/jayway/changeless/tuples/TupleEqualsAndHashcodeTest.java,235
+public class TupleEqualsAndHashcodeTest 7,149
+	protected Object createFirstInstance(TupleEqualsAndHashcodeTest.createFirstInstance10,240
+	protected Object createSecondInstance(TupleEqualsAndHashcodeTest.createSecondInstance15,327
+
+src/test/java/com/jayway/changeless/tuples/TupleTests.java,94
+public class TupleTests 7,108
+	@Test(TupleTests.@Test8,134
+	@Test(TupleTests.@Test13,267
+
+src/test/java/com/jayway/changeless/sets/SetEqualsAndHashcodeTest.java,229
+public class SetEqualsAndHashcodeTest 7,143
+	protected Object createFirstInstance(SetEqualsAndHashcodeTest.createFirstInstance10,232
+	protected Object createSecondInstance(SetEqualsAndHashcodeTest.createSecondInstance15,317
+
+src/test/java/com/jayway/changeless/sets/SetEqualsAndHashcodeComparedWithEmptySetTest.java,289
+public class SetEqualsAndHashcodeComparedWithEmptySetTest 7,143
+	protected Object createFirstInstance(SetEqualsAndHashcodeComparedWithEmptySetTest.createFirstInstance10,252
+	protected Object createSecondInstance(SetEqualsAndHashcodeComparedWithEmptySetTest.createSecondInstance15,337
+
+src/test/java/com/jayway/changeless/sets/SetEqualsAndHashcodeWithEmptySetTest.java,265
+public class SetEqualsAndHashcodeWithEmptySetTest 7,143
+	protected Object createFirstInstance(SetEqualsAndHashcodeWithEmptySetTest.createFirstInstance10,244
+	protected Object createSecondInstance(SetEqualsAndHashcodeWithEmptySetTest.createSecondInstance15,321
+
+src/test/java/com/jayway/changeless/sets/SetTests.java,4473
+public class SetTests 13,296
+	private Set<String> strings SetTests.strings14,320
+	public void addedIntegersCanBeFound(SetTests.addedIntegersCanBeFound18,456
+	public void addedStringsCanBeFound(SetTests.addedStringsCanBeFound32,808
+	public void emptySetIsEmpty(SetTests.emptySetIsEmpty46,1194
+	public void nonEmptyIsNotEmpty(SetTests.nonEmptyIsNotEmpty51,1316
+	public void emptySetsHasSizeZero(SetTests.emptySetsHasSizeZero57,1470
+	public void sizeIsPreservedWhileAddedElementsToASet(SetTests.sizeIsPreservedWhileAddedElementsToASet63,1626
+	public void addAnElementMultipleTimesDoesNotIncreaseSize(SetTests.addAnElementMultipleTimesDoesNotIncreaseSize75,1992
+	public void containsOnNonExistingElement(SetTests.containsOnNonExistingElement82,2197
+	public void addingTwoElementsUnequalButWithSameHash(SetTests.addingTwoElementsUnequalButWithSameHash89,2401
+	public void putDuplicateElementIntoFullNote(SetTests.putDuplicateElementIntoFullNote107,3100
+	public void removeFromFullNode(SetTests.removeFromFullNode119,3378
+	public void removeNonExistingElementFromFullNode(SetTests.removeNonExistingElementFromFullNode126,3578
+	public void remove10000Integers(SetTests.remove10000Integers139,3945
+	public void remove10000Strings(SetTests.remove10000Strings154,4282
+	public void remove10000TestElements(SetTests.remove10000TestElements169,4653
+	public void removeNonExistingElementFromLeafNode(SetTests.removeNonExistingElementFromLeafNode184,5032
+	public void removeAll(SetTests.removeAll192,5232
+	public void removeNone(SetTests.removeNone200,5469
+	public void removeNonExisting(SetTests.removeNonExisting208,5687
+	public void removeIntersection(SetTests.removeIntersection216,5912
+	public void removeNonIntersection(SetTests.removeNonIntersection225,6184
+	public void containsNonExistingElementFromLeafNode(SetTests.containsNonExistingElementFromLeafNode233,6411
+	public void containsNonExistingElementFromCollisionNode(SetTests.containsNonExistingElementFromCollisionNode240,6615
+	public void setToSequenceOf10000Strings(SetTests.setToSequenceOf10000Strings248,6899
+	public void setToSequenceOf10000Integers(SetTests.setToSequenceOf10000Integers258,7132
+	public void theSeqeunceOfAnEmptySetIsEmpty(SetTests.theSeqeunceOfAnEmptySetIsEmpty274,7483
+	public void simpleIntersection(SetTests.simpleIntersection279,7639
+	public void fullIntersection(SetTests.fullIntersection287,7889
+	public void noIntersectionFirstSetBefore(SetTests.noIntersectionFirstSetBefore295,8138
+	public void noIntersectionFirstSetAfter(SetTests.noIntersectionFirstSetAfter303,8396
+	public void noIntersectionInterleavedSets(SetTests.noIntersectionInterleavedSets311,8653
+	public void intersectionWithEmptySet(SetTests.intersectionWithEmptySet319,8912
+	public void emptySetIntersectionWithNonEmptySet(SetTests.emptySetIntersectionWithNonEmptySet327,9164
+	public void intersectionOfEmptySets(SetTests.intersectionOfEmptySets335,9427
+	public void simpleUnion(SetTests.simpleUnion343,9676
+	public void fullUnion(SetTests.fullUnion351,9913
+	public void unionOnNonIntersectingSetsFirstSetBefore(SetTests.unionOnNonIntersectingSetsFirstSetBefore359,10141
+	public void unionOnNonIntersectingSetsFirstSetAfter(SetTests.unionOnNonIntersectingSetsFirstSetAfter367,10405
+	public void unionInterleavedSets(SetTests.unionInterleavedSets375,10668
+	public void unionWithEmptySet(SetTests.unionWithEmptySet383,10912
+	public void emptySetUnionedWithNonEmptySet(SetTests.emptySetUnionedWithNonEmptySet391,11145
+	public void unionOfEmptySets(SetTests.unionOfEmptySets399,11391
+	public void toSeqenceAndBack(SetTests.toSeqenceAndBack407,11619
+	public void symmetricDifferentWithNoElements(SetTests.symmetricDifferentWithNoElements414,11837
+	public void symmetricDifferentOnEmptySet(SetTests.symmetricDifferentOnEmptySet423,12129
+	public void symmetricDifferentWithNoSharedElements(SetTests.symmetricDifferentWithNoSharedElements432,12417
+	public void symmetricDifferentWithSharedElements(SetTests.symmetricDifferentWithSharedElements441,12734
+	private static class TestElement SetTests.TestElement449,13041
+		private final int value;SetTests.TestElement.value450,13077
+		public TestElement(SetTests.TestElement.TestElement452,13105
+		public int hashCode(SetTests.TestElement.hashCode457,13179
+		public String toString(SetTests.TestElement.toString462,13259
+		public boolean equals(SetTests.TestElement.equals467,13338
+
+src/test/java/com/jayway/changeless/sequences/SequenceTest.java,6075
+public class SequenceTest 25,816
+	public void emptySequenceIsEmpty(SequenceTest.emptySequenceIsEmpty27,851
+	public void ofWithNoArgumentsCreatesAnEmptySequence(SequenceTest.ofWithNoArgumentsCreatesAnEmptySequence33,1044
+	public void ofWithOneArgumentShouldCreateANonEmptySequence(SequenceTest.ofWithOneArgumentShouldCreateANonEmptySequence39,1253
+	public void ofWithTwoArguments(SequenceTest.ofWithTwoArguments45,1476
+	@Test(SequenceTest.@Test50,1651
+	@Test(SequenceTest.@Test55,1803
+	@Test(SequenceTest.@Test61,2010
+	public void sizeOfEmptySequenceIsZero(SequenceTest.sizeOfEmptySequenceIsZero68,2222
+	public void ofWithThreeArguments(SequenceTest.ofWithThreeArguments74,2408
+	public void addIncreasesSizeByOne(SequenceTest.addIncreasesSizeByOne80,2596
+	public void toStringOnEmptySequence(SequenceTest.toStringOnEmptySequence88,2875
+	public void toStringOnNonEmptySequence(SequenceTest.toStringOnNonEmptySequence95,3101
+	@Test(SequenceTest.@Test101,3338
+	@Test(SequenceTest.@Test106,3487
+	public void takeFromLargeSequence(SequenceTest.takeFromLargeSequence112,3641
+	public void takeFromSmallSequence(SequenceTest.takeFromSmallSequence120,3946
+	public void takeFromEntireSequence(SequenceTest.takeFromEntireSequence128,4243
+	public void takeFromEmptySequence(SequenceTest.takeFromEmptySequence136,4541
+	public void takeNegativeNumberOfElementsReturnsEmptySequence(SequenceTest.takeNegativeNumberOfElementsReturnsEmptySequence144,4824
+	public void takeZeroElementsReturnsEmptySequence(SequenceTest.takeZeroElementsReturnsEmptySequence151,5089
+	public void skipNegativeNumberOfElements(SequenceTest.skipNegativeNumberOfElements158,5341
+	public void skipZeroElements(SequenceTest.skipZeroElements165,5589
+	public void skipEntireSequence(SequenceTest.skipEntireSequence172,5824
+	public void transformSequence(SequenceTest.transformSequence179,6058
+	public void transformSequenceDoesNotChangeSize(SequenceTest.transformSequenceDoesNotChangeSize187,6385
+	public void filterSeqence(SequenceTest.filterSeqence195,6698
+	@Test(SequenceTest.@Test202,7009
+	public void integerSeqenceWithSteps(SequenceTest.integerSeqenceWithSteps208,7181
+	public void integerSeqenceDownwardWithSteps(SequenceTest.integerSeqenceDownwardWithSteps215,7448
+	public void addMultipleTimes(SequenceTest.addMultipleTimes222,7729
+	public void copyOfIterable(SequenceTest.copyOfIterable229,8004
+	public void changedToSourceIterableDoesNoEffectSequence(SequenceTest.changedToSourceIterableDoesNoEffectSequence236,8256
+	public void changedToSourceElementsDoesNoEffectSequence(SequenceTest.changedToSourceElementsDoesNoEffectSequence245,8623
+	@Test(SequenceTest.@Test253,8973
+	public void getElementZero(SequenceTest.getElementZero259,9122
+	public void getElementOne(SequenceTest.getElementOne267,9365
+	public void getLastElement(SequenceTest.getLastElement275,9607
+	public void summingEmptySequenceWithReduce(SequenceTest.summingEmptySequenceWithReduce283,9850
+	public void summingSequenceWithReduce(SequenceTest.summingSequenceWithReduce292,10159
+	public void joiningStringsWithReduce(SequenceTest.joiningStringsWithReduce301,10464
+	public void reverseEmptySequence(SequenceTest.reverseEmptySequence310,10825
+	public void reverseSequence(SequenceTest.reverseSequence318,11104
+	public void evenSequence(SequenceTest.evenSequence326,11390
+	public void frequenciesOnEmptySequenceReturnsAnEmptyMap(SequenceTest.frequenciesOnEmptySequenceReturnsAnEmptyMap334,11732
+	public void frequencies(SequenceTest.frequencies342,12045
+	public void toSequenceAndBack(SequenceTest.toSequenceAndBack351,12421
+	public void filterOnInfiniteSequence(SequenceTest.filterOnInfiniteSequence358,12659
+	public void transformOnInfiniteSequence(SequenceTest.transformOnInfiniteSequence366,13013
+	public void addIterableToSequence(SequenceTest.addIterableToSequence374,13363
+	public void getElementOnInfiniteSequence(SequenceTest.getElementOnInfiniteSequence382,13697
+	@Test(SequenceTest.@Test387,13903
+	@Test(SequenceTest.@Test392,14048
+	public void lazyCopyOfSequence(SequenceTest.lazyCopyOfSequence398,14219
+	public void sequenceProducer(SequenceTest.sequenceProducer405,14493
+	@Test(SequenceTest.@Test417,14950
+	public void minOnSequence(SequenceTest.minOnSequence423,15114
+	@Test(SequenceTest.@Test430,15334
+	public void maxOnSequence(SequenceTest.maxOnSequence436,15498
+	@Test(SequenceTest.@Test443,15718
+	public void partitionOnEmptySequence(SequenceTest.partitionOnEmptySequence449,15887
+	@SuppressWarnings(SequenceTest.@SuppressWarnings455,16128
+	@SuppressWarnings(SequenceTest.@SuppressWarnings470,16599
+	@SuppressWarnings(SequenceTest.@SuppressWarnings485,17067
+	@SuppressWarnings(SequenceTest.@SuppressWarnings500,17533
+	public void cycleEmptySequence(SequenceTest.cycleEmptySequence510,17910
+	public void cycleSequence(SequenceTest.cycleSequence516,18096
+	@SuppressWarnings(SequenceTest.@SuppressWarnings523,18394
+	public void upzipSequence(SequenceTest.upzipSequence536,18893
+	@Test(SequenceTest.@Test546,19389
+	public void insertAtNegativeIndex(SequenceTest.insertAtNegativeIndex552,19544
+	public void insertAtFront(SequenceTest.insertAtFront560,19846
+	public void insertAtEnd(SequenceTest.insertAtEnd568,20145
+	public void insertAtAfterEnd(SequenceTest.insertAtAfterEnd576,20442
+	public void insertAtIntoEmptySequence(SequenceTest.insertAtIntoEmptySequence584,20746
+	public void insertNothing(SequenceTest.insertNothing592,21044
+	public void insertAtIntoInfiniteSequence(SequenceTest.insertAtIntoInfiniteSequence600,21318
+	public void isSizeOnEmpty(SequenceTest.isSizeOnEmpty608,21652
+	public void isNotSizeOnEmpty(SequenceTest.isNotSizeOnEmpty614,21815
+	@Test(SequenceTest.@Test619,21976
+	public void isSizeLessThanSequenceSize(SequenceTest.isSizeLessThanSequenceSize625,22118
+	public void isSizeGreaterThanSequenceSize(SequenceTest.isSizeGreaterThanSequenceSize631,22299
+	public void isSizeEqualsToSequenceSize(SequenceTest.isSizeEqualsToSequenceSize637,22483
+
+src/test/java/com/jayway/changeless/sequences/SequenceEqualsAndHashcodeWithEmptySequenceTest.java,355
+public class SequenceEqualsAndHashcodeWithEmptySequenceTest SequenceTest.SequenceEqualsAndHashcodeWithEmptySequenceTest7,158
+	protected Object createFirstInstance(SequenceEqualsAndHashcodeWithEmptySequenceTest.createFirstInstance10,269
+	protected Object createSecondInstance(SequenceEqualsAndHashcodeWithEmptySequenceTest.createSecondInstance15,351
+
+src/test/java/com/jayway/changeless/sequences/SequenceFilterMethodTests.java,132
+public class SequenceFilterMethodTests 11,262
+	public void filterWithInterval(SequenceFilterMethodTests.filterWithInterval13,310
+
+src/test/java/com/jayway/changeless/sequences/SequenceEqualsAndHashcodeTest.java,244
+public class SequenceEqualsAndHashcodeTest 7,158
+	protected Object createFirstInstance(SequenceEqualsAndHashcodeTest.createFirstInstance10,252
+	protected Object createSecondInstance(SequenceEqualsAndHashcodeTest.createSecondInstance15,342
+
+src/test/java/com/jayway/changeless/sequences/SequenceAllMethodTests.java,603
+public class SequenceAllMethodTests 13,284
+	private final Sequence<Integer> oddSequence SequenceAllMethodTests.oddSequence14,322
+	private final Sequence<Integer> evenSequence SequenceAllMethodTests.evenSequence15,395
+	private final Sequence<Integer> mixedSequence SequenceAllMethodTests.mixedSequence16,469
+	public void allReturnsTrueForEmptySequence(SequenceAllMethodTests.allReturnsTrueForEmptySequence19,562
+	public void notAllOdd(SequenceAllMethodTests.notAllOdd25,749
+	public void allOdd(SequenceAllMethodTests.allOdd30,885
+	public void allEven(SequenceAllMethodTests.allEven35,1013
+
+src/test/java/com/jayway/changeless/sequences/DefaultSequenceIteratorTest.java,185
+public class DefaultSequenceIteratorTest 8,198
+	protected Iterable<Integer> createIterableWithOneOrMoreElements(DefaultSequenceIteratorTest.createIterableWithOneOrMoreElements11,290
+
+src/test/java/com/jayway/changeless/sequences/SequenceEqualsAndHashcodeComparedWithEmptySequenceTest.java,319
+public class SequenceEqualsAndHashcodeComparedWithEmptySequenceTest 7,158
+	protected Object createFirstInstance(SequenceEqualsAndHashcodeComparedWithEmptySequenceTest.createFirstInstance10,277
+	protected Object createSecondInstance(SequenceEqualsAndHashcodeComparedWithEmptySequenceTest.createSecondInstance15,367
+
+src/main/java/com/jayway/changeless/functions/objects/ToStringFunction.java,89
+public class ToStringFunction 8,203
+	public String apply(ToStringFunction.apply15,515
+
+src/main/java/com/jayway/changeless/functions/strings/AppendStringFunction.java,142
+public class AppendStringFunction ToStringFunction.AppendStringFunction9,232
+	public StringBuilder apply(AppendStringFunction.apply19,676
+
+src/main/java/com/jayway/changeless/functions/Functions.java,207
+public final class Functions 8,194
+	private Functions(Functions.Functions9,225
+	public static Fn<Functions.Fn14,366
+	public static Fn<Object, String> toStringFunction Functions.toStringFunction14,366
+
+src/main/java/com/jayway/changeless/functions/integers/PlusFunction.java,80
+public class PlusFunction 5,96
+	public Integer apply(PlusFunction.apply7,177
+
+src/main/java/com/jayway/changeless/internal/hashtrie/HashTrie.java,43
+public interface HashTrie<HashTrie24,809
+
+src/main/java/com/jayway/changeless/internal/hashtrie/SingleNode.java,303
+abstract class SingleNode<SingleNode4,51
+	private final int hash;SingleNode.hash5,105
+	public SingleNode(SingleNode.SingleNode7,131
+	public final int getHash(SingleNode.getHash12,197
+	protected BitmappedNode<T> bitmap(SingleNode.bitmap16,246
+	public boolean isEmpty(SingleNode.isEmpty33,828
+
+src/main/java/com/jayway/changeless/internal/hashtrie/EmptyNode.java,490
+final class EmptyNode<SingleNode.EmptyNode10,228
+	public HashTrie<T> add(EmptyNode.add13,290
+	public Optional<T> get(EmptyNode.get18,400
+	public HashTrie<T> remove(EmptyNode.remove23,484
+	public int size(EmptyNode.size28,562
+	public boolean isEmpty(EmptyNode.isEmpty33,611
+	public String toString(EmptyNode.toString38,670
+	public Sequence<T> sequence(EmptyNode.sequence43,745
+	public Iterator<T> iterator(EmptyNode.iterator48,821
+	public int waist(EmptyNode.waist53,901
+
+src/main/java/com/jayway/changeless/internal/hashtrie/CollisionNode.java,594
+final class CollisionNode<CollisionNode8,177
+	private final Sequence<T> bucket;CollisionNode.bucket10,231
+	public CollisionNode(CollisionNode.CollisionNode12,267
+	public HashTrie<T> add(CollisionNode.add19,407
+	public Optional<T> get(CollisionNode.get29,658
+	public HashTrie<T> remove(CollisionNode.remove39,852
+	public int size(CollisionNode.size56,1219
+	public String toString(CollisionNode.toString61,1279
+	public Sequence<T> sequence(CollisionNode.sequence66,1355
+	public Iterator<T> iterator(CollisionNode.iterator71,1420
+	public int waist(CollisionNode.waist76,1500
+
+src/main/java/com/jayway/changeless/internal/hashtrie/BitmappedNode.java,766
+final class BitmappedNode<BitmappedNode9,227
+	private final int bits;BitmappedNode.bits11,282
+	private final int shift;BitmappedNode.shift12,307
+	private final Array<HashTrie<T>> table;BitmappedNode.table13,333
+	public BitmappedNode(BitmappedNode.BitmappedNode15,375
+	public HashTrie<T> add(BitmappedNode.add22,525
+	public Optional<T> get(BitmappedNode.get49,1282
+	public HashTrie<T> remove(BitmappedNode.remove61,1514
+	public int size(BitmappedNode.size106,2495
+	public int waist(BitmappedNode.waist116,2621
+	public boolean isEmpty(BitmappedNode.isEmpty130,2847
+	public Sequence<T> sequence(BitmappedNode.sequence135,2906
+	public Iterator<T> iterator(BitmappedNode.iterator140,3008
+	public String toString(BitmappedNode.toString145,3089
+
+src/main/java/com/jayway/changeless/internal/hashtrie/HashTries.java,143
+public final class HashTries 6,133
+	private HashTries(HashTries.HashTries7,164
+	public static <T> HashTrie<T> empty(HashTries.empty13,368
+
+src/main/java/com/jayway/changeless/internal/hashtrie/FullNode.java,627
+final class FullNode<FullNode9,227
+	private final Array<HashTrie<T>> table;FullNode.table11,277
+	private final int shift;FullNode.shift12,318
+	public FullNode(FullNode.FullNode14,345
+	public HashTrie<T> add(FullNode.add20,460
+	public Optional<T> get(FullNode.get34,836
+	public HashTrie<T> remove(FullNode.remove39,959
+	public int size(FullNode.size61,1448
+	public boolean isEmpty(FullNode.isEmpty70,1573
+	public String toString(FullNode.toString75,1633
+	public Sequence<T> sequence(FullNode.sequence80,1722
+	public Iterator<T> iterator(FullNode.iterator85,1807
+	public int waist(FullNode.waist90,1887
+
+src/main/java/com/jayway/changeless/internal/hashtrie/LeafNode.java,512
+final class LeafNode<LeafNode9,227
+	private final T value;LeafNode.value10,275
+	public LeafNode(LeafNode.LeafNode12,300
+	public HashTrie<T> add(LeafNode.add19,422
+	public Optional<T> get(LeafNode.get33,726
+	public HashTrie<T> remove(LeafNode.remove42,891
+	public int size(LeafNode.size51,1038
+	public String toString(LeafNode.toString56,1086
+	public Sequence<T> sequence(LeafNode.sequence62,1194
+	public Iterator<T> iterator(LeafNode.iterator67,1273
+	public int waist(LeafNode.waist72,1353
+
+src/main/java/com/jayway/changeless/internal/hashtrie/Array.java,658
+final class Array<Array6,103
+	private final Object[] data;Array.data7,149
+	private Array(Array.Array9,181
+	public Array(Array.Array13,238
+	@SuppressWarnings(Array.@SuppressWarnings17,296
+	public void set(Array.set22,378
+	public Array<T> copy(Array.copy26,437
+	public Array<T> copy(Array.copy30,496
+	public int size(Array.size34,591
+	public Iterator<T> iterator(Array.iterator39,649
+	private class SkipNullIterator Array.SkipNullIterator43,720
+		public boolean hasNext(Array.SkipNullIterator.hasNext47,811
+		@SuppressWarnings(Array.SkipNullIterator.@SuppressWarnings57,955
+		public void remove(Array.SkipNullIterator.remove64,1062
+
+src/main/java/com/jayway/changeless/intervals/FiniteEndpoint.java,212
+abstract class FiniteEndpoint<FiniteEndpoint3,42
+	private final T value;FiniteEndpoint.value4,77
+	public FiniteEndpoint(FiniteEndpoint.FiniteEndpoint6,102
+	public T getValue(FiniteEndpoint.getValue10,162
+
+src/main/java/com/jayway/changeless/intervals/ClosedStart.java,194
+final class ClosedStart<ClosedStart5,95
+	public ClosedStart(ClosedStart.ClosedStart6,200
+	public boolean after(ClosedStart.after11,262
+	public String toString(ClosedStart.toString16,372
+
+src/main/java/com/jayway/changeless/intervals/StartIntervalBuilder.java,406
+public final class StartIntervalBuilder<StartIntervalBuilder4,43
+	private final IntervalStart<T> start;StartIntervalBuilder.start5,110
+	public StartIntervalBuilder(StartIntervalBuilder.StartIntervalBuilder7,150
+	public Interval<T> closed(StartIntervalBuilder.closed11,232
+	public Interval<T> open(StartIntervalBuilder.open15,335
+	public Interval<T> infinite(StartIntervalBuilder.infinite19,435
+
+src/main/java/com/jayway/changeless/intervals/InfiniteEnd.java,144
+final class InfiniteEnd<InfiniteEnd3,42
+	public boolean before(InfiniteEnd.before6,131
+	public String toString(InfiniteEnd.toString11,196
+
+src/main/java/com/jayway/changeless/intervals/OpenEnd.java,168
+final class OpenEnd<OpenEnd6,96
+	public OpenEnd(OpenEnd.OpenEnd7,195
+	public boolean before(OpenEnd.before12,253
+	public String toString(OpenEnd.toString17,353
+
+src/main/java/com/jayway/changeless/intervals/ClosedEnd.java,182
+final class ClosedEnd<ClosedEnd5,95
+	public ClosedEnd(ClosedEnd.ClosedEnd6,196
+	public boolean before(ClosedEnd.before11,256
+	public String toString(ClosedEnd.toString16,364
+
+src/main/java/com/jayway/changeless/intervals/OpenStart.java,180
+final class OpenStart<OpenStart5,95
+	public OpenStart(OpenStart.OpenStart6,198
+	public boolean after(OpenStart.after11,258
+	public String toString(OpenStart.toString16,359
+
+src/main/java/com/jayway/changeless/intervals/InfiniteStart.java,150
+final class InfiniteStart<InfiniteStart3,42
+	public boolean after(InfiniteStart.after6,135
+	public String toString(InfiniteStart.toString11,199
+
+src/main/java/com/jayway/changeless/intervals/Intervals.java,442
+public final class Intervals 4,43
+	private Intervals(Intervals.Intervals5,74
+	public static StartIntervalBuilder<Integer> zero Intervals.zero7,120
+	public static <T extends Comparable<T>> StartIntervalBuilder<T> closed(Intervals.closed9,185
+	public static <T extends Comparable<T>> StartIntervalBuilder<T> open(Intervals.open13,337
+	public static <T extends Comparable<T>> StartIntervalBuilder<T> infinite(Intervals.infinite17,485
+
+src/main/java/com/jayway/changeless/intervals/Interval.java,42
+public interface Interval<Interval9,214
+
+src/main/java/com/jayway/changeless/intervals/IntervalStart.java,44
+interface IntervalStart<IntervalStart3,42
+
+src/main/java/com/jayway/changeless/intervals/DefaultInterval.java,408
+final class DefaultInterval<DefaultInterval4,43
+	private final IntervalStart<T> start;DefaultInterval.start5,121
+	private final IntervalEnd<T> end;DefaultInterval.end6,160
+	public DefaultInterval(DefaultInterval.DefaultInterval8,196
+	public boolean contains(DefaultInterval.contains14,321
+	public String toString(DefaultInterval.toString19,423
+	public boolean apply(DefaultInterval.apply24,511
+
+src/main/java/com/jayway/changeless/intervals/IntervalEnd.java,40
+interface IntervalEnd<IntervalEnd3,42
+
+src/main/java/com/jayway/changeless/utilities/Guard.java,288
+public final class Guard 5,92
+	private Guard(Guard.Guard6,119
+	public static void notNull(Guard.notNull8,161
+	public static void notNull(Guard.notNull15,396
+	public static void nonNegative(Guard.nonNegative23,734
+	public static <T extends Comparable<T>> void in(Guard.in30,969
+
+src/main/java/com/jayway/changeless/utilities/Comparables.java,901
+public final class Comparables 5,87
+	private Comparables(Comparables.Comparables6,120
+	public static <T extends Comparable<T>> boolean lessThan(Comparables.lessThan15,441
+	public static <T extends Comparable<T>> boolean greaterThan(Comparables.greaterThan26,838
+	public static <T extends Comparable<T>> boolean greaterThanOrEquals(Comparables.greaterThanOrEquals37,1264
+	public static <T extends Comparable<T>> boolean lessThanOrEquals(Comparables.lessThanOrEquals48,1693
+	public static <T extends Comparable<T>> boolean equals(Comparables.equals59,2093
+	public static <T extends Comparable<T>> Fn2<Comparables.Fn268,2405
+	public static <T extends Comparable<T>> Fn2<T,T,T> minFunction(Comparables.minFunction68,2405
+	public static <T extends Comparable<T>> Fn2<Comparables.Fn282,2801
+	public static <T extends Comparable<T>> Fn2<T,T,T> maxFunction(Comparables.maxFunction82,2801
+
+src/main/java/com/jayway/changeless/vectors/PrefixVector.java,504
+final class PrefixVector<PrefixVector6,137
+	private final int size;PrefixVector.size7,192
+	private final Vector<T> vector;PrefixVector.vector8,217
+	public PrefixVector(PrefixVector.PrefixVector10,251
+	public static <T> Vector<T> create(PrefixVector.create15,350
+	public Vector<T> add(PrefixVector.add29,616
+	public T get(PrefixVector.get44,975
+	public boolean isEmpty(PrefixVector.isEmpty50,1102
+	public int size(PrefixVector.size55,1161
+	public Vector<T> set(PrefixVector.set60,1212
+
+src/main/java/com/jayway/changeless/vectors/Vector.java,39
+public interface Vector<Vector10,243
+
+src/main/java/com/jayway/changeless/vectors/VectorSequence.java,391
+final class VectorSequence<VectorSequence7,196
+	private final Vector<T> vector;VectorSequence.vector8,255
+	private VectorSequence(VectorSequence.VectorSequence10,289
+	public static <T> Sequence<T> create(VectorSequence.create14,362
+	public Sequence<T> rest(VectorSequence.rest22,534
+	public Sequence<T> skip(VectorSequence.skip27,612
+	public T first(VectorSequence.first32,694
+
+src/main/java/com/jayway/changeless/vectors/VectorSupport.java,518
+public abstract class VectorSupport<VectorSupport11,268
+	public Vector<T> skip(VectorSupport.skip13,341
+	public Vector<T> take(VectorSupport.take18,428
+	public Sequence<T> sequence(VectorSupport.sequence23,514
+	public Iterator<T> iterator(VectorSupport.iterator28,600
+	public String toString(VectorSupport.toString33,680
+	@SuppressWarnings(VectorSupport.@SuppressWarnings37,745
+	public int hashCode(VectorSupport.hashCode55,1151
+	protected void EnsureValidIndex(VectorSupport.EnsureValidIndex62,1273
+
+src/main/java/com/jayway/changeless/vectors/SuffixVector.java,553
+final class SuffixVector<SuffixVector5,42
+	private final Vector<T> vector;SuffixVector.vector7,97
+	private final int offset;SuffixVector.offset8,130
+	private SuffixVector(SuffixVector.SuffixVector10,158
+	public static <T> Vector<T> create(SuffixVector.create15,265
+	public boolean isEmpty(SuffixVector.isEmpty26,502
+	public Vector<T> add(SuffixVector.add31,573
+	public Vector<T> skip(SuffixVector.skip36,674
+	public T get(SuffixVector.get41,786
+	public int size(SuffixVector.size47,892
+	public Vector<T> set(SuffixVector.set52,961
+
+src/main/java/com/jayway/changeless/vectors/MapVector.java,566
+final class MapVector<MapVector6,120
+	private final Map<MapVector.Map7,172
+	private final Map<Integer, T> data;MapVector.data7,172
+	private final int size;MapVector.size8,209
+	private MapVector(MapVector.MapVector10,235
+	public static <T> MapVector<T> of(MapVector.of15,333
+	public static <T> MapVector<T> copyOf(MapVector.copyOf23,565
+	public boolean isEmpty(MapVector.isEmpty34,806
+	public int size(MapVector.size39,871
+	public Vector<T> add(MapVector.add44,923
+	public T get(MapVector.get59,1209
+	public Vector<T> set(MapVector.set65,1315
+
+src/main/java/com/jayway/changeless/vectors/Vectors.java,238
+public final class Vectors 4,41
+	private Vectors(Vectors.Vectors5,70
+	public static <T> Vector<T> empty(Vectors.empty8,146
+	public static <T> Vector<T> of(Vectors.of12,214
+	public static <T> Vector<T> copyOf(Vectors.copyOf16,300
+
+src/main/java/com/jayway/changeless/records/Record.java,53
+public interface Record 4,79
+	Map<Record.Map5,105
+
+src/main/java/com/jayway/changeless/records/RecordBuilder.java,211
+public interface RecordBuilder<RecordBuilder3,40
+	public T create(RecordBuilder.create4,91
+	public T create() throws InstantiationException, IllegalAccessException;RecordBuilder.IllegalAccessException4,91
+
+src/main/java/com/jayway/changeless/records/RecordInterceptor.java,938
+class RecordInceptor<RecordInceptor12,325
+	private Map<RecordInceptor.Map13,395
+	private Map<String, Object> data;RecordInceptor.data13,395
+	private final Class<T> clazz;RecordInceptor.clazz14,430
+	public RecordInceptor(RecordInceptor.RecordInceptor16,463
+	private RecordInceptor(RecordInceptor.RecordInceptor20,553
+	public Object invoke(RecordInceptor.invoke27,712
+	public int hashCode(RecordInceptor.hashCode68,1720
+	public boolean equals(RecordInceptor.equals77,1957
+	public Map<RecordInceptor.Map88,2189
+	public Map<String, Object> getData(RecordInceptor.getData88,2189
+	public String toString(RecordInceptor.toString93,2259
+	private boolean isGetDataMethod(RecordInceptor.isGetDataMethod97,2318
+	private boolean isEqualsMethod(RecordInceptor.isEqualsMethod101,2418
+	private boolean isHashCodeMethod(RecordInceptor.isHashCodeMethod105,2515
+	private boolean isToString(RecordInceptor.isToString109,2617
+
+src/main/java/com/jayway/changeless/records/DefaultRecordBuilder.java,501
+class DefaultRecordBuilder<DefaultRecordBuilder5,73
+	private final Class<T> clazz;DefaultRecordBuilder.clazz6,148
+	private ClassLoader classLoader;DefaultRecordBuilder.classLoader7,179
+	private Class<?>[] interfaces;DefaultRecordBuilder.interfaces8,213
+	private DefaultRecordBuilder(DefaultRecordBuilder.DefaultRecordBuilder10,246
+	@SuppressWarnings(DefaultRecordBuilder.@SuppressWarnings16,398
+	public static <T extends Record> RecordBuilder<T> create(DefaultRecordBuilder.create22,618
+
+src/main/java/com/jayway/changeless/records/Records.java,171
+public final class Records 3,40
+	public static <T extends Record> T of(Records.of4,69
+	public static <T extends Record> RecordBuilder<T> builder(Records.builder8,219
+
+src/main/java/com/jayway/changeless/optionals/Optional.java,683
+public final class Optional<Optional7,170
+	private V value;Optional.value8,203
+	private Optional(Optional.Optional10,223
+	public boolean hasValue(Optional.hasValue18,417
+	public boolean hasNoValue(Optional.hasNoValue26,615
+	public V getValue(Optional.getValue35,827
+	public <T extends V> V getValueOrDefault(Optional.getValueOrDefault50,1318
+	public static <T> Optional<T> none(Optional.none62,1599
+	public static <T> Optional<T> valueOf(Optional.valueOf73,1951
+	public String toString(Optional.toString81,2155
+	public int hashCode(Optional.hashCode86,2252
+	@SuppressWarnings(Optional.@SuppressWarnings93,2410
+	public boolean equals(Optional.equals106,2684
+
+src/main/java/com/jayway/changeless/maps/Maps.java,947
+public final class Maps 6,82
+	private Maps(Maps.Maps7,108
+	public static Maps.static9,149
+	public static <K,V> Map<Maps.Map9,149
+	public static <K,V> Map<K, V> empty(Maps.empty9,149
+	public static Maps.static13,230
+	public static <K,V> Map<Maps.Map13,230
+	public static <K,V> Map<K,V> of(Maps.of13,230
+	public static Maps.static17,290
+	public static <K,V> Map<Maps.Map17,290
+	public static <K,V> Map<K,V> of(Maps.of17,290
+	public static Maps.static22,401
+	public static <K,V> Map<Maps.Map22,401
+	public static <K,V> Map<K,V> of(Maps.of22,401
+	public static Maps.static27,527
+	public static <K,V> Map<Maps.Map27,527
+	public static <K,V> Map<K,V> of(Maps.of27,527
+	public static Maps.static32,673
+	public static <K,V> Map<Maps.Map32,673
+	public static <K,V> Map<K,V> of(Maps.of32,673
+	public static Maps.static37,839
+	public static <K,V> Map<Maps.Map37,839
+	public static <K,V> Map<K,V> of(Maps.of37,839
+
+src/main/java/com/jayway/changeless/maps/MapEntry.java,224
+	private final K key;4,65
+	private final V value;5,87
+	public MapEntry(7,113
+	public K getKey(13,203
+	public V getValue(17,242
+	public String toString(22,297
+	public int hashCode(27,397
+	public boolean equals(35,562
+
+src/main/java/com/jayway/changeless/tuples/Tuples.java,551
+public final class Tuples 5,83
+	private Tuples(Tuples.Tuples6,111
+	public static Tuples.static8,154
+	public static <T1, T2> Tuple<Tuples.Tuple8,154
+	public static <T1, T2> Tuple<T1, T2> of(Tuples.of8,154
+	public static Tuples.static12,274
+	public static <T1,T2> Fn<Tuples.Fn12,274
+	public static <T1,T2> Fn<Tuple<T1,T2>, T1> firstFunction(Tuples.firstFunction12,274
+	public static Tuples.static21,473
+	public static <T1,T2> Fn<Tuples.Fn21,473
+	public static <T1,T2> Fn<Tuple<T1,T2>, T2> secondFunction(Tuples.secondFunction21,473
+
+src/main/java/com/jayway/changeless/sets/Sets.java,208
+public final class Sets 5,39
+	private Sets(Sets.Sets6,65
+	public static <T> Set<T> empty(Sets.empty8,106
+	public static <T> Set<T> copyOf(Sets.copyOf12,182
+	public static <T> Set<T> of(Sets.of16,287
+
+src/main/java/com/jayway/changeless/sets/ImmutableHashSet.java,1373
+final class ImmutableHashSet<ImmutableHashSet11,280
+	private final HashTrie<T> root;ImmutableHashSet.root13,333
+	private volatile int cachedHashcode ImmutableHashSet.cachedHashcode14,366
+	private boolean isHashCodeCached(ImmutableHashSet.isHashCodeCached16,411
+	private ImmutableHashSet(ImmutableHashSet.ImmutableHashSet20,485
+	public static <T> Set<T> empty(ImmutableHashSet.empty24,556
+	public static <T> Set<T> copyOf(ImmutableHashSet.copyOf29,677
+	public static <T> Set<T> of(ImmutableHashSet.of37,900
+	public Set<T> add(ImmutableHashSet.add46,1122
+	public boolean contains(ImmutableHashSet.contains55,1339
+	public int size(ImmutableHashSet.size67,1575
+	public Set<T> remove(ImmutableHashSet.remove72,1633
+	public Set<T> remove(ImmutableHashSet.remove81,1854
+	public Sequence<T> sequence(ImmutableHashSet.sequence90,2075
+	public String toString(ImmutableHashSet.toString95,2150
+	public boolean isEmpty(ImmutableHashSet.isEmpty100,2225
+	public Set<T> intersection(ImmutableHashSet.intersection105,2293
+	public Set<T> union(Iterable<ImmutableHashSet.Iterable117,2611
+	public Set<T> symmetricDifference(ImmutableHashSet.symmetricDifference126,2838
+	public int hashCode(ImmutableHashSet.hashCode140,3209
+	@SuppressWarnings(ImmutableHashSet.@SuppressWarnings155,3475
+	public Iterator<T> iterator(ImmutableHashSet.iterator182,3929
+
+src/main/java/com/jayway/changeless/sets/Set.java,50
+public interface Set<ImmutableHashSet.Set11,355
+
+src/main/java/com/jayway/changeless/sequences/FilterSequence.java,395
+final class FilterSequence<FilterSequence5,94
+	private final Sequence<T> sequence;FilterSequence.sequence7,151
+	private final Predicate<? super T> predicate;FilterSequence.predicate8,188
+	public FilterSequence(FilterSequence.FilterSequence10,236
+	public static <R> Sequence<R> create(FilterSequence.create15,377
+	public Sequence<T> createSequence(FilterSequence.createSequence20,540
+
+src/main/java/com/jayway/changeless/sequences/CycleSequence.java,372
+final class CycleSequence<CycleSequence3,42
+	private final Sequence<T> current;CycleSequence.current4,97
+	private final Sequence<T> original;CycleSequence.original5,133
+	private CycleSequence(CycleSequence.CycleSequence7,171
+	public static <T> Sequence<T> create(CycleSequence.create12,297
+	public Sequence<T> createSequence(CycleSequence.createSequence20,477
+
+src/main/java/com/jayway/changeless/sequences/IteratorSequence.java,318
+final class IteratorSequence<IteratorSequence8,118
+	private final Iterator<T> source;IteratorSequence.source10,177
+	public IteratorSequence(IteratorSequence.IteratorSequence12,213
+	public Sequence<T> createSequence(IteratorSequence.createSequence18,335
+	public boolean isEmpty(IteratorSequence.isEmpty28,571
+
+src/main/java/com/jayway/changeless/sequences/TakeSequence.java,420
+final class TakeSequence<TakeSequence4,43
+	private final int n;TakeSequence.n5,100
+	private final Sequence<T> sequence;TakeSequence.sequence6,122
+	private TakeSequence(TakeSequence.TakeSequence8,160
+	public T first(TakeSequence.first14,271
+	public static <T> Sequence<T> create(TakeSequence.create18,322
+	public Sequence<T> rest(TakeSequence.rest27,524
+	public boolean isEmpty(TakeSequence.isEmpty32,620
+
+src/main/java/com/jayway/changeless/sequences/Sequence.java,118
+public interface Sequence<Sequence10,264
+	Map<Sequence.Map151,4982
+	<TOther> Sequence<Sequence.Sequence229,7497
+
+src/main/java/com/jayway/changeless/sequences/DefaultSequenceIterator.java,475
+final class DefaultSequenceIterator<DefaultSequenceIterator14,318
+	private Sequence<T> sequence;DefaultSequenceIterator.sequence15,382
+	public static <T> Iterator<T> of(DefaultSequenceIterator.of22,600
+	private DefaultSequenceIterator(DefaultSequenceIterator.DefaultSequenceIterator31,900
+	public boolean hasNext(DefaultSequenceIterator.hasNext37,1039
+	public T next(DefaultSequenceIterator.next42,1112
+	public void remove(DefaultSequenceIterator.remove52,1297
+
+src/main/java/com/jayway/changeless/sequences/EmptySequence.java,320
+final class EmptySequence<EmptySequence3,42
+	private EmptySequence(EmptySequence.EmptySequence5,101
+	public T first(EmptySequence.first8,162
+	public Sequence<T> rest(EmptySequence.rest13,280
+	public boolean isEmpty(EmptySequence.isEmpty18,405
+	public static <T> Sequence<T> create(EmptySequence.create22,452
+
+src/main/java/com/jayway/changeless/sequences/IntegerSequence.java,363
+final class IntegerSequence 5,44
+	private final int from;IntegerSequence.from7,108
+	private final int step;IntegerSequence.step8,133
+	IntegerSequence(IntegerSequence.IntegerSequence10,159
+	public Integer first(IntegerSequence.first16,253
+	public Sequence<Integer> rest(IntegerSequence.rest21,309
+	public boolean isEmpty(IntegerSequence.isEmpty26,408
+
+src/main/java/com/jayway/changeless/sequences/SequenceSupport.java,2145
+public abstract class SequenceSupport<SequenceSupport18,599
+	private static final int MAXIMUM_ELEMENTS_IN_TO_STRING SequenceSupport.MAXIMUM_ELEMENTS_IN_TO_STRING19,665
+	public Sequence<T> add(SequenceSupport.add25,790
+	public Sequence<T> add(SequenceSupport.add35,1046
+	public String toString(SequenceSupport.toString45,1282
+	public Sequence<T> interpose(SequenceSupport.interpose65,1838
+	public Sequence<T> skip(SequenceSupport.skip70,1951
+	public <R> Sequence<R> transform(SequenceSupport.transform84,2174
+	public Sequence<T> filter(SequenceSupport.filter89,2316
+	@SuppressWarnings(SequenceSupport.@SuppressWarnings93,2431
+	public Map<SequenceSupport.Map130,3015
+	public Map<T, Integer> frequencies(SequenceSupport.frequencies130,3015
+	private Fn2<SequenceSupport.Fn2134,3122
+	private Fn2<Map<T, Integer>, T, Map<T, Integer>> frequencyFunction SequenceSupport.frequencyFunction134,3122
+	public int hashCode(SequenceSupport.hashCode144,3432
+	public int size(SequenceSupport.size154,3621
+	public boolean isSize(SequenceSupport.isSize165,3781
+	public Sequence<T> sequence(SequenceSupport.sequence178,4028
+	public Sequence<T> append(SequenceSupport.append183,4091
+	public <R> R reduce(SequenceSupport.reduce188,4230
+	public Sequence<T> reverse(SequenceSupport.reverse202,4470
+	public boolean all(SequenceSupport.all211,4650
+	public boolean any(SequenceSupport.any216,4760
+	public boolean non(SequenceSupport.non226,4933
+	public boolean isEmpty(SequenceSupport.isEmpty231,5028
+	public Iterator<T> iterator(SequenceSupport.iterator236,5088
+	public T get(SequenceSupport.get241,5179
+	public Sequence<T> take(SequenceSupport.take251,5414
+	public Sequence<T> remove(SequenceSupport.remove256,5502
+	public Sequence<T> remove(SequenceSupport.remove261,5616
+	public Sequence<Sequence<T>> partition(SequenceSupport.partition266,5736
+	public Sequence<T> cycle(SequenceSupport.cycle271,5845
+	public <TOther> Sequence<SequenceSupport.Sequence276,5927
+	public <TOther> Sequence<Tuple<T, TOther>> zip(SequenceSupport.zip276,5927
+	public Sequence<T> insertAt(SequenceSupport.insertAt281,6064
+
+src/main/java/com/jayway/changeless/sequences/IntegerSequenceBuilder.java,463
+public final class IntegerSequenceBuilder 6,90
+	private final int from;IntegerSequenceBuilder.from8,135
+	private int step IntegerSequenceBuilder.step9,160
+	public IntegerSequenceBuilder(IntegerSequenceBuilder.IntegerSequenceBuilder11,184
+	public IntegerSequenceBuilder step(IntegerSequenceBuilder.step15,252
+	public Sequence<Integer> upward(IntegerSequenceBuilder.upward21,375
+	public Sequence<Integer> downward(IntegerSequenceBuilder.downward25,459
+
+src/main/java/com/jayway/changeless/sequences/LazySequence.java,350
+public abstract class LazySequence<LazySequence4,43
+	private Sequence<T> cachedValue;LazySequence.cachedValue5,110
+	public T first(LazySequence.first10,206
+	public Sequence<T> rest(LazySequence.rest15,276
+	public boolean isEmpty(LazySequence.isEmpty20,354
+	public synchronized Sequence<T> getCachedValue(LazySequence.getCachedValue24,423
+
+src/main/java/com/jayway/changeless/sequences/AppendedSequence.java,502
+final class AppendedSequence<AppendedSequence3,42
+	private final Sequence<T> startSequence;AppendedSequence.startSequence5,104
+	private final Sequence<T> endSequence;AppendedSequence.endSequence6,146
+	private AppendedSequence(AppendedSequence.AppendedSequence8,187
+	public static <T> Sequence<T> create(AppendedSequence.create14,351
+	public Sequence<T> rest(AppendedSequence.rest24,586
+	public T first(AppendedSequence.first29,682
+	public boolean isEmpty(AppendedSequence.isEmpty34,749
+
+src/main/java/com/jayway/changeless/sequences/DefaultSequenceProducer.java,477
+final class DefaultSequenceProducer<DefaultSequenceProducer7,136
+	private final T first;DefaultSequenceProducer.first9,202
+	private final Fn<? super T, ? extends Optional<T>> producer;DefaultSequenceProducer.producer10,226
+	private DefaultSequenceProducer(DefaultSequenceProducer.DefaultSequenceProducer12,289
+	public static <T> Sequence<T> create(DefaultSequenceProducer.create17,438
+	public Sequence<T> createSequence(DefaultSequenceProducer.createSequence22,611
+
+src/main/java/com/jayway/changeless/sequences/InterposeSequence.java,334
+final class InterposeSequence<InterposeSequence4,43
+	private final SequenceSupport<T> source;InterposeSequence.source6,103
+	private final T separator;InterposeSequence.separator7,145
+	public InterposeSequence(InterposeSequence.InterposeSequence9,174
+	public Sequence<T> createSequence(InterposeSequence.createSequence16,343
+
+src/main/java/com/jayway/changeless/sequences/ArraySequence.java,606
+final class ArraySequence<ArraySequence12,230
+	private final int offset;ArraySequence.offset14,313
+	private final List<T> elements;ArraySequence.elements15,340
+	private ArraySequence(ArraySequence.ArraySequence17,375
+	public static <T> Sequence<T> of(ArraySequence.of22,516
+	public static <T> Sequence<T> copyOf(ArraySequence.copyOf33,808
+	public T first(ArraySequence.first45,1107
+	public Sequence<T> rest(ArraySequence.rest50,1174
+	public boolean isEmpty(ArraySequence.isEmpty55,1271
+	public Iterator<T> iterator(ArraySequence.iterator60,1351
+	public T get(ArraySequence.get65,1429
+
+src/main/java/com/jayway/changeless/sequences/DefaultSequenceBuilder.java,367
+public final class DefaultSequenceBuilder<DefaultSequenceBuilder7,136
+	private T current;DefaultSequenceBuilder.current8,183
+	public DefaultSequenceBuilder(DefaultSequenceBuilder.DefaultSequenceBuilder10,205
+	public static <T> DefaultSequenceBuilder<T> from(DefaultSequenceBuilder.from14,268
+	public Sequence<T> produce(DefaultSequenceBuilder.produce18,379
+
+src/main/java/com/jayway/changeless/sequences/ZipSequence.java,559
+	private final Sequence<T1> s1;DefaultSequenceBuilder.s17,197
+	private final Sequence<T2> s2;DefaultSequenceBuilder.s28,229
+	private ZipSequence(DefaultSequenceBuilder.ZipSequence10,262
+	public static DefaultSequenceBuilder.static15,356
+	public static <T1,T2> Sequence<DefaultSequenceBuilder.Sequence15,356
+	public static <T1,T2> Sequence<Tuple<T1, T2>> create(DefaultSequenceBuilder.create15,356
+	public Sequence<DefaultSequenceBuilder.Sequence23,574
+	public Sequence<Tuple<T1, T2>> createSequence(DefaultSequenceBuilder.createSequence23,574
+
+src/main/java/com/jayway/changeless/sequences/Sequenceable.java,49
+public interface Sequenceable<Sequenceable3,42
+
+src/main/java/com/jayway/changeless/sequences/DefaultSequence.java,470
+final class DefaultSequence<DefaultSequence6,90
+	private final T first;DefaultSequence.first7,150
+	private final Sequence<T> rest;DefaultSequence.rest8,174
+	private DefaultSequence(DefaultSequence.DefaultSequence10,209
+	public final T first(DefaultSequence.first18,384
+	public final Sequence<T> rest(DefaultSequence.rest23,441
+	public static <T> Sequence<T> create(DefaultSequence.create27,497
+	public final boolean isEmpty(DefaultSequence.isEmpty32,626
+
+src/main/java/com/jayway/changeless/sequences/PartitionSequence.java,409
+final class PartitionSequence<PartitionSequence5,89
+	private final int n;PartitionSequence.n6,158
+	private final Sequence<T> sequence;PartitionSequence.sequence7,180
+	private PartitionSequence(PartitionSequence.PartitionSequence9,218
+	public static <T> Sequence<Sequence<T>> create(PartitionSequence.create14,322
+	public Sequence<Sequence<T>> createSequence(PartitionSequence.createSequence24,557
+
+src/main/java/com/jayway/changeless/sequences/Sequences.java,927
+public final class Sequences 11,229
+	private Sequences(Sequences.Sequences12,260
+	public static <T> Sequence<T> append(Sequences.append14,306
+	public static <T> Sequence<T> of(Sequences.of18,436
+	public static <T> Sequence<T> empty(Sequences.empty22,529
+	public static <T> Sequence<T> copyOf(Sequences.copyOf26,608
+	public static <T> Sequence<T> lazyCopyOf(Sequences.lazyCopyOf30,716
+	public static <T> Sequence<T> appended(Sequences.appended34,842
+	public static IntegerSequenceBuilder from(Sequences.from42,1121
+	public static <T> DefaultSequenceBuilder<T> from(Sequences.from46,1224
+	public static <T extends Comparable<T>> T min(Sequences.min50,1333
+	public static <T extends Comparable<T>> T max(Sequences.max58,1632
+	public static Sequences.static66,1932
+	public static <T1,T2> Tuple<Sequences.Tuple66,1932
+	public static <T1,T2> Tuple<Sequence<T1>,Sequence<T2>> unzip(Sequences.unzip66,1932
+
+src/main/java/com/jayway/changeless/predicates/Predicate.java,44
+public interface Predicate<Predicate8,224
+
+src/main/java/com/jayway/changeless/predicates/Predicates.java,294
+public final class Predicates 3,43
+	private Predicates(Predicates.Predicates4,75
+	public static <T> Predicate<T> not(Predicates.not6,122
+	public static Predicate<Object> notNull=Predicates.notNull15,318
+	public static Predicate<Object> equalsPredicate(Predicates.equalsPredicate22,477
+
+src/main/java/com/jayway/changeless/predicates/integers/OddPredicate.java,81
+public class OddPredicate 5,104
+	public boolean apply(OddPredicate.apply7,173
+
+src/main/java/com/jayway/changeless/predicates/integers/EvenPredicate.java,110
+public class EvenPredicate OddPredicate.EvenPredicate5,104
+	public boolean apply(EvenPredicate.apply7,174
+
+src/main/java/com/jayway/changeless/sequences/TransformedSequence.java,0
+
+src/main/java/com/jayway/changeless/tuples/Tuple.java,0
+
+src/main/java/com/jayway/changeless/tuples/DefaultTuple.java,0
+
+src/main/java/com/jayway/changeless/maps/Map.java,0
+
+src/main/java/com/jayway/changeless/maps/ImmutableHashMap.java,0
+
+src/main/java/com/jayway/changeless/functions/Fn.java,0
+
+src/main/java/com/jayway/changeless/functions/Fn2.java,0

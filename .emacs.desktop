@@ -1,0 +1,106 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Thu Jun  2 12:16:44 2011
+;; Desktop file format version 206
+;; Emacs version 23.2.1
+
+;; Global section:
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name "/home/sune/Documents/Projects/changeless/TAGS")
+(setq tags-table-list '("/home/sune/Documents/Projects/changeless/TAGS"))
+(setq search-ring '("find" "boolean"))
+(setq regexp-search-ring nil)
+(setq register-alist '((48 . "(custom-set-variables\n  ;; custom-set-variables was added by Custom.\n  ;; If you edit it by hand, you could mess it up, so be careful.\n  ;; Your init file should contain only one such instance.\n  ;; If there is more than one, they won't work right.\n \n '(scroll-bar-mode (quote right))")))
+(setq file-name-history '("~/Documents/Projects/changeless/" "/home/sune/.emacs" "~/Documents/Projects/changeless/" "/home/sune/Documents/Projects/changeless/src/main/java/com/jayway/changeless/maps/ImmutableHashMap.java" "src/main/java/com/jayway/changeless/optionals/Optional.java"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/home/sune/Documents/Projects/changeless/src/main/java/com/jayway/changeless/vectors/Vector.java"
+  "Vector.java"
+  'java-mode
+  '(abbrev-mode)
+  301
+  '(254 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/sune/.emacs"
+  ".emacs"
+  'emacs-lisp-mode
+  '(yas/minor-mode)
+  495
+  '(84 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/sune/Documents/Projects/changeless/src/main/java/com/jayway/changeless/vectors/VectorSupport.java"
+  "VectorSupport.java"
+  'java-mode
+  '(abbrev-mode)
+  322
+  '(1 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/sune/Documents/Projects/changeless/src/main/java/com/jayway/changeless/vectors/MapVector.java"
+  "MapVector.java"
+  'java-mode
+  '(abbrev-mode)
+  159
+  '(1 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/sune/Documents/Projects/changeless/src/main/java/com/jayway/changeless/maps/ImmutableHashMap.java"
+  "ImmutableHashMap.java"
+  'java-mode
+  '(abbrev-mode)
+  459
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  "/home/sune/Documents/Projects/changeless/README.md"
+  "README.md"
+  'markdown-mode
+  '(yas/minor-mode)
+  434
+  '(nil nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix)))
+
+(desktop-create-buffer 206
+  nil
+  "changeless"
+  'dired-mode
+  nil
+  596
+  '(nil nil)
+  t
+  '("/home/sune/Documents/Projects/changeless/")
+  nil)
+
+(desktop-create-buffer 206
+  nil
+  "*info*"
+  'Info-mode
+  nil
+  95633
+  '(nil nil)
+  t
+  '("/usr/share/info/find" "Databases")
+  '((tab-width . 8) (buffer-file-coding-system . undecided-unix) (case-fold-search . t)))
+

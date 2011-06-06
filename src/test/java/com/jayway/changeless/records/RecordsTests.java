@@ -1,10 +1,10 @@
 package com.jayway.changeless.records;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.records.Record;
 import com.jayway.changeless.records.RecordBuilder;
 import com.jayway.changeless.records.Records;
@@ -51,5 +51,30 @@ public class RecordsTests {
 		Person p3 = personBuilder.create();
 		p3 = p3.address(a2.street("bar"));
 		assertFalse("not equals", p1.equals(p3));
+	}
+	
+	@Test(expected=IllegalStateException.class)
+	public void throwsOnRetrievingUndefinedField() {
+		Address address = Records.of(Address.class);
+		address.street();
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void throwsOnSettingFieldToNull() {
+		Address address = Records.of(Address.class);
+		address.street(null);
+	}
+	
+	@Test
+	public void dataCanBeRetrievedFromRecord() {
+		Person person = Records.of(Person.class);
+		Address address = Records.of(Address.class);
+		address = address.houseNumber(12).street("JayStreet");
+		person = person.name("Jane").address(address);
+		
+		Map<String, Object> data = person.getData();
+		
+		assertEquals("Jane", data.get("name").getValue());
+		assertEquals(address, data.get("address").getValue());
 	}
 }

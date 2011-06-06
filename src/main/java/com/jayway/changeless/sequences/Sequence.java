@@ -150,8 +150,6 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 */
 	Map<T, Integer> frequencies();
 	
-	
-	
 	/**
 	 * Returns true if the predicate is true for all elements in the sequence.
 	 * @param predicate The predicate function. 
@@ -198,7 +196,7 @@ public interface Sequence<T> extends Sequenceable<T> {
 	/**
 	 * Lazily partition the sequence into parts of size n.
 	 * If the size of the sequence is not divisible by n the 
-     * partition will include less elements.
+	 * partition will include less elements.
 	 * @param n The size of the partitions.
 	 * @return a sequence of the partitions.
 	 */

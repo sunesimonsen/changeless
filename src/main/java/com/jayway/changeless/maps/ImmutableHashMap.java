@@ -9,6 +9,7 @@ import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.tuples.Tuple;
 import com.jayway.changeless.tuples.Tuples;
+import com.jayway.changeless.utilities.Guard;
 
 
 
@@ -26,6 +27,8 @@ final class ImmutableHashMap<K, V> implements Map<K, V> {
 	
 	@Override
 	public Map<K, V> put(K key, V value) {
+		Guard.notNull(key, "key");
+		Guard.notNull(key, "value");
 		MapEntry<K,V> entry = new MapEntry<K, V>(key, value);
 		int hashCode = entry.hashCode();
 		// TODO this could be more efficient.

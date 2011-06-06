@@ -27,6 +27,10 @@ public final class Sequences {
 		return ArraySequence.copyOf(elements);
 	}
 	
+	public static <T> Sequence<T> copyOf(T[] elements) {
+		return ArraySequence.copyOf(elements);
+	}
+	
 	public static <T> Sequence<T> lazyCopyOf(Iterable<T> elements) {
 		return new IteratorSequence<T>(elements.iterator());
 	}
