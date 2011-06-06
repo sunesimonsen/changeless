@@ -1,6 +1,8 @@
 .classpath
 .project
 .settings
+/.emacs.desktop
+/.emacs.desktop.lock
 *~
 \#*#
 target
