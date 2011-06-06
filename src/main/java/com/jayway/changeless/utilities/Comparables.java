@@ -2,6 +2,9 @@ package com.jayway.changeless.utilities;
 
 import com.jayway.changeless.functions.Fn2;
 
+/**
+ * A utility class for handling instances of {@link Comparable}.
+ */
 public final class Comparables {
 	private Comparables() { /* Static class */ }
 	

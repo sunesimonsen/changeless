@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DefaultRecordValidator implements RecordValidator {
+class DefaultRecordValidator implements RecordValidator {
 
 	@Override
 	public void validateRecord(Class<? extends Record> clazz) {

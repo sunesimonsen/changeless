@@ -2,6 +2,9 @@ package com.jayway.changeless.utilities;
 
 import com.jayway.changeless.intervals.Interval;
 
+/**
+ * A guard class for checking preconditions on method arguments.
+ */
 public final class Guard {
 	private Guard() { /* Static class */ }
 	
