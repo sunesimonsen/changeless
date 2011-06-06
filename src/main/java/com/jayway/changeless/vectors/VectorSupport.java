@@ -34,7 +34,7 @@ public abstract class VectorSupport<T> implements Vector<T> {
 		return sequence().toString();
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	@Override
 	public boolean equals(Object o) {
 		if (o == null) return false;

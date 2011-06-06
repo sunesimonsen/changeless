@@ -39,7 +39,7 @@ final class MapEntry<K,V> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		@SuppressWarnings("unchecked")
+		@SuppressWarnings("rawtypes")
 		MapEntry other = (MapEntry) obj;
 		if (key == null) {
 			if (other.key != null)

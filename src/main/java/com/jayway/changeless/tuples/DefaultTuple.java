@@ -35,7 +35,7 @@ final class DefaultTuple<T1, T2> implements Tuple<T1, T2>{
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -90,7 +90,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		return FilterSequence.create(this, predicate);
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj){
