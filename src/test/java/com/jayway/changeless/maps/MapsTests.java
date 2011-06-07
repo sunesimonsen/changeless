@@ -95,7 +95,7 @@ public class MapsTests {
 	@Test
 	public void toSequenceAndBack() throws Exception {
 		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
-		Map<Integer, String> actual = Maps.of(map.sequence());
+		Map<Integer, String> actual = Maps.copyOf(map.sequence());
 		assertEquals("Expected elements to be equal", map, actual);
 	}
 }

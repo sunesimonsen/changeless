@@ -1,5 +1,6 @@
 package com.jayway.changeless.predicates;
 
+
 /**
  * A predicate function that returns true or false based on it's input parameter.
  * Predicates should not have side effects.

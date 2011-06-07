@@ -1,6 +1,9 @@
 package com.jayway.changeless.records;
 
-public interface RecordValidator {
+/**
+ * A validator capable of validating record classes. 
+ */
+interface RecordValidator {
 	/**
 	 * Validates the given record class. 
 	 * @param clazz the class to validate.

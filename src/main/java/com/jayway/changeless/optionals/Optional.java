@@ -103,6 +103,11 @@ public final class Optional<V> {
 		return equals(other);
 	}
 	
+	/**
+	 * A strongly typed version of {@link Optional#equals(Object)}.
+	 * @param other the optional with which to compare.  
+	 * @return true if this optional is equals to the given optional value.
+	 */
 	public boolean equals(Optional<V> other) {
 		if (value == null) {
 			if (other.value != null)

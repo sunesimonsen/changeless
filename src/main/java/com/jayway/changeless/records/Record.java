@@ -9,12 +9,16 @@ import com.jayway.changeless.maps.Map;
  * record and the mutator is used to create a copy of the record where the field
  * is change to a new value. For a Person record with a name field of type
  * String the extractor and mutator must have the following signature:
+ * <p>
  * <code>
- * interface Person { 
+ * <pre>
+ * interface Person {
  *   String name(); // Extractor for the name field Person
- *   name(String name); // Mutator for the name field 
+ *   name(String name); // Mutator for the name field
  * }
+ * </pre>
  * </code>
+ * </p>
  */
 public interface Record {
 	/**
