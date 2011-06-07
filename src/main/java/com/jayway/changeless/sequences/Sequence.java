@@ -56,7 +56,6 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * Returns a new lazy sequence containing the elements from this sequence 
 	 * except the elements matching the given predicate. 
 	 * @param predicate the predicate function deciding which elements to remove.
-	 * @param element The element to be removed.
 	 * @return The resulting sequence.
 	 */
 	Sequence<T> remove(Predicate<? super T> predicate);

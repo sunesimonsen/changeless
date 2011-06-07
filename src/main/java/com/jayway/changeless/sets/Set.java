@@ -38,7 +38,7 @@ public interface Set<T> extends Sequenceable<T> {
 	
 	/**
 	 * Returns a new set with the elements of this set except the given elements.
-	 * @param element the elements that should be excluded from the returned set.
+	 * @param elements the elements that should be excluded from the returned set.
 	 * @return a new set with the elements of this set except the given elements.
 	 */
 	Set<T> remove(Iterable<T> elements);
