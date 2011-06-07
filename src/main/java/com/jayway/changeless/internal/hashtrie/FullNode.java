@@ -51,10 +51,10 @@ final class FullNode<T> implements HashTrie<T> {
 		if (node instanceof EmptyNode<?>) {
 			newTable.set(i, null);
 			return new BitmappedNode<T>(shift, ~0 ^ mask, newTable);
-		} else {
-			newTable.set(i, node);
-			return new FullNode<T>(shift, newTable);
-		}
+		} 
+
+		newTable.set(i, node);
+		return new FullNode<T>(shift, newTable);
 	}
 
 	@Override
@@ -84,14 +84,5 @@ final class FullNode<T> implements HashTrie<T> {
 	@Override
 	public Iterator<T> iterator() {
 		return sequence().iterator();
-	}
-
-	@Override
-	public int waist() {
-		int waist = 0;
-		for (HashTrie<T> n : table) {
-			waist += n.waist();
-		}
-		return waist;
 	}
 }

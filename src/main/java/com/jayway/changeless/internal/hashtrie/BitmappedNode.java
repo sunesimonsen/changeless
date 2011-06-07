@@ -32,17 +32,17 @@ final class BitmappedNode<T> implements HashTrie<T> {
 			Array<HashTrie<T>> newTable = table.copy();
 			newTable.set(i, node);
 			return new BitmappedNode<T>(shift, bits, newTable);
-		} else {
-			int tableSize = Math.max(table.size(), i + 1);
-			Array<HashTrie<T>> newTable = table.copy(tableSize);
-			newTable.set(i, new LeafNode<T>(hash, value));
-			int newBits = bits | mask;
-			if (newBits == ~0) {
-				return new FullNode<T>(shift, newTable);
-			} else {
-				return new BitmappedNode<T>(shift, newBits, newTable);
-			}
-		}
+		} 
+		
+		int tableSize = Math.max(table.size(), i + 1);
+		Array<HashTrie<T>> newTable = table.copy(tableSize);
+		newTable.set(i, new LeafNode<T>(hash, value));
+		int newBits = bits | mask;
+		if (newBits == ~0) {
+			return new FullNode<T>(shift, newTable);
+		} 
+		
+		return new BitmappedNode<T>(shift, newBits, newTable);
 	}
 
 	@Override
@@ -52,9 +52,9 @@ final class BitmappedNode<T> implements HashTrie<T> {
 
 		if ((bits & mask) == mask) {
 			return table.get(i).get(value, hash);
-		} else {
-			return Optional.none();
-		}
+		} 
+
+		return Optional.none();
 	}
 
 	@Override
@@ -94,12 +94,12 @@ final class BitmappedNode<T> implements HashTrie<T> {
 			}
 
 			return new BitmappedNode<T>(shift, adjustedBits, newTable);
-		} else {
-			Array<HashTrie<T>> newTable = table.copy();
-			newTable.set(i, node);
+		} 
 
-			return new BitmappedNode<T>(shift, bits, newTable);
-		}
+		Array<HashTrie<T>> newTable = table.copy();
+		newTable.set(i, node);
+
+		return new BitmappedNode<T>(shift, bits, newTable);
 	}
 
 	@Override
@@ -110,20 +110,6 @@ final class BitmappedNode<T> implements HashTrie<T> {
 		}
 
 		return size;
-	}
-	
-	@Override
-	public int waist() {
-		int waist = 0;
-		for (int i = 0; i < table.size(); i++) {
-			HashTrie<T> n = table.get(i);
-			if (n != null) {
-				waist += n.waist();	
-			} else {
-				waist++;
-			}
-		}
-		return waist;
 	}
 	
 	@Override

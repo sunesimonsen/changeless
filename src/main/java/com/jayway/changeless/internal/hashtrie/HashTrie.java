@@ -32,11 +32,9 @@ public interface HashTrie<T> extends Sequenceable<T> {
 	 * @return true if this hash trie is empty; false otherwise.
 	 */
 	boolean isEmpty();
-	
 	HashTrie<T> add(int shift, int hash, T value);
 	Optional<T> get(T value, int hash);
 	HashTrie<T> remove(T value, int hash);
-	int waist();
 }
 
 

@@ -48,9 +48,4 @@ final class EmptyNode<T> implements HashTrie<T> {
 	public Iterator<T> iterator() {
 		return sequence().iterator();
 	}
-
-	@Override
-	public int waist() {
-		return 0;
-	}
 }

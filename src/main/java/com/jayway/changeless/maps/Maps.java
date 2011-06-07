@@ -2,14 +2,28 @@ package com.jayway.changeless.maps;
 
 import com.jayway.changeless.tuples.Tuple;
 
-
+/**
+ * An utility class for working with {@link Map} instances.
+ */
 public final class Maps {
 	private Maps() { /* Static class */ }
 	
+	/**
+	 * Creates an empty map.
+	 * @param <K> type of the keys in the map.
+	 * @param <V> type of the values in the map.
+	 * @return the empty map.
+	 */
 	public static <K,V> Map<K, V> empty() {
 		return ImmutableHashMap.empty();
 	}
 	
+	/**
+	 * Creates an empty map.
+	 * @param <K> type of the keys in the map.
+	 * @param <V> type of the values in the map.
+	 * @return the empty map.
+	 */
 	public static <K,V> Map<K,V> of() {
 		return empty();
 	}
