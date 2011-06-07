@@ -19,6 +19,11 @@ public final class Sequences {
 		return ArraySequence.of(elements);
 	}
 	
+	/**
+	 * Creates an empty sequence.
+	 * @param <T> the type of the elements in the sequence.
+	 * @return an empty sequence.
+	 */
 	public static <T> Sequence<T> empty() {
 		return EmptySequence.create();
 	}
