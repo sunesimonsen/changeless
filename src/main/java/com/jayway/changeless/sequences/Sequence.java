@@ -6,7 +6,17 @@ import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.predicates.Predicate;
 import com.jayway.changeless.tuples.Tuple;
 
-
+/**
+ * <p>
+ * A logical sequences of elements.
+ * </p>
+ * <p>
+ * Notice that is you are going to implement you own sequence 
+ * the Changeless library provides you with a couple of convenient
+ * classes. See {@link SequenceSupport} and {@link LazySequence}.  
+ * </p>
+ * @param <T> the type of the elements in this sequence.
+ */
 public interface Sequence<T> extends Sequenceable<T> {
 	/**
 	 * Returns true if the sequence is empty; false otherwise.
@@ -45,6 +55,7 @@ public interface Sequence<T> extends Sequenceable<T> {
 	/**
 	 * Returns a new lazy sequence containing the elements from this sequence 
 	 * except the elements matching the given predicate. 
+	 * @param predicate the predicate function deciding which elements to remove.
 	 * @param element The element to be removed.
 	 * @return The resulting sequence.
 	 */
@@ -106,13 +117,17 @@ public interface Sequence<T> extends Sequenceable<T> {
 	Sequence<T> filter(Predicate<? super T> predicate);
 	
 	/**
+	 * <p>
 	 * Reduces this sequence into a accumulated result by calling the given 
 	 * function on each element of the sequence starting with the provided start value.
 	 * Reducing a sequence of the elements 1, 2, and 3 with the plus-function staring from zero, 
 	 * will result in the following evaluation:
+	 * </p>
+	 * <p>
 	 * <code>
 	 * plus(plus(plus(0, 1), 2) 3)
 	 * </code>
+	 * </p>
 	 * @param <R> The type of the accumulated value. 
 	 * @param start The base value for the calculation.
 	 * @param function The accumulation function.
@@ -123,6 +138,7 @@ public interface Sequence<T> extends Sequenceable<T> {
 	/**
 	 * Returns a new sequence containing all the elements of this sequence except 
 	 * the n first elements. If n is less than one this sequence is returned.
+	 * @param n the number of elements to skip.
 	 * @return a new sequence containing all the elements of this sequence except 
 	 * the n first elements
 	 */
@@ -180,6 +196,8 @@ public interface Sequence<T> extends Sequenceable<T> {
 	T get(int index);
 
 	/**
+	 * Returns a new sequence with n elements from this sequence.
+	 * @param n the number of element to take.
 	 * @return a new sequence with n elements from this sequence.
 	 */
 	Sequence<T> take(int n);
@@ -187,7 +205,7 @@ public interface Sequence<T> extends Sequenceable<T> {
 	/**
 	 * Returns a new lazy sequence with the elements of this sequence separated by
 	 * the given separator.
-	 * @param seperator The separator.
+	 * @param separator the separator.
 	 * @return lazy sequence of element in this sequence separated by
 	 * the given separator.
 	 */
@@ -209,8 +227,12 @@ public interface Sequence<T> extends Sequenceable<T> {
 	Sequence<T> cycle();
 
 	/**
+	 * <p>
 	 * Zips the elements of this sequence and the given sequence into a lazy sequence of tuples.
+	 * </p>
+	 * <p>
 	 * Example:
+	 * <pre>
 	 * <code>
 	 * s1 = Sequences.of(1,2,3,4);
 	 * s2 = Sequences.of(5,6,7,8,9,10);
@@ -221,6 +243,9 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 *                         Tuples.of(4,8));
 	 * assertEquals(expected, actual);
 	 * </code>
+	 * <pre>
+	 * </p>
+	 * @param <TOther> the element type of the given sequence.
 	 * @param sequence the sequence to be zipped together with this sequence.
 	 * @return the zipped sequence.
 	 */

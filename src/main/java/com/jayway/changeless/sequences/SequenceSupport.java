@@ -15,11 +15,19 @@ import com.jayway.changeless.tuples.Tuple;
 import com.jayway.changeless.utilities.Guard;
 
 
+/**
+ * A support class for implementing sequences. The only method you 
+ * have to implement is {@link Sequence#first()} and {@link Sequence#rest()}
+ * @param <T> the type of the elements in this sequence.
+ */
 public abstract class SequenceSupport<T> implements Sequence<T> {
 	private static final int MAXIMUM_ELEMENTS_IN_TO_STRING = 20;
 	
 	@Override
 	public abstract Sequence<T> rest();
+	
+	@Override
+	public abstract T first();
 	
 	@Override
 	public Sequence<T> add(T... elements) {
