@@ -231,8 +231,8 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * </p>
 	 * <p>
 	 * Example:
-	 * <pre>
 	 * <code>
+	 * <pre>
 	 * s1 = Sequences.of(1,2,3,4);
 	 * s2 = Sequences.of(5,6,7,8,9,10);
 	 * actual = s1.zip(s2);
@@ -241,8 +241,8 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 *                         Tuples.of(3,7),
 	 *                         Tuples.of(4,8));
 	 * assertEquals(expected, actual);
+	 * </pre>
 	 * </code>
-	 * <pre>
 	 * </p>
 	 * @param <TOther> the element type of the given sequence.
 	 * @param sequence the sequence to be zipped together with this sequence.
