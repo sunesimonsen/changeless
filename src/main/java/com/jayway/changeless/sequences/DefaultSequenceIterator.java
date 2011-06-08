@@ -16,7 +16,9 @@ final class DefaultSequenceIterator<T> implements Iterator<T> {
 
 	/**
 	 * Creates a default implementation of {@link Iterator}.
+	 * @param <T> the element type of the sequence.
 	 * @param sequence The sequence to iterate over.
+	 * @return the iterator for the given sequence.
 	 * @throws IllegalArgumentException is the given sequence is null.
 	 */
 	public static <T> Iterator<T> of(Sequence<T> sequence) {

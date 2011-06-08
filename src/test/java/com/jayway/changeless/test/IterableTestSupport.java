@@ -17,6 +17,7 @@ import com.jayway.changeless.sequences.Sequences;
 
 /**
  * A base class for testing {@link Iterable} types.
+ * @param <T> the element type of the {@link Iterable}'s to test.
  */
 public abstract class IterableTestSupport<T> {
 	/**
@@ -39,13 +40,13 @@ public abstract class IterableTestSupport<T> {
 	 * Tests that hasNext() on non-empty iterator returns true
 	 */
 	@Test
-	public void nonEmptyIterableHasNextElement() throws Exception {
+	public void nonEmptyIterableHasNextElement() {
 		assertTrue("hasNext() on non-empty iterator is expected to return true", 
 				iterator.hasNext());
 	}
 	
 	@Test(expected=NoSuchElementException.class)
-	public void callingNextOnAnIteratorWithNoMoreElements() throws Exception {
+	public void callingNextOnAnIteratorWithNoMoreElements() {
 		while (iterator.hasNext()) {
 			iterator.next();
 		}
@@ -57,7 +58,7 @@ public abstract class IterableTestSupport<T> {
 	 * {@link UnsupportedOperationException} or an {@link IllegalArgumentException}.
 	 */
 	@Test
-	public void removeBeforeCallingNext() throws Exception {
+	public void removeBeforeCallingNext() {
 		try {
 			iterator.remove();
 			fail();
@@ -73,7 +74,7 @@ public abstract class IterableTestSupport<T> {
 	 * {@link UnsupportedOperationException} or an {@link IllegalArgumentException}.
 	 */
 	@Test
-	public void doubleRemoveAfterCallingNext() throws Exception {
+	public void doubleRemoveAfterCallingNext() {
 		try {
 			iterator.next();
 			iterator.remove();
@@ -92,7 +93,7 @@ public abstract class IterableTestSupport<T> {
 	 * next returned.
 	 */
 	@Test
-	public void removeAfterCallingNext() throws Exception {
+	public void removeAfterCallingNext() {
 		try {
 			Sequence<T> beforeRemove = Sequences.copyOf(iterable);
 			

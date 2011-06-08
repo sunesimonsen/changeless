@@ -51,8 +51,9 @@ public interface Vector<T> extends Sequenceable<T> {
 	/**
 	 * Returns a new vector containing all the elements of this vector except 
 	 * the n first elements. If n is less than one this vector is returned.
-	 * 
-	 * Notice that the returned sequence is evaluated lazily.
+	 * @param n the number of elements to skip.
+	 * @return a new vector containing all the elements of this vector except 
+	 * the n first elements.
 	 */
 	Vector<T> skip(int n);
 	
