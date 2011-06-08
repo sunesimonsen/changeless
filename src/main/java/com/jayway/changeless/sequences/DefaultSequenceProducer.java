@@ -14,8 +14,8 @@ final class DefaultSequenceProducer<T> extends LazySequence<T> {
 		this.producer = producer;
 	}
 
-	public static <T> Sequence<T> create(T current, Fn<? super T, ? extends Optional<T>> producer) {
-		return new DefaultSequenceProducer<T>(current, producer);
+	public static <T> Sequence<T> create(T start, Fn<? super T, ? extends Optional<T>> producer) {
+		return new DefaultSequenceProducer<T>(start, producer);
 	}
 
 	@Override
@@ -27,6 +27,6 @@ final class DefaultSequenceProducer<T> extends LazySequence<T> {
 		} else {
 			rest = Sequences.empty();
 		}
-		return Sequences.append(first, rest);
+		return Sequences.add(first, rest);
 	}
 }

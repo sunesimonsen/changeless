@@ -31,11 +31,6 @@ final class MapVector<T> extends VectorSupport<T> {
 	}
 
 	@Override
-	public boolean isEmpty() {
-		return size() == 0;
-	}
-
-	@Override
 	public int size() {
 		return size;
 	}

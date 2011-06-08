@@ -21,7 +21,7 @@ final class IteratorSequence<T> extends LazySequence<T> {
 		}
 		T first = source.next();
 		Sequence<T> rest = new IteratorSequence<T>(source);
-		return Sequences.append(first, rest);
+		return Sequences.add(first, rest);
 	}
 	
 	@Override

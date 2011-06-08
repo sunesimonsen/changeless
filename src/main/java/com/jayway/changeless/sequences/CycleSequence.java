@@ -23,6 +23,6 @@ final class CycleSequence<T> extends LazySequence<T> {
 		if (rest.isEmpty()) {
 			rest = original;
 		}
-		return Sequences.append(first, new CycleSequence<T>(original, rest));
+		return Sequences.add(first, new CycleSequence<T>(original, rest));
 	}
 }

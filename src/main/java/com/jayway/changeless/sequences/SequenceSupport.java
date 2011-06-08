@@ -34,7 +34,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		Sequence<T> result = this;
 		for (int i = elements.length-1; 0 <= i; i--) {
 			Guard.notNull(elements[i], "element[%d]", i);
-			result = Sequences.append(elements[i], result);
+			result = Sequences.add(elements[i], result);
 		}
 		return result;
 	}
@@ -44,7 +44,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		Sequence<T> result = this;
 		for (T element : this) {
 			Guard.notNull(element, "element");
-			result = Sequences.append(element, result);
+			result = Sequences.add(element, result);
 		}
 		return result;
 	}
@@ -210,7 +210,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	public Sequence<T> reverse() {
 		Sequence<T> result = Sequences.empty();
 		for (T value : this) {
-			result = Sequences.append(value, result);
+			result = Sequences.add(value, result);
 		}
 		return result;
 	}

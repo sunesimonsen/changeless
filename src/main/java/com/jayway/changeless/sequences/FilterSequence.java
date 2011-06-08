@@ -23,7 +23,7 @@ final class FilterSequence<T> extends LazySequence<T> {
 			T first = next.first();
 			if (predicate.apply(first)) {
 				Sequence<T> rest = next.rest().filter(predicate);
-				return Sequences.append(first, rest);
+				return Sequences.add(first, rest);
 			}
 			next = next.rest();
 		}

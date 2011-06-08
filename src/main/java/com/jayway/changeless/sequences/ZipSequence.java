@@ -23,6 +23,6 @@ final class ZipSequence<T1,T2> extends LazySequence<Tuple<T1,T2>>{
 	public Sequence<Tuple<T1, T2>> createSequence() {
 		Tuple<T1,T2> first = Tuples.of(s1.first(), s2.first());
 		Sequence<Tuple<T1, T2>> rest = create(s1.rest(), s2.rest());
-		return Sequences.append(first, rest);
+		return Sequences.add(first, rest);
 	}
 }

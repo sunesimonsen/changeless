@@ -7,8 +7,31 @@ import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequenceable;
 import com.jayway.changeless.utilities.Guard;
 
-
+/**
+ * A support class for easily implement {@link Vector}'s.
+ * To implement your own {@link Vector} you need to implements 
+ * the following methods: add, get, set, size.
+ * 
+ * @param <T> the type of the elements in this vector.
+ */
 public abstract class VectorSupport<T> implements Vector<T> {
+	@Override
+	public abstract Vector<T> add(T... elements);
+	
+	@Override
+	public abstract T get(int index);
+
+	@Override
+	public abstract Vector<T> set(int index, T element);
+
+	@Override
+	public abstract int size();
+
+	@Override
+	public boolean isEmpty() {
+		return size() == 0;
+	}
+	
 	@Override
 	public Vector<T> skip(int n) {
 		return SuffixVector.create(this, n);
@@ -55,9 +78,6 @@ public abstract class VectorSupport<T> implements Vector<T> {
 	public int hashCode() {
 		return sequence().hashCode();
 	}
-	
-	@Override
-	public abstract Vector<T> add(T... elements);
 	
 	protected void EnsureValidIndex(int index) {
 		Guard.in(index, Intervals.zero.open(size()), "index");

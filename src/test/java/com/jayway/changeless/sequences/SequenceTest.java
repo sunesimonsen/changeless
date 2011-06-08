@@ -403,7 +403,7 @@ public class SequenceTest {
 	
 	@Test
 	public void sequenceProducer() throws Exception {
-		Sequence<String> sequence = Sequences.from("a").produce(new Fn<String, Optional<String>>() {
+		Sequence<String> sequence = Sequences.produce("a", new Fn<String, Optional<String>>() {
 			@Override
 			public Optional<String> apply(String input) {
 				return Optional.valueOf(input + input);

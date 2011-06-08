@@ -23,6 +23,6 @@ final class PartitionSequence<T> extends LazySequence<Sequence<T>> {
 	@Override
 	public Sequence<Sequence<T>> createSequence() {
 		Sequence<T> first = sequence.take(n);
-		return Sequences.append(first, sequence.skip(n).partition(n));
+		return Sequences.add(first, sequence.skip(n).partition(n));
 	}
 }

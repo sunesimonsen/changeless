@@ -1,20 +1,38 @@
 package com.jayway.changeless.sequences;
 
+import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.functions.Fn2;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.tuples.Tuple;
 import com.jayway.changeless.tuples.Tuples;
 import com.jayway.changeless.utilities.Comparables;
 
 
 
-
+/**
+ * An utility class for working with {@link Sequence}'s.
+ */
 public final class Sequences {
 	private Sequences() { /* Static class */ }
 	
-	public static <T> Sequence<T> append(T element, Sequence<T> sequence) {
+	/**
+	 * Creates a new sequence consisting of the given element appended 
+	 * to the front of the sequence.
+	 * @param <T> the type of the elements in the sequence.
+	 * @param element the first element of the sequence to create.
+	 * @param sequence the tail of the sequence to create.
+	 * @return the created sequence.
+	 */
+	public static <T> Sequence<T> add(T element, Sequence<T> sequence) {
 		return DefaultSequence.create(element, sequence);
 	}
 	
+	/**
+	 * Create a new sequence consisting of the given elements.
+	 * @param <T> the type of the elements in the sequence.
+	 * @param elements the elements of the sequence to create.
+	 * @return a new sequence consisting of the given elements.
+	 */
 	public static <T> Sequence<T> of(T... elements) {
 		return ArraySequence.of(elements);
 	}
@@ -28,18 +46,48 @@ public final class Sequences {
 		return EmptySequence.create();
 	}
 	
+	/**
+	 * Creates a new sequence containing the elements of given {@link Iterable}.
+	 * @param <T> the type of the elements in the sequence.
+	 * @param elements the elements of the sequence to create.
+	 * @return a new sequence consisting of the given elements.
+	 */
 	public static <T> Sequence<T> copyOf(Iterable<T> elements) {
 		return ArraySequence.copyOf(elements);
 	}
 	
+	/**
+	 * Creates a new sequence containing the elements of given array.
+	 * @param <T> the type of the elements in the sequence.
+	 * @param elements the elements of the sequence to create.
+	 * @return a new sequence consisting of the given elements.
+	 */
 	public static <T> Sequence<T> copyOf(T[] elements) {
 		return ArraySequence.copyOf(elements);
 	}
 	
+	/**
+	 * <p>
+	 * Creates a lazy sequence containing the elements of the {@link Iterable}.
+	 * </p>
+	 * <p>
+	 * As the sequence is traversed the elements is pulled from the {@link Iterable}.
+	 * </p>
+	 * @param <T> the type of the elements in the sequence.
+	 * @param elements the elements of the sequence to create.
+	 * @return a new sequence consisting of the given elements.
+	 */
 	public static <T> Sequence<T> lazyCopyOf(Iterable<T> elements) {
 		return new IteratorSequence<T>(elements.iterator());
 	}
 	
+	/**
+	 * Given a collection of sequences this function creates a lazy sequence
+	 * containing the elements of all the sequences. 
+	 * @param <T> the type of the elements in the sequence.
+	 * @param sequences the sequences to be appended.
+	 * @return the created sequence.
+	 */
 	public static <T> Sequence<T> appended(Iterable<? extends Sequenceable<T>> sequences) {
 		Sequence<T> appendedSequence = empty();
 		for (Sequenceable<T> sequenceable : sequences) {
@@ -48,14 +96,56 @@ public final class Sequences {
 		return appendedSequence;
 	}
 	
+	/**
+	 * <p>
+	 * Create an infinite integer sequence starting from the specified value.
+	 * </p>
+	 * <p>
+	 * Example:
+	 * <code>
+	 * <pre>
+	 * Sequence&lt;Integer&gt; sequence = Sequences.from(2).step(3).upward().take(5);
+	 * Sequence&lt;Integer&gt; expected = Sequences.of(2,5,8,11,14);
+	 * assertEquals(expected, sequence);
+	 * </pre>
+	 * </code>
+	 * </p>
+	 * @param from the starting point of the sequence.
+	 * @return the produced sequence.
+	 */
 	public static IntegerSequenceBuilder from(int from) {
 		return new IntegerSequenceBuilder(from);
 	}
 	
-	public static <T> DefaultSequenceBuilder<T> from(T from) {
-		return DefaultSequenceBuilder.from(from);
+	/**
+	 * <p>
+	 * Create a lazy sequence using the given starting point and a producer function.
+	 * </p>
+	 * <p>
+	 * Given the starting point <i>s</i> and the producer function <i>f</i> the sequence if produces 
+	 * the following way.
+	 * <code>
+	 * [s, f(start), ff(start), fff(start), ffff(start), ...]
+	 * </code>
+	 * </p>
+	 * <p>
+	 * If the producer function returns an {@link Optional} with no value the sequence stop.
+	 * </p>
+	 * @param <T> the type of the elements in the sequence.
+	 * @param start the starting point of the sequence.
+	 * @param producer the producer function used to produce the sequence.
+	 * @return the created sequence.
+	 */
+	public static <T> Sequence<T> produce(T start, Fn<? super T, ? extends Optional<T>> producer) {
+		return DefaultSequenceProducer.create(start, producer);
 	}
 	
+	/**
+	 * Returns the smallest value of the given sequence.
+	 * @param <T> the type of the elements in the sequence.
+	 * @param sequence the sequence.
+	 * @return the smallest value of the given sequence.
+	 */
 	public static <T extends Comparable<T>> T min(Sequence<T> sequence) {
 		if (sequence.isEmpty()) {
 			throw new IllegalArgumentException("min only work on non-empty sequences");
@@ -64,6 +154,12 @@ public final class Sequences {
 		return sequence.reduce(sequence.first(), minFunction);
 	}
 
+	/**
+	 * Returns the largest value of the given sequence.
+	 * @param <T> the type of the elements in the sequence.
+	 * @param sequence the sequence.
+	 * @return the largest value of the given sequence.
+	 */
 	public static <T extends Comparable<T>> T max(Sequence<T> sequence) {
 		if (sequence.isEmpty()) {
 			throw new IllegalArgumentException("max only work on non-empty sequences");
@@ -72,6 +168,14 @@ public final class Sequences {
 		return sequence.reduce(sequence.first(), minFunction);
 	}
 	
+	/**
+	 * Given a sequence of {@link Tuple}'s this function splits the tuples into 
+	 * two sequences.
+	 * @param <T1> the type of the first component of the tuples.
+	 * @param <T2> the type of the second component of the tuples.
+	 * @param sequence the sequence to unzip.
+	 * @return the given tuples split into two sequences.
+	 */
 	public static <T1,T2> Tuple<Sequence<T1>,Sequence<T2>> unzip(Sequence<Tuple<T1,T2>> sequence) {
 		Sequence<T1> s1 = sequence.transform(Tuples.<T1,T2>firstFunction());
 		Sequence<T2> s2 = sequence.transform(Tuples.<T1,T2>secondFunction());
