@@ -135,6 +135,24 @@ public interface Sequence<T> extends Sequenceable<T> {
 	<R> R reduce(R start, Fn2<? super R, ? super T,R> function);
 	
 	/**
+	 * <p>
+	 * Reduces this sequence into a accumulated result by calling the given 
+	 * function on each element of the sequence starting with the first element.
+	 * Reducing a sequence of the elements 0, 1, 2, and 3 with the plus-function, 
+	 * will result in the following evaluation:
+	 * </p>
+	 * <p>
+	 * <code>
+	 * plus(plus(plus(0, 1), 2) 3)
+	 * </code>
+	 * </p>
+	 * @param function The accumulation function.
+	 * @return The accumulated value.
+	 * @throws IllegalArgumentException if the sequence is empty.
+	 */
+	T reduce(Fn2<? super T, ? super T,T> function);
+	
+	/**
 	 * Returns a new sequence containing all the elements of this sequence except 
 	 * the n first elements. If n is less than one this sequence is returned.
 	 * @param n the number of elements to skip.

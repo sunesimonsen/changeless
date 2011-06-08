@@ -2,12 +2,20 @@ package com.jayway.changeless.records;
 
 import static org.junit.Assert.*;
 
+import java.util.Comparator;
+
 import org.junit.Test;
 
+import com.jayway.changeless.functions.Fn2;
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.records.Record;
 import com.jayway.changeless.records.RecordBuilder;
 import com.jayway.changeless.records.Records;
+import com.jayway.changeless.sequences.Sequence;
+import com.jayway.changeless.sequences.Sequences;
+import com.jayway.changeless.sets.Set;
+import com.jayway.changeless.sets.Sets;
+import com.jayway.changeless.utilities.Comparables;
 
 interface Person extends Record {
 	Person name(String name);
@@ -51,6 +59,32 @@ public class RecordsTests {
 		Person p3 = personBuilder.create();
 		p3 = p3.address(a2.street("bar"));
 		assertFalse("not equals", p1.equals(p3));
+	}
+	
+	interface Planet extends Record {
+		String name();
+		Planet name(String name);
+		double mass();
+		Planet mass(double mass);
+	}
+	
+	@Test
+	public void creatingAPlanetRecord() {
+		RecordBuilder<Planet> pb = Records.builder(Planet.class);
+		Planet earth = pb.create().name("Earth").mass(1.00);
+		Planet jupiter = pb.create().name("Jupiter").mass(11.209);
+		Planet neptune = pb.create().name("Neptune").mass(3.883);
+		
+		Sequence<Planet> planets = Sequences.of(earth, jupiter, neptune);
+		Planet largestMass = planets.reduce(new Fn2<Planet, Planet, Planet>() {
+			@Override
+			public Planet apply(Planet result, Planet planet) {
+				return Comparables.greaterThan(planet.mass(), result.mass()) 
+					? planet : result;
+			}
+		});
+		
+		assertEquals("Planet name", "Jupiter", largestMass.name());
 	}
 	
 	@Test(expected=IllegalStateException.class)

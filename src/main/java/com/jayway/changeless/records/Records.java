@@ -1,7 +1,45 @@
 package com.jayway.changeless.records;
 
+import static org.junit.Assert.assertEquals;
+
+import com.jayway.changeless.functions.Fn2;
+import com.jayway.changeless.records.RecordsTests.Planet;
+import com.jayway.changeless.sets.Set;
+import com.jayway.changeless.sets.Sets;
+import com.jayway.changeless.utilities.Comparables;
+
 /**
+ * <p>
  * An utility class for working with {@link Record} instances.
+ * </p>
+ * <p>
+ * Below is an example of what is possible.
+ * <code>
+ * <pre>
+ * interface Planet extends Record {
+ *   String name();
+ *   Planet name(String name);
+ *   double mass();
+ *   Planet mass(double mass);
+ * }
+ * 
+ * RecordBuilder<Planet> pb = Records.builder(Planet.class);
+ * Planet earth   = pb.create().name("Earth").mass(1.00);
+ * Planet jupiter = pb.create().name("Jupiter").mass(11.209);
+ * Planet neptune = pb.create().name("Neptune").mass(3.883);
+ * 		
+ * Sequence&lt;Planet&gt; planets = Sequences.of(earth, jupiter, neptune);
+ * Planet largestMass = planets.reduce(new Fn2&lt;Planet, Planet, Planet&gt;() {
+ *   public Planet apply(Planet result, Planet planet) {
+ *     return Comparables.greaterThan(planet.mass(), result.mass()) 
+ *                       ? planet : result;
+ *   }
+ * });
+ * 
+ * assertEquals("Planet name", "Jupiter", largestMass.name());
+ * </pre>
+ * </code>
+ * </p>
  */
 public final class Records {
 	/**

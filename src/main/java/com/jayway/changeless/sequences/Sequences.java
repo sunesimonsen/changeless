@@ -153,21 +153,22 @@ public final class Sequences {
 			throw new IllegalArgumentException("min only work on non-empty sequences");
 		}
 		Fn2<T, T, T> minFunction = Comparables.minFunction();
-		return sequence.reduce(sequence.first(), minFunction);
+		return sequence.reduce(minFunction);
 	}
-
+	
 	/**
 	 * Returns the largest value of the given sequence.
 	 * @param <T> the type of the elements in the sequence.
 	 * @param sequence the sequence.
 	 * @return the largest value of the given sequence.
+	 * @throws IllegalArgumentException if the sequence is empty.
 	 */
 	public static <T extends Comparable<T>> T max(Sequence<T> sequence) {
 		if (sequence.isEmpty()) {
 			throw new IllegalArgumentException("max only work on non-empty sequences");
 		}
-		Fn2<T, T, T> minFunction = Comparables.maxFunction();
-		return sequence.reduce(sequence.first(), minFunction);
+		Fn2<T, T, T> maxFunction = Comparables.maxFunction();
+		return sequence.reduce(maxFunction);
 	}
 	
 	/**

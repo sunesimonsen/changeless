@@ -205,6 +205,15 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		
 		return result;
 	}
+	
+	@Override
+	public T reduce(Fn2<? super T, ? super T, T> function) {
+		if (isEmpty()) {
+			String message = "Reduce without a start value does not work on empty sequences.";
+			throw new IllegalArgumentException(message);
+		}
+		return reduce(first(), function);
+	}
 
 	@Override
 	public Sequence<T> reverse() {
