@@ -1,7 +1,7 @@
 package com.jayway.changeless.functions;
 
 /**
- * Interface for functions that takes one arguments.
+ * Interface for functions that takes one argument.
  * 
  * @param <T> the type of the parameter.
  * @param <R> the type of the return value.

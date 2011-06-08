@@ -124,12 +124,14 @@ public final class Sequences {
 	 * <p>
 	 * Given the starting point <i>s</i> and the producer function <i>f</i> the sequence if produces 
 	 * the following way.
+	 * </p>
+	 * <p>
 	 * <code>
 	 * [s, f(start), ff(start), fff(start), ffff(start), ...]
 	 * </code>
 	 * </p>
 	 * <p>
-	 * If the producer function returns an {@link Optional} with no value the sequence stop.
+	 * If the producer function returns an {@link Optional#none()} value the sequence stops.
 	 * </p>
 	 * @param <T> the type of the elements in the sequence.
 	 * @param start the starting point of the sequence.
