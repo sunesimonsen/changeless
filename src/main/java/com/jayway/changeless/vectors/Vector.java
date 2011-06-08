@@ -3,9 +3,8 @@ package com.jayway.changeless.vectors;
 import com.jayway.changeless.sequences.Sequenceable;
 
 /**
- * A vector is a growable array of objects where integer indexes maps to 
- * elements.
- * @param <T> the type of the elements of the vector.
+ * A vector immutable collection where integer indexes maps to elements.
+ * @param <T> the element type of the vector.
  */
 public interface Vector<T> extends Sequenceable<T> {
 	/**
