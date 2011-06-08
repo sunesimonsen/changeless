@@ -25,7 +25,7 @@ You can find Javadoc for the project [here](http://sunesimonsen.github.com/chang
 TODO
 ----
 * Make methods covariant and contravariant where appropriate.
-* Document all public methods with Javadoc.
+* Document all public methods with Javadoc. (Done)
 * Go through generated Javadoc and find things that looks weird and fix them.
 * Add examples in Markdown format. 
 * Add Record types (Done) 
