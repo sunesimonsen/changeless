@@ -1,12 +1,5 @@
 package com.jayway.changeless.records;
 
-import static org.junit.Assert.assertEquals;
-
-import com.jayway.changeless.functions.Fn2;
-import com.jayway.changeless.records.RecordsTests.Planet;
-import com.jayway.changeless.sets.Set;
-import com.jayway.changeless.sets.Sets;
-import com.jayway.changeless.utilities.Comparables;
 
 /**
  * <p>
