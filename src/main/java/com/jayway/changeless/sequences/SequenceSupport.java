@@ -94,6 +94,12 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	}
 	
 	@Override
+	public <R> Sequence<R> transformIndexed(Fn2<Integer, ? super T,? extends R> function) {
+		return IndexedTransformedSequence.create(this, function);
+	}
+	
+	
+	@Override
 	public Sequence<T> filter(Predicate<? super T> predicate) {
 		return FilterSequence.create(this, predicate);
 	}

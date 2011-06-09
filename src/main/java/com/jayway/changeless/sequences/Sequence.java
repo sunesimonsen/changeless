@@ -96,15 +96,35 @@ public interface Sequence<T> extends Sequenceable<T> {
 	Sequence<T> add(Iterable<? extends T> elements);
 	
 	/**
+	 * <p>
 	 * Returns a new sequence where each element from this sequence is transformed with the given function. 
-	 * 
+	 * </p>
+	 * <p>
 	 * Notice that the returned sequence is produced lazily.
-	 * 
+	 * </p>
 	 * @param <R> the element type of the produced sequence.
 	 * @param function the function used to transform the sequence. 
 	 * @return a new sequence where each element from this sequence is transformed with the given function.
 	 */
 	<R> Sequence<R> transform(Fn<? super T,? extends R> function);
+	
+	/**
+	 * <p>
+	 * Returns a new sequence where each element from this sequence is transformed with the given function. 
+	 * </p>
+	 * <p>
+	 * The given function will be called for each element in the sequence. When the function is called 
+	 * it's arguments will be the index of the element and the element. 
+	 * </p>
+	 * <p>
+	 * Notice that the returned sequence is produced lazily.
+	 * </p>
+	 * @param <R> the element type of the produced sequence.
+	 * @param function the function used to transform the sequence, taking the index of the element and 
+	 * the element itself. 
+	 * @return a new sequence where each element from this sequence is transformed with the given function.
+	 */
+	<R> Sequence<R> transformIndexed(Fn2<Integer, ? super T,? extends R> function);
 
 	/**
 	 * Returns a new lazy sequence containing all the elements that matches the given predicate 

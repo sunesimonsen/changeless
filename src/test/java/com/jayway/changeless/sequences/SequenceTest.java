@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.jayway.changeless.functions.Fn;
+import com.jayway.changeless.functions.Fn2;
 import com.jayway.changeless.functions.Functions;
 import com.jayway.changeless.functions.integers.PlusFunction;
 import com.jayway.changeless.functions.strings.AppendStringFunction;
@@ -190,7 +191,28 @@ public class SequenceTest {
 		assertEquals("Transformed sequence should have same size", 
 				sequence.size(), actual.size());
 	}
+
+	private Fn2<Integer, Object, String> indexToString = new Fn2<Integer, Object, String>() {
+		public String apply(Integer x, Object y) {
+			return x + ":" + y;
+		}
+	};
 	
+	@Test
+	public void transformIndexedSequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(42, 41, 40);
+		Sequence<String> actual = sequence.transformIndexed(indexToString);
+		Sequence<String> expected = Sequences.of("0:42", "1:41", "2:40");
+		assertEquals("Expected sequences to be equal", expected, actual);
+	}
+	
+	@Test
+	public void transformIndexedOnEmptySequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.empty();
+		Sequence<String> actual = sequence.transformIndexed(indexToString);
+		assertTrue("Expected sequence to empty", actual.isEmpty());
+	}
+
 	@Test
 	public void filterSeqence() throws Exception {
 		Sequence<Integer> sequence = Sequences.from(0).upward().take(10);
