@@ -76,13 +76,16 @@ public class RecordsTests {
 		Planet neptune = pb.create().name("Neptune").mass(3.883);
 		
 		Sequence<Planet> planets = Sequences.of(earth, jupiter, neptune);
-		Planet largestMass = planets.reduce(new Fn2<Planet, Planet, Planet>() {
+		
+		Fn2<Planet, Planet, Planet> maxMass = new Fn2<Planet, Planet, Planet>() {
 			@Override
 			public Planet apply(Planet result, Planet planet) {
 				return Comparables.greaterThan(planet.mass(), result.mass()) 
 					? planet : result;
 			}
-		});
+		};
+		
+		Planet largestMass = planets.reduce(maxMass);
 		
 		assertEquals("Planet name", "Jupiter", largestMass.name());
 	}

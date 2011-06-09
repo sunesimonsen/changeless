@@ -7,7 +7,7 @@ import com.jayway.changeless.predicates.Predicate;
  */
 public class EvenPredicate implements Predicate<Integer> {
 	@Override
-	public boolean apply(Integer input) {
+	public Boolean apply(Integer input) {
 		return input % 2 == 0;
 	}
 }
