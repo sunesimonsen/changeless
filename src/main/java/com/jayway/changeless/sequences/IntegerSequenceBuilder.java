@@ -3,17 +3,12 @@ package com.jayway.changeless.sequences;
 import com.jayway.changeless.utilities.Guard;
 
 /**
- * <p>
  * A sequence builder for building infinite integer sequences.
- * </p>
- * <p>
- * Notice this class is not thread safe.
- * </p>
  */
 public final class IntegerSequenceBuilder {
 
 	private final int from;
-	private int step = 1;
+	private final int step;
 
 	/**
 	 * Creates a new integer sequence builder that is start with 
@@ -21,7 +16,19 @@ public final class IntegerSequenceBuilder {
 	 * @param from the starting point of the integer sequence.
 	 */
 	IntegerSequenceBuilder(int from) {
+		this(from, 1);
+	}
+	
+	/**
+	 * Creates a new integer sequence builder that is start with 
+	 * the given value.
+	 * @param from the starting point of the integer sequence.
+	 * @param step the step between numbers in the integer sequence 
+	 * that is being build.
+	 */
+	private IntegerSequenceBuilder(int from, int step) {
 		this.from = from;
+		this.step = step;
 	}
 	
 	/**
@@ -33,8 +40,7 @@ public final class IntegerSequenceBuilder {
 	 */
 	public IntegerSequenceBuilder step(int step) {
 		Guard.nonNegative(step, "step");
-		this.step = step;
-		return this;
+		return new IntegerSequenceBuilder(from, step);
 	}
 	
 	/**
