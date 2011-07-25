@@ -298,4 +298,22 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @return the sequence with the elements inserted.
 	 */
 	Sequence<T> insertAt(int index, T... elements);
+
+	/**
+	 * Returns a new lazy sequence that contracts the elements for which their indexes 
+	 * in the original sequence matches the given predicate. 
+	 * @param predicate the predicate.
+	 * @return a new lazy sequence containing the elements for which their indexes 
+	 * in the original sequence matches the given predicate.
+	 */
+	Sequence<T> filterOnIndex(Predicate<? super Integer> predicate);
+	
+	/**
+	 * Returns a new sequence with the first element of this sequence and the 
+	 * given sequence as the rest of the elements.
+	 * @param rest the rest of the elements in the sequence to return.
+	 * @return a new sequence with the first element of this sequence and the 
+	 * given sequence as the rest of the elements.
+	 */
+	Sequence<T> withRest(Sequence<T> rest);
 }

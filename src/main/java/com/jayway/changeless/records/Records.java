@@ -35,6 +35,8 @@ package com.jayway.changeless.records;
  * </p>
  */
 public final class Records {
+	private Records() { /* Static class */ }
+
 	/**
 	 * <p>
 	 * Create a new {@link Record} of the given type.

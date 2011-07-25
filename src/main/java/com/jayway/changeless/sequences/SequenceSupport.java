@@ -304,4 +304,14 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	public Sequence<T> insertAt(int index, T... elements) {
 		return take(index).append(Sequences.of(elements)).append(skip(index));
 	}
+	
+	@Override
+	public Sequence<T> filterOnIndex(Predicate<? super Integer> predicate) {
+		return IndexFilterSequence.create(this, predicate);
+	}
+	
+	@Override
+	public Sequence<T> withRest(Sequence<T> rest) {
+		return Sequences.add(first(), rest);
+	}
 }
