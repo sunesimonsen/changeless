@@ -1,20 +1,14 @@
 package com.jayway.changeless.records;
 
-import static org.junit.Assert.*;
-
-import java.util.Comparator;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
 import com.jayway.changeless.functions.Fn2;
 import com.jayway.changeless.maps.Map;
-import com.jayway.changeless.records.Record;
-import com.jayway.changeless.records.RecordBuilder;
-import com.jayway.changeless.records.Records;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
-import com.jayway.changeless.sets.Set;
-import com.jayway.changeless.sets.Sets;
 import com.jayway.changeless.utilities.Comparables;
 
 interface Person extends Record {
