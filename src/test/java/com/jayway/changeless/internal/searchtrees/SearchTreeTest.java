@@ -45,6 +45,9 @@ public class SearchTreeTest {
 		for (Integer value : inserted) {
 			assertContains(tree, value);
 		}
+		
+		Node<Integer> root = (Node<Integer>) tree;
+		root.ensureInvariant();
 	}
 	
 	private static <T extends Comparable<T>> void assertContains(SearchTree<T> tree, T element) {

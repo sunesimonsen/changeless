@@ -6,6 +6,8 @@ import com.jayway.changeless.sequences.LazySequence;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequenceable;
 import com.jayway.changeless.sequences.Sequences;
+import com.jayway.changeless.tuples.Tuple;
+import com.jayway.changeless.tuples.Tuples;
 import com.jayway.changeless.utilities.Comparables;
 import com.jayway.changeless.utilities.Guard;
 
@@ -26,12 +28,24 @@ interface Node<T extends Comparable<T>> extends SearchTree<T> {
 	Color getColor();
 	boolean isRed();
 	boolean isBlack();
+	Tuple<Integer, Integer> numberOfBlackNodes();
+	void ensureInvariant();
 }
 
 abstract class NodeSupport<T extends Comparable<T>> implements Node<T> {
 	public SearchTree<T> add(T element) {
 		Guard.notNull(element, "element");
 		return insertInTree(element).colorBlack();
+	}
+	
+	public void ensureInvariant() {
+		Tuple<Integer, Integer> numberOfBlackNodes = numberOfBlackNodes();
+		if (numberOfBlackNodes.getFirst() != numberOfBlackNodes.getSecond()) {
+			String message = String.format("Invariant violation - Every path from "+
+					"the root to an empty node conrains the same number of black nodes. "+
+					"[%s,%s]", numberOfBlackNodes.getFirst(), numberOfBlackNodes.getSecond());
+			throw new IllegalStateException(message);
+		}
 	}
 	
 	@Override
@@ -232,6 +246,16 @@ class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
 	public Sequence<T> sequence() {
 		return TreeSequenece.create(this);
 	}
+
+	@Override
+	public Tuple<Integer, Integer> numberOfBlackNodes() {
+		Tuple<Integer, Integer> blacksInLeft = left.numberOfBlackNodes();
+		Tuple<Integer, Integer> blacksInRight = right.numberOfBlackNodes();
+		int min = Math.min(blacksInLeft.getFirst(), blacksInRight.getFirst());
+		int max = Math.max(blacksInLeft.getSecond(), blacksInRight.getSecond());
+		int c = isBlack() ? 1 : 0;
+		return Tuples.of(c + min, c + max);
+	}
 }
 
 
@@ -267,6 +291,11 @@ final class EmptyNode<T extends Comparable<T>> extends NodeSupport<T> {
 	@Override
 	public Sequence<T> sequence() {
 		return Sequences.empty();
+	}
+
+	@Override
+	public Tuple<Integer, Integer> numberOfBlackNodes() {
+		return Tuples.of(1, 1);
 	}
 }
 
