@@ -29,6 +29,7 @@ interface Node<T extends Comparable<T>> extends SearchTree<T> {
 	boolean isRed();
 	boolean isBlack();
 	Tuple<Integer, Integer> numberOfBlackNodes();
+	void ensureRedNodesHasBlackChildren();
 	void ensureInvariant();
 }
 
@@ -46,8 +47,9 @@ abstract class NodeSupport<T extends Comparable<T>> implements Node<T> {
 					"[%s,%s]", numberOfBlackNodes.getFirst(), numberOfBlackNodes.getSecond());
 			throw new IllegalStateException(message);
 		}
+		ensureRedNodesHasBlackChildren();
 	}
-	
+
 	@Override
 	public boolean isRed() {
 		return getColor() == Color.RED;
@@ -256,6 +258,15 @@ class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
 		int c = isBlack() ? 1 : 0;
 		return Tuples.of(c + min, c + max);
 	}
+
+	@Override
+	public void ensureRedNodesHasBlackChildren() {
+		if (isRed() && (left.isRed() || right.isRed())) {
+			throw new IllegalStateException("Invariant violation - No red node has a red parent");
+		}
+		left.ensureRedNodesHasBlackChildren();
+		right.ensureRedNodesHasBlackChildren();
+	}
 }
 
 
@@ -297,6 +308,9 @@ final class EmptyNode<T extends Comparable<T>> extends NodeSupport<T> {
 	public Tuple<Integer, Integer> numberOfBlackNodes() {
 		return Tuples.of(1, 1);
 	}
+	
+	@Override
+	public void ensureRedNodesHasBlackChildren() {}
 }
 
 final class TreeSequenece<T extends Comparable<T>> extends LazySequence<T> {
