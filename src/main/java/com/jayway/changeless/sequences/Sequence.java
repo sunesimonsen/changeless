@@ -242,11 +242,12 @@ public interface Sequence<T> extends Sequenceable<T> {
 	/**
 	 * Returns a new lazy sequence with the elements of this sequence separated by
 	 * the given separator.
+	 * @param <I> type of the separator.
 	 * @param separator the separator.
 	 * @return lazy sequence of element in this sequence separated by
 	 * the given separator.
 	 */
-	Sequence<T> interpose(T separator);
+	<I extends T> Sequence<T> interpose(I separator);
 	
 	/**
 	 * Lazily partition the sequence into parts of size n.

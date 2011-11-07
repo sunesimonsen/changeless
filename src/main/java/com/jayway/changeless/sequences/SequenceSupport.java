@@ -70,7 +70,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	}
 	
 	@Override
-	public Sequence<T> interpose(T separator) {
+	public <I extends T>  Sequence<T> interpose(I separator) {
 		return new InterposeSequence<T>(this, separator);
 	}
 	
