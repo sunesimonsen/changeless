@@ -21,6 +21,7 @@ public interface SearchTree<T extends Comparable<T>> extends Sequenceable<T> {
 	boolean contains(T element);
 	boolean isEmpty();
 	SearchTree<T> add(T element);
+	SearchTree<T> remove(T element);
 }
 
 interface Node<T extends Comparable<T>> extends SearchTree<T> {
@@ -28,15 +29,23 @@ interface Node<T extends Comparable<T>> extends SearchTree<T> {
 	Color getColor();
 	boolean isRed();
 	boolean isBlack();
+	Tuple<Integer, Integer> numberOfNodes();
 	Tuple<Integer, Integer> numberOfBlackNodes();
 	void ensureRedNodesHasBlackChildren();
 	void ensureInvariant();
+	Node<T> colorBlack();
+	Node<T> balance();
 }
 
 abstract class NodeSupport<T extends Comparable<T>> implements Node<T> {
 	public SearchTree<T> add(T element) {
 		Guard.notNull(element, "element");
 		return insertInTree(element).colorBlack();
+	}
+	
+	public SearchTree<T> remove(T element) {
+		Guard.notNull(element, "element");
+		throw new UnsupportedOperationException();
 	}
 	
 	public void ensureInvariant() {
@@ -48,6 +57,14 @@ abstract class NodeSupport<T extends Comparable<T>> implements Node<T> {
 			throw new IllegalStateException(message);
 		}
 		ensureRedNodesHasBlackChildren();
+		
+		Tuple<Integer, Integer> numberOfNodes = numberOfNodes();
+		if (numberOfNodes.getFirst() * 2 < numberOfNodes.getSecond()) {
+			String message = String.format("Invariant violation - The longest path is no "+
+					"more than twice as long as the shortest possible path"+
+					"[%s,%s]", numberOfBlackNodes.getFirst(), numberOfBlackNodes.getSecond());
+			throw new IllegalStateException(message);
+		}
 	}
 
 	@Override
@@ -124,43 +141,44 @@ class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
 		return new ColoredNode<T>(color, left, element, right);
 	}
 	
-	public SearchTree<T> colorBlack() {
+	public Node<T> colorBlack() {
 		return create(Color.BLACK, left, element, right);
 	}
 
 	@Override
 	public ColoredNode<T> insertInTree(T element) {
 		if (Comparables.lessThan(element, this.element)) {
-			return balance(create(color, left.insertInTree(element), this.element, right));
+			return create(color, left.insertInTree(element), this.element, right).balance();
 		} 
 		
 		if (Comparables.greaterThan(element, this.element)) {
-			return balance(create(color, left, this.element, right.insertInTree(element)));
+			return create(color, left, this.element, right.insertInTree(element)).balance();
 		}
 		
 		return this;
 	}
 
-	private static <T extends Comparable<T>> ColoredNode<T> balance(ColoredNode<T> tree) {
+	@Override
+	public ColoredNode<T> balance() {
 		ColoredNode<T> balancedTree = null;
 
-		if (tree.isRed()) {
-			return tree;
+		if (isRed()) {
+			return this;
 		}
 				
-		balancedTree = matchLeftRight(tree);
+		balancedTree = matchLeftRight(this);
 		if (balancedTree != null) return balancedTree;
 
-		balancedTree = matchLeftLeft(tree);
+		balancedTree = matchLeftLeft(this);
 		if (balancedTree != null) return balancedTree;
 		
-		balancedTree = matchRightRight(tree);
+		balancedTree = matchRightRight(this);
 		if (balancedTree != null) return balancedTree;
 		
-		balancedTree = matchRightLeft(tree);
+		balancedTree = matchRightLeft(this);
 		if (balancedTree != null) return balancedTree;
 		
-		return tree;
+		return this;
 	}
 
 	private static <T extends Comparable<T>> ColoredNode<T> matchLeftRight(ColoredNode<T> z) {
@@ -267,6 +285,15 @@ class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
 		left.ensureRedNodesHasBlackChildren();
 		right.ensureRedNodesHasBlackChildren();
 	}
+
+	@Override
+	public Tuple<Integer, Integer> numberOfNodes() {
+		Tuple<Integer, Integer> nodesInLeft = left.numberOfNodes();
+		Tuple<Integer, Integer> nodesInRight = right.numberOfNodes();
+		int min = Math.min(nodesInLeft.getFirst(), nodesInRight.getFirst());
+		int max = Math.max(nodesInLeft.getSecond(), nodesInRight.getSecond());
+		return Tuples.of(1 + min, 1 + max);
+	}
 }
 
 
@@ -311,6 +338,21 @@ final class EmptyNode<T extends Comparable<T>> extends NodeSupport<T> {
 	
 	@Override
 	public void ensureRedNodesHasBlackChildren() {}
+
+	@Override
+	public Tuple<Integer, Integer> numberOfNodes() {
+		return Tuples.of(1, 1);
+	}
+
+	@Override
+	public Node<T> colorBlack() {
+		return this;
+	}
+
+	@Override
+	public Node<T> balance() {
+		return this;
+	}
 }
 
 final class TreeSequenece<T extends Comparable<T>> extends LazySequence<T> {

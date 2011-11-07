@@ -4,10 +4,14 @@ import static org.junit.Assert.*;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.*;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class SearchTreeTest {
@@ -40,19 +44,63 @@ public class SearchTreeTest {
 			int value = random.nextInt(10000);
 			tree = tree.add(value);
 			inserted.add(value);
+			assertValidInvariant(tree);
 		}
 		
 		for (Integer value : inserted) {
 			assertContains(tree, value);
 		}
+	}
+	
+	@Test
+	@Ignore
+	public void removeMonkeyTest() throws Exception {
+		Random random = new Random();
+		Set<Integer> inserted = new HashSet<Integer>();
+		SearchTree<Integer> tree = SearchTrees.empty();
+		for (int i = 0; i < 10; i++) {
+			int value = random.nextInt(10000);
+			tree = tree.add(value);
+			inserted.add(value);
+		}
 		
+		for (Integer value : inserted) {
+			assertContains(tree, value);
+			tree = tree.remove(value);
+			assertNotContains(tree, value);
+			assertValidInvariant(tree);
+		}
+	}
+	
+	@Test
+	public void serialMonkeyTest() throws Exception {
+		List<Integer> inserted = new ArrayList<Integer>();
+		SearchTree<Integer> tree = SearchTrees.empty();
+		for (int i = 0; i < 1000; i++) {
+			tree = tree.add(i);
+			inserted.add(i);
+			assertValidInvariant(tree);
+		}
+		
+		for (Integer value : inserted) {
+			assertContains(tree, value);
+		}
+	}
+	
+	private void assertValidInvariant(SearchTree<Integer> tree) {
 		Node<Integer> root = (Node<Integer>) tree;
 		root.ensureInvariant();
 	}
-	
+
 	private static <T extends Comparable<T>> void assertContains(SearchTree<T> tree, T element) {
 		if (!tree.contains(element)) {
 			fail(String.format("Expected tree '%s' to contain element '%s'", tree, element));
+		}
+	}
+	
+	private static <T extends Comparable<T>> void assertNotContains(SearchTree<T> tree, T element) {
+		if (tree.contains(element)) {
+			fail(String.format("Did not expect tree '%s' to contain element '%s'", tree, element));
 		}
 	}
 }
