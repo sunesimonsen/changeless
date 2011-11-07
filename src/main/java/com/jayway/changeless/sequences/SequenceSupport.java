@@ -274,6 +274,11 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	public Sequence<T> take(int n) {
 		return TakeSequence.create(this, n);
 	}
+	
+	@Override
+	public Sequence<T> takeWhile(Predicate<T> predicate) {
+		return TakeWhileSequence.create(this, predicate);
+	}
 
 	@Override
 	public Sequence<T> remove(Object element) {

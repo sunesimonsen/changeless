@@ -233,11 +233,20 @@ public interface Sequence<T> extends Sequenceable<T> {
 	T get(int index);
 
 	/**
-	 * Returns a new sequence with n elements from this sequence.
+	 * Returns a new lazy sequence with n elements from this sequence.
 	 * @param n the number of element to take.
-	 * @return a new sequence with n elements from this sequence.
+	 * @return a new lazy sequence with n elements from this sequence.
 	 */
 	Sequence<T> take(int n);
+	
+	/**
+	 * Returns a new lazy sequence containing successive elements from this 
+	 * sequence while the predicate returns true.
+	 * @param predicate the predicate deciding how many elements to take.
+	 * @return a new lazy sequence containing successive elements from this 
+	 * sequence while the predicate returns true.
+	 */
+	Sequence<T> takeWhile(Predicate<T> predicate);
 
 	/**
 	 * Returns a new lazy sequence with the elements of this sequence separated by
