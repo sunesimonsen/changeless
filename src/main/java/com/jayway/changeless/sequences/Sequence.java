@@ -3,6 +3,7 @@ package com.jayway.changeless.sequences;
 import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.functions.Fn2;
 import com.jayway.changeless.maps.Map;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.predicates.Predicate;
 import com.jayway.changeless.tuples.Tuple;
 
@@ -335,4 +336,11 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * given sequence as the rest of the elements.
 	 */
 	Sequence<T> withRest(Sequence<T> rest);
+	
+	/**
+	 * Returns the first elements that matches the given predicate function.
+	 * @param predicate the predicate.
+	 * @return the first elements that matches the given predicate function.
+	 */
+	Optional<T> find(Predicate<? super T> predicate);
 }

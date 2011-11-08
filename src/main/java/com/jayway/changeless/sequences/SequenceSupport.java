@@ -9,6 +9,7 @@ import com.jayway.changeless.functions.strings.AppendStringFunction;
 import com.jayway.changeless.intervals.Intervals;
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.maps.Maps;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.predicates.Predicate;
 import com.jayway.changeless.predicates.Predicates;
 import com.jayway.changeless.tuples.Tuple;
@@ -327,5 +328,15 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	@Override
 	public Sequence<T> withRest(Sequence<T> rest) {
 		return Sequences.add(first(), rest);
+	}
+	
+	@Override
+	public Optional<T> find(Predicate<? super T> predicate) {
+		for (T element : this) {
+			if (predicate.apply(element)) {
+				return Optional.valueOf(element);
+			}
+		}
+		return Optional.none();
 	}
 }
