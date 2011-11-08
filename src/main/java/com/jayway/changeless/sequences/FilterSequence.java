@@ -25,7 +25,7 @@ final class FilterSequence<T> extends LazySequence<T> {
 		Sequence<T> next = sequence; 
 		while(!next.isEmpty()){
 			T first = next.first();
-			if (predicate.apply(first)) {
+			if (predicate.matches(first)) {
 				Sequence<T> rest = next.rest().filter(predicate);
 				return next.withRest(rest);
 			}

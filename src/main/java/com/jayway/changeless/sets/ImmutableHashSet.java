@@ -185,7 +185,7 @@ final class ImmutableHashSet<T> implements Set<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Boolean apply(T input) {
+	public boolean matches(T input) {
 		return contains(input);
 	}
 }

@@ -1,6 +1,8 @@
 package com.jayway.changeless.maps;
 
+import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.optionals.Optional;
+import com.jayway.changeless.predicates.Predicate;
 import com.jayway.changeless.sequences.Sequenceable;
 import com.jayway.changeless.tuples.Tuple;
 
@@ -10,7 +12,7 @@ import com.jayway.changeless.tuples.Tuple;
  * @param <K> the type of the keys in the map.
  * @param <V> the type of the values in the map. 
  */
-public interface Map<K,V> extends Sequenceable<Tuple<K,V>> {
+public interface Map<K,V> extends Sequenceable<Tuple<K,V>>, Fn<K, Optional<V>>, Predicate<K> {
 	/**
 	 * Returns a new map where the given key is associated to the specified value. 
 	 * @param key the key.
@@ -49,4 +51,11 @@ public interface Map<K,V> extends Sequenceable<Tuple<K,V>> {
 	 * @return true if this map contains no keys; false otherwise.
 	 */
 	boolean isEmpty();
+	
+	/**
+	 * Returns true if maps contains the given key.
+	 * @param key the key.
+	 * @return true if maps contains the given key; false otherwise.
+	 */
+	boolean contains(K key);
 }

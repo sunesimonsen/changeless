@@ -10,7 +10,7 @@ import com.jayway.changeless.utilities.Comparables;
 public class FunctionTests {
 	@Test 
 	public void functionCompositionTest() {
-		Fn<Integer, String> f = Functions.compose(Functions.toStringFunction, new EvenPredicate());
+		Fn<Integer, String> f = Functions.compose(Functions.toStringFunction, Functions.from(new EvenPredicate()));
 		assertEquals("Expected result", "false", f.apply(13));
 	}
 	

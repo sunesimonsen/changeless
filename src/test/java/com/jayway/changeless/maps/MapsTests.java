@@ -1,5 +1,6 @@
 package com.jayway.changeless.maps;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
@@ -8,6 +9,7 @@ import org.junit.Test;
 
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.maps.Maps;
+import com.jayway.changeless.optionals.Optional;
 
 public class MapsTests {
 	@Test
@@ -97,5 +99,57 @@ public class MapsTests {
 		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
 		Map<Integer, String> actual = Maps.copyOf(map.sequence());
 		assertEquals("Expected elements to be equal", map, actual);
+	}
+	
+	@Test
+	public void containsSuccess() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		assertTrue("Expected map to contain value", map.contains(41));
+	}
+	
+	@Test
+	public void containsFailure() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		assertFalse("Expected map not to contain value", map.contains(39));
+	}
+	
+	@Test
+	public void mapPredicateSuccess() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		assertTrue("Expected map to contain value", map.matches(41));
+	}
+	
+	@Test
+	public void mapPredicateFailure() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		assertFalse("Expected map not to contain value", map.matches(39));
+	}
+	
+	@Test
+	public void mapFunctionOnExistingKey() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		Optional<String> expected = Optional.valueOf("41");
+		Optional<String> actual = map.apply(41);
+		assertEquals("Expected values to be equals", expected, actual);
+	}
+	
+	@Test
+	public void mapFunctionOnNonExistingKey() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		Optional<String> expected = Optional.none();
+		Optional<String> actual = map.apply(39);
+		assertEquals("Expected values to be equals", expected, actual);
+	}
+	
+	@Test
+	public void isEmptyOnEmptyMap() throws Exception {
+		Map<Integer,String> map = Maps.empty();
+		assertTrue("Expected map to be empty", map.isEmpty());
+	}
+	
+	@Test
+	public void isEmptyOnNonEmptyMap() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		assertFalse("Expected map to be non-empty", map.isEmpty());
 	}
 }

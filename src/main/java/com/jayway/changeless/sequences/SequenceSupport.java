@@ -92,7 +92,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	@Override
 	public Sequence<T> skipWhile(Predicate<T> predicate) {
 		Sequence<T> result = this;
-		while (!result.isEmpty() && predicate.apply(result.first())) {
+		while (!result.isEmpty() && predicate.matches(result.first())) {
 			result = result.rest();
 		}
 		return result;
@@ -248,7 +248,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	@Override
 	public boolean any(Predicate<? super T> predicate) {
 		for (T element : this) {
-			if (predicate.apply(element)) {
+			if (predicate.matches(element)) {
 				return true;
 			}
 		}
@@ -333,7 +333,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	@Override
 	public Optional<T> find(Predicate<? super T> predicate) {
 		for (T element : this) {
-			if (predicate.apply(element)) {
+			if (predicate.matches(element)) {
 				return Optional.valueOf(element);
 			}
 		}

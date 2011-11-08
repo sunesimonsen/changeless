@@ -1,6 +1,7 @@
 package com.jayway.changeless.functions;
 
 import com.jayway.changeless.functions.objects.ToStringFunction;
+import com.jayway.changeless.predicates.Predicate;
 
 /**
  * A class containing convenient functions for working with function-objects.
@@ -57,6 +58,20 @@ public final class Functions {
 			@Override
 			public D apply(A x, A y) {
 				return f.apply(g.apply(x), g.apply(y));
+			}
+		};
+	}
+
+	/**
+	 * Create a new function corresponding to the given predicate.
+	 * @param predicate the predicate.
+	 * @return a new function corresponding to the given predicate.
+	 */
+	public static <T> Fn<T, Boolean> from(final Predicate<T> predicate) {
+		return new Fn<T, Boolean>() {
+			@Override
+			public Boolean apply(T input) {
+				return predicate.matches(input);
 			}
 		};
 	}

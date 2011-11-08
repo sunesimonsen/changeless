@@ -17,7 +17,7 @@ public class TakeWhileSequence<T> extends SequenceSupport<T> {
 			return sequence;
 		}
 		
-		if (!predicate.apply(sequence.first())) {
+		if (!predicate.matches(sequence.first())) {
 			return Sequences.empty();
 		}
 		

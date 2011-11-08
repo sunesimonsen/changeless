@@ -15,8 +15,8 @@ public final class Predicates {
 	public static <T> Predicate<T> not(final Predicate<T> predicate) {
 		return new Predicate<T>() {
 			@Override
-			public Boolean apply(T input) {
-				return !predicate.apply(input);
+			public boolean matches(T input) {
+				return !predicate.matches(input);
 			}
 		};
 	}
@@ -27,7 +27,7 @@ public final class Predicates {
 	 */
 	public static Predicate<Object> notNull= new Predicate<Object>() {
 			@Override
-			public Boolean apply(Object input) {
+			public boolean matches(Object input) {
 				return input != null;
 			}
 		};
@@ -41,7 +41,7 @@ public final class Predicates {
 	public static Predicate<Object> equalsPredicate(final Object element) {
 		return new Predicate<Object>() {
 			@Override
-			public Boolean apply(Object input) {
+			public boolean matches(Object input) {
 				return element.equals(input);
 			}
 		};

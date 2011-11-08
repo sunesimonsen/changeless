@@ -123,4 +123,19 @@ final class ImmutableHashMap<K, V> implements Map<K, V> {
 		
 		return true;
 	}
+
+	@Override
+	public Optional<V> apply(K input) {
+		return get(input);
+	}
+
+	@Override
+	public boolean contains(K key) {
+		return get(key).hasValue();
+	}
+
+	@Override
+	public boolean matches(K input) {
+		return contains(input);
+	}
 }
