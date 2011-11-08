@@ -339,4 +339,9 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		}
 		return Optional.none();
 	}
+	
+	@Override
+	public Sequence<T> distinct() {
+		return DistinctSequence.create(this);
+	}
 }

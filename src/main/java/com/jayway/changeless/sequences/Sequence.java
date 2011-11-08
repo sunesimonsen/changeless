@@ -343,4 +343,19 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @return the first elements that matches the given predicate function.
 	 */
 	Optional<T> find(Predicate<? super T> predicate);
+	
+	/**
+	 * <p>
+	 * Returns a new lazy sequence containing distinct elements from this 
+	 * sequence. 
+	 * </p>
+	 * <p>
+	 * Notice that because the resulting sequence is lazily calculated 
+	 * a set of used elements will be maintained. This set will grow larger 
+	 * as the sequence is traversed.
+	 * </p>
+	 * @return a new lazy sequence containing distinct elements from this 
+	 * sequence.
+	 */
+	Sequence<T> distinct();
 }
