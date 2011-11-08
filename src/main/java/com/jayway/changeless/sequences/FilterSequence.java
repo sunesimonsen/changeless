@@ -13,6 +13,10 @@ final class FilterSequence<T> extends LazySequence<T> {
 	}
 
 	public static <R> Sequence<R> create(Sequence<R> sequence, Predicate<? super R> predicate) {
+		if (sequence.isEmpty()) {
+			return sequence;
+		}
+		
 		return new FilterSequence<R>(sequence, predicate);
 	}
 	
