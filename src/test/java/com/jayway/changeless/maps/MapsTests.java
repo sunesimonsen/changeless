@@ -1,14 +1,12 @@
 package com.jayway.changeless.maps;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.jayway.changeless.maps.Map;
-import com.jayway.changeless.maps.Maps;
 import com.jayway.changeless.optionals.Optional;
 
 public class MapsTests {
