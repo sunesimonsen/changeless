@@ -29,8 +29,8 @@ TODO
 * Go through generated Javadoc and find things that looks weird and fix them.
 * Add examples in Markdown format. 
 * Add Record types (Done) 
-* Make maps implement Fn&lt;T,V&gt;.
-* Make maps implement Predicate&lt;T&gt;.
+* Make maps implement Fn&lt;T,Optional&lt;V&gt;&gt;. (Done)
+* Make maps implement Predicate&lt;T&gt;. (Done) 
 * Make set implement Predicate&lt;T&gt;. (Done)
 * Make vectors implement Fn&lt;Integer,T&gt; and Predicate&lt;Integer&gt;.
 * Add function composition to the Functions class. (Done)
