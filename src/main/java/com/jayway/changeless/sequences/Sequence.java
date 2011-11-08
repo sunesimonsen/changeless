@@ -173,13 +173,22 @@ public interface Sequence<T> extends Sequenceable<T> {
 	T reduce(Fn2<? super T, ? super T,T> function);
 	
 	/**
-	 * Returns a new sequence containing all the elements of this sequence except 
+	 * Returns a new sequence containing the elements of this sequence except 
 	 * the n first elements. If n is less than one this sequence is returned.
 	 * @param n the number of elements to skip.
 	 * @return a new sequence containing all the elements of this sequence except 
 	 * the n first elements
 	 */
 	Sequence<T> skip(int n);
+	
+	/**
+	 * Returns a new sequence containing the elements of this sequence except
+	 * the prefix for which the elements matches the given predicate function.
+	 * @param predicate the predicate deciding which elements to skip.
+	 * @return a new sequence containing the elements of this sequence except
+	 * the prefix for which the elements matches the given predicate function.
+	 */
+	Sequence<T> skipWhile(Predicate<T> predicate);
 	
 	/**
 	 * Returns a new lazy sequence where this sequence is appended with the elements 

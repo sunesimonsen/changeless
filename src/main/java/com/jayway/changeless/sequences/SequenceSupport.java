@@ -89,6 +89,15 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	}
 	
 	@Override
+	public Sequence<T> skipWhile(Predicate<T> predicate) {
+		Sequence<T> result = this;
+		while (!result.isEmpty() && predicate.apply(result.first())) {
+			result = result.rest();
+		}
+		return result;
+	}
+	
+	@Override
 	public <R> Sequence<R> transform(Fn<? super T, ? extends R> function) {
 		return TransformedSequence.create(this, function);
 	}
