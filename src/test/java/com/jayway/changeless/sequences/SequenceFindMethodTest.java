@@ -23,4 +23,12 @@ public class SequenceFindMethodTest {
 		Optional<Integer> actual = sequence.find(Predicates.equalsPredicate(3));
 		assertEquals("Expected result", expected, actual);
 	}
+	
+	@Test
+	public void findOnInfiniteSequence() throws Exception {
+		Sequence<Integer> sequence = Sequences.from(1).upward();
+		Optional<Integer> expected = Optional.valueOf(42);
+		Optional<Integer> actual = sequence.find(Predicates.equalsPredicate(42));
+		assertEquals("Expected result", expected, actual);
+	}
 }
