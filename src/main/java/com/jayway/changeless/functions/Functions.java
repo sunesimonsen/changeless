@@ -5,8 +5,9 @@ import com.jayway.changeless.predicates.Predicate;
 
 /**
  * A class containing convenient functions for working with function-objects.
+ * @param <T>
  */
-public final class Functions {
+public final class Functions<T> {
 	private Functions() { /* Static class */ }
 	
 	/**
@@ -75,4 +76,13 @@ public final class Functions {
 			}
 		};
 	}
+	
+	public static <T> Fn<T, T> identity() {
+		return new Fn<T, T>() {
+			@Override
+			public T apply(T input) {
+				return input;
+			}
+		};
+	};
 }

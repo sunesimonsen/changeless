@@ -2,6 +2,7 @@ package com.jayway.changeless.sequences;
 
 import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.functions.Fn2;
+import com.jayway.changeless.functions.Functions;
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.tuples.Tuple;
 import com.jayway.changeless.tuples.Tuples;
@@ -183,5 +184,15 @@ public final class Sequences {
 		Sequence<T1> s1 = sequence.transform(Tuples.<T1,T2>firstFunction());
 		Sequence<T2> s2 = sequence.transform(Tuples.<T1,T2>secondFunction());
 		return Tuples.of(s1, s2);
+	}
+
+	/**
+	 * Returns a new sorted sequence based on the given sequence.
+	 * @param sequence the sequence which elements should be sorted.
+	 * @return a new sorted sequence based on the given sequence.
+	 */
+	public static <T extends Comparable<T>> Sequence<T> sort(Sequence<T> sequence) {
+		Fn<T, T> selector = Functions.identity();
+		return sequence.sortBy(selector);
 	}
 }

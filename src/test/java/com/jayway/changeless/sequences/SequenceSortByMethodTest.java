@@ -1,6 +1,5 @@
 package com.jayway.changeless.sequences;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -21,12 +20,20 @@ public class SequenceSortByMethodTest {
 		Sequence<Integer> actual = sequence.sortBy(new ToStringFunction());
 		assertEquals("Expected sequences to be equals", expected, actual);
 	}
-	
+
 	@Test
 	public void sortPersonSequenceByName() throws Exception {
 		Sequence<Person> sequence = Sequences.of(p("Foo"), p("Bar"), p("Bar"), p("Baz"));
 		Sequence<Person> expected = Sequences.of(p("Bar"), p("Bar"), p("Baz"), p("Foo"));
 		Sequence<Person> actual = sequence.sortBy(name);
+		assertEquals("Expected sequences to be equals", expected, actual);
+	}
+	
+	@Test
+	public void sortByIdentity() throws Exception {
+		Sequence<String> sequence = Sequences.of("Foo", "Bar", "Bar", "Baz");
+		Sequence<String> expected = Sequences.of("Bar", "Bar", "Baz", "Foo");
+		Sequence<String> actual = Sequences.sort(sequence);
 		assertEquals("Expected sequences to be equals", expected, actual);
 	}
 	
