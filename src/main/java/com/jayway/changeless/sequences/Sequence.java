@@ -358,4 +358,15 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * sequence.
 	 */
 	Sequence<T> distinct();
+	
+	/**
+	 * <p>
+	 * Returns a new sequence that is the result of sorting this sequence 
+	 * by the values selected by the provided selector.
+	 * </p>
+	 * @param selector the selector that is used to select the values to 
+	 * sort by.
+	 * @return a sorted version of this sequence.
+	 */
+	<I extends Comparable<I>> Sequence<T> sortBy(Fn<? super T, I> selector);
 }

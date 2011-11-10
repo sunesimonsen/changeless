@@ -1,5 +1,8 @@
 package com.jayway.changeless.sequences;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 import com.jayway.changeless.functions.Fn;
@@ -343,5 +346,24 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	@Override
 	public Sequence<T> distinct() {
 		return DistinctSequence.create(this);
+	}
+	
+	@Override
+	public <I extends Comparable<I>> Sequence<T> sortBy(final Fn<? super T, I> selector) {
+		Comparator<T> comperator = new Comparator<T>() {
+			@Override
+			public int compare(T arg0, T arg1) {
+				return selector.apply(arg0).compareTo(selector.apply(arg1));
+			}
+			
+		};
+		
+		ArrayList<T> sortBuffer = new ArrayList<T>();
+		for (T e : this) {
+			sortBuffer.add(e);
+		}
+		Collections.sort(sortBuffer, comperator);
+		
+		return Sequences.lazyCopyOf(sortBuffer);
 	}
 }
