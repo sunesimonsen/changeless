@@ -24,29 +24,25 @@ public class SequenceSortByMethodTest {
 	
 	@Test
 	public void sortPersonSequenceByName() throws Exception {
-		Sequence<Person> sequence = Sequences.of(
-				person("Foo"), person("Bar"), person("Bar"), person("Baz"));
-		Sequence<Person> expected = Sequences.of(
-				person("Bar"), person("Bar"), person("Baz"), person("Foo"));
-		Sequence<Person> actual = sequence.sortBy(new GetName());
+		Sequence<Person> sequence = Sequences.of(p("Foo"), p("Bar"), p("Bar"), p("Baz"));
+		Sequence<Person> expected = Sequences.of(p("Bar"), p("Bar"), p("Baz"), p("Foo"));
+		Sequence<Person> actual = sequence.sortBy(name);
 		assertEquals("Expected sequences to be equals", expected, actual);
 	}
 	
-	private Person person(String name) {
+	private Person p(String name) {
 		return builder.create().name(name);
 	}
+	
+	private Fn<Person, String> name = new Fn<Person, String>(){
+		@Override
+		public String apply(Person input) {
+			return input.name();
+		}
+	};
 }
 
 interface Person extends Record {
 	String name();
 	Person name(String name);
-}
-
-class GetName implements Fn<Person, String>{
-
-	@Override
-	public String apply(Person input) {
-		return input.name();
-	}
-	
 }
