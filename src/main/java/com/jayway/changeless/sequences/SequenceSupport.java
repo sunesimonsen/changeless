@@ -401,7 +401,6 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 			this.element = element;
 		}
 		
-		@SuppressWarnings("unchecked")
 		@Override
 		public Sequence<V> apply(Optional<Sequence<V>> value) {
 			if (value.hasValue()) {
@@ -410,6 +409,5 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 				return Sequences.of(element);
 			}
 		}
-
 	 }
 }

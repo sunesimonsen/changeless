@@ -57,7 +57,6 @@ final class LeafNode<T> extends SingleNode<T> {
 		return sequence().toString();
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public Sequence<T> sequence() {
 		return Sequences.of(value);

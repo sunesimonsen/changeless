@@ -29,6 +29,17 @@ public final class Sequences {
 	}
 	
 	/**
+	 * Create a new sequence containing the given element.
+	 * @param <T> the type of the elements in the sequence.
+	 * @param element the element of the sequence to create.
+	 * @return a new sequence containing the given element.
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> Sequence<T> of(T element) {
+		return ArraySequence.of(element);
+	}
+	
+	/**
 	 * Create a new sequence consisting of the given elements.
 	 * @param <T> the type of the elements in the sequence.
 	 * @param elements the elements of the sequence to create.

@@ -513,7 +513,6 @@ public class SequenceTest {
 		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Test
 	public void partitionLargerThanSequence() throws Exception {
 		Sequence<Integer> sequence = Sequences.from(0).upward().take(10);
