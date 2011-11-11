@@ -394,7 +394,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		return Sequences.copyOf(shuffleBuffer);
 	}
 	
-	private static class AddToSequenceFunction<V> implements Fn<Optional<Sequence<V>>,  Optional<Sequence<V>>>{
+	private static class AddToSequenceFunction<V> implements Fn<Optional<Sequence<V>>,  Sequence<V>>{
 		private final V element;
 		public AddToSequenceFunction(V element) {
 			this.element = element;
@@ -402,11 +402,11 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		
 		@SuppressWarnings("unchecked")
 		@Override
-		public Optional<Sequence<V>> apply(Optional<Sequence<V>> value) {
+		public Sequence<V> apply(Optional<Sequence<V>> value) {
 			if (value.hasValue()) {
-				return Optional.valueOf(value.getValue().add(element));
+				return value.getValue().add(element);
 			} else {
-				return Optional.valueOf(Sequences.of(element));
+				return Sequences.of(element);
 			}
 		}
 

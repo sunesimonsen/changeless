@@ -70,19 +70,10 @@ final class ImmutableHashMap<K, V> implements Map<K, V> {
 	}
 	
 	@Override
-	public Map<K,V> update(K key, Fn<Optional<V>,Optional<V>> function) {
+	public Map<K,V> update(K key, Fn<Optional<V>,V> function) {
 		Optional<V> value = get(key);
-		Optional<V> updateValue = function.apply(value);
-		if (updateValue.hasNoValue()) {
-			if (value.hasValue()) {
-				return remove(key);	
-			} else {
-				return this;
-			}
-			
-		} else {
-			return put(key, updateValue.getValue());
-		}
+		V updateValue = function.apply(value);
+		return put(key, updateValue);
 	}
 
 	@Override

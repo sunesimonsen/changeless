@@ -64,7 +64,7 @@ public interface Map<K,V> extends Sequenceable<Tuple<K,V>>, Fn<K, Optional<V>>, 
 	 * argument to the provided function.
 	 * @return the new updated map.
 	 */
-	Map<K,V> update(K key, Fn<Optional<V>,Optional<V>> function);
+	Map<K,V> update(K key, Fn<Optional<V>,V> function);
 	
 	/**
 	 * Returns the number of keys in this map. 
