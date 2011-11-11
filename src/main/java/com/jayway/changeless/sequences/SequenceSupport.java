@@ -375,11 +375,9 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	
 	public <K> Map<K,Sequence<T>> groupBy(Fn<T, K> selector) {
 		Map<K, Sequence<T>> grouping = Maps.empty();
-		Sequence<T> emptySequence = Sequences.empty();
 		for (T element : this) {
 			K key = selector.apply(element);
-			Sequence<T> sequence = grouping.get(key, emptySequence);
-			grouping = grouping.put(key, sequence.add(element));
+			grouping = grouping.update(key, new AddToSequenceFunction<T>(element));
 		}
 		return grouping;
 	}
@@ -395,4 +393,22 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		
 		return Sequences.copyOf(shuffleBuffer);
 	}
+	
+	private static class AddToSequenceFunction<V> implements Fn<Optional<Sequence<V>>,  Optional<Sequence<V>>>{
+		private final V element;
+		public AddToSequenceFunction(V element) {
+			this.element = element;
+		}
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public Optional<Sequence<V>> apply(Optional<Sequence<V>> value) {
+			if (value.hasValue()) {
+				return Optional.valueOf(value.getValue().add(element));
+			} else {
+				return Optional.valueOf(Sequences.of(element));
+			}
+		}
+
+	 }
 }

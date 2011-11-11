@@ -1,11 +1,17 @@
 package com.jayway.changeless.maps;
 
+import com.jayway.changeless.utilities.Guard;
+
 final class MapEntry<K,V> {
 	private final K key;
 	private final V value;
 	
+	public MapEntry(K key) {
+		this(key, null);
+	}
+	
 	public MapEntry(K key, V value) {
-		super();
+		Guard.notNull(key,"key");
 		this.key = key;
 		this.value = value;
 	}
@@ -25,10 +31,7 @@ final class MapEntry<K,V> {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((key == null) ? 0 : key.hashCode());
-		return result;
+		return  key.hashCode();
 	}
 
 	@Override
@@ -41,11 +44,6 @@ final class MapEntry<K,V> {
 			return false;
 		@SuppressWarnings("rawtypes")
 		MapEntry other = (MapEntry) obj;
-		if (key == null) {
-			if (other.key != null)
-				return false;
-		} else if (!key.equals(other.key))
-			return false;
-		return true;
+		return key.equals(other.key);
 	}
 }

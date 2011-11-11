@@ -3,8 +3,8 @@ package com.jayway.changeless.maps;
 import java.util.Iterator;
 
 import com.jayway.changeless.functions.Fn;
-import com.jayway.changeless.internal.hashtrie.HashTries;
 import com.jayway.changeless.internal.hashtrie.HashTrie;
+import com.jayway.changeless.internal.hashtrie.HashTries;
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.tuples.Tuple;
@@ -52,6 +52,37 @@ final class ImmutableHashMap<K, V> implements Map<K, V> {
 			return defaultValue;
 		} 
 		return result.getValue();
+	}
+	
+	@Override
+	public Map<K,V> remove(K... keys) {
+		Map<K, V> result = this;
+		for (K k : keys) {
+			result = result.remove(k);
+		}
+		return result;
+	}
+	
+	@Override
+	public Map<K,V> remove(K key) {
+		MapEntry<K, V> entry = new MapEntry<K, V>(key);
+		return new ImmutableHashMap<K, V>(root.remove(entry, entry.hashCode()));
+	}
+	
+	@Override
+	public Map<K,V> update(K key, Fn<Optional<V>,Optional<V>> function) {
+		Optional<V> value = get(key);
+		Optional<V> updateValue = function.apply(value);
+		if (updateValue.hasNoValue()) {
+			if (value.hasValue()) {
+				return remove(key);	
+			} else {
+				return this;
+			}
+			
+		} else {
+			return put(key, updateValue.getValue());
+		}
 	}
 
 	@Override

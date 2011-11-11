@@ -41,6 +41,32 @@ public interface Map<K,V> extends Sequenceable<Tuple<K,V>>, Fn<K, Optional<V>>, 
 	V get(K key, V defaultValue);
 	
 	/**
+	 * Returns a new maps based on this map with the association identified by the given key removed.
+	 * @param key the key identifying the association to remove.
+	 * @return a new updated map.
+	 */
+	Map<K,V> remove(K key);
+	
+	/**
+	 * Returns a new maps based on this map with the associations identified by the given keys removed.
+	 * @param keys the keys identifying the associations to remove.
+	 * @return a new updated map.
+	 */
+	Map<K,V> remove(K... keys);
+
+	/**
+	 * Returns a new map based on this maps but with the association 
+	 * identified by the given key updated by applying the provided 
+	 * function to the value.
+	 * @param key the identifying the association to update.
+	 * @param function the function used to update the value in the map.
+	 * If there is no value for the supplied key an Option.none() is given as 
+	 * argument to the provided function.
+	 * @return the new updated map.
+	 */
+	Map<K,V> update(K key, Fn<Optional<V>,Optional<V>> function);
+	
+	/**
 	 * Returns the number of keys in this map. 
 	 * @return the number of keys in this map.
 	 */
