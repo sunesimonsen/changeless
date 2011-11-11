@@ -9,7 +9,7 @@ import com.jayway.changeless.tuples.Tuple;
 
 /**
  * <p>
- * A logical sequences of elements.
+ * A ordered sequences of elements.
  * </p>
  * <p>
  * Notice that is you are going to implement you own sequence 
@@ -359,6 +359,7 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 */
 	Sequence<T> distinct();
 	
+	// TODO add code examples
 	/**
 	 * <p>
 	 * Returns a new sequence that is the result of sorting this sequence 
@@ -377,4 +378,5 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * in random order.
 	 */
 	Sequence<T> shuffle();
+	
 }
