@@ -34,6 +34,11 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	public abstract T first();
 	
 	@Override
+	public Sequence<T> add(T element) {
+		return Sequences.add(element, this);
+	}
+	
+	@Override
 	public Sequence<T> add(T... elements) {
 		Sequence<T> result = this;
 		for (int i = elements.length-1; 0 <= i; i--) {
@@ -42,6 +47,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		}
 		return result;
 	}
+	
 	
 	@Override
 	public Sequence<T> add(Iterable<? extends T> elements) {
@@ -365,6 +371,17 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		Collections.sort(sortBuffer, comperator);
 		
 		return Sequences.copyOf(sortBuffer);
+	}
+	
+	public <K> Map<K,Sequence<T>> groupBy(Fn<T, K> selector) {
+		Map<K, Sequence<T>> grouping = Maps.empty();
+		Sequence<T> emptySequence = Sequences.empty();
+		for (T element : this) {
+			K key = selector.apply(element);
+			Sequence<T> sequence = grouping.get(key, emptySequence);
+			grouping = grouping.put(key, sequence.add(element));
+		}
+		return grouping;
 	}
 	
 	@Override

@@ -1,16 +1,12 @@
 package com.jayway.changeless.records;
 
 import org.junit.Test;
+
+import com.jayway.changeless.stubs.Person;
+
 import static org.junit.Assert.*;
 
 public class RecordToStringTests {
-	private interface Person extends Record {
-		String name();
-		Person name(String name);
-		int age();
-		Person age(int age);
-	}
-	
 	@Test
 	public void toStringIncludesAllFields() {
 		Person person = Records.of(Person.class).name("John").age(34);

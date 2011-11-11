@@ -9,21 +9,9 @@ import com.jayway.changeless.functions.Fn2;
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
+import com.jayway.changeless.stubs.Address;
+import com.jayway.changeless.stubs.Person;
 import com.jayway.changeless.utilities.Comparables;
-
-interface Person extends Record {
-	Person name(String name);
-	String name();
-	Address address();
-	Person address(Address address);
-}
-
-interface Address extends Record {
-	Address street(String street);
-	String street();
-	Address houseNumber(int houseNumber);
-	int houseNumber();
-}
 
 public class RecordsTests {
 	@Test

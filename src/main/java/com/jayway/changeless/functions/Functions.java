@@ -78,11 +78,6 @@ public final class Functions<T> {
 	}
 	
 	public static <T> Fn<T, T> identity() {
-		return new Fn<T, T>() {
-			@Override
-			public T apply(T input) {
-				return input;
-			}
-		};
+		return new IdentityFunction<T>();
 	};
 }

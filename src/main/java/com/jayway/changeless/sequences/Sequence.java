@@ -81,6 +81,14 @@ public interface Sequence<T> extends Sequenceable<T> {
 	Sequence<T> rest();
 	
 	/**
+	 * Returns a new sequence with the given element added to the front of this sequence.
+	 * @param element the element to be added.
+	 * @return a new sequence with the given element added to the front of this sequence.
+	 * @throws IllegalArgumentException if the element is null.
+	 */
+	Sequence<T> add(T element);
+	
+	/**
 	 * Returns a new sequence with all the given elements added to the front of this sequence.
 	 * @param elements the elements to be added.
 	 * @return a new sequence with all the given elements added to the front of this sequence.
@@ -370,6 +378,16 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @return a sorted version of this sequence.
 	 */
 	<I extends Comparable<I>> Sequence<T> sortBy(Fn<? super T, I> selector);
+
+	//TODO add code examples
+	/**
+	 * Returns a map containing the elements from this sequence group by the 
+	 * values returned by the given selector.
+	 * @param selector the selector deciding the value to group each element by.
+	 * @return a map containing the elements from this sequence group by the 
+	 * values returned by the given selector.
+	 */
+	<K> Map<K,Sequence<T>> groupBy(Fn<T, K> selector);
 	
 	/**
 	 * Returns a new shuffled sequence containing the elements of this sequence 
@@ -378,5 +396,4 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * in random order.
 	 */
 	Sequence<T> shuffle();
-	
 }

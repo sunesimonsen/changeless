@@ -4,11 +4,11 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.functions.objects.ToStringFunction;
-import com.jayway.changeless.records.Record;
 import com.jayway.changeless.records.RecordBuilder;
 import com.jayway.changeless.records.Records;
+import com.jayway.changeless.stubs.GetNameFunction;
+import com.jayway.changeless.stubs.Person;
 
 public class SequenceSortByMethodTest {
 	RecordBuilder<Person> builder = Records.builder(Person.class);
@@ -41,15 +41,6 @@ public class SequenceSortByMethodTest {
 		return builder.create().name(name);
 	}
 	
-	private Fn<Person, String> name = new Fn<Person, String>(){
-		@Override
-		public String apply(Person input) {
-			return input.name();
-		}
-	};
+	private GetNameFunction name = new GetNameFunction();
 }
 
-interface Person extends Record {
-	String name();
-	Person name(String name);
-}
