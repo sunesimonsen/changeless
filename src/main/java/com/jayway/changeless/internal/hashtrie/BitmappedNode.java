@@ -72,7 +72,7 @@ final class BitmappedNode<T> implements HashTrie<T> {
 			return this;
 		} 
 		
-		if (node instanceof EmptyNode<?>) {
+		if (node.isEmpty()) {
 			if (sequence().isSize(1)) {
 				return node; // reuse empty node
 			} 
