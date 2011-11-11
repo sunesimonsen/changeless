@@ -369,4 +369,12 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @return a sorted version of this sequence.
 	 */
 	<I extends Comparable<I>> Sequence<T> sortBy(Fn<? super T, I> selector);
+	
+	/**
+	 * Returns a new shuffled sequence containing the elements of this sequence 
+	 * in random order.
+	 * @return a new shuffled sequence containing the elements of this sequence 
+	 * in random order.
+	 */
+	Sequence<T> shuffle();
 }

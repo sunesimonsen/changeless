@@ -68,21 +68,6 @@ public final class Sequences {
 	}
 	
 	/**
-	 * <p>
-	 * Creates a lazy sequence containing the elements of the {@link Iterable}.
-	 * </p>
-	 * <p>
-	 * As the sequence is traversed the elements is pulled from the {@link Iterable}.
-	 * </p>
-	 * @param <T> the type of the elements in the sequence.
-	 * @param elements the elements of the sequence to create.
-	 * @return a new sequence consisting of the given elements.
-	 */
-	public static <T> Sequence<T> lazyCopyOf(Iterable<T> elements) {
-		return new IteratorSequence<T>(elements.iterator());
-	}
-	
-	/**
 	 * Given a collection of sequences this function creates a lazy sequence
 	 * containing the elements of all the sequences. 
 	 * @param <T> the type of the elements in the sequence.

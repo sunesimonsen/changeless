@@ -416,12 +416,6 @@ public class SequenceTest {
 		Sequences.from(-10).upward().take(10).get(11);
 	}
 	
-	@Test
-	public void lazyCopyOfSequence() throws Exception {
-		Sequence<Integer> actual = Sequences.lazyCopyOf(Arrays.asList(1, 2, 3, 4, 5));
-		Sequence<Integer> expected = Sequences.of(1, 2, 3, 4, 5);
-		assertEquals("Expected sequences to be equals",expected, actual);
-	}
 	
 	@Test
 	public void sequenceProducer() throws Exception {

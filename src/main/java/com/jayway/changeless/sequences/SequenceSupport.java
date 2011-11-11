@@ -364,6 +364,18 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		}
 		Collections.sort(sortBuffer, comperator);
 		
-		return Sequences.lazyCopyOf(sortBuffer);
+		return Sequences.copyOf(sortBuffer);
+	}
+	
+	@Override
+	public Sequence<T> shuffle() {
+		ArrayList<T> shuffleBuffer = new ArrayList<T>();
+		for (T element : this) {
+			shuffleBuffer.add(element);
+		}
+		
+		Collections.shuffle(shuffleBuffer);
+		
+		return Sequences.copyOf(shuffleBuffer);
 	}
 }
