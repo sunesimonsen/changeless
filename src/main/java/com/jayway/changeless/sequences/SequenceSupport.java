@@ -12,6 +12,7 @@ import com.jayway.changeless.functions.strings.AppendStringFunction;
 import com.jayway.changeless.intervals.Intervals;
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.maps.Maps;
+import com.jayway.changeless.maps.UpdateFunction;
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.predicates.Predicate;
 import com.jayway.changeless.predicates.Predicates;
@@ -394,7 +395,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		return Sequences.copyOf(shuffleBuffer);
 	}
 	
-	private static class AddToSequenceFunction<V> implements Fn<Optional<Sequence<V>>,  Sequence<V>>{
+	private static class AddToSequenceFunction<V> implements UpdateFunction<Sequence<V>> {
 		private final V element;
 		public AddToSequenceFunction(V element) {
 			this.element = element;
