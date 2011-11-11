@@ -7,7 +7,7 @@ import org.junit.Test;
 import com.jayway.changeless.intervals.Interval;
 import com.jayway.changeless.intervals.Intervals;
 
-public class InfiniteEndInterval {
+public class InfiniteEndIntervalTest {
 	private Interval<Integer> interval = Intervals.closed(4).infinite();
 	
 	@Test
