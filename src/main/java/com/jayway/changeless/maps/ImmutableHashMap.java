@@ -28,7 +28,7 @@ final class ImmutableHashMap<K, V> implements Map<K, V> {
 	@Override
 	public Map<K, V> put(K key, V value) {
 		Guard.notNull(key, "key");
-		Guard.notNull(key, "value");
+		Guard.notNull(value, "value");
 		MapEntry<K,V> entry = new MapEntry<K, V>(key, value);
 		int hashCode = entry.hashCode();
 		// TODO this could be more efficient.
@@ -40,7 +40,7 @@ final class ImmutableHashMap<K, V> implements Map<K, V> {
 		MapEntry<K,V> seachQuery = new MapEntry<K, V>(key, null);
 		Optional<MapEntry<K, V>> result = root.get(seachQuery, seachQuery.hashCode());
 		if (result.hasValue()) {
-			return Optional.maybe(result.getValue().getValue());
+			return Optional.valueOf(result.getValue().getValue());
 		}
 		return Optional.none();
 	}

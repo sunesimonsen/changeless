@@ -152,15 +152,20 @@ public class MapsTests {
 		assertFalse("Expected map to be non-empty", map.isEmpty());
 	}
 	
-	@Test
-	public void getOnKeyMappedToNullReturnsOptionalNone() {
-	  Map<Integer,String> map = Maps.of(1, null);
-	  assertTrue("Expected an Optional with no value", map.get(1).hasNoValue());
+	@Test(expected=IllegalArgumentException.class)
+	public void createMapThrowsOnNullKey() {
+		Maps.of(null, 1);
 	}
-	
+
+
+	@Test(expected=IllegalArgumentException.class)
+	public void createMapThrowsOnNullValue() {
+		Maps.of(1, null);
+	}
+
 	@Test
-	public void getOnKeyMappedToNullReturnsDefaultValueIfGiven() {
-    Map<Integer,String> map = Maps.of(1, null);
-    assertEquals("Expected an Optional with no value", map.get(1, "a"), "a");
+	public void getNonExistingKeyReturnsDefault() {
+		Map<Integer, String> map = Maps.of(2, "TWO");
+		assertEquals("Expected default value", map.get(1, "ONE"), "ONE");
 	}
 }
