@@ -72,9 +72,20 @@ public final class Optional<V> {
 	 */
 	public static <T> Optional<T> valueOf(T value) {
 		if (value == null) {
-			throw new NullPointerException("An optional can't be creates from null.");
+			throw new NullPointerException("An optional can't be created from null.");
 		}
 		return new Optional<T>(value);
+	}
+
+	/**
+	 * Returns an optional that, depending on whether the given value is null,
+	 * may or may not have a value.
+	 * @param value the possibly null value to return an optional for.
+	 * @return either valueOf(value) or none() depending on whether the given
+	 * value is or is not null, respectively.
+	 */
+	public static <T> Optional<T> maybe(T value) {
+	  return new Optional<T>(value);
 	}
 	
 	@Override
