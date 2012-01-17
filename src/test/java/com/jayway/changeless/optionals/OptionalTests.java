@@ -30,4 +30,16 @@ public class OptionalTests {
 		String expected = "Test";
 		assertEquals("Expected toString on optional value", expected, actual);
 	}
+
+	@Test
+	public void maybeOfNullHasNoValue() {
+	  Optional<Object> optional = Optional.maybe(null);
+	  assertTrue("Expected possibly(null) to give NONE", optional.hasNoValue());
+	}
+
+	@Test
+	public void maybeOfNonNullHasThatValue() {
+	  Optional<String> optional = Optional.maybe("a");
+	  assertEquals("Expected the value back", "a", optional.getValue());
+	}
 }

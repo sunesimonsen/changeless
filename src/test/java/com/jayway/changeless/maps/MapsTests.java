@@ -50,6 +50,7 @@ public class MapsTests {
 			assertEquals("Expected elements to be equal", expected, actual);
 		}
 	}
+	
 	@Test
 	public void replacedStringCanBeFound() throws Exception {
 		Map<String, Integer> map = Maps.empty();
@@ -149,5 +150,17 @@ public class MapsTests {
 	public void isEmptyOnNonEmptyMap() throws Exception {
 		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
 		assertFalse("Expected map to be non-empty", map.isEmpty());
+	}
+	
+	@Test
+	public void getOnKeyMappedToNullReturnsOptionalNone() {
+	  Map<Integer,String> map = Maps.of(1, null);
+	  assertTrue("Expected an Optional with no value", map.get(1).hasNoValue());
+	}
+	
+	@Test
+	public void getOnKeyMappedToNullReturnsDefaultValueIfGiven() {
+    Map<Integer,String> map = Maps.of(1, null);
+    assertEquals("Expected an Optional with no value", map.get(1, "a"), "a");
 	}
 }
