@@ -57,6 +57,22 @@
           <useProjectReferences>false</useProjectReferences>
         </configuration>
       </plugin>
+      <plugin>
+        <!--
+          Run mutation tests like this:
+          mvn clean install org.pitest:pitest-maven:mutationCoverage
+          reports can be found in target/pit-reports
+        -->
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <version>0.24</version>
+        <configuration>
+          <inScopeClasses>
+            <param>com.jayway.changeless*</param>
+          </inScopeClasses>
+          <threads>4</threads>
+        </configuration>
+      </plugin>
 		</plugins>
 	</build>
 	<repositories>
