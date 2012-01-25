@@ -2,25 +2,32 @@ package com.jayway.changeless.records;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.HashMap;
 
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.maps.Maps;
 import com.jayway.changeless.optionals.Optional;
+import com.jayway.changeless.tuples.Tuple;
 import com.jayway.changeless.utilities.Guard;
 
 
-class RecordInceptor<T extends Record> implements InvocationHandler {
-	private Map<String, Object> data;
-	private final Class<T> clazz;
+class RecordInceptor implements InvocationHandler {
+	private final Map<String, Object> data;
+	private final HashMap<String, Class<?>> types;
+	private final Class<?> clazz;
 	
-	public RecordInceptor(Class<T> clazz) {
-		this(clazz, Maps.<String,Object>empty());
+	public RecordInceptor(Class<?> clazz, HashMap<String, Class<?>> types) {
+		this(clazz, Maps.<String,Object>empty(), types);
 	}
 	
-	private RecordInceptor(Class<T> clazz, Map<String, Object> data) {
+	private RecordInceptor(
+			Class<?> clazz,
+			Map<String, Object> data,
+			HashMap<String, Class<?>> types) {
 		Guard.notNull(clazz, "clazz");
 		this.clazz = clazz;
 		this.data = data;
+		this.types = types;
 	}
 	
 	@Override
@@ -38,18 +45,21 @@ class RecordInceptor<T extends Record> implements InvocationHandler {
 			
 			if (isEqualsMethod(method)) {
 				return equals(args[0]);
-			}	
+			}
 		}
 		
 		if (method.getDeclaringClass() == Record.class) {
 			if (isGetDataMethod(method)) {
 				return getData();
 			}
+			
+			if (isMergeMethod(method)) {
+				return merge(args[0]);
+			}
 		}
 		
 		Class<?> returnType = method.getReturnType();
 		String methodName = method.getName();
-		
 		
 		if (returnType.equals(clazz)) {
 			Object value = args[0];
@@ -59,9 +69,9 @@ class RecordInceptor<T extends Record> implements InvocationHandler {
 			}
 			
 			Map<String, Object> newData = data.put(methodName, value);
-			return Proxy.newProxyInstance(returnType.getClassLoader(),
+			return Proxy.newProxyInstance(clazz.getClassLoader(),
 					new Class[] { clazz }, 
-					new RecordInceptor<T>(clazz, newData));
+					new RecordInceptor(clazz, newData, types));
 		} 
 		
 		Optional<Object> result = data.get(methodName);
@@ -88,12 +98,34 @@ class RecordInceptor<T extends Record> implements InvocationHandler {
 			return false;
 		if (!(obj instanceof Record))
 			return false;
-		Record other = (Record) obj;
+		Record<?> other = (Record<?>) obj;
 		return data.equals(other.getData());
 	}
 	
 	public Map<String, Object> getData() {
 		return data;
+	}
+	
+	public Object merge(Object arg) {
+		@SuppressWarnings("unchecked")
+		Map<String, Object> merging = (Map<String, Object>) arg;
+		Map<String, Object> newData = data;
+		for (Tuple<String, Object> entry : merging) {
+			String field = entry.getFirst();
+			Object value = entry.getSecond();
+			Class<?> type = types.get(field);
+			if (type != null && !type.isInstance(value)) {
+				String msg = "Cannot merge value '%s' of type %s " +
+						"into field '%s' of type %s";
+				throw new RecordValidationException(
+						String.format(msg, value, value.getClass(), field, type));
+			}
+			newData = newData.put(field, value);
+		}
+		
+		return Proxy.newProxyInstance(clazz.getClassLoader(),
+				new Class[] { clazz }, 
+				new RecordInceptor(clazz, newData, types));
 	}
 
 	@Override
@@ -103,6 +135,10 @@ class RecordInceptor<T extends Record> implements InvocationHandler {
 	
 	private boolean isGetDataMethod(Method method) {
 		return "getData".equals(method.getName());
+	}
+	
+	private boolean isMergeMethod(Method method) {
+		return "merge".equals(method.getName());
 	}
 	
 	private boolean isEqualsMethod(Method method) {

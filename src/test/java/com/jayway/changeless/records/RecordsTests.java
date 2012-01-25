@@ -1,12 +1,12 @@
 package com.jayway.changeless.records;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import com.jayway.changeless.functions.Fn2;
 import com.jayway.changeless.maps.Map;
+import com.jayway.changeless.maps.Maps;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
 import com.jayway.changeless.stubs.Address;
@@ -43,11 +43,13 @@ public class RecordsTests {
 		assertFalse("not equals", p1.equals(p3));
 	}
 	
-	interface Planet extends Record {
+	interface Planet extends Record<Planet> {
 		String name();
 		Planet name(String name);
 		double mass();
 		Planet mass(double mass);
+		String category();
+		Planet category(String category);
 	}
 	
 	@Test
@@ -95,5 +97,23 @@ public class RecordsTests {
 		
 		assertEquals("Jane", data.get("name").getValue());
 		assertEquals(address, data.get("address").getValue());
+	}
+	
+	@Test
+	public void mergeChangesManyValues() {
+		Planet earth = Records.of(Planet.class)
+				.mass(1.0).name("earth").category("planet");
+		Planet mars = earth.merge(Maps.of("mass", 0.11, "name", "mars"));
+		
+		assertEquals("planet", mars.category());
+		assertEquals(0.11, mars.mass(), 0.00001);
+		assertEquals("mars", mars.name());
+	}
+	
+	@Test
+	public void mergeMustMaintainFieldlessEntries() {
+		Planet planet = Records.of(Planet.class);
+		planet = planet.merge(Maps.of("strawberry", true));
+		assertTrue((Boolean) planet.getData().get("strawberry", false));
 	}
 }

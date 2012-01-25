@@ -2,12 +2,25 @@ package com.jayway.changeless.records;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.Map;
 
 class DefaultRecordValidator implements RecordValidator {
+	private static final IdentityHashMap<Class<?>, Class<?>> boxTypes =
+			new IdentityHashMap<Class<?>, Class<?>>();
+	static {
+		boxTypes.put(Byte.TYPE, Byte.class);
+		boxTypes.put(Character.TYPE, Character.class);
+		boxTypes.put(Double.TYPE, Double.class);
+		boxTypes.put(Float.TYPE, Float.class);
+		boxTypes.put(Integer.TYPE, Integer.class);
+		boxTypes.put(Long.TYPE, Long.class);
+		boxTypes.put(Short.TYPE, Short.class);
+		boxTypes.put(Boolean.TYPE, Boolean.class);
+	}
 
 	@Override
-	public void validateRecord(Class<? extends Record> clazz) {
+	public HashMap<String, Class<?>> validateRecord(Class<?> clazz) {
 		ensureInterface(clazz);
 		
 		Method[] methods = clazz.getMethods();
@@ -32,12 +45,16 @@ class DefaultRecordValidator implements RecordValidator {
 			}
 		}
 		
-		for (RecordField field : recordFields.values())	{
+		HashMap<String, Class<?>> types = new HashMap<String, Class<?>>();
+		for (Map.Entry<String, RecordField> entry : recordFields.entrySet())	{
+			RecordField field = entry.getValue();
 			field.validate(clazz);
+			types.put(entry.getKey(), field.getType());
 		}
+		return types;
 	}
 
-	private void ensureInterface(Class<? extends Record> clazz) {
+	private void ensureInterface(Class<?> clazz) {
 		if (!clazz.isInterface()) {
 			throw new RecordValidationException("Records can only be created from an interface.");
 		}
@@ -69,6 +86,16 @@ class DefaultRecordValidator implements RecordValidator {
 			this.extractor = extractor;
 		}
 
+		public Class<?> getType() {
+			Class<?> type = extractor.getReturnType();
+			if (type.isPrimitive()) {
+				// the data map will never contain primitives, so we need to
+				// convert this into the boxed variant, or merge()s will fail.
+				type = boxTypes.get(type);
+			}
+			return type;
+		}
+
 		public void setMutator(Method mutator) {
 			if (this.mutator != null) {
 				String message = String.format("Duplicate mutator '%s'", mutator);
@@ -77,14 +104,14 @@ class DefaultRecordValidator implements RecordValidator {
 			this.mutator = mutator;
 		}
 		
-		public void validate(Class<? extends Record> clazz) {
+		public void validate(Class<?> clazz) {
 			ensureMutatorIsDefined();
 			ensureExtractorIsDefined();
 			ensureValidExtrator();
 			ensureValidMutator(clazz);
 		}
 
-		private void ensureValidMutator(Class<? extends Record> clazz) {
+		private void ensureValidMutator(Class<?> clazz) {
 			ensureMutatorReturnTypeIsRecordType(clazz);
 			ensureValidMutatorParameters();
 		}
@@ -104,7 +131,7 @@ class DefaultRecordValidator implements RecordValidator {
 			throwValidationException(message);
 		}
 
-		private void ensureMutatorReturnTypeIsRecordType(Class<? extends Record> clazz) {
+		private void ensureMutatorReturnTypeIsRecordType(Class<?> clazz) {
 			if (!mutator.getReturnType().isAssignableFrom(clazz)) {
 				String message = String.format("Mutator '%s' must have return type that is assignable from '%s'", mutator, clazz);
 				throwValidationException(message);
