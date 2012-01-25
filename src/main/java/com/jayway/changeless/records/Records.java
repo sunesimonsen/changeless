@@ -9,7 +9,7 @@ package com.jayway.changeless.records;
  * Below is an example of what is possible.
  * <code>
  * <pre>
- * interface Planet extends Record {
+ * interface Planet extends Record&lt;Planet&gt; {
  *   String name();
  *   Planet name(String name);
  *   double mass();
@@ -54,7 +54,7 @@ public final class Records {
 	 * @throws RecordValidationException if the given class is not a valid {@link Record} interface. 
 	 * see {@link Record} for more information.
 	 */
-	public static <T extends Record> T of(Class<T> clazz) {
+	public static <T extends Record<?>> T of(Class<T> clazz) {
 		return builder(clazz).create();
 	}
 	
@@ -64,7 +64,7 @@ public final class Records {
 	 * @param clazz the class of the record to create.
 	 * @return a new {@link RecordBuilder} capable of creating record instances of type T. 
 	 */
-	public static <T extends Record> RecordBuilder<T> builder(Class<T> clazz) {
+	public static <T extends Record<?>> RecordBuilder<T> builder(Class<T> clazz) {
 		return DefaultRecordBuilder.create(clazz);
 	}
 }
