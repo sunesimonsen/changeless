@@ -93,8 +93,9 @@ public interface Map<K,V> extends Sequenceable<Tuple<K,V>>, Fn<K, Optional<V>>, 
 	 * <pre><code>Maps.of(1,"1", 2,"2")
 	 *    .merge(Maps.of(2,"TWO", 3,"3"))
 	 *    .equals(Maps.of(1,"1", 2,"TWO", 3,"3"));</code></pre>
-	 * @param updates
-	 * @return
+	 * @param updates The updates that should overwrite the entries of this map
+	 * in the new map.
+	 * @return A new map that is updates merged unto this map.
 	 */
 	Map<K,V> merge(Map<K, V> updates);
 }
