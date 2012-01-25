@@ -35,6 +35,9 @@ public interface Record<T extends Record<T>> {
 	 * Entries in the given updates map, where the key do not match any field
 	 * in the record, will be merged over as well. This can be used to attach
 	 * meta-data, or other types of hidden information, to the record.
+	 * <p>
+	 * This method differs from {@link Map#merge(Map)} in that it catches type
+	 * errors with respect to the defined record interface and its fields.
 	 * @param updates The map of field names to values.
 	 * @return A new record of the same type, with the mapped fields updated
 	 * to new values.

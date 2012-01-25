@@ -116,4 +116,9 @@ public class RecordsTests {
 		planet = planet.merge(Maps.of("strawberry", true));
 		assertTrue((Boolean) planet.getData().get("strawberry", false));
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void mergedMapCannotBeNull() {
+		Records.of(Planet.class).merge(null);
+	}
 }

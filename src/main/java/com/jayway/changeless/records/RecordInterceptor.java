@@ -110,10 +110,14 @@ class RecordInceptor implements InvocationHandler {
 	}
 	
 	public Object merge(Object arg) {
+		if (!(arg instanceof Map)) {
+			throw new IllegalArgumentException(
+					arg + " is not a changeless Map");
+		}
 		@SuppressWarnings("unchecked")
-		Map<String, Object> merging = (Map<String, Object>) arg;
+		Map<String, Object> updates = (Map<String, Object>) arg;
 		Map<String, Object> newData = data;
-		for (Tuple<String, Object> entry : merging) {
+		for (Tuple<String, Object> entry : updates) {
 			String field = entry.getFirst();
 			Object value = entry.getSecond();
 			Class<?> type = types.get(field);
