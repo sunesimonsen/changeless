@@ -15,19 +15,22 @@ class RecordInceptor implements InvocationHandler {
 	private final Map<String, Object> data;
 	private final HashMap<String, Class<?>> types;
 	private final Class<?> clazz;
+	private final ClassLoader classLoader;
 	
-	public RecordInceptor(Class<?> clazz, HashMap<String, Class<?>> types) {
-		this(clazz, Maps.<String,Object>empty(), types);
+	public RecordInceptor(Class<?> clazz, HashMap<String, Class<?>> types, ClassLoader classLoader) {
+		this(clazz, Maps.<String,Object>empty(), types, classLoader);
 	}
 	
 	private RecordInceptor(
 			Class<?> clazz,
 			Map<String, Object> data,
-			HashMap<String, Class<?>> types) {
+			HashMap<String, Class<?>> types,
+			ClassLoader classLoader) {
 		Guard.notNull(clazz, "clazz");
 		this.clazz = clazz;
 		this.data = data;
 		this.types = types;
+		this.classLoader = classLoader;
 	}
 	
 	@Override
@@ -69,9 +72,9 @@ class RecordInceptor implements InvocationHandler {
 			}
 			
 			Map<String, Object> newData = data.put(methodName, value);
-			return Proxy.newProxyInstance(clazz.getClassLoader(),
+			return Proxy.newProxyInstance(classLoader,
 					new Class[] { clazz }, 
-					new RecordInceptor(clazz, newData, types));
+					new RecordInceptor(clazz, newData, types, classLoader));
 		} 
 		
 		Optional<Object> result = data.get(methodName);
@@ -123,9 +126,9 @@ class RecordInceptor implements InvocationHandler {
 			newData = newData.put(field, value);
 		}
 		
-		return Proxy.newProxyInstance(clazz.getClassLoader(),
+		return Proxy.newProxyInstance(classLoader,
 				new Class[] { clazz }, 
-				new RecordInceptor(clazz, newData, types));
+				new RecordInceptor(clazz, newData, types, classLoader));
 	}
 
 	@Override

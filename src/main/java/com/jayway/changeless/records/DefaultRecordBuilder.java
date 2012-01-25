@@ -13,14 +13,17 @@ class DefaultRecordBuilder<T extends Record<?>> implements RecordBuilder<T> {
 	private DefaultRecordBuilder(Class<? extends T> clazz) {
 		this.clazz = clazz;
 		types = validator.validateRecord(clazz);
-		classLoader = clazz.getClassLoader();
+		classLoader = Thread.currentThread().getContextClassLoader();
+		if (classLoader == null) {
+			classLoader = clazz.getClassLoader();
+		}
 		interfaces = new Class[] { clazz };
 	}
 
 	@SuppressWarnings("unchecked")
 	public T create() {
 		return (T) Proxy.newProxyInstance(classLoader, interfaces,
-				new RecordInceptor(clazz, types));
+				new RecordInceptor(clazz, types, classLoader));
 	}
 	
 	public static <T extends Record<?>> RecordBuilder<T> create(Class<T> clazz) {
