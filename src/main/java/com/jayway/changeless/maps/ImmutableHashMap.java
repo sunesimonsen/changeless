@@ -160,4 +160,16 @@ final class ImmutableHashMap<K, V> implements Map<K, V> {
 	public boolean matches(K input) {
 		return contains(input);
 	}
+
+	@Override
+	public Map<K, V> merge(Map<K, V> updates) {
+		if (updates == null) {
+			throw new IllegalArgumentException("updates cannot be null");
+		}
+		Map<K, V> updated = this;
+		for (Tuple<K, V> entry : updates) {
+			updated = updated.put(entry.getFirst(), entry.getSecond());
+		}
+		return updated;
+	}
 }

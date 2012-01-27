@@ -3,12 +3,18 @@ package com.jayway.changeless.records;
 import org.junit.Test;
 
 import com.jayway.changeless.maps.Map;
+import com.jayway.changeless.maps.Maps;
 
 public class RecordValidationTests {
 
-	private class ClassRecord implements Record {
+	private class ClassRecord implements Record<ClassRecord> {
 		@Override
 		public Map<String, Object> getData() {
+			return null;
+		}
+
+		@Override
+		public ClassRecord merge(Map<String, ?> of) {
 			return null;
 		}
 	}
@@ -18,7 +24,7 @@ public class RecordValidationTests {
 		Records.of(ClassRecord.class);
 	}
 	
-	private interface MissingMutatorRecord extends Record {
+	private interface MissingMutatorRecord extends Record<MissingMutatorRecord> {
 		String foo();
 	}
 	
@@ -27,7 +33,7 @@ public class RecordValidationTests {
 		Records.of(MissingMutatorRecord.class);
 	}
 	
-	private interface MissingExtractorRecord extends Record {
+	private interface MissingExtractorRecord extends Record<MissingExtractorRecord> {
 		MissingExtractorRecord foo(String bar);
 	}
 	
@@ -36,7 +42,7 @@ public class RecordValidationTests {
 		Records.of(MissingExtractorRecord.class);
 	}
 	
-	private interface DuplicateMutatorRecord extends Record {
+	private interface DuplicateMutatorRecord extends Record<DuplicateMutatorRecord> {
 		String foo();
 		DuplicateMutatorRecord foo(String bar);
 		DuplicateMutatorRecord foo(String bar, String baz);
@@ -47,7 +53,7 @@ public class RecordValidationTests {
 		Records.of(DuplicateMutatorRecord.class);
 	}
 	
-	private interface InvalidExtratorRecord extends Record {
+	private interface InvalidExtratorRecord extends Record<InvalidExtratorRecord> {
 		void foo();
 		InvalidExtratorRecord foo(String bar);
 	}
@@ -57,7 +63,7 @@ public class RecordValidationTests {
 		Records.of(InvalidExtratorRecord.class);
 	}
 	
-	private interface InvalidMutatorReturnRecord extends Record {
+	private interface InvalidMutatorReturnRecord extends Record<InvalidMutatorReturnRecord> {
 		String foo();
 		int foo(String bar);
 	}
@@ -67,7 +73,7 @@ public class RecordValidationTests {
 		Records.of(InvalidMutatorReturnRecord.class);
 	}
 	
-	private interface InvalidMutatorParameterTypeRecord extends Record {
+	private interface InvalidMutatorParameterTypeRecord extends Record<InvalidMutatorParameterTypeRecord> {
 		String foo();
 		InvalidMutatorParameterTypeRecord foo(int bar);
 	}
@@ -77,7 +83,7 @@ public class RecordValidationTests {
 		Records.of(InvalidMutatorParameterTypeRecord.class);
 	}
 	
-	private interface InvalidMutatorParameterCountRecord extends Record {
+	private interface InvalidMutatorParameterCountRecord extends Record<InvalidMutatorParameterCountRecord> {
 		String foo();
 		InvalidMutatorParameterCountRecord foo(String foo, int bar);
 	}
@@ -93,6 +99,18 @@ public class RecordValidationTests {
 	
 	@Test(expected=RecordValidationException.class)
 	public void throwOnInheritedErrors() {
-		Records.of(InheritErrorRecord.class);
+		Class<InheritErrorRecord> clazz = InheritErrorRecord.class;
+		Records.of(clazz);
+	}
+	
+	private interface Valid extends Record<Valid> {
+		String foo();
+		Valid foo(String str);
+	}
+	
+	@Test(expected=RecordValidationException.class)
+	public void throwOnMergeWithWronglyTypedValues() {
+		Valid valid = Records.of(Valid.class);
+		valid.merge(Maps.of("foo", 1));
 	}
 }

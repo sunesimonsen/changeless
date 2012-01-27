@@ -2,7 +2,7 @@ package com.jayway.changeless.stubs;
 
 import com.jayway.changeless.records.Record;
 
-public interface Person extends Record {
+public interface Person extends Record<Person> {
 	String name();
 	Person name(String name);
 	Address address();

@@ -168,4 +168,27 @@ public class MapsTests {
 		Map<Integer, String> map = Maps.of(2, "TWO");
 		assertEquals("Expected default value", map.get(1, "ONE"), "ONE");
 	}
+	
+	@Test
+	public void mergeUpdatesMultipleValues() {
+		Map<Integer,String> orig = Maps.of(1, "1", 2, "2", 3, "3");
+		Map<Integer,String> updates = Maps.of(2, "TWO", 3, "THREE", 4, "FOUR");
+		Map<Integer,String> expectedResult =
+				Maps.of(1, "1", 2, "TWO", 3, "THREE", 4, "FOUR");
+		assertEquals("Expected merged map",
+				expectedResult, orig.merge(updates));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void updatesMapToMergeCannotBeNull() {
+		Maps.empty().merge(null);
+	}
+	
+	@Test
+	public void mergeExampleTest() {
+		assertTrue("The example in the merge javadoc is wrong",
+				Maps.of(1,"1", 2,"2")
+					.merge(Maps.of(2,"TWO", 3,"3"))
+					.equals(Maps.of(1,"1", 2,"TWO", 3,"3")));
+	}
 }
