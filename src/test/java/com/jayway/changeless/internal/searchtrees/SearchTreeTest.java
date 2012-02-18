@@ -1,7 +1,9 @@
 package com.jayway.changeless.internal.searchtrees;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,10 +11,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import static org.hamcrest.CoreMatchers.*;
-
-import org.junit.Ignore;
 import org.junit.Test;
+
+import com.jayway.changeless.sequences.Sequence;
+import com.jayway.changeless.sequences.Sequences;
 
 public class SearchTreeTest {
 	@Test
@@ -53,12 +55,28 @@ public class SearchTreeTest {
 	}
 	
 	@Test
-	@Ignore
+	public void miniMonkeyTest() throws Exception {
+		Random random = new Random();
+		List<Integer> inserted = new ArrayList<Integer>();
+		SearchTree<Integer> tree = SearchTrees.empty();
+		for (int i = 0; i < 5; i++) {
+			int value = random.nextInt(10000);
+			tree = tree.add(value);
+			inserted.add(value);
+			assertValidInvariant(tree);
+		}
+		
+		for (Integer value : inserted) {
+			assertContains(tree, value);
+		}
+	}
+	
+	@Test
 	public void removeMonkeyTest() throws Exception {
 		Random random = new Random();
 		Set<Integer> inserted = new HashSet<Integer>();
 		SearchTree<Integer> tree = SearchTrees.empty();
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 10000; i++) {
 			int value = random.nextInt(10000);
 			tree = tree.add(value);
 			inserted.add(value);
