@@ -416,12 +416,6 @@ public class SequenceTest {
 		Sequences.from(-10).upward().take(10).get(11);
 	}
 	
-	@Test
-	public void lazyCopyOfSequence() throws Exception {
-		Sequence<Integer> actual = Sequences.lazyCopyOf(Arrays.asList(1, 2, 3, 4, 5));
-		Sequence<Integer> expected = Sequences.of(1, 2, 3, 4, 5);
-		assertEquals("Expected sequences to be equals",expected, actual);
-	}
 	
 	@Test
 	public void sequenceProducer() throws Exception {
@@ -519,7 +513,6 @@ public class SequenceTest {
 		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Test
 	public void partitionLargerThanSequence() throws Exception {
 		Sequence<Integer> sequence = Sequences.from(0).upward().take(10);

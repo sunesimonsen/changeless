@@ -1,11 +1,13 @@
 package com.jayway.changeless.functions;
 
 import com.jayway.changeless.functions.objects.ToStringFunction;
+import com.jayway.changeless.predicates.Predicate;
 
 /**
  * A class containing convenient functions for working with function-objects.
+ * @param <T>
  */
-public final class Functions {
+public final class Functions<T> {
 	private Functions() { /* Static class */ }
 	
 	/**
@@ -60,4 +62,22 @@ public final class Functions {
 			}
 		};
 	}
+
+	/**
+	 * Create a new function corresponding to the given predicate.
+	 * @param predicate the predicate.
+	 * @return a new function corresponding to the given predicate.
+	 */
+	public static <T> Fn<T, Boolean> from(final Predicate<T> predicate) {
+		return new Fn<T, Boolean>() {
+			@Override
+			public Boolean apply(T input) {
+				return predicate.matches(input);
+			}
+		};
+	}
+	
+	public static <T> Fn<T, T> identity() {
+		return new IdentityFunction<T>();
+	};
 }

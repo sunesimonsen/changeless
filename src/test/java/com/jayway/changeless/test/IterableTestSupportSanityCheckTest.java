@@ -3,7 +3,7 @@ package com.jayway.changeless.test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class IterableTestSupportSanityCheck extends IterableTestSupport<Integer>{
+public class IterableTestSupportSanityCheckTest extends IterableTestSupport<Integer>{
 
 	@Override
 	protected Iterable<Integer> createIterableWithOneOrMoreElements() {

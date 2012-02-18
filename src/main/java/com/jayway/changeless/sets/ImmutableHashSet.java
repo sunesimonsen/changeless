@@ -182,4 +182,10 @@ final class ImmutableHashSet<T> implements Set<T> {
 	public Iterator<T> iterator() {
 		return root.iterator();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean matches(T input) {
+		return contains(input);
+	}
 }

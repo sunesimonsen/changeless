@@ -1,13 +1,13 @@
 package com.jayway.changeless.maps;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.jayway.changeless.maps.Map;
-import com.jayway.changeless.maps.Maps;
+import com.jayway.changeless.optionals.Optional;
 
 public class MapsTests {
 	@Test
@@ -50,6 +50,7 @@ public class MapsTests {
 			assertEquals("Expected elements to be equal", expected, actual);
 		}
 	}
+	
 	@Test
 	public void replacedStringCanBeFound() throws Exception {
 		Map<String, Integer> map = Maps.empty();
@@ -97,5 +98,97 @@ public class MapsTests {
 		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
 		Map<Integer, String> actual = Maps.copyOf(map.sequence());
 		assertEquals("Expected elements to be equal", map, actual);
+	}
+	
+	@Test
+	public void containsSuccess() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		assertTrue("Expected map to contain value", map.contains(41));
+	}
+	
+	@Test
+	public void containsFailure() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		assertFalse("Expected map not to contain value", map.contains(39));
+	}
+	
+	@Test
+	public void mapPredicateSuccess() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		assertTrue("Expected map to contain value", map.matches(41));
+	}
+	
+	@Test
+	public void mapPredicateFailure() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		assertFalse("Expected map not to contain value", map.matches(39));
+	}
+	
+	@Test
+	public void mapFunctionOnExistingKey() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		Optional<String> expected = Optional.valueOf("41");
+		Optional<String> actual = map.apply(41);
+		assertEquals("Expected values to be equals", expected, actual);
+	}
+	
+	@Test
+	public void mapFunctionOnNonExistingKey() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		Optional<String> expected = Optional.none();
+		Optional<String> actual = map.apply(39);
+		assertEquals("Expected values to be equals", expected, actual);
+	}
+	
+	@Test
+	public void isEmptyOnEmptyMap() throws Exception {
+		Map<Integer,String> map = Maps.empty();
+		assertTrue("Expected map to be empty", map.isEmpty());
+	}
+	
+	@Test
+	public void isEmptyOnNonEmptyMap() throws Exception {
+		Map<Integer,String> map = Maps.of(42,"42",41,"41",40,"40");
+		assertFalse("Expected map to be non-empty", map.isEmpty());
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void createMapThrowsOnNullKey() {
+		Maps.of(null, 1);
+	}
+
+
+	@Test(expected=IllegalArgumentException.class)
+	public void createMapThrowsOnNullValue() {
+		Maps.of(1, null);
+	}
+
+	@Test
+	public void getNonExistingKeyReturnsDefault() {
+		Map<Integer, String> map = Maps.of(2, "TWO");
+		assertEquals("Expected default value", map.get(1, "ONE"), "ONE");
+	}
+	
+	@Test
+	public void mergeUpdatesMultipleValues() {
+		Map<Integer,String> orig = Maps.of(1, "1", 2, "2", 3, "3");
+		Map<Integer,String> updates = Maps.of(2, "TWO", 3, "THREE", 4, "FOUR");
+		Map<Integer,String> expectedResult =
+				Maps.of(1, "1", 2, "TWO", 3, "THREE", 4, "FOUR");
+		assertEquals("Expected merged map",
+				expectedResult, orig.merge(updates));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void updatesMapToMergeCannotBeNull() {
+		Maps.empty().merge(null);
+	}
+	
+	@Test
+	public void mergeExampleTest() {
+		assertTrue("The example in the merge javadoc is wrong",
+				Maps.of(1,"1", 2,"2")
+					.merge(Maps.of(2,"TWO", 3,"3"))
+					.equals(Maps.of(1,"1", 2,"TWO", 3,"3")));
 	}
 }

@@ -1,29 +1,17 @@
 package com.jayway.changeless.records;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import com.jayway.changeless.functions.Fn2;
 import com.jayway.changeless.maps.Map;
+import com.jayway.changeless.maps.Maps;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
+import com.jayway.changeless.stubs.Address;
+import com.jayway.changeless.stubs.Person;
 import com.jayway.changeless.utilities.Comparables;
-
-interface Person extends Record {
-	Person name(String name);
-	String name();
-	Address address();
-	Person address(Address address);
-}
-
-interface Address extends Record {
-	Address street(String street);
-	String street();
-	Address houseNumber(int houseNumber);
-	int houseNumber();
-}
 
 public class RecordsTests {
 	@Test
@@ -55,11 +43,13 @@ public class RecordsTests {
 		assertFalse("not equals", p1.equals(p3));
 	}
 	
-	interface Planet extends Record {
+	interface Planet extends Record<Planet> {
 		String name();
 		Planet name(String name);
 		double mass();
 		Planet mass(double mass);
+		String category();
+		Planet category(String category);
 	}
 	
 	@Test
@@ -107,5 +97,28 @@ public class RecordsTests {
 		
 		assertEquals("Jane", data.get("name").getValue());
 		assertEquals(address, data.get("address").getValue());
+	}
+	
+	@Test
+	public void mergeChangesManyValues() {
+		Planet earth = Records.of(Planet.class)
+				.mass(1.0).name("earth").category("planet");
+		Planet mars = earth.merge(Maps.of("mass", 0.11, "name", "mars"));
+		
+		assertEquals("planet", mars.category());
+		assertEquals(0.11, mars.mass(), 0.00001);
+		assertEquals("mars", mars.name());
+	}
+	
+	@Test
+	public void mergeMustMaintainFieldlessEntries() {
+		Planet planet = Records.of(Planet.class);
+		planet = planet.merge(Maps.of("strawberry", true));
+		assertTrue((Boolean) planet.getData().get("strawberry", false));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void mergedMapCannotBeNull() {
+		Records.of(Planet.class).merge(null);
 	}
 }

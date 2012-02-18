@@ -1,6 +1,8 @@
 package com.jayway.changeless.maps;
 
+import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.optionals.Optional;
+import com.jayway.changeless.predicates.Predicate;
 import com.jayway.changeless.sequences.Sequenceable;
 import com.jayway.changeless.tuples.Tuple;
 
@@ -10,7 +12,7 @@ import com.jayway.changeless.tuples.Tuple;
  * @param <K> the type of the keys in the map.
  * @param <V> the type of the values in the map. 
  */
-public interface Map<K,V> extends Sequenceable<Tuple<K,V>> {
+public interface Map<K,V> extends Sequenceable<Tuple<K,V>>, Fn<K, Optional<V>>, Predicate<K> {
 	/**
 	 * Returns a new map where the given key is associated to the specified value. 
 	 * @param key the key.
@@ -39,6 +41,32 @@ public interface Map<K,V> extends Sequenceable<Tuple<K,V>> {
 	V get(K key, V defaultValue);
 	
 	/**
+	 * Returns a new maps based on this map with the association identified by the given key removed.
+	 * @param key the key identifying the association to remove.
+	 * @return a new updated map.
+	 */
+	Map<K,V> remove(K key);
+	
+	/**
+	 * Returns a new maps based on this map with the associations identified by the given keys removed.
+	 * @param keys the keys identifying the associations to remove.
+	 * @return a new updated map.
+	 */
+	Map<K,V> remove(K... keys);
+
+	/**
+	 * Returns a new map based on this maps but with the association 
+	 * identified by the given key updated by applying the provided 
+	 * function to the value.
+	 * @param key the identifying the association to update.
+	 * @param function the function used to update the value in the map.
+	 * If there is no value for the supplied key an Option.none() is given as 
+	 * argument to the provided function.
+	 * @return the new updated map.
+	 */
+	Map<K,V> update(K key, Fn<Optional<V>,V> function);
+	
+	/**
 	 * Returns the number of keys in this map. 
 	 * @return the number of keys in this map.
 	 */
@@ -49,4 +77,25 @@ public interface Map<K,V> extends Sequenceable<Tuple<K,V>> {
 	 * @return true if this map contains no keys; false otherwise.
 	 */
 	boolean isEmpty();
+	
+	/**
+	 * Returns true if maps contains the given key.
+	 * @param key the key.
+	 * @return true if maps contains the given key; false otherwise.
+	 */
+	boolean contains(K key);
+
+	/**
+	 * Create a new map, based on this one, but with additional entries from
+	 * the given map, overwriting any counterparts in this map.
+	 * <p>
+	 * In other words, the following is true:
+	 * <pre><code>Maps.of(1,"1", 2,"2")
+	 *    .merge(Maps.of(2,"TWO", 3,"3"))
+	 *    .equals(Maps.of(1,"1", 2,"TWO", 3,"3"));</code></pre>
+	 * @param updates The updates that should overwrite the entries of this map
+	 * in the new map.
+	 * @return A new map that is updates merged unto this map.
+	 */
+	Map<K,V> merge(Map<K, V> updates);
 }

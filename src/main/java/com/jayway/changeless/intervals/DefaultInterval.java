@@ -21,7 +21,7 @@ final class DefaultInterval<T extends Comparable<T>> implements Interval<T> {
 	}
 
 	@Override
-	public Boolean apply(T input) {
+	public boolean matches(T input) {
 		return contains(input);
 	}
 }

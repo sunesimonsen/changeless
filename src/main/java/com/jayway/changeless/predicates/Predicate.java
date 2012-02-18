@@ -1,6 +1,5 @@
 package com.jayway.changeless.predicates;
 
-import com.jayway.changeless.functions.Fn;
 
 
 /**
@@ -8,11 +7,11 @@ import com.jayway.changeless.functions.Fn;
  * Predicates should not have side effects.
  * @param <T> the type of the input parameter.
  */
-public interface Predicate<T> extends Fn<T, Boolean> {
+public interface Predicate<T> {
 	/**
 	 * Applies this predicate to the given input.
 	 * @param input the input to this predicate.
 	 * @return true if this predicate applies to the given input; false otherwise.
 	 */
-	Boolean apply(T input);
+	boolean matches(T input);
 }

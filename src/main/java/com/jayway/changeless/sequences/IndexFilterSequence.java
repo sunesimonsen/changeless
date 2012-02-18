@@ -29,7 +29,7 @@ final class IndexFilterSequence<T> extends LazySequence<T> {
 		}
 		
 		Sequence<T> rest = new IndexFilterSequence<T>(sequence.rest(), predicate, currentIndex + 1);
-		if (predicate.apply(currentIndex)) {
+		if (predicate.matches(currentIndex)) {
 			return sequence.withRest(rest);
 		}
 		

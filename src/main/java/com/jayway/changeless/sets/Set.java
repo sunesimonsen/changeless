@@ -1,5 +1,6 @@
 package com.jayway.changeless.sets;
 
+import com.jayway.changeless.predicates.Predicate;
 import com.jayway.changeless.sequences.Sequenceable;
 
 /**
@@ -8,7 +9,7 @@ import com.jayway.changeless.sequences.Sequenceable;
  * of elements e1 and e2 exists in the set such that e1.equals(e2) is true.
  * @param <T> The type of the elements.
  */
-public interface Set<T> extends Sequenceable<T> {
+public interface Set<T> extends Sequenceable<T>, Predicate<T> {
 	/**
 	 * Returns a new set that is the union of the elements in this set and the given elements. 
 	 * @param elements the elements to be added.

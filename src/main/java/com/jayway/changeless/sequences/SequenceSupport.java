@@ -1,5 +1,8 @@
 package com.jayway.changeless.sequences;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 import com.jayway.changeless.functions.Fn;
@@ -9,6 +12,8 @@ import com.jayway.changeless.functions.strings.AppendStringFunction;
 import com.jayway.changeless.intervals.Intervals;
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.maps.Maps;
+import com.jayway.changeless.maps.UpdateFunction;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.predicates.Predicate;
 import com.jayway.changeless.predicates.Predicates;
 import com.jayway.changeless.tuples.Tuple;
@@ -30,6 +35,11 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	public abstract T first();
 	
 	@Override
+	public Sequence<T> add(T element) {
+		return Sequences.add(element, this);
+	}
+	
+	@Override
 	public Sequence<T> add(T... elements) {
 		Sequence<T> result = this;
 		for (int i = elements.length-1; 0 <= i; i--) {
@@ -38,6 +48,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 		}
 		return result;
 	}
+	
 	
 	@Override
 	public Sequence<T> add(Iterable<? extends T> elements) {
@@ -70,7 +81,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	}
 	
 	@Override
-	public Sequence<T> interpose(T separator) {
+	public <I extends T>  Sequence<T> interpose(I separator) {
 		return new InterposeSequence<T>(this, separator);
 	}
 	
@@ -85,6 +96,15 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 			result = result.rest();
 		}
 		
+		return result;
+	}
+	
+	@Override
+	public Sequence<T> skipWhile(Predicate<T> predicate) {
+		Sequence<T> result = this;
+		while (!result.isEmpty() && predicate.matches(result.first())) {
+			result = result.rest();
+		}
 		return result;
 	}
 	
@@ -238,7 +258,7 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	@Override
 	public boolean any(Predicate<? super T> predicate) {
 		for (T element : this) {
-			if (predicate.apply(element)) {
+			if (predicate.matches(element)) {
 				return true;
 			}
 		}
@@ -273,6 +293,11 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	@Override
 	public Sequence<T> take(int n) {
 		return TakeSequence.create(this, n);
+	}
+	
+	@Override
+	public Sequence<T> takeWhile(Predicate<T> predicate) {
+		return TakeWhileSequence.create(this, predicate);
 	}
 
 	@Override
@@ -314,4 +339,75 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 	public Sequence<T> withRest(Sequence<T> rest) {
 		return Sequences.add(first(), rest);
 	}
+	
+	@Override
+	public Optional<T> find(Predicate<? super T> predicate) {
+		for (T element : this) {
+			if (predicate.matches(element)) {
+				return Optional.valueOf(element);
+			}
+		}
+		return Optional.none();
+	}
+	
+	@Override
+	public Sequence<T> distinct() {
+		return DistinctSequence.create(this);
+	}
+	
+	@Override
+	public <I extends Comparable<I>> Sequence<T> sortBy(final Fn<? super T, I> selector) {
+		Comparator<T> comperator = new Comparator<T>() {
+			@Override
+			public int compare(T arg0, T arg1) {
+				return selector.apply(arg0).compareTo(selector.apply(arg1));
+			}
+			
+		};
+		
+		ArrayList<T> sortBuffer = new ArrayList<T>();
+		for (T e : this) {
+			sortBuffer.add(e);
+		}
+		Collections.sort(sortBuffer, comperator);
+		
+		return Sequences.copyOf(sortBuffer);
+	}
+	
+	public <K> Map<K,Sequence<T>> groupBy(Fn<T, K> selector) {
+		Map<K, Sequence<T>> grouping = Maps.empty();
+		for (T element : this) {
+			K key = selector.apply(element);
+			grouping = grouping.update(key, new AddToSequenceFunction<T>(element));
+		}
+		return grouping;
+	}
+	
+	@Override
+	public Sequence<T> shuffle() {
+		ArrayList<T> shuffleBuffer = new ArrayList<T>();
+		for (T element : this) {
+			shuffleBuffer.add(element);
+		}
+		
+		Collections.shuffle(shuffleBuffer);
+		
+		return Sequences.copyOf(shuffleBuffer);
+	}
+	
+	private static class AddToSequenceFunction<V> implements UpdateFunction<Sequence<V>> {
+		private final V element;
+		public AddToSequenceFunction(V element) {
+			this.element = element;
+		}
+		
+		@Override
+		public Sequence<V> apply(Optional<Sequence<V>> value) {
+			if (value.hasValue()) {
+				return value.getValue().add(element);
+			} else {
+				return Sequences.of(element);
+			}
+		}
+	 }
 }

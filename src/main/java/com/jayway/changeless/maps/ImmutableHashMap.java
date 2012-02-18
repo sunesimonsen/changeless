@@ -3,8 +3,8 @@ package com.jayway.changeless.maps;
 import java.util.Iterator;
 
 import com.jayway.changeless.functions.Fn;
-import com.jayway.changeless.internal.hashtrie.HashTries;
 import com.jayway.changeless.internal.hashtrie.HashTrie;
+import com.jayway.changeless.internal.hashtrie.HashTries;
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.tuples.Tuple;
@@ -28,7 +28,7 @@ final class ImmutableHashMap<K, V> implements Map<K, V> {
 	@Override
 	public Map<K, V> put(K key, V value) {
 		Guard.notNull(key, "key");
-		Guard.notNull(key, "value");
+		Guard.notNull(value, "value");
 		MapEntry<K,V> entry = new MapEntry<K, V>(key, value);
 		int hashCode = entry.hashCode();
 		// TODO this could be more efficient.
@@ -52,6 +52,28 @@ final class ImmutableHashMap<K, V> implements Map<K, V> {
 			return defaultValue;
 		} 
 		return result.getValue();
+	}
+	
+	@Override
+	public Map<K,V> remove(K... keys) {
+		Map<K, V> result = this;
+		for (K k : keys) {
+			result = result.remove(k);
+		}
+		return result;
+	}
+	
+	@Override
+	public Map<K,V> remove(K key) {
+		MapEntry<K, V> entry = new MapEntry<K, V>(key);
+		return new ImmutableHashMap<K, V>(root.remove(entry, entry.hashCode()));
+	}
+	
+	@Override
+	public Map<K,V> update(K key, Fn<Optional<V>,V> function) {
+		Optional<V> value = get(key);
+		V updateValue = function.apply(value);
+		return put(key, updateValue);
 	}
 
 	@Override
@@ -122,5 +144,32 @@ final class ImmutableHashMap<K, V> implements Map<K, V> {
 		}
 		
 		return true;
+	}
+
+	@Override
+	public Optional<V> apply(K input) {
+		return get(input);
+	}
+
+	@Override
+	public boolean contains(K key) {
+		return get(key).hasValue();
+	}
+
+	@Override
+	public boolean matches(K input) {
+		return contains(input);
+	}
+
+	@Override
+	public Map<K, V> merge(Map<K, V> updates) {
+		if (updates == null) {
+			throw new IllegalArgumentException("updates cannot be null");
+		}
+		Map<K, V> updated = this;
+		for (Tuple<K, V> entry : updates) {
+			updated = updated.put(entry.getFirst(), entry.getSecond());
+		}
+		return updated;
 	}
 }

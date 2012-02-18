@@ -72,8 +72,8 @@ final class BitmappedNode<T> implements HashTrie<T> {
 			return this;
 		} 
 		
-		if (node instanceof EmptyNode<?>) {
-			if (sequence().isSize(1)) {
+		if (node.isEmpty()) {
+			if (isSize(1)) {
 				return node; // reuse empty node
 			} 
 
@@ -102,6 +102,17 @@ final class BitmappedNode<T> implements HashTrie<T> {
 		return new BitmappedNode<T>(shift, bits, newTable);
 	}
 
+	private boolean isSize(int size) {
+		int s = 0;
+		for (HashTrie<T> n : table) {
+			s += n.size();
+			if (s > size) {
+				return false;
+			}
+		}
+		return size == s;
+	}
+	
 	@Override
 	public int size() {
 		int size = 0;

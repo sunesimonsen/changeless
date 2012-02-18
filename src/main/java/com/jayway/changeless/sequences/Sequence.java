@@ -3,12 +3,13 @@ package com.jayway.changeless.sequences;
 import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.functions.Fn2;
 import com.jayway.changeless.maps.Map;
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.predicates.Predicate;
 import com.jayway.changeless.tuples.Tuple;
 
 /**
  * <p>
- * A logical sequences of elements.
+ * A ordered sequences of elements.
  * </p>
  * <p>
  * Notice that is you are going to implement you own sequence 
@@ -78,6 +79,14 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * @throws IllegalStateException if the sequence is empty.
 	 */
 	Sequence<T> rest();
+	
+	/**
+	 * Returns a new sequence with the given element added to the front of this sequence.
+	 * @param element the element to be added.
+	 * @return a new sequence with the given element added to the front of this sequence.
+	 * @throws IllegalArgumentException if the element is null.
+	 */
+	Sequence<T> add(T element);
 	
 	/**
 	 * Returns a new sequence with all the given elements added to the front of this sequence.
@@ -173,13 +182,22 @@ public interface Sequence<T> extends Sequenceable<T> {
 	T reduce(Fn2<? super T, ? super T,T> function);
 	
 	/**
-	 * Returns a new sequence containing all the elements of this sequence except 
+	 * Returns a new sequence containing the elements of this sequence except 
 	 * the n first elements. If n is less than one this sequence is returned.
 	 * @param n the number of elements to skip.
 	 * @return a new sequence containing all the elements of this sequence except 
 	 * the n first elements
 	 */
 	Sequence<T> skip(int n);
+	
+	/**
+	 * Returns a new sequence containing the elements of this sequence except
+	 * the prefix for which the elements matches the given predicate function.
+	 * @param predicate the predicate deciding which elements to skip.
+	 * @return a new sequence containing the elements of this sequence except
+	 * the prefix for which the elements matches the given predicate function.
+	 */
+	Sequence<T> skipWhile(Predicate<T> predicate);
 	
 	/**
 	 * Returns a new lazy sequence where this sequence is appended with the elements 
@@ -233,20 +251,30 @@ public interface Sequence<T> extends Sequenceable<T> {
 	T get(int index);
 
 	/**
-	 * Returns a new sequence with n elements from this sequence.
+	 * Returns a new lazy sequence with n elements from this sequence.
 	 * @param n the number of element to take.
-	 * @return a new sequence with n elements from this sequence.
+	 * @return a new lazy sequence with n elements from this sequence.
 	 */
 	Sequence<T> take(int n);
+	
+	/**
+	 * Returns a new lazy sequence containing successive elements from this 
+	 * sequence while the predicate returns true.
+	 * @param predicate the predicate deciding how many elements to take.
+	 * @return a new lazy sequence containing successive elements from this 
+	 * sequence while the predicate returns true.
+	 */
+	Sequence<T> takeWhile(Predicate<T> predicate);
 
 	/**
 	 * Returns a new lazy sequence with the elements of this sequence separated by
 	 * the given separator.
+	 * @param <I> type of the separator.
 	 * @param separator the separator.
 	 * @return lazy sequence of element in this sequence separated by
 	 * the given separator.
 	 */
-	Sequence<T> interpose(T separator);
+	<I extends T> Sequence<T> interpose(I separator);
 	
 	/**
 	 * Lazily partition the sequence into parts of size n.
@@ -316,4 +344,56 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * given sequence as the rest of the elements.
 	 */
 	Sequence<T> withRest(Sequence<T> rest);
+	
+	/**
+	 * Returns the first elements that matches the given predicate function.
+	 * @param predicate the predicate.
+	 * @return the first elements that matches the given predicate function.
+	 */
+	Optional<T> find(Predicate<? super T> predicate);
+	
+	/**
+	 * <p>
+	 * Returns a new lazy sequence containing distinct elements from this 
+	 * sequence. 
+	 * </p>
+	 * <p>
+	 * Notice that because the resulting sequence is lazily calculated 
+	 * a set of used elements will be maintained. This set will grow larger 
+	 * as the sequence is traversed.
+	 * </p>
+	 * @return a new lazy sequence containing distinct elements from this 
+	 * sequence.
+	 */
+	Sequence<T> distinct();
+	
+	// TODO add code examples
+	/**
+	 * <p>
+	 * Returns a new sequence that is the result of sorting this sequence 
+	 * by the values selected by the provided selector.
+	 * </p>
+	 * @param selector the selector that is used to select the values to 
+	 * sort by.
+	 * @return a sorted version of this sequence.
+	 */
+	<I extends Comparable<I>> Sequence<T> sortBy(Fn<? super T, I> selector);
+
+	//TODO add code examples
+	/**
+	 * Returns a map containing the elements from this sequence group by the 
+	 * values returned by the given selector.
+	 * @param selector the selector deciding the value to group each element by.
+	 * @return a map containing the elements from this sequence group by the 
+	 * values returned by the given selector.
+	 */
+	<K> Map<K,Sequence<T>> groupBy(Fn<T, K> selector);
+	
+	/**
+	 * Returns a new shuffled sequence containing the elements of this sequence 
+	 * in random order.
+	 * @return a new shuffled sequence containing the elements of this sequence 
+	 * in random order.
+	 */
+	Sequence<T> shuffle();
 }
