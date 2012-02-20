@@ -1,9 +1,9 @@
 package com.jayway.changeless.internal.searchtrees;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -40,43 +40,9 @@ public class SearchTreeTest {
 	@Test
 	public void monkeyTest() throws Exception {
 		Random random = new Random();
-		List<Integer> inserted = new ArrayList<Integer>();
-		SearchTree<Integer> tree = SearchTrees.empty();
-		for (int i = 0; i < 1000; i++) {
-			int value = random.nextInt(10000);
-			tree = tree.add(value);
-			inserted.add(value);
-			assertValidInvariant(tree);
-		}
-		
-		for (Integer value : inserted) {
-			assertContains(tree, value);
-		}
-	}
-	
-	@Test
-	public void miniMonkeyTest() throws Exception {
-		Random random = new Random();
-		List<Integer> inserted = new ArrayList<Integer>();
-		SearchTree<Integer> tree = SearchTrees.empty();
-		for (int i = 0; i < 5; i++) {
-			int value = random.nextInt(10000);
-			tree = tree.add(value);
-			inserted.add(value);
-			assertValidInvariant(tree);
-		}
-		
-		for (Integer value : inserted) {
-			assertContains(tree, value);
-		}
-	}
-	
-	@Test
-	public void removeMonkeyTest() throws Exception {
-		Random random = new Random();
 		Set<Integer> inserted = new HashSet<Integer>();
 		SearchTree<Integer> tree = SearchTrees.empty();
-		for (int i = 0; i < 10000; i++) {
+		for (int i = 0; i < 1000; i++) {
 			int value = random.nextInt(10000);
 			tree = tree.add(value);
 			inserted.add(value);
@@ -102,7 +68,37 @@ public class SearchTreeTest {
 		
 		for (Integer value : inserted) {
 			assertContains(tree, value);
+			tree = tree.remove(value);
+			assertNotContains(tree, value);
+			assertValidInvariant(tree);
 		}
+	}
+	
+	@Test
+	public void emptyTreeSequenceIsEmpty() throws Exception {
+		SearchTree<Integer> actual = SearchTrees.empty();
+		assertTrue("Expected empty sequence", actual.sequence().isEmpty());
+	}
+	
+	@Test
+	public void sequenceIsOrdered() throws Exception {
+		Sequence<Integer> actual = SearchTrees.of(9,5,8,0,4,7,3,6,2,1).sequence();
+		Sequence<Integer> expected = Sequences.from(0).upward().take(10);
+		assertEquals("Expected sequences to be equals", expected, actual);
+	}
+	
+	@Test
+	public void toStringOnEmptyTree() throws Exception {
+		String actual = SearchTrees.empty().toString();
+		String expected = Sequences.empty().toString();
+		assertEquals("Expected string", expected , actual);
+	}
+	
+	@Test
+	public void toStringOnNonEmptyTree() throws Exception {
+		String actual = SearchTrees.of(9,5,8,0,4,7,3,6,2,1).toString();
+		String expected = Sequences.from(0).upward().take(10).toString();
+		assertEquals("Expected string", expected , actual);
 	}
 	
 	private void assertValidInvariant(SearchTree<Integer> tree) {

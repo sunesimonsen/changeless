@@ -27,7 +27,7 @@ public interface SearchTree<T extends Comparable<T>> extends Sequenceable<T> {
 }
 
 interface Node<T extends Comparable<T>> extends SearchTree<T> {
-	ColoredNode<T> insertInTree(T element);
+	TreeNode<T> insertInTree(T element);
 	Node<T> removeInTree(T element);
 	Color getColor();
 	boolean isRed();
@@ -109,14 +109,14 @@ abstract class NodeSupport<T extends Comparable<T>> implements Node<T> {
 	}
 }
 
-class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
+class TreeNode<T extends Comparable<T>> extends NodeSupport<T> {
 	private final Color color;
 
 	private final Node<T> left;
 	private final T element;
 	private final Node<T> right;
 	
-	private ColoredNode(Color color, Node<T> left, T element, Node<T> right) {
+	private TreeNode(Color color, Node<T> left, T element, Node<T> right) {
 		this.color = color;
 		this.left = left;
 		this.element = element;
@@ -157,21 +157,21 @@ class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
 		return true;
 	}
 	
-	public static <T extends Comparable<T>> ColoredNode<T> create(
+	public static <T extends Comparable<T>> TreeNode<T> create(
 			Color color, Node<T> left, T element, Node<T> right) {
-		return new ColoredNode<T>(color, left, element, right);
+		return new TreeNode<T>(color, left, element, right);
 	}
 	
-	public ColoredNode<T> colorRed() {
+	public TreeNode<T> colorRed() {
 		return create(Color.RED, left, element, right);
 	}
 	
-	public ColoredNode<T> colorBlack() {
+	public TreeNode<T> colorBlack() {
 		return create(Color.BLACK, left, element, right);
 	}
 	
 	@Override
-	public ColoredNode<T> insertInTree(T element) {
+	public TreeNode<T> insertInTree(T element) {
 		if (Comparables.lessThan(element, this.element)) {
 			return create(color, left.insertInTree(element), this.element, right).balance();
 		} 
@@ -184,8 +184,8 @@ class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
 	}
 
 	@Override
-	public ColoredNode<T> balance() {
-		ColoredNode<T> balancedTree = null;
+	public TreeNode<T> balance() {
+		TreeNode<T> balancedTree = null;
 
 		balancedTree = matchLeftRight(this);
 		if (balancedTree != null) return balancedTree;
@@ -210,10 +210,10 @@ class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
 		return this;
 	}
 
-	private ColoredNode<T> matchLeftNegativeBlack(ColoredNode<T> z) {
-		ColoredNode<T> x = z.getNegativeBlackLeftChild();
+	private TreeNode<T> matchLeftNegativeBlack(TreeNode<T> z) {
+		TreeNode<T> x = z.getNegativeBlackLeftChild();
 		if (x != null) {
-			ColoredNode<T> y = (ColoredNode<T>) x.getRight();
+			TreeNode<T> y = (TreeNode<T>) x.getRight();
 			Node<T> a = x.getLeft();
 			Node<T> b = y.getLeft();
 			Node<T> c = y.getRight();
@@ -227,10 +227,10 @@ class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
 		return null;
 	}
 	
-	private ColoredNode<T> matchRightNegativeBlack(ColoredNode<T> x) {
-		ColoredNode<T> z = x.getNegativeBlackRightChild();
+	private TreeNode<T> matchRightNegativeBlack(TreeNode<T> x) {
+		TreeNode<T> z = x.getNegativeBlackRightChild();
 		if (z != null) {
-			ColoredNode<T> y = (ColoredNode<T>) z.getLeft();
+			TreeNode<T> y = (TreeNode<T>) z.getLeft();
 			Node<T> a = x.getLeft();
 			Node<T> b = y.getLeft();
 			Node<T> c = y.getRight();
@@ -244,18 +244,18 @@ class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
 		return null;
 	}
 	
-	private ColoredNode<T> getNegativeBlackRightChild() {
-		return right.isNegativeBlack() ? (ColoredNode<T>) right : null;
+	private TreeNode<T> getNegativeBlackRightChild() {
+		return right.isNegativeBlack() ? (TreeNode<T>) right : null;
 	}
 
-	private ColoredNode<T> getNegativeBlackLeftChild() {
-		return left.isNegativeBlack() ? (ColoredNode<T>) left : null; 
+	private TreeNode<T> getNegativeBlackLeftChild() {
+		return left.isNegativeBlack() ? (TreeNode<T>) left : null; 
 	}
 
-	private static <T extends Comparable<T>> ColoredNode<T> matchLeftRight(ColoredNode<T> z) {
-		ColoredNode<T> x = z.getRedLeftChild();
+	private static <T extends Comparable<T>> TreeNode<T> matchLeftRight(TreeNode<T> z) {
+		TreeNode<T> x = z.getRedLeftChild();
 		if (x != null) {
-			ColoredNode<T> y = x.getRedRightChild();
+			TreeNode<T> y = x.getRedRightChild();
 			if (y != null) {
 				Node<T> a = x.getLeft();
 				Node<T> b = y.getLeft();
@@ -268,10 +268,10 @@ class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
 		return null;
 	}
 	
-	private static <T extends Comparable<T>> ColoredNode<T> matchLeftLeft(ColoredNode<T> z) {
-		ColoredNode<T> y = z.getRedLeftChild();
+	private static <T extends Comparable<T>> TreeNode<T> matchLeftLeft(TreeNode<T> z) {
+		TreeNode<T> y = z.getRedLeftChild();
 		if (y != null) {
-			ColoredNode<T> x = y.getRedLeftChild();
+			TreeNode<T> x = y.getRedLeftChild();
 			if (x != null) {
 				Node<T> a = x.getLeft();
 				Node<T> b = x.getRight();
@@ -284,10 +284,10 @@ class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
 		return null;
 	}
 	
-	private static <T extends Comparable<T>> ColoredNode<T> matchRightRight(ColoredNode<T> x) {
-		ColoredNode<T> y = x.getRedRightChild();
+	private static <T extends Comparable<T>> TreeNode<T> matchRightRight(TreeNode<T> x) {
+		TreeNode<T> y = x.getRedRightChild();
 		if (y != null) {
-			ColoredNode<T> z = y.getRedRightChild();
+			TreeNode<T> z = y.getRedRightChild();
 			if (z != null) {
 				Node<T> a = x.getLeft();
 				Node<T> b = y.getLeft();
@@ -300,10 +300,10 @@ class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
 		return null;
 	}	
 	
-	private static <T extends Comparable<T>> ColoredNode<T> matchRightLeft(ColoredNode<T> x) {
-		ColoredNode<T> z = x.getRedRightChild();
+	private static <T extends Comparable<T>> TreeNode<T> matchRightLeft(TreeNode<T> x) {
+		TreeNode<T> z = x.getRedRightChild();
 		if (z != null) {
-			ColoredNode<T> y = z.getRedLeftChild();
+			TreeNode<T> y = z.getRedLeftChild();
 			if (y != null) {
 				Node<T> a = x.getLeft();
 				Node<T> b = y.getLeft();
@@ -316,23 +316,23 @@ class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
 		return null;
 	}
 	
-	private ColoredNode<T> getRedLeftChild() {
-		return left.isRed() ? (ColoredNode<T>) left : null;
+	private TreeNode<T> getRedLeftChild() {
+		return left.isRed() ? (TreeNode<T>) left : null;
 	}
 	
-	private ColoredNode<T> getRedRightChild() {
-		return right.isRed() ? (ColoredNode<T>) right : null;
+	private TreeNode<T> getRedRightChild() {
+		return right.isRed() ? (TreeNode<T>) right : null;
 	}
 
-	private static <T extends Comparable<T>> ColoredNode<T> createBalancedTree(
-			ColoredNode<T> x, ColoredNode<T> y, ColoredNode<T> z, 
+	private static <T extends Comparable<T>> TreeNode<T> createBalancedTree(
+			TreeNode<T> x, TreeNode<T> y, TreeNode<T> z, 
 			Node<T> a, Node<T> b, Node<T> c, Node<T> d) {
 		
 		return createSubTree(x.colorBlack(), y.lighten(), z.colorBlack(), a, b, c, d);
 	}
 	
-	private static <T extends Comparable<T>> ColoredNode<T> createSubTree(
-			ColoredNode<T> x, ColoredNode<T> y, ColoredNode<T> z, 
+	private static <T extends Comparable<T>> TreeNode<T> createSubTree(
+			TreeNode<T> x, TreeNode<T> y, TreeNode<T> z, 
 			Node<T> a, Node<T> b, Node<T> c, Node<T> d) {
 		return create(y.getColor(), 
 					create(x.getColor(), a, x.getElement(), b), 
@@ -440,22 +440,22 @@ class ColoredNode<T extends Comparable<T>> extends NodeSupport<T> {
 	}
 
 	@Override
-	public ColoredNode<T> darken() {
+	public TreeNode<T> darken() {
 		return setColor(getColor().darken());
 	}
 	
 	@Override
-	public ColoredNode<T> lighten() {
+	public TreeNode<T> lighten() {
 		return setColor(getColor().lighten());
 	}
 	
-	public ColoredNode<T> setColor(Color color) {
+	public TreeNode<T> setColor(Color color) {
 		return create(color, left, element, right);
 	}
 }
 
-class EmptyNode<T extends Comparable<T>> extends NodeSupport<T> {
-	protected EmptyNode() {
+class LeafNode<T extends Comparable<T>> extends NodeSupport<T> {
+	protected LeafNode() {
 		
 	}
 	
@@ -470,12 +470,12 @@ class EmptyNode<T extends Comparable<T>> extends NodeSupport<T> {
 	}
 
 	public static  <T extends Comparable<T>> Node<T> create() {
-		return new EmptyNode<T>();
+		return new LeafNode<T>();
 	}
 
 	@Override
-	public ColoredNode<T> insertInTree(T element) {
-		return ColoredNode.create(Color.RED, this, element, this);
+	public TreeNode<T> insertInTree(T element) {
+		return TreeNode.create(Color.RED, this, element, this);
 	}
 
 	@Override
@@ -543,7 +543,7 @@ class EmptyNode<T extends Comparable<T>> extends NodeSupport<T> {
 
 	@Override
 	public Node<T> darken() {
-		return new DoubleBlackEmptyNode<T>();
+		return new DoubleBlackLeafNode<T>();
 	}
 
 	@Override
@@ -552,7 +552,7 @@ class EmptyNode<T extends Comparable<T>> extends NodeSupport<T> {
 	}
 }
 
-final class DoubleBlackEmptyNode<T extends Comparable<T>> extends NodeSupport<T> {
+final class DoubleBlackLeafNode<T extends Comparable<T>> extends NodeSupport<T> {
 	@Override
 	public Color getColor() {
 		return Color.DOUBLE_BLACK;
@@ -579,7 +579,7 @@ final class DoubleBlackEmptyNode<T extends Comparable<T>> extends NodeSupport<T>
 	}
 
 	@Override
-	public ColoredNode<T> insertInTree(T element) {
+	public TreeNode<T> insertInTree(T element) {
 		throw unsupported();
 	}
 
@@ -620,7 +620,7 @@ final class DoubleBlackEmptyNode<T extends Comparable<T>> extends NodeSupport<T>
 
 	@Override
 	public Node<T> colorBlack() {
-		return EmptyNode.create();
+		return LeafNode.create();
 	}
 	
 	@Override
@@ -655,7 +655,7 @@ final class DoubleBlackEmptyNode<T extends Comparable<T>> extends NodeSupport<T>
 
 	@Override
 	public Node<T> lighten() {
-		return EmptyNode.create();
+		return LeafNode.create();
 	}
 
 	@Override
@@ -680,17 +680,16 @@ final class DoubleBlackEmptyNode<T extends Comparable<T>> extends NodeSupport<T>
 
 final class TreeSequenece<T extends Comparable<T>> extends LazySequence<T> {
 
-	private final ColoredNode<T> tree;
+	private final TreeNode<T> tree;
 
-	private TreeSequenece(ColoredNode<T> tree) {
+	private TreeSequenece(TreeNode<T> tree) {
 		this.tree = tree;
 	}
 	
-	public static <T extends Comparable<T>> Sequence<T> create(ColoredNode<T> tree) {
+	public static <T extends Comparable<T>> Sequence<T> create(TreeNode<T> tree) {
 		return new TreeSequenece<T>(tree);
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public Sequence<T> createSequence() {
 		Sequence<T> x = tree.getLeft().sequence(); 
