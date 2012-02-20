@@ -6,7 +6,7 @@ import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.utilities.Guard;
 
-final class ImmutableHashMap<K, V> extends MapSupport<K, V> implements Map<K, V> {
+final class ImmutableHashMap<K, V> extends MapSupport<K, V> {
 	private final HashTrie<MapEntry<K, V>> root;
 	
 	private ImmutableHashMap(HashTrie<MapEntry<K, V>> root) {
