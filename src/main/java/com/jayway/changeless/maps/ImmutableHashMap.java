@@ -14,8 +14,7 @@ final class ImmutableHashMap<K, V> extends MapSupport<K, V> {
 	}
 	
 	public static <K,V> Map<K,V> empty() {
-		HashTrie<MapEntry<K, V>> root = HashTries.empty();
-		return new ImmutableHashMap<K, V>(root);
+		return new ImmutableHashMap<K, V>(HashTries.<MapEntry<K, V>>empty());
 	}
 	
 	@Override
