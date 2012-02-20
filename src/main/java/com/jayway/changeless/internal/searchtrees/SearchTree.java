@@ -2,6 +2,7 @@ package com.jayway.changeless.internal.searchtrees;
 
 import java.util.Iterator;
 
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.LazySequence;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequenceable;
@@ -22,6 +23,7 @@ import com.jayway.changeless.utilities.Guard;
 public interface SearchTree<T extends Comparable<T>> extends Sequenceable<T> {
 	boolean contains(T element);
 	boolean isEmpty();
+	Optional<T> find(T queue);
 	SearchTree<T> add(T element);
 	SearchTree<T> remove(T element);
 }
@@ -107,6 +109,10 @@ abstract class NodeSupport<T extends Comparable<T>> implements Node<T> {
 	public String toString() {
 		return sequence().toString();
 	}
+	
+	public boolean contains(T element) {
+		return find(element).hasValue();
+	}
 }
 
 class TreeNode<T extends Comparable<T>> extends NodeSupport<T> {
@@ -142,19 +148,6 @@ class TreeNode<T extends Comparable<T>> extends NodeSupport<T> {
 	@Override
 	public boolean isEmpty() {
 		return false;
-	}
-
-	@Override
-	public boolean contains(T element) {
-		if (Comparables.lessThan(element, this.element)) {
-			return left.contains(element);
-		} 
-		
-		if (Comparables.greaterThan(element, this.element)) {
-			return right.contains(element);
-		}
-		
-		return true;
 	}
 	
 	public static <T extends Comparable<T>> TreeNode<T> create(
@@ -452,6 +445,19 @@ class TreeNode<T extends Comparable<T>> extends NodeSupport<T> {
 	public TreeNode<T> setColor(Color color) {
 		return create(color, left, element, right);
 	}
+
+	@Override
+	public Optional<T> find(T query) {
+		if (Comparables.lessThan(query, element)) {
+			return left.find(query);
+		} 
+		
+		if (Comparables.greaterThan(query, element)) {
+			return right.find(query);
+		}
+		
+		return Optional.valueOf(element);
+	}
 }
 
 class LeafNode<T extends Comparable<T>> extends NodeSupport<T> {
@@ -462,11 +468,6 @@ class LeafNode<T extends Comparable<T>> extends NodeSupport<T> {
 	@Override
 	public boolean isEmpty() {
 		return true;
-	}
-
-	@Override
-	public boolean contains(T element) {
-		return false;
 	}
 
 	public static  <T extends Comparable<T>> Node<T> create() {
@@ -549,6 +550,11 @@ class LeafNode<T extends Comparable<T>> extends NodeSupport<T> {
 	@Override
 	public Node<T> lighten() {
 		throw new IllegalStateException("Empty tree can't be lighten");
+	}
+
+	@Override
+	public Optional<T> find(T queue) {
+		return Optional.none();
 	}
 }
 

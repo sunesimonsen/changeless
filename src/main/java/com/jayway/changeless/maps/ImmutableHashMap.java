@@ -19,8 +19,7 @@ final class ImmutableHashMap<K, V> extends MapSupport<K, V> {
 	
 	@Override
 	public Map<K, V> put(K key, V value) {
-		Guard.notNull(key, "key");
-		Guard.notNull(value, "value");
+		Guard.notNull(value,"value");
 		MapEntry<K,V> entry = new MapEntry<K, V>(key, value);
 		int hashCode = entry.hashCode();
 		// TODO this could be more efficient.
@@ -29,8 +28,7 @@ final class ImmutableHashMap<K, V> extends MapSupport<K, V> {
 
 	@Override
 	public Optional<V> get(K key) {
-		Guard.notNull(key, "key");
-		MapEntry<K,V> seachQuery = new MapEntry<K, V>(key, null);
+		MapEntry<K,V> seachQuery = new MapEntry<K, V>(key);
 		Optional<MapEntry<K, V>> result = root.get(seachQuery, seachQuery.hashCode());
 		if (result.hasValue()) {
 			return Optional.valueOf(result.getValue().getValue());

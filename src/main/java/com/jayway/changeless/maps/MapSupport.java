@@ -16,7 +16,7 @@ abstract class MapSupport<K, V> implements Map<K, V>{
 		return sequence().toString();
 	}
 	
-	protected abstract Sequence<MapEntry<K, V>> mapEntries();
+	protected abstract Sequence<? extends MapEntry<K, V>> mapEntries();
 	
 	@Override
 	public Sequence<Tuple<K, V>> sequence() {

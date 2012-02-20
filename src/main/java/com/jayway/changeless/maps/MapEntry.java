@@ -2,7 +2,7 @@ package com.jayway.changeless.maps;
 
 import com.jayway.changeless.utilities.Guard;
 
-final class MapEntry<K,V> {
+class MapEntry<K,V> {
 	private final K key;
 	private final V value;
 	
