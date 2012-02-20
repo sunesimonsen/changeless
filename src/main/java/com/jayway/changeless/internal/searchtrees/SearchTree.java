@@ -552,70 +552,10 @@ class LeafNode<T extends Comparable<T>> extends NodeSupport<T> {
 	}
 }
 
-final class DoubleBlackLeafNode<T extends Comparable<T>> extends NodeSupport<T> {
+final class DoubleBlackLeafNode<T extends Comparable<T>> extends LeafNode<T> {
 	@Override
 	public Color getColor() {
 		return Color.DOUBLE_BLACK;
-	}
-
-	@Override
-	public boolean contains(T element) {
-		throw unsupported();
-	}
-
-	@Override
-	public boolean isEmpty() {
-		return true;
-	}
-
-	@Override
-	public Sequence<T> sequence() {
-		throw unsupported();
-	}
-
-	@Override
-	public Iterator<T> iterator() {
-		throw unsupported();
-	}
-
-	@Override
-	public TreeNode<T> insertInTree(T element) {
-		throw unsupported();
-	}
-
-	@Override
-	public Node<T> removeInTree(T element) {
-		throw unsupported();
-	}
-
-	@Override
-	public boolean isRed() {
-		return false;
-	}
-
-	@Override
-	public boolean isBlack() {
-		return false;
-	}
-
-	@Override
-	public Tuple<Integer, Integer> numberOfNodes() {
-		throw unsupported();
-	}
-
-	@Override
-	public Tuple<Integer, Integer> numberOfBlackNodes() {
-		throw unsupported();
-	}
-
-	@Override
-	public void ensureRedNodesHasBlackChildren() {
-		throw unsupported();
-	}
-
-	@Override
-	public void ensureInvariant() {
-		throw unsupported();
 	}
 
 	@Override
@@ -624,57 +564,8 @@ final class DoubleBlackLeafNode<T extends Comparable<T>> extends NodeSupport<T> 
 	}
 	
 	@Override
-	public Node<T> colorRed() {
-		throw new IllegalStateException("Can't color a leaf red");
-	}
-
-	@Override
-	public Node<T> balance() {
-		throw unsupported();
-	}
-
-	@Override
-	public Node<T> removeMax() {
-		throw unsupported();
-	}
-
-	@Override
-	public T max() {
-		throw unsupported();
-	}
-
-	@Override
-	public Node<T> bubble() {
-		throw unsupported();
-	}
-
-	@Override
-	public Node<T> darken() {
-		throw unsupported();
-	}
-
-	@Override
 	public Node<T> lighten() {
 		return LeafNode.create();
-	}
-
-	@Override
-	public Node<T> lightenChildren() {
-		throw unsupported();
-	}
-
-	@Override
-	public boolean isDoubleBlack() {
-		return true;
-	}
-
-	@Override
-	public boolean isNegativeBlack() {
-		return false;
-	}
-	
-	private static RuntimeException unsupported() {
-		return new IllegalStateException("Unsupported operation");
 	}
 }
 
