@@ -6,7 +6,7 @@ import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.utilities.Guard;
 
-public class ImmutableTreeMap<K extends Comparable<K>, V> extends MapSupport<K, V> {
+final class ImmutableTreeMap<K extends Comparable<K>, V> extends MapSupport<K, V> {
 
 	private final SearchTree<SortedMapEntry<K, V>> root;
 
