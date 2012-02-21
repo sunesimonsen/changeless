@@ -153,7 +153,7 @@ public class SortedMapsTests {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void createMapThrowsOnNullKey() {
-		SortedMaps.of(null, 1);
+		SortedMaps.<String, String>of(null, "1");
 	}
 
 
@@ -180,7 +180,8 @@ public class SortedMapsTests {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void updatesMapToMergeCannotBeNull() {
-		SortedMaps.empty().merge(null);
+		Map<Integer, Object> tree = SortedMaps.empty();
+		tree.merge(null);
 	}
 	
 	@Test

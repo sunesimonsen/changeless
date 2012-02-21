@@ -89,7 +89,8 @@ public class SearchTreeTest {
 	
 	@Test
 	public void toStringOnEmptyTree() throws Exception {
-		String actual = SearchTrees.empty().toString();
+		SearchTree<String> tree = SearchTrees.empty();
+		String actual = tree.toString();
 		String expected = Sequences.empty().toString();
 		assertEquals("Expected string", expected , actual);
 	}
