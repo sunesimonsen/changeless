@@ -4,6 +4,7 @@ import com.jayway.changeless.internal.searchtrees.SearchTree;
 import com.jayway.changeless.internal.searchtrees.SearchTrees;
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
+import com.jayway.changeless.utilities.Guard;
 
 public class ImmutableTreeMap<K extends Comparable<K>, V> extends MapSupport<K, V> {
 
@@ -23,6 +24,7 @@ public class ImmutableTreeMap<K extends Comparable<K>, V> extends MapSupport<K, 
 	
 	@Override
 	public Map<K, V> put(K key, V value) {
+		Guard.notNull(value, "value");
 		return create(root.add(new SortedMapEntry<K, V>(key, value)));
 	}
 
@@ -37,7 +39,7 @@ public class ImmutableTreeMap<K extends Comparable<K>, V> extends MapSupport<K, 
 
 	@Override
 	public Map<K, V> remove(K key) {
-		return create(root.add(new SortedMapEntry<K, V>(key)));
+		return create(root.remove(new SortedMapEntry<K, V>(key)));
 	}
 
 	@Override

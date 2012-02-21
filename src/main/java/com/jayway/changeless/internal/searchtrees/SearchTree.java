@@ -173,7 +173,7 @@ class TreeNode<T extends Comparable<T>> extends NodeSupport<T> {
 			return create(color, left, this.element, right.insertInTree(element)).balance();
 		}
 		
-		return this;
+		return create(color, left, element, right);
 	}
 
 	@Override
@@ -374,8 +374,9 @@ class TreeNode<T extends Comparable<T>> extends NodeSupport<T> {
 		if (Comparables.greaterThan(element, this.element)) {
 			return create(color, left, this.element, right.removeInTree(element)).bubble();
 		}
-		
+
 		// This is the element we would like to remove
+		
 		if (left.isEmpty() && right.isEmpty()) {
 			return isBlack() ? left.darken() : left;
 		} else if (left.isEmpty()) {

@@ -3,7 +3,7 @@ package com.jayway.changeless.maps;
 import com.jayway.changeless.tuples.Tuple;
 
 /**
- * An utility class for working with {@link SortedMap} instances.
+ * An utility class for working with sorted {@link Map} instances.
  */
 public final class SortedMaps {
 	private SortedMaps() { /* Static class */ }
