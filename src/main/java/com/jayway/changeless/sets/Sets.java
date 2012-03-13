@@ -22,7 +22,11 @@ public final class Sets {
 	 * @return a set containing the given elements.
 	 */
 	public static <T> Set<T> copyOf(Iterable<T> elements) {
-		return ImmutableHashSet.copyOf(elements);
+		Set<T> result = Sets.empty();
+		for (T element : elements) {
+			result = result.add(element);
+		}
+		return result;
 	}
 
 	/**
@@ -32,6 +36,10 @@ public final class Sets {
 	 * @return a set containing the given elements.
 	 */
 	public static <T> Set<T> of(T... elements) {
-		return ImmutableHashSet.of(elements);
+		Set<T> result = Sets.empty();
+		for (T element : elements) {
+			result = result.add(element);
+		}
+		return result;
 	}
 }

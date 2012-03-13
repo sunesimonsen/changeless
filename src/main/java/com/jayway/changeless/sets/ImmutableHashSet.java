@@ -21,22 +21,6 @@ final class ImmutableHashSet<T> extends SetSupport<T> {
 		HashTrie<T> root = HashTries.empty();
 		return new ImmutableHashSet<T>(root);
 	}
-	
-	public static <T> Set<T> copyOf(Iterable<T> iterable) {
-		HashTrie<T> root = HashTries.empty();
-		for (T value : iterable) {
-			root = root.add(0, value.hashCode(), value);
-		}
-		return new ImmutableHashSet<T>(root);
-	}
-	
-	public static <T> Set<T> of(T... elements) {
-		HashTrie<T> root = HashTries.empty();
-		for (T value : elements) {
-			root = root.add(0, value.hashCode(), value);
-		}
-		return new ImmutableHashSet<T>(root);
-	}
 
 	@Override
 	public Set<T> add(T element) {
