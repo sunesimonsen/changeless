@@ -2,20 +2,16 @@ package com.jayway.changeless.sets;
 
 import java.util.Iterator;
 
-import com.jayway.changeless.internal.hashtrie.HashTries;
 import com.jayway.changeless.internal.hashtrie.HashTrie;
+import com.jayway.changeless.internal.hashtrie.HashTries;
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 
 
-final class ImmutableHashSet<T> implements Set<T> {
+final class ImmutableHashSet<T> extends SetSupport<T> {
 
 	private final HashTrie<T> root;
-	private volatile int cachedHashcode = -1;
 	
-	private boolean isHashCodeCached() {
-		return cachedHashcode != -1;
-	}
 	
 	private ImmutableHashSet(HashTrie<T> root) {
 		this.root = root;
@@ -43,24 +39,15 @@ final class ImmutableHashSet<T> implements Set<T> {
 	}
 
 	@Override
-	public Set<T> add(T... elements) {
-		HashTrie<T> newRoot = root;
-		for (T element : elements) {
-			newRoot = newRoot.add(0, element.hashCode(), element);
-		}
+	public Set<T> add(T element) {
+		HashTrie<T> newRoot = root.add(0, element.hashCode(), element);
 		return new ImmutableHashSet<T>(newRoot);
 	}
 
 	@Override
-	public boolean contains(T... elements) {
-		for (T element : elements) {
-			Optional<T> seachResult = root.get(element, element.hashCode());
-			if (seachResult.hasNoValue()) {
-				return false;
-			}
-		}
-		
-		return true;
+	public boolean contains(T element) {
+		Optional<T> seachResult = root.get(element, element.hashCode());
+		return seachResult.hasValue();
 	}
 
 	@Override
@@ -69,23 +56,11 @@ final class ImmutableHashSet<T> implements Set<T> {
 	}
 
 	@Override
-	public Set<T> remove(T... elements) {
-		HashTrie<T> newRoot = root;
-		for (T element : elements) {
-			newRoot = newRoot.remove(element, element.hashCode());
-		}
+	public Set<T> remove(T element) {
+		HashTrie<T> newRoot = root.remove(element, element.hashCode());
 		return new ImmutableHashSet<T>(newRoot);
 	}
 	
-	@Override
-	public Set<T> remove(Iterable<T> elements) {
-		HashTrie<T> newRoot = root;
-		for (T value : elements) {
-			newRoot = newRoot.remove(value, value.hashCode());
-		}
-		return new ImmutableHashSet<T>(newRoot);
-	}
-
 	@Override
 	public Sequence<T> sequence() {
 		return root.sequence();
@@ -136,47 +111,9 @@ final class ImmutableHashSet<T> implements Set<T> {
 		return new ImmutableHashSet<T>(newRoot);
 	}
 
-	@Override
-	public int hashCode() {
-		if (isHashCodeCached()) {
-			return cachedHashcode;
-		}
-		
-		final int prime = 31;
-		int result = 1;
-		
-		for (T element : sequence()) {
-			result = prime * result + element.hashCode();	
-		}
-		cachedHashcode = result;
-		return result;
-	}
+	
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Set))
-			return false;
-
-		Set<T> other = (Set<T>) obj;
-		if (hashCode() != other.hashCode()) {
-			return false;
-		}
-		
-		int size = 0;
-		for (T value : other.sequence()) {
-			if (!contains(value)) {
-				return false;
-			}
-			size++;
-		}
-		
-		return size() == size;
-	}
+	
 
 	@Override
 	public Iterator<T> iterator() {

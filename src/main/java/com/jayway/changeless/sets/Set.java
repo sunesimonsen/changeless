@@ -11,6 +11,13 @@ import com.jayway.changeless.sequences.Sequenceable;
  */
 public interface Set<T> extends Sequenceable<T>, Predicate<T> {
 	/**
+	 * Returns a new set that is the union of the elements in this set and the given element. 
+	 * @param element the element to be added.
+	 * @return a new set that is the union of the elements in this set and the given element.
+	 */
+	Set<T> add(T element);
+	
+	/**
 	 * Returns a new set that is the union of the elements in this set and the given elements. 
 	 * @param elements the elements to be added.
 	 * @return a new set that is the union of the elements in this set and the given elements.
@@ -18,9 +25,16 @@ public interface Set<T> extends Sequenceable<T>, Predicate<T> {
 	Set<T> add(T... elements);
 	
 	/**
+	 * Returns true if the given element is members of this set.
+	 * @param element the element that should be tested for membership.
+	 * @return true if the given element is members of this set; false otherwise.
+	 */
+	boolean contains(T element);
+	
+	/**
 	 * Returns true if all the given elements are members of this set.
 	 * @param elements the elements that should be tested for membership.
-	 * @return true if all the given elements are members of this set.; false otherwise.
+	 * @return true if all the given elements are members of this set; false otherwise.
 	 */
 	boolean contains(T... elements);
 	
@@ -31,11 +45,18 @@ public interface Set<T> extends Sequenceable<T>, Predicate<T> {
 	int size();
 	
 	/**
+	 * Returns a new set with the elements of this set except the given element.
+	 * @param element the element that should be excluded from the returned set.
+	 * @return a new set with the elements of this set except the given element.
+	 */
+	Set<T> remove(T element);
+	
+	/**
 	 * Returns a new set with the elements of this set except the given elements.
-	 * @param element the elements that should be excluded from the returned set.
+	 * @param elements the elements that should be excluded from the returned set.
 	 * @return a new set with the elements of this set except the given elements.
 	 */
-	Set<T> remove(T... element);
+	Set<T> remove(T... elements);
 	
 	/**
 	 * Returns a new set with the elements of this set except the given elements.
