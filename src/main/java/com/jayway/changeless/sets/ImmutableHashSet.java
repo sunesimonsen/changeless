@@ -67,62 +67,22 @@ final class ImmutableHashSet<T> extends SetSupport<T> {
 	}
 	
 	@Override
-	public String toString() {
-		return sequence().toString();
-	}
-
-	@Override
 	public boolean isEmpty() {
 		return root.isEmpty();
 	}
-
-	@Override
-	public Set<T> intersection(Iterable<T> elements) {
-		HashTrie<T> newRoot = HashTries.empty();
-		for (T element : elements) {
-			int hash = element.hashCode();
-			if (root.get(element, hash).hasValue()) {
-				newRoot = newRoot.add(0, hash, element);
-			}
-		}
-		return new ImmutableHashSet<T>(newRoot);
-	}
 	
-	@Override
-	public Set<T> union(Iterable<T> elements) {
-		HashTrie<T> newRoot = root;
-		for (T element : elements) {
-			newRoot = newRoot.add(0, element.hashCode(), element);
-		}
-		return new ImmutableHashSet<T>(newRoot);
-	}
-	
-	@Override
-	public Set<T> symmetricDifference(Iterable<T> elements) {
-		HashTrie<T> newRoot = root;
-		for (T element : elements) {
-			int hash = element.hashCode();
-			if (newRoot.get(element, hash).hasValue()) {
-				newRoot = newRoot.remove(element, hash);
-			} else {
-				newRoot = newRoot.add(0, hash, element);
-			}
-		}
-		return new ImmutableHashSet<T>(newRoot);
-	}
-
-	
-
-	
-
 	@Override
 	public Iterator<T> iterator() {
 		return root.iterator();
 	}
-
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public boolean matches(T input) {
 		return contains(input);
+	}
+
+	@Override
+	protected Set<T> createEmptySet() {
+		return empty();
 	}
 }
