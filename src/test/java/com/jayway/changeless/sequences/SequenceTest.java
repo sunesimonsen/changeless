@@ -24,35 +24,6 @@ import com.jayway.changeless.tuples.Tuples;
 
 
 public class SequenceTest {
-	@Test
-	public void emptySequenceIsEmpty() throws Exception {
-		Sequence<Integer> sequence = Sequences.empty();
-		assertTrue("The sequence was expected to be empty",  sequence.isEmpty());
-	}
-	
-	@Test
-	public void ofWithNoArgumentsCreatesAnEmptySequence() throws Exception {
-		Sequence<Integer> sequence = Sequences.of();
-		assertTrue("The sequence was expected to be empty",  sequence.isEmpty());
-	}
-	
-	@Test
-	public void ofWithOneArgumentShouldCreateANonEmptySequence() throws Exception {
-		Sequence<Integer> sequence = Sequences.of(42);
-		assertFalse("The sequence was expected to be non-empty",  sequence.isEmpty());
-	}
-	
-	@Test
-	public void ofWithTwoArguments() throws Exception {
-		Sequence<Integer> sequence = Sequences.of(42, 41);
-		assertEquals("Unexpected sequense size", 2, sequence.size());
-	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void ofWithNullArgumentsThrowsException() throws Exception {
-		Sequences.of(42, null, 41);
-	}
-	
 	@Test(expected=IllegalArgumentException.class)
 	public void addWithNullArgumentsThrowsException() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(42, 41);
