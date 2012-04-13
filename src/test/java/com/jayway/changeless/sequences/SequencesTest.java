@@ -25,9 +25,15 @@ public class SequencesTest {
 	}
 	
 	@Test
-	public void of_with_two_arguments_should_create_a_sequence_with_two_elements() throws Exception {
+	public void of_with_two_arguments_should_create_a_sequence_of_size_2() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(42, 41);
 		assertEquals("Unexpected sequense size", 2, sequence.size());
+	}
+
+	@Test
+	public void of_with_three_arguments_should_create_a_sequence_of_size_3() throws Exception {
+		Sequence<Integer> sequence = Sequences.of(42, 41, 40);
+		assertEquals("Unexpected sequense size", 3, sequence.size());
 	}
 	
 	@Test(expected=IllegalArgumentException.class)

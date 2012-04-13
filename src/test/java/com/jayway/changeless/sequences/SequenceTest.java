@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.jayway.changeless.test.IndexIntoString;
 import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.functions.Fn2;
 import com.jayway.changeless.functions.Functions;
@@ -25,31 +26,20 @@ import com.jayway.changeless.tuples.Tuples;
 
 public class SequenceTest {
 	@Test(expected=IllegalArgumentException.class)
-	public void addWithNullArgumentsThrowsException() throws Exception {
+	public void add_with_null_arguments_should_throw() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(42, 41);
 		sequence.add((Integer)null);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void addAllWithNullArgumentsThrowsException() throws Exception {
+    public void add_all_with_null_arguments_should_throw() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(42, 41);
 		sequence.add(45, null);
 	}
 	
-	@Test
-	public void sizeOfEmptySequenceIsZero() throws Exception {
-		Sequence<Integer> sequence = Sequences.empty();
-		assertEquals("Expected size to be zero", 0, sequence.size());
-	}
 	
 	@Test
-	public void ofWithThreeArguments() throws Exception {
-		Sequence<Integer> sequence = Sequences.of(42, 41, 40);
-		assertEquals("Unexpected sequense size", 3, sequence.size());
-	}
-	
-	@Test
-	public void addIncreasesSizeByOne() throws Exception {
+    public void adding_one_element_to_a_sequence_should_return_a_sequence_with_the_size_increase_by_one() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(42, 41, 40);
 		Sequence<Integer> newSequence = sequence.add(39);
 		assertEquals("Expected size to be increased by one", 
@@ -57,27 +47,10 @@ public class SequenceTest {
 	}
 	
 	@Test
-	public void toStringOnEmptySequence() throws Exception {
-		Sequence<Integer> sequence = Sequences.empty();
-		assertEquals("Expected a valid string representation of the sequence", 
-				"()", sequence.toString());
-	}
-	
-	@Test
 	public void toStringOnNonEmptySequence() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(42, 41, 40);
 		assertEquals("Expected a valid string representation of the sequence", 
 				"(42,41,40)", sequence.toString());
-	}
-	
-	@Test(expected=IllegalStateException.class)
-	public void callingFirstOnAnEmptySequenceThrows() throws Exception {
-		Sequences.empty().first();
-	}
-	
-	@Test(expected=IllegalStateException.class)
-	public void callingRestOnAnEmptySequenceThrows() throws Exception {
-		Sequences.empty().rest();
 	}
 	
 	@Test
@@ -101,14 +74,6 @@ public class SequenceTest {
 		Sequence<Integer> sequence = Sequences.of(42, 41, 40);
 		Sequence<Integer> actual = sequence.take(3);
 		Sequence<Integer> expected = Sequences.of(42, 41, 40);
-		assertEquals("Expected sequences to be equal", expected, actual);
-	}
-	
-	@Test
-	public void takeFromEmptySequence() throws Exception {
-		Sequence<Integer> sequence = Sequences.empty();
-		Sequence<Integer> actual = sequence.take(3);
-		Sequence<Integer> expected = Sequences.empty();
 		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
@@ -163,27 +128,14 @@ public class SequenceTest {
 				sequence.size(), actual.size());
 	}
 
-	private Fn2<Integer, Object, String> indexToString = new Fn2<Integer, Object, String>() {
-		public String apply(Integer x, Object y) {
-			return x + ":" + y;
-		}
-	};
-	
 	@Test
 	public void transformIndexedSequence() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(42, 41, 40);
-		Sequence<String> actual = sequence.transformIndexed(indexToString);
+		Sequence<String> actual = sequence.transformIndexed(new IndexIntoString());
 		Sequence<String> expected = Sequences.of("0:42", "1:41", "2:40");
 		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
-	@Test
-	public void transformIndexedOnEmptySequence() throws Exception {
-		Sequence<Integer> sequence = Sequences.empty();
-		Sequence<String> actual = sequence.transformIndexed(indexToString);
-		assertTrue("Expected sequence to empty", actual.isEmpty());
-	}
-
 	@Test
 	public void filterSeqence() throws Exception {
 		Sequence<Integer> sequence = Sequences.from(0).upward().take(10);
@@ -273,15 +225,6 @@ public class SequenceTest {
 	}
 	
 	@Test
-	public void summingEmptySequenceWithReduce() throws Exception {
-		Sequence<Integer> sequence = Sequences.empty();
-		Integer expected = 0;
-		Integer actual = sequence.reduce(0, new PlusFunction());
-		assertEquals("Expected reduce on empty sequence to return start value", 
-				expected , actual);
-	}
-	
-	@Test
 	public void summingSequenceWithReduce() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(1,2,3,4,5,6);
 		Integer expected = 21;
@@ -299,13 +242,6 @@ public class SequenceTest {
 		assertEquals("Expected joined string.", expected, actual.toString());
 	}
 	
-	@Test
-	public void reverseEmptySequence() throws Exception {
-		Sequence<Integer> sequence = Sequences.empty();
-		Sequence<Integer> expected = Sequences.empty();
-		Sequence<Integer> actual = sequence.reverse();
-		assertEquals("Expected reverse sequence", expected, actual);
-	}
 	
 	@Test
 	public void reverseSequence() throws Exception {
@@ -321,14 +257,6 @@ public class SequenceTest {
 		Sequence<Integer> actual = sequence.filter(new EvenPredicate());
 		Sequence<Integer> expected = Sequences.from(-10).step(2).upward().take(10);
 		assertEquals("Expected sequences to be equals",expected, actual);
-	}
-	
-	@Test
-	public void frequenciesOnEmptySequenceReturnsAnEmptyMap() throws Exception {
-		Sequence<String> sequence = Sequences.of();
-		Map<String, Integer> actual = sequence.frequencies();
-		Map<String, Integer> expected = Maps.empty();
-		assertEquals("Expected map to contain frequencies", expected, actual);
 	}
 	
 	@Test
@@ -401,22 +329,12 @@ public class SequenceTest {
 		assertEquals("Expected sequences to be equals",expected, actual);
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
-	public void minOnEmptySequenceThrows() throws Exception {
-		Sequences.min(Sequences.<Integer>empty());
-	}
-	
 	@Test
 	public void minOnSequence() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(5,6,2,8,1,2);
 		Integer actual = Sequences.min(sequence);
 		Integer expected = 1;
 		assertEquals("min", expected, actual);
-	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void maxOnEmptySequenceThrows() throws Exception {
-		Sequences.max(Sequences.<Integer>empty());
 	}
 	
 	@Test
@@ -430,13 +348,6 @@ public class SequenceTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void partitionWithNegativeArgumentThrows() throws Exception {
 		Sequences.of(1,2,3).partition(-1);
-	}
-	
-	@Test
-	public void partitionOnEmptySequence() throws Exception {
-		Sequence<Integer> sequence = Sequences.empty();
-		Sequence<Sequence<Integer>> actual = sequence.partition(2);
-		assertTrue("Expected sequence to be empty", actual.isEmpty());
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -490,12 +401,6 @@ public class SequenceTest {
 		Sequence<Sequence<Integer>> actual = sequence.partition(20);
 		Sequence<Sequence<Integer>> expected = Sequences.of(sequence);
 		assertEquals("Expected sequences to be equal", expected, actual);
-	}
-	
-	@Test
-	public void cycleEmptySequence() throws Exception {
-		Sequence<Object> sequence = Sequences.empty().cycle();
-		assertTrue("Expected an empty sequence", sequence.isEmpty());
 	}
 	
 	@Test
@@ -567,14 +472,6 @@ public class SequenceTest {
 	}
 	
 	@Test
-	public void insertAtIntoEmptySequence() throws Exception {
-		Sequence<Integer> sequence = Sequences.empty();
-		Sequence<Integer> actual = sequence.insertAt(0, 0, 1);
-		Sequence<Integer> expected = Sequences.of(0, 1);
-		assertEquals("Expected sequences to be equal", expected, actual);
-	}
-	
-	@Test
 	public void insertNothing() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(2, 3, 4);
 		Sequence<Integer> actual = sequence.insertAt(0);
@@ -588,18 +485,6 @@ public class SequenceTest {
 		Sequence<Integer> actual = sequence.insertAt(5, 0, 0).take(10);
 		Sequence<Integer> expected = Sequences.of(0,1,2,3,4,0,0,5,6,7);
 		assertEquals("Expected sequences to be equal", expected, actual);
-	}
-	
-	@Test
-	public void isSizeOnEmpty() throws Exception {
-		Sequence<Integer> sequence = Sequences.empty();
-		assertTrue("Expected size 0", sequence.isSize(0));
-	}
-	
-	@Test
-	public void isNotSizeOnEmpty() throws Exception {
-		Sequence<Integer> sequence = Sequences.empty();
-		assertFalse("Expected size 0", sequence.isSize(10));
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
