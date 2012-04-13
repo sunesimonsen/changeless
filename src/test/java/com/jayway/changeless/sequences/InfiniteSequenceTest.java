@@ -30,7 +30,6 @@ public class InfiniteSequenceTest {
 		assertEquals("Expected sequences to be equals",expected, actual);
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Test
     public void partitionInfiniteSequence() throws Exception {
 		Sequence<Sequence<Integer>> actual = subject.partition(3).take(4);
