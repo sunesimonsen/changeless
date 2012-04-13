@@ -276,33 +276,11 @@ public class SequenceTest {
 	}
 	
 	@Test
-	public void filterOnInfiniteSequence() throws Exception {
-		Sequence<Integer> sequence = Sequences.from(-10).upward();
-		Sequence<Integer> actual = sequence.filter(new EvenPredicate()).take(10);
-		Sequence<Integer> expected = Sequences.from(-10).step(2).upward().take(10);
-		assertEquals("Expected sequences to be equals",expected, actual);
-	}
-	
-	@Test
-	public void transformOnInfiniteSequence() throws Exception {
-		Sequence<Integer> sequence = Sequences.from(-10).upward();
-		Sequence<String> actual = sequence.transform(Functions.toStringFunction).take(3);
-		Sequence<String> expected = Sequences.of("-10", "-9", "-8");
-		assertEquals("Expected sequences to be equals",expected, actual);
-	}
-	
-	@Test
 	public void addIterableToSequence() throws Exception {
 		Sequence<Integer> sequence = Sequences.from(-10).upward().take(3);
 		Sequence<Integer> actual = sequence.add(sequence.reverse());
 		Sequence<Integer> expected = Sequences.of(-8,-9,-10,-10,-9,-8);
 		assertEquals("Expected sequences to be equals",expected, actual);
-	}
-	
-	@Test
-	public void getElementOnInfiniteSequence() throws Exception {
-		Sequence<Integer> sequence = Sequences.from(-10).upward();
-		assertEquals("Expected sequences to be equals", -7, (int)sequence.get(3));
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -376,21 +354,6 @@ public class SequenceTest {
 				Sequences.of(3,4,5),
 				Sequences.of(6,7,8),
 				Sequences.of(9));
-		
-		assertEquals("Expected sequences to be equal", expected, actual);
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Test
-	public void partitionInfiniteSequence() throws Exception {
-		Sequence<Integer> sequence = Sequences.from(0).upward();
-		Sequence<Sequence<Integer>> actual = sequence.partition(3).take(4);
-		Sequence<Sequence<Integer>> expected = 
-			Sequences.of(
-				Sequences.of(0,1,2),
-				Sequences.of(3,4,5),
-				Sequences.of(6,7,8),
-				Sequences.of(9,10,11));
 		
 		assertEquals("Expected sequences to be equal", expected, actual);
 	}
@@ -476,14 +439,6 @@ public class SequenceTest {
 		Sequence<Integer> sequence = Sequences.of(2, 3, 4);
 		Sequence<Integer> actual = sequence.insertAt(0);
 		Sequence<Integer> expected = sequence;
-		assertEquals("Expected sequences to be equal", expected, actual);
-	}
-	
-	@Test
-	public void insertAtIntoInfiniteSequence() throws Exception {
-		Sequence<Integer> sequence = Sequences.from(0).upward();
-		Sequence<Integer> actual = sequence.insertAt(5, 0, 0).take(10);
-		Sequence<Integer> expected = Sequences.of(0,1,2,3,4,0,0,5,6,7);
 		assertEquals("Expected sequences to be equal", expected, actual);
 	}
 	
