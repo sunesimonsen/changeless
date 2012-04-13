@@ -374,7 +374,7 @@ public class SequenceTest {
 	}
 	
 	@Test
-	public void upzipSequence() throws Exception {
+	public void unzipSequence() throws Exception {
 		Sequence<Integer> sequence1 = Sequences.of(1,2,3,4);
 		Sequence<String> sequence2 = Sequences.of("5","6","7","8","9","10");
 		Sequence<Tuple<Integer, String>> zipped = sequence1.zip(sequence2);
