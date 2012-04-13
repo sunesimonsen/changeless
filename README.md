@@ -24,6 +24,7 @@ You can find Javadoc for the project [here](http://sunesimonsen.github.com/chang
 
 TODO
 ----
+* Refactor test to look like src/test/java/com/jayway/changeless/sequences/
 * Make methods covariant and contravariant where appropriate.
 * Document all public methods with Javadoc. (Done)
 * Go through generated Javadoc and find things that looks weird and fix them.
