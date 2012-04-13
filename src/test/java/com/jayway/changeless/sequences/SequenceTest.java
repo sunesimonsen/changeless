@@ -295,19 +295,6 @@ public class SequenceTest {
 	
 	
 	@Test
-	public void sequenceProducer() throws Exception {
-		Sequence<String> sequence = Sequences.produce("a", new Fn<String, Optional<String>>() {
-			@Override
-			public Optional<String> apply(String input) {
-				return Optional.valueOf(input + input);
-			}
-		});
-		Sequence<String> actual = sequence.take(4);
-		Sequence<String> expected = Sequences.of("a", "aa", "aaaa", "aaaaaaaa");
-		assertEquals("Expected sequences to be equals",expected, actual);
-	}
-	
-	@Test
 	public void minOnSequence() throws Exception {
 		Sequence<Integer> sequence = Sequences.of(5,6,2,8,1,2);
 		Integer actual = Sequences.min(sequence);

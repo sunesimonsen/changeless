@@ -3,6 +3,9 @@ package com.jayway.changeless.sequences;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import com.jayway.changeless.optionals.Optional;
+import com.jayway.changeless.functions.Fn;
+    
 
 public class SequencesTest {
 
@@ -40,4 +43,18 @@ public class SequencesTest {
 	public void of_with_null_arguments_throws_exception() throws Exception {
 		Sequences.of(42, null, 41);
 	}
+
+	@Test
+	public void produce_should_use_given_producer_to_create_a_sequence() throws Exception {
+		Sequence<String> sequence = Sequences.produce("a", new Fn<String, Optional<String>>() {
+			@Override
+			public Optional<String> apply(String input) {
+				return Optional.valueOf(input + input);
+			}
+		});
+		Sequence<String> actual = sequence.take(4);
+		Sequence<String> expected = Sequences.of("a", "aa", "aaaa", "aaaaaaaa");
+		assertEquals("Expected sequences to be equals",expected, actual);
+	}
+	
 }
