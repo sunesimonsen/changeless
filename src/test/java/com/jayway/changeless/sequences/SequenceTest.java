@@ -9,17 +9,14 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.jayway.changeless.test.IndexIntoString;
-import com.jayway.changeless.functions.Fn;
-import com.jayway.changeless.functions.Fn2;
 import com.jayway.changeless.functions.Functions;
 import com.jayway.changeless.functions.integers.PlusFunction;
 import com.jayway.changeless.functions.strings.AppendStringFunction;
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.maps.Maps;
-import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.predicates.integers.EvenPredicate;
 import com.jayway.changeless.predicates.integers.OddPredicate;
+import com.jayway.changeless.test.IndexIntoString;
 import com.jayway.changeless.tuples.Tuple;
 import com.jayway.changeless.tuples.Tuples;
 

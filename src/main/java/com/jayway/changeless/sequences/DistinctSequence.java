@@ -28,8 +28,6 @@ public class DistinctSequence<T> extends SequenceSupport<T> {
 		return new DistinctSequence<T>(sequence, used);
 	}
 
-
-	@SuppressWarnings("unchecked")
 	@Override
 	public Sequence<T> rest() {
 		Set<T> u = used.add(first());

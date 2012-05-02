@@ -33,6 +33,7 @@ public class InfiniteSequenceTest {
 	@Test
     public void partition_should_return_a_partitioned_sequence() throws Exception {
 		Sequence<Sequence<Integer>> actual = subject.partition(3).take(4);
+		@SuppressWarnings("unchecked")
 		Sequence<Sequence<Integer>> expected = 
 			Sequences.of(Sequences.of(-10,-9,-8),
                          Sequences.of(-7,-6,-5),
