@@ -37,7 +37,7 @@ TODO
 * Add function composition to the Functions class. (Done)
 * Implement sorted maps based on red-black-trees. (Done)
 * Implement sorted sets based on red-black-trees. (Done)
-* Implement a stack.
+* Implement a stack. (Done)
 * Implement a Queue.            
 
 Acknowledgements
