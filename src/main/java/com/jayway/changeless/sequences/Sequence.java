@@ -5,6 +5,7 @@ import com.jayway.changeless.functions.Fn2;
 import com.jayway.changeless.maps.Map;
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.predicates.Predicate;
+import com.jayway.changeless.sets.Set;
 import com.jayway.changeless.tuples.Tuple;
 
 /**
@@ -396,4 +397,10 @@ public interface Sequence<T> extends Sequenceable<T> {
 	 * in random order.
 	 */
 	Sequence<T> shuffle();
+
+	/**
+	 * Returns a hash set of the elements in the sequence.
+	 * @return a hash set of the elements in the sequence.
+	 */
+	Set<T> toSet();
 }

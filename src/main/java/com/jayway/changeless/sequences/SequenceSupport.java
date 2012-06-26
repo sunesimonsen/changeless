@@ -16,6 +16,8 @@ import com.jayway.changeless.maps.UpdateFunction;
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.predicates.Predicate;
 import com.jayway.changeless.predicates.Predicates;
+import com.jayway.changeless.sets.Set;
+import com.jayway.changeless.sets.Sets;
 import com.jayway.changeless.tuples.Tuple;
 import com.jayway.changeless.utilities.Guard;
 
@@ -410,4 +412,10 @@ public abstract class SequenceSupport<T> implements Sequence<T> {
 			}
 		}
 	 }
+	
+	@Override
+	public Set<T> toSet() {
+		// TODO refactor and test
+		return Sets.copyOf(this);
+	}
 }
