@@ -88,4 +88,26 @@ public final class FirstInFirstOutQueue<T> implements Queue<T> {
 		}
 		return Optional.valueOf(out.first());
 	}
+
+	@Override
+	public int hashCode() {
+		return sequence().hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Queue<?> other = (Queue<?>) obj;
+		return sequence().equals(other.sequence());
+	}
+	
+	@Override
+	public String toString() {
+		return sequence().toString();
+	}
 }

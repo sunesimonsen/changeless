@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
 import com.jayway.changeless.optionals.Optional;
+import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
 
 public class QueueTest {
@@ -54,5 +55,11 @@ public class QueueTest {
 	@Test
 	public void poll_returns_none() throws Exception {
 		assertThat(subject.poll(), is(Optional.valueOf(0)));
+	}
+	
+	@Test
+	public void can_be_created_from_a_sequence() throws Exception {
+		Sequence<Integer> elements = Sequences.of(0,1,2,3,4);
+		assertThat(subject, is(Queues.of(elements)));
 	}
 }
