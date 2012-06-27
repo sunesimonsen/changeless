@@ -1,6 +1,7 @@
 package com.jayway.changeless.queues;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
@@ -61,5 +62,10 @@ public class QueueTest {
 	public void can_be_created_from_a_sequence() throws Exception {
 		Sequence<Integer> elements = Sequences.of(0,1,2,3,4);
 		assertThat(subject, is(Queues.of(elements)));
+	}
+	
+	@Test
+	public void to_string_returns_sequence_string_representation() throws Exception {
+		assertThat(subject.toString(), is(Sequences.of(0,1,2,3,4).toString()));
 	}
 }
