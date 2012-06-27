@@ -7,12 +7,12 @@ import com.jayway.changeless.vectors.Vectors;
 public class VectorEqualsAndHashcodeComparedWithEmptyVectorTest extends EqualsAndHashcodeTestSupport {
 
 	@Override
-	protected Object createFirstInstance() {
+	protected Object x() {
 		return Vectors.of(42,41,41);
 	}
 
 	@Override
-	protected Object createSecondInstance() {
+	protected Object notX() {
 		return Vectors.of();
 	}
 

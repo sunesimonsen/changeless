@@ -6,12 +6,12 @@ import com.jayway.changeless.test.EqualsAndHashcodeTestSupport;
 public class OptionalNoneEqualsAndHashcodeTest extends EqualsAndHashcodeTestSupport{
 
 	@Override
-	protected Object createFirstInstance() {
+	protected Object x() {
 		return Optional.none();
 	}
 
 	@Override
-	protected Object createSecondInstance() {
+	protected Object notX() {
 		return Optional.valueOf("second");
 	}
 	

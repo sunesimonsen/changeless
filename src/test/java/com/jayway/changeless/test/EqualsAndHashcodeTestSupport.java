@@ -17,18 +17,26 @@ public abstract class EqualsAndHashcodeTestSupport {
 	private Object y;
 	private Object z;
 	
-	private Object notx;
+	private Object notX;
 	
 	@Before
 	public void baseSetup() {
-		x = createFirstInstance();
-		y = createFirstInstance();
-		z = createFirstInstance();
-		notx = createSecondInstance(); 
+		x = x();
+		y = y();
+		z = z();
+		notX = notX(); 
 	}
 	
-	protected abstract Object createFirstInstance();
-	protected abstract Object createSecondInstance();
+	protected abstract Object x();
+	protected abstract Object notX();
+	
+	protected Object y() {
+		return x();
+	}
+	
+	protected Object z() {
+		return x();
+	}
 	
 	@Test
     /**
@@ -90,9 +98,9 @@ public abstract class EqualsAndHashcodeTestSupport {
         assertTrue("Consistent test fail x,y", x.equals(y));
         assertTrue("Consistent test fail x,y", x.equals(y));
         assertTrue("Consistent test fail x,y", x.equals(y));
-        assertFalse(notx.equals(x));
-        assertFalse(notx.equals(x));
-        assertFalse(notx.equals(x));
+        assertFalse(notX.equals(x));
+        assertFalse(notX.equals(x));
+        assertFalse(notX.equals(x));
  
     }
  
@@ -129,7 +137,7 @@ public abstract class EqualsAndHashcodeTestSupport {
     public void hashcodeTwoUnEqualObjects_produceDifferentNumber() {
  
         int xhashcode = x.hashCode();
-        int yhashcode = notx.hashCode();
+        int yhashcode = notX.hashCode();
  
         assertTrue("Equal object, return unequal hashcode test fails", !(xhashcode == yhashcode));
     }

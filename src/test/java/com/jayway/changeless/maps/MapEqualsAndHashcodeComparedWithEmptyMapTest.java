@@ -7,12 +7,12 @@ import com.jayway.changeless.test.EqualsAndHashcodeTestSupport;
 public class MapEqualsAndHashcodeComparedWithEmptyMapTest extends EqualsAndHashcodeTestSupport {
 
 	@Override
-	protected Object createFirstInstance() {
+	protected Object x() {
 		return Maps.of(42, "42", 41, "41", 40, "40");
 	}
 
 	@Override
-	protected Object createSecondInstance() {
+	protected Object notX() {
 		return Maps.empty();
 	}
 

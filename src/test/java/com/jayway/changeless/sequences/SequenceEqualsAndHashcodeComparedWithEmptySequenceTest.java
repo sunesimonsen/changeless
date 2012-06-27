@@ -7,12 +7,12 @@ import com.jayway.changeless.test.EqualsAndHashcodeTestSupport;
 public class SequenceEqualsAndHashcodeComparedWithEmptySequenceTest extends EqualsAndHashcodeTestSupport {
 
 	@Override
-	protected Object createFirstInstance() {
+	protected Object x() {
 		return Sequences.of(42,41,41);
 	}
 
 	@Override
-	protected Object createSecondInstance() {
+	protected Object notX() {
 		return Sequences.of();
 	}
 

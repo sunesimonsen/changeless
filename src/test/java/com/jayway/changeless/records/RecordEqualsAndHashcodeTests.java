@@ -5,12 +5,12 @@ import com.jayway.changeless.test.EqualsAndHashcodeTestSupport;
 
 public class RecordEqualsAndHashcodeTests extends EqualsAndHashcodeTestSupport {
 	@Override
-	protected Object createFirstInstance() {
+	protected Object x() {
 		return Records.of(Person.class).name("Foo").age(21);
 	}
 
 	@Override
-	protected Object createSecondInstance() {
+	protected Object notX() {
 		return Records.of(Person.class).name("Foo").age(22);
 	}
 }

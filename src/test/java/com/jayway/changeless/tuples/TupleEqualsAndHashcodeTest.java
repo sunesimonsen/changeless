@@ -7,12 +7,12 @@ import com.jayway.changeless.tuples.Tuples;
 public class TupleEqualsAndHashcodeTest extends EqualsAndHashcodeTestSupport {
 
 	@Override
-	protected Object createFirstInstance() {
+	protected Object x() {
 		return Tuples.of(42, "42");
 	}
 
 	@Override
-	protected Object createSecondInstance() {
+	protected Object notX() {
 		return Tuples.of(666, "666");
 	}
 }
