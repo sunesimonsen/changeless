@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 import com.jayway.changeless.intervals.Intervals;
 import com.jayway.changeless.sequences.Sequence;
-import com.jayway.changeless.sequences.Sequenceable;
 import com.jayway.changeless.utilities.Guard;
 
 /**
@@ -62,16 +61,15 @@ public abstract class VectorSupport<T> implements Vector<T> {
 	public boolean equals(Object o) {
 		if (o == null) return false;
 		if (o == this) return true;
+		
 		if (o instanceof Vector) {
 			Vector v = (Vector)o;
 			if (size() != v.size()) {
 				return false;
 			} 
-			return sequence().equals(v.sequence());
 		}
 		
-		if (!(o instanceof Sequenceable)) return false;
-		return sequence().equals((Sequenceable)o);
+		return sequence().equals(o);
 	}
 
 	@Override

@@ -100,10 +100,7 @@ public final class FirstInFirstOutQueue<T> implements Queue<T> {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Queue<?> other = (Queue<?>) obj;
-		return sequence().equals(other.sequence());
+		return sequence().equals(obj);
 	}
 	
 	@Override
