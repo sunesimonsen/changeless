@@ -7,6 +7,8 @@ import java.util.NoSuchElementException;
 
 import org.junit.Test;
 
+import com.jayway.changeless.optionals.Optional;
+
 public class EmptyQueueTest {
 	private Queue<String> subject = Queues.empty(); 
 	
@@ -28,5 +30,11 @@ public class EmptyQueueTest {
 	@Test(expected=NoSuchElementException.class)
 	public void peek_throws() throws Exception {
 		subject.peek();
+	}
+	
+	@Test
+	public void poll_returns_none() throws Exception {
+		Optional<String> expected = Optional.none();
+		assertThat(subject.poll(), is(expected));
 	}
 }

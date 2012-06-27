@@ -3,6 +3,7 @@ package com.jayway.changeless.queues;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
 
@@ -78,5 +79,13 @@ public final class FirstInFirstOutQueue<T> implements Queue<T> {
 	@Override
 	public Iterator<T> iterator() {
 		return sequence().iterator();
+	}
+
+	@Override
+	public Optional<T> poll() {
+		if (isEmpty()) {
+			return Optional.none();
+		}
+		return Optional.valueOf(out.first());
 	}
 }

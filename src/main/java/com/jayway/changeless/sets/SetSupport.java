@@ -16,14 +16,8 @@ public abstract class SetSupport<T> implements Set<T> {
 			return cachedHashcode;
 		}
 		
-		final int prime = 31;
-		int result = 1;
-		
-		for (T element : sequence()) {
-			result = prime * result + element.hashCode();	
-		}
-		cachedHashcode = result;
-		return result;
+		cachedHashcode = sequence().hashCode();
+		return cachedHashcode;
 	}
 	
 	@SuppressWarnings("unchecked")

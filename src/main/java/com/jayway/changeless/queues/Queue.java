@@ -2,6 +2,7 @@ package com.jayway.changeless.queues;
 
 import java.util.NoSuchElementException;
 
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequenceable;
 
 /**
@@ -58,4 +59,10 @@ public interface Queue<T> extends Sequenceable<T> {
 	 * @throws NoSuchElementException if the queue is empty.
 	 */
 	public T peek();
+
+	/**
+	 * Returns the element at the front of this queue; or none if the queue is empty.
+	 * @return the element at the front of this queue; or none if the queue is empty.
+	 */
+	public Optional<T> poll();
 }

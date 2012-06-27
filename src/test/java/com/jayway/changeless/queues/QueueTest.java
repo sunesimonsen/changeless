@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
+import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequences;
 
 public class QueueTest {
@@ -48,5 +49,10 @@ public class QueueTest {
 	@Test
 	public void is_sequencable() throws Exception {
 		assertThat(subject.sequence(), is(Sequences.of(0,1,2,3,4)));
+	}
+	
+	@Test
+	public void poll_returns_none() throws Exception {
+		assertThat(subject.poll(), is(Optional.valueOf(0)));
 	}
 }
