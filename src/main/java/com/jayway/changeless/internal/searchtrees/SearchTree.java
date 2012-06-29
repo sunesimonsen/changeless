@@ -26,6 +26,8 @@ public interface SearchTree<T extends Comparable<T>> extends Sequenceable<T> {
 	Optional<T> find(T queue);
 	SearchTree<T> add(T element);
 	SearchTree<T> remove(T element);
+	T min();
+	T max();
 }
 
 interface Node<T extends Comparable<T>> extends SearchTree<T> {
@@ -428,6 +430,18 @@ class TreeNode<T extends Comparable<T>> extends NodeSupport<T> {
 		return right.max();
 	}
 
+	private boolean isMin() {
+		return left.isEmpty();
+	}
+	
+	@Override
+	public T min() {
+		if (isMin()) {
+			return element;
+		}
+		return left.min();
+	}
+	
 	@Override
 	public Node<T> lightenChildren() {
 		return create(color, left.lighten(), element, right.lighten());
@@ -556,6 +570,11 @@ class LeafNode<T extends Comparable<T>> extends NodeSupport<T> {
 	@Override
 	public Optional<T> find(T queue) {
 		return Optional.none();
+	}
+
+	@Override
+	public T min() {
+		throw new IllegalStateException("Empty tree has no min element");
 	}
 }
 

@@ -412,5 +412,33 @@ public class SortedSetTests {
 		String actual = set.toString();
 		assertEquals("Expected string to sorted", expected, actual);
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void minShouldThrowIfTheSetIsEmpty() throws Exception {
+		SortedSet<Integer> set = SortedSets.empty();
+		set.min();
+	}
+	
+	@Test
+	public void minShouldReturnTheSmallestElementInTheSet() throws Exception {
+		SortedSet<Integer> set = SortedSets.of(4,9,8,1,6,0,3,5,2,7);
+		int expected = 0;
+		int actual = set.min();
+		assertEquals("Expected smallest element in set", expected, actual);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void maxShouldThrowIfTheSetIsEmpty() throws Exception {
+		SortedSet<Integer> set = SortedSets.empty();
+		set.max();
+	}
+	
+	@Test
+	public void maxShouldReturnTheLargestElementInTheSet() throws Exception {
+		SortedSet<Integer> set = SortedSets.of(4,9,8,1,6,0,3,5,2,7);
+		int expected = 9;
+		int actual = set.max();
+		assertEquals("Expected largest element in set", expected, actual);
+	}
 }
 

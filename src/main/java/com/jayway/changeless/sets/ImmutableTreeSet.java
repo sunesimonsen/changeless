@@ -8,7 +8,7 @@ import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 
 
-final class ImmutableTreeSet<T extends Comparable<T>> extends SetSupport<T> {
+final class ImmutableTreeSet<T extends Comparable<T>> extends SortedSetSupport<T> {
 
 	private final SearchTree<T> root;
 	
@@ -17,13 +17,13 @@ final class ImmutableTreeSet<T extends Comparable<T>> extends SetSupport<T> {
 		this.root = root;
 	}
 	
-	public static <T extends Comparable<T>> Set<T> empty() {
+	public static <T extends Comparable<T>> SortedSet<T> empty() {
 		SearchTree<T> root = SearchTrees.empty();
 		return new ImmutableTreeSet<T>(root);
 	}
 
 	@Override
-	public Set<T> add(T element) {
+	public SortedSet<T> add(T element) {
 		SearchTree<T> newRoot = root.add(element);
 		return new ImmutableTreeSet<T>(newRoot);
 	}
@@ -41,7 +41,7 @@ final class ImmutableTreeSet<T extends Comparable<T>> extends SetSupport<T> {
 	}
 
 	@Override
-	public Set<T> remove(T element) {
+	public SortedSet<T> remove(T element) {
 		SearchTree<T> newRoot = root.remove(element);
 		return new ImmutableTreeSet<T>(newRoot);
 	}
@@ -67,7 +67,23 @@ final class ImmutableTreeSet<T extends Comparable<T>> extends SetSupport<T> {
 	}
 
 	@Override
-	protected Set<T> createEmptySet() {
+	protected SortedSet<T> createEmptySet() {
 		return empty();
+	}
+
+	@Override
+	public T min() {
+		if (isEmpty()) {
+			throw new IllegalArgumentException("Min only work on non-empty sets");	
+		}
+		return root.min();
+	}
+
+	@Override
+	public T max() {
+		if (isEmpty()) {
+			throw new IllegalArgumentException("Max only work on non-empty sets");	
+		}
+		return root.max();
 	}
 }
