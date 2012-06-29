@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
+import com.jayway.changeless.sequences.Sequenceable;
 import com.jayway.changeless.sequences.Sequences;
 
 public final class FirstInFirstOutQueue<T> implements Queue<T> {
@@ -33,9 +34,9 @@ public final class FirstInFirstOutQueue<T> implements Queue<T> {
 		return new FirstInFirstOutQueue<T>(in, out);
 	}
 	
-	static <T> Queue<T> create(Sequence<T> elements) {
+	static <T> Queue<T> create(Sequenceable<T> elements) {
 		Sequence<T> empty = Sequences.empty();
-		return create(empty, elements);
+		return create(empty, elements.sequence());
 	}
 
 	@Override

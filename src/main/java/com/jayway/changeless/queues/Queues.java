@@ -1,6 +1,7 @@
 package com.jayway.changeless.queues;
 
 import com.jayway.changeless.sequences.Sequence;
+import com.jayway.changeless.sequences.Sequenceable;
 import com.jayway.changeless.sequences.Sequences;
 
 public class Queues {
@@ -27,7 +28,7 @@ public class Queues {
 	 * @param elements the elements of the queue.
 	 * @return the new queue with the given elements.
 	 */
-	public static <T> Queue<T> of(Sequence<T> elements) {
+	public static <T> Queue<T> of(Sequenceable<T> elements) {
 		return FirstInFirstOutQueue.create(elements);
 	}
 }
