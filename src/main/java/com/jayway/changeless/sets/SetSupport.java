@@ -1,7 +1,5 @@
 package com.jayway.changeless.sets;
 
-import com.jayway.changeless.functions.Fn;
-import com.jayway.changeless.sequences.Sequence;
 
 public abstract class SetSupport<T> implements Set<T> {
 	private volatile int cachedHashcode = -1;
@@ -122,10 +120,5 @@ public abstract class SetSupport<T> implements Set<T> {
 			}
 		}
 		return result;
-	}
-
-	@Override
-	public <R> Sequence<R> transform(Fn<? super T, ? extends R> function) {
-		return sequence().transform(function);
 	}
 }

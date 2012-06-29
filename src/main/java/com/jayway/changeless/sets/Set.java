@@ -1,8 +1,6 @@
 package com.jayway.changeless.sets;
 
-import com.jayway.changeless.functions.Fn;
 import com.jayway.changeless.predicates.Predicate;
-import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequenceable;
 
 /**
@@ -98,18 +96,5 @@ public interface Set<T> extends Sequenceable<T>, Predicate<T> {
 	 * @return the union of this set and the given elements.
 	 */
 	Set<T> union(Iterable<T> elements);
-
-	/**
-	 * <p>
-	 * Returns a new seqeunce where each element from this set is transformed with the given function. 
-	 * </p>
-	 * <p>
-	 * Notice that the returned sequence is produced lazily.
-	 * </p>
-	 * @param <R> the element type of the produced sequence.
-	 * @param function the function used to transform the set. 
-	 * @return a new sequence where each element from this set is transformed with the given function.
-	 */
-	<R> Sequence<R> transform(Fn<? super T,? extends R> function);
 }
 
