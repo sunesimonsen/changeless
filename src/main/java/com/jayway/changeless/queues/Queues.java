@@ -1,6 +1,5 @@
 package com.jayway.changeless.queues;
 
-import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequenceable;
 import com.jayway.changeless.sequences.Sequences;
 
