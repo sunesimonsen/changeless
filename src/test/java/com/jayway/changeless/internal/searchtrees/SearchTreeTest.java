@@ -75,6 +75,46 @@ public class SearchTreeTest {
 	}
 	
 	@Test
+	public void removeMaxMonkeyTest() throws Exception {
+		Random random = new Random();
+		Set<Integer> inserted = new HashSet<Integer>();
+		SearchTree<Integer> tree = SearchTrees.empty();
+		for (int i = 0; i < 1000; i++) {
+			int value = random.nextInt(10000);
+			tree = tree.add(value);
+			inserted.add(value);
+		}
+		
+		for (int i = 0; i < inserted.size(); i++) {
+			Integer value = tree.max();
+			assertContains(tree, value);
+			tree = tree.remove(value);
+			assertNotContains(tree, value);
+			assertValidInvariant(tree);
+		}
+	}
+	
+	@Test
+	public void removeMinMonkeyTest() throws Exception {
+		Random random = new Random();
+		Set<Integer> inserted = new HashSet<Integer>();
+		SearchTree<Integer> tree = SearchTrees.empty();
+		for (int i = 0; i < 1000; i++) {
+			int value = random.nextInt(10000);
+			tree = tree.add(value);
+			inserted.add(value);
+		}
+		
+		for (int i = 0; i < inserted.size(); i++) {
+			Integer value = tree.min();
+			assertContains(tree, value);
+			tree = tree.remove(value);
+			assertNotContains(tree, value);
+			assertValidInvariant(tree);
+		}
+	}
+	
+	@Test
 	public void emptyTreeSequenceIsEmpty() throws Exception {
 		SearchTree<Integer> actual = SearchTrees.empty();
 		assertTrue("Expected empty sequence", actual.sequence().isEmpty());

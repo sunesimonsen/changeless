@@ -65,4 +65,10 @@ public interface Queue<T> extends Sequenceable<T> {
 	 * @return the element at the front of this queue; or none if the queue is empty.
 	 */
 	public Optional<T> poll();
+
+	public abstract String toString();
+
+	public abstract boolean equals(Object obj);
+
+	public abstract int hashCode();
 }

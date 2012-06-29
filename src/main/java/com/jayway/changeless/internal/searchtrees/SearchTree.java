@@ -1,6 +1,7 @@
 package com.jayway.changeless.internal.searchtrees;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.LazySequence;
@@ -539,7 +540,7 @@ class LeafNode<T extends Comparable<T>> extends NodeSupport<T> {
 
 	@Override
 	public T max() {
-		throw new IllegalStateException("Empty tree has no max element");
+		throw new NoSuchElementException("Empty tree has no max element");
 	}
 
 	@Override
@@ -574,7 +575,7 @@ class LeafNode<T extends Comparable<T>> extends NodeSupport<T> {
 
 	@Override
 	public T min() {
-		throw new IllegalStateException("Empty tree has no min element");
+		throw new NoSuchElementException("Empty tree has no min element");
 	}
 }
 

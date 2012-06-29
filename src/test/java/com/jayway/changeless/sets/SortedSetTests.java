@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.NoSuchElementException;
+
 import org.junit.Test;
 
 import com.jayway.changeless.functions.Functions;
@@ -413,7 +415,7 @@ public class SortedSetTests {
 		assertEquals("Expected string to sorted", expected, actual);
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected=NoSuchElementException.class)
 	public void minShouldThrowIfTheSetIsEmpty() throws Exception {
 		SortedSet<Integer> set = SortedSets.empty();
 		set.min();
@@ -427,7 +429,7 @@ public class SortedSetTests {
 		assertEquals("Expected smallest element in set", expected, actual);
 	}
 	
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected=NoSuchElementException.class)
 	public void maxShouldThrowIfTheSetIsEmpty() throws Exception {
 		SortedSet<Integer> set = SortedSets.empty();
 		set.max();
@@ -439,6 +441,38 @@ public class SortedSetTests {
 		int expected = 9;
 		int actual = set.max();
 		assertEquals("Expected largest element in set", expected, actual);
+	}
+	
+	@Test
+	public void removeMaxShouldReturnTheEmptySetOnAnEmptySet() throws Exception {
+		SortedSet<Integer> set = SortedSets.empty();
+		SortedSet<Integer> actual = set.removeMax();
+		SortedSet<Integer> expected = SortedSets.empty();
+		assertEquals("Expected sets to be equal", expected, actual);
+	}
+	
+	@Test
+	public void removeMaxShouldReturnNewSetWithoutTheLargestElement() throws Exception {
+		SortedSet<Integer> set = SortedSets.of(4,9,8,1,6,0,3,5,2,7);
+		SortedSet<Integer> expected = SortedSets.of(4,8,1,0,6,3,5,2,7);
+		SortedSet<Integer> actual = set.removeMax();
+		assertEquals("Expected sets to be equal", expected, actual);
+	}
+	
+	@Test
+	public void removeMinShouldReturnTheEmptySetOnAnEmptySet() throws Exception {
+		SortedSet<Integer> set = SortedSets.empty();
+		SortedSet<Integer> actual = set.removeMin();
+		SortedSet<Integer> expected = SortedSets.empty();
+		assertEquals("Expected sets to be equal", expected, actual);
+	}
+	
+	@Test
+	public void removeMinShouldReturnNewSetWithoutTheSmallestElement() throws Exception {
+		SortedSet<Integer> set = SortedSets.of(4,9,8,1,6,0,3,5,2,7);
+		SortedSet<Integer> expected = SortedSets.of(4,9,8,1,6,3,5,2,7);
+		SortedSet<Integer> actual = set.removeMin();
+		assertEquals("Expected sets to be equal", expected, actual);
 	}
 }
 

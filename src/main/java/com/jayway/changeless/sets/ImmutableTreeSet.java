@@ -1,6 +1,7 @@
 package com.jayway.changeless.sets;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import com.jayway.changeless.internal.searchtrees.SearchTree;
 import com.jayway.changeless.internal.searchtrees.SearchTrees;
@@ -74,7 +75,7 @@ final class ImmutableTreeSet<T extends Comparable<T>> extends SortedSetSupport<T
 	@Override
 	public T min() {
 		if (isEmpty()) {
-			throw new IllegalArgumentException("Min only work on non-empty sets");	
+			throw new NoSuchElementException("Empty sets has no smallest element");	
 		}
 		return root.min();
 	}
@@ -82,8 +83,24 @@ final class ImmutableTreeSet<T extends Comparable<T>> extends SortedSetSupport<T
 	@Override
 	public T max() {
 		if (isEmpty()) {
-			throw new IllegalArgumentException("Max only work on non-empty sets");	
+			throw new NoSuchElementException("Empty sets has no largest element");	
 		}
 		return root.max();
+	}
+
+	@Override
+	public SortedSet<T> removeMin() {
+		if (isEmpty()) {
+			return this;
+		}
+		return new ImmutableTreeSet<T>(root.remove(root.min()));
+	}
+	
+	@Override
+	public SortedSet<T> removeMax() {
+		if (isEmpty()) {
+			return this;
+		}
+		return new ImmutableTreeSet<T>(root.remove(root.max()));
 	}
 }

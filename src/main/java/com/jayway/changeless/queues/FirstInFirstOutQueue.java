@@ -1,14 +1,10 @@
 package com.jayway.changeless.queues;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
-import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequenceable;
 import com.jayway.changeless.sequences.Sequences;
 
-public final class FirstInFirstOutQueue<T> implements Queue<T> {
+public final class FirstInFirstOutQueue<T> extends QueueSupport<T> {
 	private final Sequence<T> in;
 	private final Sequence<T> out;
 
@@ -56,56 +52,18 @@ public final class FirstInFirstOutQueue<T> implements Queue<T> {
 
 	@Override
 	public Queue<T> remove() {
-		if (isEmpty()) {
-			throw new NoSuchElementException("Can't remove elements from an empty queue");
-		}
-		
+		ensureNonEmpty("Can't remove elements from an empty queue");
 		return create(in, out.rest());
 	}
 
 	@Override
 	public T peek() {
-		if (isEmpty()) {
-			throw new NoSuchElementException("Can't peek on an empty queue");
-		}
-		
+		ensureNonEmpty("Can't peek on an empty queue");
 		return out.first();
 	}
 
 	@Override
 	public Sequence<T> sequence() {
 		return out.append(in.reverse());
-	}
-
-	@Override
-	public Iterator<T> iterator() {
-		return sequence().iterator();
-	}
-
-	@Override
-	public Optional<T> poll() {
-		if (isEmpty()) {
-			return Optional.none();
-		}
-		return Optional.valueOf(out.first());
-	}
-
-	@Override
-	public int hashCode() {
-		return sequence().hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		return sequence().equals(obj);
-	}
-	
-	@Override
-	public String toString() {
-		return sequence().toString();
 	}
 }

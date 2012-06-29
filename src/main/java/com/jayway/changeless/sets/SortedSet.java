@@ -72,12 +72,30 @@ public interface SortedSet<T extends Comparable<T>> extends Set<T> {
 	/**
 	 * Return the smallest value in this set.
 	 * @return the smallest value in this set.
+	 * @throws NoSuchElementException if this set is empty.
 	 */
 	T min();
 	
 	/**
 	 * Return the largest value in this set.
 	 * @return the largest value in this set.
+	 * @throws NoSuchElementException if this set is empty.
 	 */
 	T max();
+
+	/**
+	 * Returns a new sorted set with all the elements of this set 
+	 * except the smallest element.
+	 * @return a new sorted set with all the elements of this set 
+	 * except the smallest element.
+	 */
+	SortedSet<T> removeMin();
+	
+	/**
+	 * Returns a new sorted set with all the elements of this set 
+	 * except the largest element.
+	 * @return a new sorted set with all the elements of this set 
+	 * except the largest element.
+	 */
+	SortedSet<T> removeMax();
 }
