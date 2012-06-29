@@ -9,8 +9,8 @@ import com.jayway.changeless.optionals.Optional;
 import com.jayway.changeless.sequences.Sequence;
 import com.jayway.changeless.sequences.Sequences;
 
-public class QueueTest {
-	private Queue<Integer> subject = Queues.of(0,1,2).add(3).add(4); 
+public class PriorityQueueQueueTest {
+	private Queue<Integer> subject = PriorityQueues.of(0,1,2).add(3).add(4); 
 	
 	@Test
 	public void is_not_empty() throws Exception {
@@ -39,27 +39,18 @@ public class QueueTest {
 	}
 	
 	@Test
-	public void elements_can_be_removed_in_insertion_order() throws Exception {
-		Queue<Integer> queue = subject;
-		for (int i = 0; !queue.isEmpty(); i++) {
-			assertThat(queue.peek(), is(i));
-			queue = queue.remove();
-		}
-	}
-	
-	@Test
 	public void is_sequencable() throws Exception {
 		assertThat(subject.sequence(), is(Sequences.of(0,1,2,3,4)));
 	}
 	
 	@Test
 	public void poll_returns_first_element() throws Exception {
-		assertThat(subject.poll(), is(Optional.valueOf(0)));
+		assertThat(subject.poll(), is(Optional.valueOf(4)));
 	}
 	
 	@Test
 	public void peek_returns_first_element() throws Exception {
-		assertThat(subject.peek(), is(0));
+		assertThat(subject.peek(), is(4));
 	}
 	
 	@Test
