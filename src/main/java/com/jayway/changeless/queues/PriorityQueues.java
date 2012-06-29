@@ -2,6 +2,12 @@ package com.jayway.changeless.queues;
 
 import com.jayway.changeless.sequences.Sequenceable;
 
+/**
+ * An utility class for working with priority queues.
+ * The priority queues created by this class will 
+ * prioritize largest elements compared to smaller 
+ * according to the {@link Comparable} interface.
+ */
 public final class PriorityQueues {
 	private PriorityQueues() { /* static class */ }
 
